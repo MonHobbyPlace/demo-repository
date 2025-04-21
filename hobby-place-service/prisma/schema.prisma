@@ -24,6 +24,7 @@ model User {
   PetPost     PetPost[]
   ServicePost ServicePost[]
   Hospital    Hospital[]
+
 }
 
 model PetPost {
@@ -94,3 +95,4 @@ enum PetPostEnum {
   SALE
   ADOPT
 }
+
