@@ -15,54 +15,82 @@ datasource db {
 }
 
 model User {
-  id                Int         @id @default(autoincrement())
-  email             String      @unique
-  password          String
-  username          String      @unique
-  receivedDonations Donations[] @relation("RecievedDonation")
-  bankCard          BankCard[]  @relation("BankCards")
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-  Donations         Donations[]
-  Profile           Profile?
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  username    String        @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  PetPost     PetPost[]
+  ServicePost ServicePost[]
+  Hospital    Hospital[]
 }
 
-model Donations {
-  id                      Int      @id @default(autoincrement())
-  amount                  Int
-  specialMessage          String
-  socialURLOrBuyMeACoffee String
-  recipientId             Int
-  donorId                 Int
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
-  donor                   User     @relation("RecievedDonation", fields: [donorId], references: [id])
-  recipient               User     @relation(fields: [recipientId], references: [id])
+model PetPost {
+  id            Int         @id @default(autoincrement())
+  petName       String
+  address       String
+  about         String
+  image         String
+  phoneNumber   Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  userId        Int
+  age           Int
+  category      PetCategory @relation(fields: [petCategoryId], references: [id])
+  price         Int
+  purpose       PetPostEnum
+  petCategoryId Int
+  User          User        @relation(fields: [userId], references: [id])
 }
 
-model Profile {
-  id              Int      @id @default(autoincrement())
-  name            String   @unique
+model ServicePost {
+  id            Int         @id @default(autoincrement())
+  petName       String
+  address       String
+  about         String
+  image         String
+  phoneNumber   Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  age           Int
+  category      PetCategory @relation(fields: [petCategoryId], references: [id])
+  price         Int
+  purpose       PetPostEnum
+  petCategoryId Int
+}
+
+model Hospital {
+  id              Int           @id @default(autoincrement())
+  name            String
   about           String
   avatarImage     String
-  socialMediaURL  String
-  backgroundImage String?  @default("")
-  successMessage  String?  @default("")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  userId          Int      @unique
-  user            User     @relation(fields: [userId], references: [id])
+  email           String
+  backgroundImage String?       @default("")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  User            User?         @relation(fields: [userId], references: [id])
+  userId          Int?
+  location        String
+  phoneNumber     Int
+  workTime        String
+  category        PetCategory[]
 }
 
-model BankCard {
-  id         Int      @id @default(autoincrement())
-  country    String
-  firstName  String
-  lastName   String
-  cardNumber String   @unique
-  expiryDate String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  user       User     @relation("BankCards", fields: [userId], references: [id])
-  userId     Int
+model PetCategory {
+  id          Int           @id @default(autoincrement())
+  name        String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  PetPost     PetPost[]
+  ServicePost ServicePost[]
+
+  Hospital Hospital[]
+}
+
+enum PetPostEnum {
+  SALE
+  ADOPT
 }

@@ -126,40 +126,58 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.DonationsScalarFieldEnum = {
+exports.Prisma.PetPostScalarFieldEnum = {
   id: 'id',
-  amount: 'amount',
-  specialMessage: 'specialMessage',
-  socialURLOrBuyMeACoffee: 'socialURLOrBuyMeACoffee',
-  recipientId: 'recipientId',
-  donorId: 'donorId',
+  petName: 'petName',
+  address: 'address',
+  about: 'about',
+  image: 'image',
+  phoneNumber: 'phoneNumber',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  age: 'age',
+  price: 'price',
+  purpose: 'purpose',
+  petCategoryId: 'petCategoryId'
 };
 
-exports.Prisma.ProfileScalarFieldEnum = {
+exports.Prisma.ServicePostScalarFieldEnum = {
+  id: 'id',
+  petName: 'petName',
+  address: 'address',
+  about: 'about',
+  image: 'image',
+  phoneNumber: 'phoneNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  age: 'age',
+  price: 'price',
+  purpose: 'purpose',
+  petCategoryId: 'petCategoryId'
+};
+
+exports.Prisma.HospitalScalarFieldEnum = {
   id: 'id',
   name: 'name',
   about: 'about',
   avatarImage: 'avatarImage',
-  socialMediaURL: 'socialMediaURL',
+  email: 'email',
   backgroundImage: 'backgroundImage',
-  successMessage: 'successMessage',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  location: 'location',
+  phoneNumber: 'phoneNumber',
+  workTime: 'workTime'
 };
 
-exports.Prisma.BankCardScalarFieldEnum = {
+exports.Prisma.PetCategoryScalarFieldEnum = {
   id: 'id',
-  country: 'country',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  cardNumber: 'cardNumber',
-  expiryDate: 'expiryDate',
+  name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -176,13 +194,17 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.PetPostEnum = exports.$Enums.PetPostEnum = {
+  SALE: 'SALE',
+  ADOPT: 'ADOPT'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Donations: 'Donations',
-  Profile: 'Profile',
-  BankCard: 'BankCard'
+  PetPost: 'PetPost',
+  ServicePost: 'ServicePost',
+  Hospital: 'Hospital',
+  PetCategory: 'PetCategory'
 };
 
 /**

@@ -19,20 +19,42 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model Donations
+ * Model PetPost
  * 
  */
-export type Donations = $Result.DefaultSelection<Prisma.$DonationsPayload>
+export type PetPost = $Result.DefaultSelection<Prisma.$PetPostPayload>
 /**
- * Model Profile
+ * Model ServicePost
  * 
  */
-export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
+export type ServicePost = $Result.DefaultSelection<Prisma.$ServicePostPayload>
 /**
- * Model BankCard
+ * Model Hospital
  * 
  */
-export type BankCard = $Result.DefaultSelection<Prisma.$BankCardPayload>
+export type Hospital = $Result.DefaultSelection<Prisma.$HospitalPayload>
+/**
+ * Model PetCategory
+ * 
+ */
+export type PetCategory = $Result.DefaultSelection<Prisma.$PetCategoryPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const PetPostEnum: {
+  SALE: 'SALE',
+  ADOPT: 'ADOPT'
+};
+
+export type PetPostEnum = (typeof PetPostEnum)[keyof typeof PetPostEnum]
+
+}
+
+export type PetPostEnum = $Enums.PetPostEnum
+
+export const PetPostEnum: typeof $Enums.PetPostEnum
 
 /**
  * ##  Prisma Client ʲˢ
@@ -170,34 +192,44 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.donations`: Exposes CRUD operations for the **Donations** model.
+   * `prisma.petPost`: Exposes CRUD operations for the **PetPost** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Donations
-    * const donations = await prisma.donations.findMany()
+    * // Fetch zero or more PetPosts
+    * const petPosts = await prisma.petPost.findMany()
     * ```
     */
-  get donations(): Prisma.DonationsDelegate<ExtArgs, ClientOptions>;
+  get petPost(): Prisma.PetPostDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.profile`: Exposes CRUD operations for the **Profile** model.
+   * `prisma.servicePost`: Exposes CRUD operations for the **ServicePost** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Profiles
-    * const profiles = await prisma.profile.findMany()
+    * // Fetch zero or more ServicePosts
+    * const servicePosts = await prisma.servicePost.findMany()
     * ```
     */
-  get profile(): Prisma.ProfileDelegate<ExtArgs, ClientOptions>;
+  get servicePost(): Prisma.ServicePostDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.bankCard`: Exposes CRUD operations for the **BankCard** model.
+   * `prisma.hospital`: Exposes CRUD operations for the **Hospital** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more BankCards
-    * const bankCards = await prisma.bankCard.findMany()
+    * // Fetch zero or more Hospitals
+    * const hospitals = await prisma.hospital.findMany()
     * ```
     */
-  get bankCard(): Prisma.BankCardDelegate<ExtArgs, ClientOptions>;
+  get hospital(): Prisma.HospitalDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.petCategory`: Exposes CRUD operations for the **PetCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PetCategories
+    * const petCategories = await prisma.petCategory.findMany()
+    * ```
+    */
+  get petCategory(): Prisma.PetCategoryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -639,9 +671,10 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Donations: 'Donations',
-    Profile: 'Profile',
-    BankCard: 'BankCard'
+    PetPost: 'PetPost',
+    ServicePost: 'ServicePost',
+    Hospital: 'Hospital',
+    PetCategory: 'PetCategory'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +693,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "donations" | "profile" | "bankCard"
+      modelProps: "user" | "petPost" | "servicePost" | "hospital" | "petCategory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -738,225 +771,299 @@ export namespace Prisma {
           }
         }
       }
-      Donations: {
-        payload: Prisma.$DonationsPayload<ExtArgs>
-        fields: Prisma.DonationsFieldRefs
+      PetPost: {
+        payload: Prisma.$PetPostPayload<ExtArgs>
+        fields: Prisma.PetPostFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.DonationsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload> | null
+            args: Prisma.PetPostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.DonationsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>
+            args: Prisma.PetPostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>
           }
           findFirst: {
-            args: Prisma.DonationsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload> | null
+            args: Prisma.PetPostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.DonationsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>
+            args: Prisma.PetPostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>
           }
           findMany: {
-            args: Prisma.DonationsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>[]
+            args: Prisma.PetPostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>[]
           }
           create: {
-            args: Prisma.DonationsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>
+            args: Prisma.PetPostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>
           }
           createMany: {
-            args: Prisma.DonationsCreateManyArgs<ExtArgs>
+            args: Prisma.PetPostCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.DonationsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>[]
+            args: Prisma.PetPostCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>[]
           }
           delete: {
-            args: Prisma.DonationsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>
+            args: Prisma.PetPostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>
           }
           update: {
-            args: Prisma.DonationsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>
+            args: Prisma.PetPostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>
           }
           deleteMany: {
-            args: Prisma.DonationsDeleteManyArgs<ExtArgs>
+            args: Prisma.PetPostDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.DonationsUpdateManyArgs<ExtArgs>
+            args: Prisma.PetPostUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.DonationsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>[]
+            args: Prisma.PetPostUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>[]
           }
           upsert: {
-            args: Prisma.DonationsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DonationsPayload>
+            args: Prisma.PetPostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetPostPayload>
           }
           aggregate: {
-            args: Prisma.DonationsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDonations>
+            args: Prisma.PetPostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePetPost>
           }
           groupBy: {
-            args: Prisma.DonationsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DonationsGroupByOutputType>[]
+            args: Prisma.PetPostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PetPostGroupByOutputType>[]
           }
           count: {
-            args: Prisma.DonationsCountArgs<ExtArgs>
-            result: $Utils.Optional<DonationsCountAggregateOutputType> | number
+            args: Prisma.PetPostCountArgs<ExtArgs>
+            result: $Utils.Optional<PetPostCountAggregateOutputType> | number
           }
         }
       }
-      Profile: {
-        payload: Prisma.$ProfilePayload<ExtArgs>
-        fields: Prisma.ProfileFieldRefs
+      ServicePost: {
+        payload: Prisma.$ServicePostPayload<ExtArgs>
+        fields: Prisma.ServicePostFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ProfileFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload> | null
+            args: Prisma.ServicePostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ProfileFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
+            args: Prisma.ServicePostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>
           }
           findFirst: {
-            args: Prisma.ProfileFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload> | null
+            args: Prisma.ServicePostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ProfileFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
+            args: Prisma.ServicePostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>
           }
           findMany: {
-            args: Prisma.ProfileFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>[]
+            args: Prisma.ServicePostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>[]
           }
           create: {
-            args: Prisma.ProfileCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
+            args: Prisma.ServicePostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>
           }
           createMany: {
-            args: Prisma.ProfileCreateManyArgs<ExtArgs>
+            args: Prisma.ServicePostCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ProfileCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>[]
+            args: Prisma.ServicePostCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>[]
           }
           delete: {
-            args: Prisma.ProfileDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
+            args: Prisma.ServicePostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>
           }
           update: {
-            args: Prisma.ProfileUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
+            args: Prisma.ServicePostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>
           }
           deleteMany: {
-            args: Prisma.ProfileDeleteManyArgs<ExtArgs>
+            args: Prisma.ServicePostDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ProfileUpdateManyArgs<ExtArgs>
+            args: Prisma.ServicePostUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.ProfileUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>[]
+            args: Prisma.ServicePostUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>[]
           }
           upsert: {
-            args: Prisma.ProfileUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
+            args: Prisma.ServicePostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServicePostPayload>
           }
           aggregate: {
-            args: Prisma.ProfileAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProfile>
+            args: Prisma.ServicePostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServicePost>
           }
           groupBy: {
-            args: Prisma.ProfileGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ProfileGroupByOutputType>[]
+            args: Prisma.ServicePostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServicePostGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ProfileCountArgs<ExtArgs>
-            result: $Utils.Optional<ProfileCountAggregateOutputType> | number
+            args: Prisma.ServicePostCountArgs<ExtArgs>
+            result: $Utils.Optional<ServicePostCountAggregateOutputType> | number
           }
         }
       }
-      BankCard: {
-        payload: Prisma.$BankCardPayload<ExtArgs>
-        fields: Prisma.BankCardFieldRefs
+      Hospital: {
+        payload: Prisma.$HospitalPayload<ExtArgs>
+        fields: Prisma.HospitalFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.BankCardFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload> | null
+            args: Prisma.HospitalFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.BankCardFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>
+            args: Prisma.HospitalFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>
           }
           findFirst: {
-            args: Prisma.BankCardFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload> | null
+            args: Prisma.HospitalFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.BankCardFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>
+            args: Prisma.HospitalFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>
           }
           findMany: {
-            args: Prisma.BankCardFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>[]
+            args: Prisma.HospitalFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>[]
           }
           create: {
-            args: Prisma.BankCardCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>
+            args: Prisma.HospitalCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>
           }
           createMany: {
-            args: Prisma.BankCardCreateManyArgs<ExtArgs>
+            args: Prisma.HospitalCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.BankCardCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>[]
+            args: Prisma.HospitalCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>[]
           }
           delete: {
-            args: Prisma.BankCardDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>
+            args: Prisma.HospitalDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>
           }
           update: {
-            args: Prisma.BankCardUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>
+            args: Prisma.HospitalUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>
           }
           deleteMany: {
-            args: Prisma.BankCardDeleteManyArgs<ExtArgs>
+            args: Prisma.HospitalDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.BankCardUpdateManyArgs<ExtArgs>
+            args: Prisma.HospitalUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.BankCardUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>[]
+            args: Prisma.HospitalUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>[]
           }
           upsert: {
-            args: Prisma.BankCardUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BankCardPayload>
+            args: Prisma.HospitalUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalPayload>
           }
           aggregate: {
-            args: Prisma.BankCardAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateBankCard>
+            args: Prisma.HospitalAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHospital>
           }
           groupBy: {
-            args: Prisma.BankCardGroupByArgs<ExtArgs>
-            result: $Utils.Optional<BankCardGroupByOutputType>[]
+            args: Prisma.HospitalGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HospitalGroupByOutputType>[]
           }
           count: {
-            args: Prisma.BankCardCountArgs<ExtArgs>
-            result: $Utils.Optional<BankCardCountAggregateOutputType> | number
+            args: Prisma.HospitalCountArgs<ExtArgs>
+            result: $Utils.Optional<HospitalCountAggregateOutputType> | number
+          }
+        }
+      }
+      PetCategory: {
+        payload: Prisma.$PetCategoryPayload<ExtArgs>
+        fields: Prisma.PetCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PetCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PetCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.PetCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PetCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.PetCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.PetCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.PetCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PetCategoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>[]
+          }
+          delete: {
+            args: Prisma.PetCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>
+          }
+          update: {
+            args: Prisma.PetCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.PetCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PetCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PetCategoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.PetCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PetCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.PetCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePetCategory>
+          }
+          groupBy: {
+            args: Prisma.PetCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PetCategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PetCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<PetCategoryCountAggregateOutputType> | number
           }
         }
       }
@@ -1045,9 +1152,10 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    donations?: DonationsOmit
-    profile?: ProfileOmit
-    bankCard?: BankCardOmit
+    petPost?: PetPostOmit
+    servicePost?: ServicePostOmit
+    hospital?: HospitalOmit
+    petCategory?: PetCategoryOmit
   }
 
   /* Types for Logging */
@@ -1142,15 +1250,15 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    receivedDonations: number
-    bankCard: number
-    Donations: number
+    PetPost: number
+    ServicePost: number
+    Hospital: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    receivedDonations?: boolean | UserCountOutputTypeCountReceivedDonationsArgs
-    bankCard?: boolean | UserCountOutputTypeCountBankCardArgs
-    Donations?: boolean | UserCountOutputTypeCountDonationsArgs
+    PetPost?: boolean | UserCountOutputTypeCountPetPostArgs
+    ServicePost?: boolean | UserCountOutputTypeCountServicePostArgs
+    Hospital?: boolean | UserCountOutputTypeCountHospitalArgs
   }
 
   // Custom InputTypes
@@ -1167,22 +1275,102 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountReceivedDonationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DonationsWhereInput
+  export type UserCountOutputTypeCountPetPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PetPostWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountBankCardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BankCardWhereInput
+  export type UserCountOutputTypeCountServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicePostWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountDonationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DonationsWhereInput
+  export type UserCountOutputTypeCountHospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalWhereInput
+  }
+
+
+  /**
+   * Count Type HospitalCountOutputType
+   */
+
+  export type HospitalCountOutputType = {
+    category: number
+  }
+
+  export type HospitalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | HospitalCountOutputTypeCountCategoryArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HospitalCountOutputType without action
+   */
+  export type HospitalCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalCountOutputType
+     */
+    select?: HospitalCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HospitalCountOutputType without action
+   */
+  export type HospitalCountOutputTypeCountCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PetCategoryWhereInput
+  }
+
+
+  /**
+   * Count Type PetCategoryCountOutputType
+   */
+
+  export type PetCategoryCountOutputType = {
+    PetPost: number
+    ServicePost: number
+    Hospital: number
+  }
+
+  export type PetCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    PetPost?: boolean | PetCategoryCountOutputTypeCountPetPostArgs
+    ServicePost?: boolean | PetCategoryCountOutputTypeCountServicePostArgs
+    Hospital?: boolean | PetCategoryCountOutputTypeCountHospitalArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PetCategoryCountOutputType without action
+   */
+  export type PetCategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PetCategoryCountOutputType
+     */
+    select?: PetCategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PetCategoryCountOutputType without action
+   */
+  export type PetCategoryCountOutputTypeCountPetPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PetPostWhereInput
+  }
+
+  /**
+   * PetCategoryCountOutputType without action
+   */
+  export type PetCategoryCountOutputTypeCountServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicePostWhereInput
+  }
+
+  /**
+   * PetCategoryCountOutputType without action
+   */
+  export type PetCategoryCountOutputTypeCountHospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalWhereInput
   }
 
 
@@ -1396,10 +1584,9 @@ export namespace Prisma {
     username?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    receivedDonations?: boolean | User$receivedDonationsArgs<ExtArgs>
-    bankCard?: boolean | User$bankCardArgs<ExtArgs>
-    Donations?: boolean | User$DonationsArgs<ExtArgs>
-    Profile?: boolean | User$ProfileArgs<ExtArgs>
+    PetPost?: boolean | User$PetPostArgs<ExtArgs>
+    ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
+    Hospital?: boolean | User$HospitalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1432,10 +1619,9 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    receivedDonations?: boolean | User$receivedDonationsArgs<ExtArgs>
-    bankCard?: boolean | User$bankCardArgs<ExtArgs>
-    Donations?: boolean | User$DonationsArgs<ExtArgs>
-    Profile?: boolean | User$ProfileArgs<ExtArgs>
+    PetPost?: boolean | User$PetPostArgs<ExtArgs>
+    ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
+    Hospital?: boolean | User$HospitalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1444,10 +1630,9 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      receivedDonations: Prisma.$DonationsPayload<ExtArgs>[]
-      bankCard: Prisma.$BankCardPayload<ExtArgs>[]
-      Donations: Prisma.$DonationsPayload<ExtArgs>[]
-      Profile: Prisma.$ProfilePayload<ExtArgs> | null
+      PetPost: Prisma.$PetPostPayload<ExtArgs>[]
+      ServicePost: Prisma.$ServicePostPayload<ExtArgs>[]
+      Hospital: Prisma.$HospitalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1850,10 +2035,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    receivedDonations<T extends User$receivedDonationsArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedDonationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    bankCard<T extends User$bankCardArgs<ExtArgs> = {}>(args?: Subset<T, User$bankCardArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Donations<T extends User$DonationsArgs<ExtArgs> = {}>(args?: Subset<T, User$DonationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Profile<T extends User$ProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$ProfileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    PetPost<T extends User$PetPostArgs<ExtArgs> = {}>(args?: Subset<T, User$PetPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ServicePost<T extends User$ServicePostArgs<ExtArgs> = {}>(args?: Subset<T, User$ServicePostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Hospital<T extends User$HospitalArgs<ExtArgs> = {}>(args?: Subset<T, User$HospitalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2277,94 +2461,75 @@ export namespace Prisma {
   }
 
   /**
-   * User.receivedDonations
+   * User.PetPost
    */
-  export type User$receivedDonationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$PetPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
-    where?: DonationsWhereInput
-    orderBy?: DonationsOrderByWithRelationInput | DonationsOrderByWithRelationInput[]
-    cursor?: DonationsWhereUniqueInput
+    include?: PetPostInclude<ExtArgs> | null
+    where?: PetPostWhereInput
+    orderBy?: PetPostOrderByWithRelationInput | PetPostOrderByWithRelationInput[]
+    cursor?: PetPostWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: DonationsScalarFieldEnum | DonationsScalarFieldEnum[]
+    distinct?: PetPostScalarFieldEnum | PetPostScalarFieldEnum[]
   }
 
   /**
-   * User.bankCard
+   * User.ServicePost
    */
-  export type User$bankCardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$ServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the ServicePost
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: ServicePostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the ServicePost
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: ServicePostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
-    where?: BankCardWhereInput
-    orderBy?: BankCardOrderByWithRelationInput | BankCardOrderByWithRelationInput[]
-    cursor?: BankCardWhereUniqueInput
+    include?: ServicePostInclude<ExtArgs> | null
+    where?: ServicePostWhereInput
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
+    cursor?: ServicePostWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: BankCardScalarFieldEnum | BankCardScalarFieldEnum[]
+    distinct?: ServicePostScalarFieldEnum | ServicePostScalarFieldEnum[]
   }
 
   /**
-   * User.Donations
+   * User.Hospital
    */
-  export type User$DonationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$HospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the Hospital
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the Hospital
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
-    where?: DonationsWhereInput
-    orderBy?: DonationsOrderByWithRelationInput | DonationsOrderByWithRelationInput[]
-    cursor?: DonationsWhereUniqueInput
+    include?: HospitalInclude<ExtArgs> | null
+    where?: HospitalWhereInput
+    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
+    cursor?: HospitalWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: DonationsScalarFieldEnum | DonationsScalarFieldEnum[]
-  }
-
-  /**
-   * User.Profile
-   */
-  export type User$ProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Profile
-     */
-    select?: ProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Profile
-     */
-    omit?: ProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfileInclude<ExtArgs> | null
-    where?: ProfileWhereInput
+    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
   }
 
   /**
@@ -2387,439 +2552,507 @@ export namespace Prisma {
 
 
   /**
-   * Model Donations
+   * Model PetPost
    */
 
-  export type AggregateDonations = {
-    _count: DonationsCountAggregateOutputType | null
-    _avg: DonationsAvgAggregateOutputType | null
-    _sum: DonationsSumAggregateOutputType | null
-    _min: DonationsMinAggregateOutputType | null
-    _max: DonationsMaxAggregateOutputType | null
+  export type AggregatePetPost = {
+    _count: PetPostCountAggregateOutputType | null
+    _avg: PetPostAvgAggregateOutputType | null
+    _sum: PetPostSumAggregateOutputType | null
+    _min: PetPostMinAggregateOutputType | null
+    _max: PetPostMaxAggregateOutputType | null
   }
 
-  export type DonationsAvgAggregateOutputType = {
+  export type PetPostAvgAggregateOutputType = {
     id: number | null
-    amount: number | null
-    recipientId: number | null
-    donorId: number | null
+    phoneNumber: number | null
+    userId: number | null
+    age: number | null
+    price: number | null
+    petCategoryId: number | null
   }
 
-  export type DonationsSumAggregateOutputType = {
+  export type PetPostSumAggregateOutputType = {
     id: number | null
-    amount: number | null
-    recipientId: number | null
-    donorId: number | null
+    phoneNumber: number | null
+    userId: number | null
+    age: number | null
+    price: number | null
+    petCategoryId: number | null
   }
 
-  export type DonationsMinAggregateOutputType = {
+  export type PetPostMinAggregateOutputType = {
     id: number | null
-    amount: number | null
-    specialMessage: string | null
-    socialURLOrBuyMeACoffee: string | null
-    recipientId: number | null
-    donorId: number | null
+    petName: string | null
+    address: string | null
+    about: string | null
+    image: string | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    userId: number | null
+    age: number | null
+    price: number | null
+    purpose: $Enums.PetPostEnum | null
+    petCategoryId: number | null
   }
 
-  export type DonationsMaxAggregateOutputType = {
+  export type PetPostMaxAggregateOutputType = {
     id: number | null
-    amount: number | null
-    specialMessage: string | null
-    socialURLOrBuyMeACoffee: string | null
-    recipientId: number | null
-    donorId: number | null
+    petName: string | null
+    address: string | null
+    about: string | null
+    image: string | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    userId: number | null
+    age: number | null
+    price: number | null
+    purpose: $Enums.PetPostEnum | null
+    petCategoryId: number | null
   }
 
-  export type DonationsCountAggregateOutputType = {
+  export type PetPostCountAggregateOutputType = {
     id: number
-    amount: number
-    specialMessage: number
-    socialURLOrBuyMeACoffee: number
-    recipientId: number
-    donorId: number
+    petName: number
+    address: number
+    about: number
+    image: number
+    phoneNumber: number
     createdAt: number
     updatedAt: number
+    userId: number
+    age: number
+    price: number
+    purpose: number
+    petCategoryId: number
     _all: number
   }
 
 
-  export type DonationsAvgAggregateInputType = {
+  export type PetPostAvgAggregateInputType = {
     id?: true
-    amount?: true
-    recipientId?: true
-    donorId?: true
+    phoneNumber?: true
+    userId?: true
+    age?: true
+    price?: true
+    petCategoryId?: true
   }
 
-  export type DonationsSumAggregateInputType = {
+  export type PetPostSumAggregateInputType = {
     id?: true
-    amount?: true
-    recipientId?: true
-    donorId?: true
+    phoneNumber?: true
+    userId?: true
+    age?: true
+    price?: true
+    petCategoryId?: true
   }
 
-  export type DonationsMinAggregateInputType = {
+  export type PetPostMinAggregateInputType = {
     id?: true
-    amount?: true
-    specialMessage?: true
-    socialURLOrBuyMeACoffee?: true
-    recipientId?: true
-    donorId?: true
+    petName?: true
+    address?: true
+    about?: true
+    image?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
+    age?: true
+    price?: true
+    purpose?: true
+    petCategoryId?: true
   }
 
-  export type DonationsMaxAggregateInputType = {
+  export type PetPostMaxAggregateInputType = {
     id?: true
-    amount?: true
-    specialMessage?: true
-    socialURLOrBuyMeACoffee?: true
-    recipientId?: true
-    donorId?: true
+    petName?: true
+    address?: true
+    about?: true
+    image?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
+    age?: true
+    price?: true
+    purpose?: true
+    petCategoryId?: true
   }
 
-  export type DonationsCountAggregateInputType = {
+  export type PetPostCountAggregateInputType = {
     id?: true
-    amount?: true
-    specialMessage?: true
-    socialURLOrBuyMeACoffee?: true
-    recipientId?: true
-    donorId?: true
+    petName?: true
+    address?: true
+    about?: true
+    image?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
+    age?: true
+    price?: true
+    purpose?: true
+    petCategoryId?: true
     _all?: true
   }
 
-  export type DonationsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Donations to aggregate.
+     * Filter which PetPost to aggregate.
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Donations to fetch.
+     * Determine the order of PetPosts to fetch.
      */
-    orderBy?: DonationsOrderByWithRelationInput | DonationsOrderByWithRelationInput[]
+    orderBy?: PetPostOrderByWithRelationInput | PetPostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: DonationsWhereUniqueInput
+    cursor?: PetPostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Donations from the position of the cursor.
+     * Take `±n` PetPosts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Donations.
+     * Skip the first `n` PetPosts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Donations
+     * Count returned PetPosts
     **/
-    _count?: true | DonationsCountAggregateInputType
+    _count?: true | PetPostCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: DonationsAvgAggregateInputType
+    _avg?: PetPostAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: DonationsSumAggregateInputType
+    _sum?: PetPostSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: DonationsMinAggregateInputType
+    _min?: PetPostMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: DonationsMaxAggregateInputType
+    _max?: PetPostMaxAggregateInputType
   }
 
-  export type GetDonationsAggregateType<T extends DonationsAggregateArgs> = {
-        [P in keyof T & keyof AggregateDonations]: P extends '_count' | 'count'
+  export type GetPetPostAggregateType<T extends PetPostAggregateArgs> = {
+        [P in keyof T & keyof AggregatePetPost]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateDonations[P]>
-      : GetScalarType<T[P], AggregateDonations[P]>
+        : GetScalarType<T[P], AggregatePetPost[P]>
+      : GetScalarType<T[P], AggregatePetPost[P]>
   }
 
 
 
 
-  export type DonationsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DonationsWhereInput
-    orderBy?: DonationsOrderByWithAggregationInput | DonationsOrderByWithAggregationInput[]
-    by: DonationsScalarFieldEnum[] | DonationsScalarFieldEnum
-    having?: DonationsScalarWhereWithAggregatesInput
+  export type PetPostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PetPostWhereInput
+    orderBy?: PetPostOrderByWithAggregationInput | PetPostOrderByWithAggregationInput[]
+    by: PetPostScalarFieldEnum[] | PetPostScalarFieldEnum
+    having?: PetPostScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: DonationsCountAggregateInputType | true
-    _avg?: DonationsAvgAggregateInputType
-    _sum?: DonationsSumAggregateInputType
-    _min?: DonationsMinAggregateInputType
-    _max?: DonationsMaxAggregateInputType
+    _count?: PetPostCountAggregateInputType | true
+    _avg?: PetPostAvgAggregateInputType
+    _sum?: PetPostSumAggregateInputType
+    _min?: PetPostMinAggregateInputType
+    _max?: PetPostMaxAggregateInputType
   }
 
-  export type DonationsGroupByOutputType = {
+  export type PetPostGroupByOutputType = {
     id: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    recipientId: number
-    donorId: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt: Date
     updatedAt: Date
-    _count: DonationsCountAggregateOutputType | null
-    _avg: DonationsAvgAggregateOutputType | null
-    _sum: DonationsSumAggregateOutputType | null
-    _min: DonationsMinAggregateOutputType | null
-    _max: DonationsMaxAggregateOutputType | null
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+    _count: PetPostCountAggregateOutputType | null
+    _avg: PetPostAvgAggregateOutputType | null
+    _sum: PetPostSumAggregateOutputType | null
+    _min: PetPostMinAggregateOutputType | null
+    _max: PetPostMaxAggregateOutputType | null
   }
 
-  type GetDonationsGroupByPayload<T extends DonationsGroupByArgs> = Prisma.PrismaPromise<
+  type GetPetPostGroupByPayload<T extends PetPostGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<DonationsGroupByOutputType, T['by']> &
+      PickEnumerable<PetPostGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof DonationsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PetPostGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], DonationsGroupByOutputType[P]>
-            : GetScalarType<T[P], DonationsGroupByOutputType[P]>
+              : GetScalarType<T[P], PetPostGroupByOutputType[P]>
+            : GetScalarType<T[P], PetPostGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type DonationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PetPostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    amount?: boolean
-    specialMessage?: boolean
-    socialURLOrBuyMeACoffee?: boolean
-    recipientId?: boolean
-    donorId?: boolean
+    petName?: boolean
+    address?: boolean
+    about?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    donor?: boolean | UserDefaultArgs<ExtArgs>
-    recipient?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["donations"]>
+    userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["petPost"]>
 
-  export type DonationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PetPostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    amount?: boolean
-    specialMessage?: boolean
-    socialURLOrBuyMeACoffee?: boolean
-    recipientId?: boolean
-    donorId?: boolean
+    petName?: boolean
+    address?: boolean
+    about?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    donor?: boolean | UserDefaultArgs<ExtArgs>
-    recipient?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["donations"]>
+    userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["petPost"]>
 
-  export type DonationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PetPostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    amount?: boolean
-    specialMessage?: boolean
-    socialURLOrBuyMeACoffee?: boolean
-    recipientId?: boolean
-    donorId?: boolean
+    petName?: boolean
+    address?: boolean
+    about?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    donor?: boolean | UserDefaultArgs<ExtArgs>
-    recipient?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["donations"]>
+    userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["petPost"]>
 
-  export type DonationsSelectScalar = {
+  export type PetPostSelectScalar = {
     id?: boolean
-    amount?: boolean
-    specialMessage?: boolean
-    socialURLOrBuyMeACoffee?: boolean
-    recipientId?: boolean
-    donorId?: boolean
+    petName?: boolean
+    address?: boolean
+    about?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
   }
 
-  export type DonationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "specialMessage" | "socialURLOrBuyMeACoffee" | "recipientId" | "donorId" | "createdAt" | "updatedAt", ExtArgs["result"]["donations"]>
-  export type DonationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    donor?: boolean | UserDefaultArgs<ExtArgs>
-    recipient?: boolean | UserDefaultArgs<ExtArgs>
+  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "price" | "purpose" | "petCategoryId", ExtArgs["result"]["petPost"]>
+  export type PetPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type DonationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    donor?: boolean | UserDefaultArgs<ExtArgs>
-    recipient?: boolean | UserDefaultArgs<ExtArgs>
+  export type PetPostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type DonationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    donor?: boolean | UserDefaultArgs<ExtArgs>
-    recipient?: boolean | UserDefaultArgs<ExtArgs>
+  export type PetPostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $DonationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Donations"
+  export type $PetPostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PetPost"
     objects: {
-      donor: Prisma.$UserPayload<ExtArgs>
-      recipient: Prisma.$UserPayload<ExtArgs>
+      category: Prisma.$PetCategoryPayload<ExtArgs>
+      User: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      amount: number
-      specialMessage: string
-      socialURLOrBuyMeACoffee: string
-      recipientId: number
-      donorId: number
+      petName: string
+      address: string
+      about: string
+      image: string
+      phoneNumber: number
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["donations"]>
+      userId: number
+      age: number
+      price: number
+      purpose: $Enums.PetPostEnum
+      petCategoryId: number
+    }, ExtArgs["result"]["petPost"]>
     composites: {}
   }
 
-  type DonationsGetPayload<S extends boolean | null | undefined | DonationsDefaultArgs> = $Result.GetResult<Prisma.$DonationsPayload, S>
+  type PetPostGetPayload<S extends boolean | null | undefined | PetPostDefaultArgs> = $Result.GetResult<Prisma.$PetPostPayload, S>
 
-  type DonationsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DonationsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DonationsCountAggregateInputType | true
+  type PetPostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PetPostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PetPostCountAggregateInputType | true
     }
 
-  export interface DonationsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Donations'], meta: { name: 'Donations' } }
+  export interface PetPostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PetPost'], meta: { name: 'PetPost' } }
     /**
-     * Find zero or one Donations that matches the filter.
-     * @param {DonationsFindUniqueArgs} args - Arguments to find a Donations
+     * Find zero or one PetPost that matches the filter.
+     * @param {PetPostFindUniqueArgs} args - Arguments to find a PetPost
      * @example
-     * // Get one Donations
-     * const donations = await prisma.donations.findUnique({
+     * // Get one PetPost
+     * const petPost = await prisma.petPost.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends DonationsFindUniqueArgs>(args: SelectSubset<T, DonationsFindUniqueArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PetPostFindUniqueArgs>(args: SelectSubset<T, PetPostFindUniqueArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Donations that matches the filter or throw an error with `error.code='P2025'`
+     * Find one PetPost that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {DonationsFindUniqueOrThrowArgs} args - Arguments to find a Donations
+     * @param {PetPostFindUniqueOrThrowArgs} args - Arguments to find a PetPost
      * @example
-     * // Get one Donations
-     * const donations = await prisma.donations.findUniqueOrThrow({
+     * // Get one PetPost
+     * const petPost = await prisma.petPost.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends DonationsFindUniqueOrThrowArgs>(args: SelectSubset<T, DonationsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PetPostFindUniqueOrThrowArgs>(args: SelectSubset<T, PetPostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Donations that matches the filter.
+     * Find the first PetPost that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsFindFirstArgs} args - Arguments to find a Donations
+     * @param {PetPostFindFirstArgs} args - Arguments to find a PetPost
      * @example
-     * // Get one Donations
-     * const donations = await prisma.donations.findFirst({
+     * // Get one PetPost
+     * const petPost = await prisma.petPost.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends DonationsFindFirstArgs>(args?: SelectSubset<T, DonationsFindFirstArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PetPostFindFirstArgs>(args?: SelectSubset<T, PetPostFindFirstArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Donations that matches the filter or
+     * Find the first PetPost that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsFindFirstOrThrowArgs} args - Arguments to find a Donations
+     * @param {PetPostFindFirstOrThrowArgs} args - Arguments to find a PetPost
      * @example
-     * // Get one Donations
-     * const donations = await prisma.donations.findFirstOrThrow({
+     * // Get one PetPost
+     * const petPost = await prisma.petPost.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends DonationsFindFirstOrThrowArgs>(args?: SelectSubset<T, DonationsFindFirstOrThrowArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PetPostFindFirstOrThrowArgs>(args?: SelectSubset<T, PetPostFindFirstOrThrowArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Donations that matches the filter.
+     * Find zero or more PetPosts that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {PetPostFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Donations
-     * const donations = await prisma.donations.findMany()
+     * // Get all PetPosts
+     * const petPosts = await prisma.petPost.findMany()
      * 
-     * // Get first 10 Donations
-     * const donations = await prisma.donations.findMany({ take: 10 })
+     * // Get first 10 PetPosts
+     * const petPosts = await prisma.petPost.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const donationsWithIdOnly = await prisma.donations.findMany({ select: { id: true } })
+     * const petPostWithIdOnly = await prisma.petPost.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends DonationsFindManyArgs>(args?: SelectSubset<T, DonationsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PetPostFindManyArgs>(args?: SelectSubset<T, PetPostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Donations.
-     * @param {DonationsCreateArgs} args - Arguments to create a Donations.
+     * Create a PetPost.
+     * @param {PetPostCreateArgs} args - Arguments to create a PetPost.
      * @example
-     * // Create one Donations
-     * const Donations = await prisma.donations.create({
+     * // Create one PetPost
+     * const PetPost = await prisma.petPost.create({
      *   data: {
-     *     // ... data to create a Donations
+     *     // ... data to create a PetPost
      *   }
      * })
      * 
      */
-    create<T extends DonationsCreateArgs>(args: SelectSubset<T, DonationsCreateArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PetPostCreateArgs>(args: SelectSubset<T, PetPostCreateArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Donations.
-     * @param {DonationsCreateManyArgs} args - Arguments to create many Donations.
+     * Create many PetPosts.
+     * @param {PetPostCreateManyArgs} args - Arguments to create many PetPosts.
      * @example
-     * // Create many Donations
-     * const donations = await prisma.donations.createMany({
+     * // Create many PetPosts
+     * const petPost = await prisma.petPost.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends DonationsCreateManyArgs>(args?: SelectSubset<T, DonationsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PetPostCreateManyArgs>(args?: SelectSubset<T, PetPostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Donations and returns the data saved in the database.
-     * @param {DonationsCreateManyAndReturnArgs} args - Arguments to create many Donations.
+     * Create many PetPosts and returns the data saved in the database.
+     * @param {PetPostCreateManyAndReturnArgs} args - Arguments to create many PetPosts.
      * @example
-     * // Create many Donations
-     * const donations = await prisma.donations.createManyAndReturn({
+     * // Create many PetPosts
+     * const petPost = await prisma.petPost.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Donations and only return the `id`
-     * const donationsWithIdOnly = await prisma.donations.createManyAndReturn({
+     * // Create many PetPosts and only return the `id`
+     * const petPostWithIdOnly = await prisma.petPost.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2829,28 +3062,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends DonationsCreateManyAndReturnArgs>(args?: SelectSubset<T, DonationsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PetPostCreateManyAndReturnArgs>(args?: SelectSubset<T, PetPostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Donations.
-     * @param {DonationsDeleteArgs} args - Arguments to delete one Donations.
+     * Delete a PetPost.
+     * @param {PetPostDeleteArgs} args - Arguments to delete one PetPost.
      * @example
-     * // Delete one Donations
-     * const Donations = await prisma.donations.delete({
+     * // Delete one PetPost
+     * const PetPost = await prisma.petPost.delete({
      *   where: {
-     *     // ... filter to delete one Donations
+     *     // ... filter to delete one PetPost
      *   }
      * })
      * 
      */
-    delete<T extends DonationsDeleteArgs>(args: SelectSubset<T, DonationsDeleteArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PetPostDeleteArgs>(args: SelectSubset<T, PetPostDeleteArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Donations.
-     * @param {DonationsUpdateArgs} args - Arguments to update one Donations.
+     * Update one PetPost.
+     * @param {PetPostUpdateArgs} args - Arguments to update one PetPost.
      * @example
-     * // Update one Donations
-     * const donations = await prisma.donations.update({
+     * // Update one PetPost
+     * const petPost = await prisma.petPost.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2860,30 +3093,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends DonationsUpdateArgs>(args: SelectSubset<T, DonationsUpdateArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PetPostUpdateArgs>(args: SelectSubset<T, PetPostUpdateArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Donations.
-     * @param {DonationsDeleteManyArgs} args - Arguments to filter Donations to delete.
+     * Delete zero or more PetPosts.
+     * @param {PetPostDeleteManyArgs} args - Arguments to filter PetPosts to delete.
      * @example
-     * // Delete a few Donations
-     * const { count } = await prisma.donations.deleteMany({
+     * // Delete a few PetPosts
+     * const { count } = await prisma.petPost.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends DonationsDeleteManyArgs>(args?: SelectSubset<T, DonationsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PetPostDeleteManyArgs>(args?: SelectSubset<T, PetPostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Donations.
+     * Update zero or more PetPosts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PetPostUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Donations
-     * const donations = await prisma.donations.updateMany({
+     * // Update many PetPosts
+     * const petPost = await prisma.petPost.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2893,14 +3126,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends DonationsUpdateManyArgs>(args: SelectSubset<T, DonationsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PetPostUpdateManyArgs>(args: SelectSubset<T, PetPostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Donations and returns the data updated in the database.
-     * @param {DonationsUpdateManyAndReturnArgs} args - Arguments to update many Donations.
+     * Update zero or more PetPosts and returns the data updated in the database.
+     * @param {PetPostUpdateManyAndReturnArgs} args - Arguments to update many PetPosts.
      * @example
-     * // Update many Donations
-     * const donations = await prisma.donations.updateManyAndReturn({
+     * // Update many PetPosts
+     * const petPost = await prisma.petPost.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2909,8 +3142,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Donations and only return the `id`
-     * const donationsWithIdOnly = await prisma.donations.updateManyAndReturn({
+     * // Update zero or more PetPosts and only return the `id`
+     * const petPostWithIdOnly = await prisma.petPost.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2923,56 +3156,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends DonationsUpdateManyAndReturnArgs>(args: SelectSubset<T, DonationsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PetPostUpdateManyAndReturnArgs>(args: SelectSubset<T, PetPostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Donations.
-     * @param {DonationsUpsertArgs} args - Arguments to update or create a Donations.
+     * Create or update one PetPost.
+     * @param {PetPostUpsertArgs} args - Arguments to update or create a PetPost.
      * @example
-     * // Update or create a Donations
-     * const donations = await prisma.donations.upsert({
+     * // Update or create a PetPost
+     * const petPost = await prisma.petPost.upsert({
      *   create: {
-     *     // ... data to create a Donations
+     *     // ... data to create a PetPost
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Donations we want to update
+     *     // ... the filter for the PetPost we want to update
      *   }
      * })
      */
-    upsert<T extends DonationsUpsertArgs>(args: SelectSubset<T, DonationsUpsertArgs<ExtArgs>>): Prisma__DonationsClient<$Result.GetResult<Prisma.$DonationsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends PetPostUpsertArgs>(args: SelectSubset<T, PetPostUpsertArgs<ExtArgs>>): Prisma__PetPostClient<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Donations.
+     * Count the number of PetPosts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsCountArgs} args - Arguments to filter Donations to count.
+     * @param {PetPostCountArgs} args - Arguments to filter PetPosts to count.
      * @example
-     * // Count the number of Donations
-     * const count = await prisma.donations.count({
+     * // Count the number of PetPosts
+     * const count = await prisma.petPost.count({
      *   where: {
-     *     // ... the filter for the Donations we want to count
+     *     // ... the filter for the PetPosts we want to count
      *   }
      * })
     **/
-    count<T extends DonationsCountArgs>(
-      args?: Subset<T, DonationsCountArgs>,
+    count<T extends PetPostCountArgs>(
+      args?: Subset<T, PetPostCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], DonationsCountAggregateOutputType>
+          : GetScalarType<T['select'], PetPostCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Donations.
+     * Allows you to perform aggregations operations on a PetPost.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PetPostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2992,13 +3225,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends DonationsAggregateArgs>(args: Subset<T, DonationsAggregateArgs>): Prisma.PrismaPromise<GetDonationsAggregateType<T>>
+    aggregate<T extends PetPostAggregateArgs>(args: Subset<T, PetPostAggregateArgs>): Prisma.PrismaPromise<GetPetPostAggregateType<T>>
 
     /**
-     * Group by Donations.
+     * Group by PetPost.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DonationsGroupByArgs} args - Group by arguments.
+     * @param {PetPostGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3013,14 +3246,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends DonationsGroupByArgs,
+      T extends PetPostGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DonationsGroupByArgs['orderBy'] }
-        : { orderBy?: DonationsGroupByArgs['orderBy'] },
+        ? { orderBy: PetPostGroupByArgs['orderBy'] }
+        : { orderBy?: PetPostGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3069,23 +3302,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, DonationsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDonationsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PetPostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPetPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Donations model
+   * Fields of the PetPost model
    */
-  readonly fields: DonationsFieldRefs;
+  readonly fields: PetPostFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Donations.
+   * The delegate class that acts as a "Promise-like" for PetPost.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__DonationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PetPostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    donor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    recipient<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends PetCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PetCategoryDefaultArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3112,874 +3345,2136 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Donations model
+   * Fields of the PetPost model
    */
-  interface DonationsFieldRefs {
-    readonly id: FieldRef<"Donations", 'Int'>
-    readonly amount: FieldRef<"Donations", 'Int'>
-    readonly specialMessage: FieldRef<"Donations", 'String'>
-    readonly socialURLOrBuyMeACoffee: FieldRef<"Donations", 'String'>
-    readonly recipientId: FieldRef<"Donations", 'Int'>
-    readonly donorId: FieldRef<"Donations", 'Int'>
-    readonly createdAt: FieldRef<"Donations", 'DateTime'>
-    readonly updatedAt: FieldRef<"Donations", 'DateTime'>
+  interface PetPostFieldRefs {
+    readonly id: FieldRef<"PetPost", 'Int'>
+    readonly petName: FieldRef<"PetPost", 'String'>
+    readonly address: FieldRef<"PetPost", 'String'>
+    readonly about: FieldRef<"PetPost", 'String'>
+    readonly image: FieldRef<"PetPost", 'String'>
+    readonly phoneNumber: FieldRef<"PetPost", 'Int'>
+    readonly createdAt: FieldRef<"PetPost", 'DateTime'>
+    readonly updatedAt: FieldRef<"PetPost", 'DateTime'>
+    readonly userId: FieldRef<"PetPost", 'Int'>
+    readonly age: FieldRef<"PetPost", 'Int'>
+    readonly price: FieldRef<"PetPost", 'Int'>
+    readonly purpose: FieldRef<"PetPost", 'PetPostEnum'>
+    readonly petCategoryId: FieldRef<"PetPost", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * Donations findUnique
+   * PetPost findUnique
    */
-  export type DonationsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * Filter, which Donations to fetch.
+     * Filter, which PetPost to fetch.
      */
-    where: DonationsWhereUniqueInput
+    where: PetPostWhereUniqueInput
   }
 
   /**
-   * Donations findUniqueOrThrow
+   * PetPost findUniqueOrThrow
    */
-  export type DonationsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * Filter, which Donations to fetch.
+     * Filter, which PetPost to fetch.
      */
-    where: DonationsWhereUniqueInput
+    where: PetPostWhereUniqueInput
   }
 
   /**
-   * Donations findFirst
+   * PetPost findFirst
    */
-  export type DonationsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * Filter, which Donations to fetch.
+     * Filter, which PetPost to fetch.
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Donations to fetch.
+     * Determine the order of PetPosts to fetch.
      */
-    orderBy?: DonationsOrderByWithRelationInput | DonationsOrderByWithRelationInput[]
+    orderBy?: PetPostOrderByWithRelationInput | PetPostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Donations.
+     * Sets the position for searching for PetPosts.
      */
-    cursor?: DonationsWhereUniqueInput
+    cursor?: PetPostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Donations from the position of the cursor.
+     * Take `±n` PetPosts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Donations.
+     * Skip the first `n` PetPosts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Donations.
+     * Filter by unique combinations of PetPosts.
      */
-    distinct?: DonationsScalarFieldEnum | DonationsScalarFieldEnum[]
+    distinct?: PetPostScalarFieldEnum | PetPostScalarFieldEnum[]
   }
 
   /**
-   * Donations findFirstOrThrow
+   * PetPost findFirstOrThrow
    */
-  export type DonationsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * Filter, which Donations to fetch.
+     * Filter, which PetPost to fetch.
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Donations to fetch.
+     * Determine the order of PetPosts to fetch.
      */
-    orderBy?: DonationsOrderByWithRelationInput | DonationsOrderByWithRelationInput[]
+    orderBy?: PetPostOrderByWithRelationInput | PetPostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Donations.
+     * Sets the position for searching for PetPosts.
      */
-    cursor?: DonationsWhereUniqueInput
+    cursor?: PetPostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Donations from the position of the cursor.
+     * Take `±n` PetPosts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Donations.
+     * Skip the first `n` PetPosts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Donations.
+     * Filter by unique combinations of PetPosts.
      */
-    distinct?: DonationsScalarFieldEnum | DonationsScalarFieldEnum[]
+    distinct?: PetPostScalarFieldEnum | PetPostScalarFieldEnum[]
   }
 
   /**
-   * Donations findMany
+   * PetPost findMany
    */
-  export type DonationsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * Filter, which Donations to fetch.
+     * Filter, which PetPosts to fetch.
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Donations to fetch.
+     * Determine the order of PetPosts to fetch.
      */
-    orderBy?: DonationsOrderByWithRelationInput | DonationsOrderByWithRelationInput[]
+    orderBy?: PetPostOrderByWithRelationInput | PetPostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Donations.
+     * Sets the position for listing PetPosts.
      */
-    cursor?: DonationsWhereUniqueInput
+    cursor?: PetPostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Donations from the position of the cursor.
+     * Take `±n` PetPosts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Donations.
+     * Skip the first `n` PetPosts.
      */
     skip?: number
-    distinct?: DonationsScalarFieldEnum | DonationsScalarFieldEnum[]
+    distinct?: PetPostScalarFieldEnum | PetPostScalarFieldEnum[]
   }
 
   /**
-   * Donations create
+   * PetPost create
    */
-  export type DonationsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * The data needed to create a Donations.
+     * The data needed to create a PetPost.
      */
-    data: XOR<DonationsCreateInput, DonationsUncheckedCreateInput>
+    data: XOR<PetPostCreateInput, PetPostUncheckedCreateInput>
   }
 
   /**
-   * Donations createMany
+   * PetPost createMany
    */
-  export type DonationsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Donations.
+     * The data used to create many PetPosts.
      */
-    data: DonationsCreateManyInput | DonationsCreateManyInput[]
+    data: PetPostCreateManyInput | PetPostCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Donations createManyAndReturn
+   * PetPost createManyAndReturn
    */
-  export type DonationsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelectCreateManyAndReturn<ExtArgs> | null
+    select?: PetPostSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
-     * The data used to create many Donations.
+     * The data used to create many PetPosts.
      */
-    data: DonationsCreateManyInput | DonationsCreateManyInput[]
+    data: PetPostCreateManyInput | PetPostCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: PetPostIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Donations update
+   * PetPost update
    */
-  export type DonationsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * The data needed to update a Donations.
+     * The data needed to update a PetPost.
      */
-    data: XOR<DonationsUpdateInput, DonationsUncheckedUpdateInput>
+    data: XOR<PetPostUpdateInput, PetPostUncheckedUpdateInput>
     /**
-     * Choose, which Donations to update.
+     * Choose, which PetPost to update.
      */
-    where: DonationsWhereUniqueInput
+    where: PetPostWhereUniqueInput
   }
 
   /**
-   * Donations updateMany
+   * PetPost updateMany
    */
-  export type DonationsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Donations.
+     * The data used to update PetPosts.
      */
-    data: XOR<DonationsUpdateManyMutationInput, DonationsUncheckedUpdateManyInput>
+    data: XOR<PetPostUpdateManyMutationInput, PetPostUncheckedUpdateManyInput>
     /**
-     * Filter which Donations to update
+     * Filter which PetPosts to update
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
-     * Limit how many Donations to update.
+     * Limit how many PetPosts to update.
      */
     limit?: number
   }
 
   /**
-   * Donations updateManyAndReturn
+   * PetPost updateManyAndReturn
    */
-  export type DonationsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PetPostSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
-     * The data used to update Donations.
+     * The data used to update PetPosts.
      */
-    data: XOR<DonationsUpdateManyMutationInput, DonationsUncheckedUpdateManyInput>
+    data: XOR<PetPostUpdateManyMutationInput, PetPostUncheckedUpdateManyInput>
     /**
-     * Filter which Donations to update
+     * Filter which PetPosts to update
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
-     * Limit how many Donations to update.
+     * Limit how many PetPosts to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: PetPostIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Donations upsert
+   * PetPost upsert
    */
-  export type DonationsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * The filter to search for the Donations to update in case it exists.
+     * The filter to search for the PetPost to update in case it exists.
      */
-    where: DonationsWhereUniqueInput
+    where: PetPostWhereUniqueInput
     /**
-     * In case the Donations found by the `where` argument doesn't exist, create a new Donations with this data.
+     * In case the PetPost found by the `where` argument doesn't exist, create a new PetPost with this data.
      */
-    create: XOR<DonationsCreateInput, DonationsUncheckedCreateInput>
+    create: XOR<PetPostCreateInput, PetPostUncheckedCreateInput>
     /**
-     * In case the Donations was found with the provided `where` argument, update it with this data.
+     * In case the PetPost was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<DonationsUpdateInput, DonationsUncheckedUpdateInput>
+    update: XOR<PetPostUpdateInput, PetPostUncheckedUpdateInput>
   }
 
   /**
-   * Donations delete
+   * PetPost delete
    */
-  export type DonationsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
     /**
-     * Filter which Donations to delete.
+     * Filter which PetPost to delete.
      */
-    where: DonationsWhereUniqueInput
+    where: PetPostWhereUniqueInput
   }
 
   /**
-   * Donations deleteMany
+   * PetPost deleteMany
    */
-  export type DonationsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Donations to delete
+     * Filter which PetPosts to delete
      */
-    where?: DonationsWhereInput
+    where?: PetPostWhereInput
     /**
-     * Limit how many Donations to delete.
+     * Limit how many PetPosts to delete.
      */
     limit?: number
   }
 
   /**
-   * Donations without action
+   * PetPost without action
    */
-  export type DonationsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetPostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Donations
+     * Select specific fields to fetch from the PetPost
      */
-    select?: DonationsSelect<ExtArgs> | null
+    select?: PetPostSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Donations
+     * Omit specific fields from the PetPost
      */
-    omit?: DonationsOmit<ExtArgs> | null
+    omit?: PetPostOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationsInclude<ExtArgs> | null
+    include?: PetPostInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model Profile
+   * Model ServicePost
    */
 
-  export type AggregateProfile = {
-    _count: ProfileCountAggregateOutputType | null
-    _avg: ProfileAvgAggregateOutputType | null
-    _sum: ProfileSumAggregateOutputType | null
-    _min: ProfileMinAggregateOutputType | null
-    _max: ProfileMaxAggregateOutputType | null
+  export type AggregateServicePost = {
+    _count: ServicePostCountAggregateOutputType | null
+    _avg: ServicePostAvgAggregateOutputType | null
+    _sum: ServicePostSumAggregateOutputType | null
+    _min: ServicePostMinAggregateOutputType | null
+    _max: ServicePostMaxAggregateOutputType | null
   }
 
-  export type ProfileAvgAggregateOutputType = {
+  export type ServicePostAvgAggregateOutputType = {
     id: number | null
+    phoneNumber: number | null
     userId: number | null
+    age: number | null
+    price: number | null
+    petCategoryId: number | null
   }
 
-  export type ProfileSumAggregateOutputType = {
+  export type ServicePostSumAggregateOutputType = {
     id: number | null
+    phoneNumber: number | null
     userId: number | null
+    age: number | null
+    price: number | null
+    petCategoryId: number | null
   }
 
-  export type ProfileMinAggregateOutputType = {
+  export type ServicePostMinAggregateOutputType = {
     id: number | null
-    name: string | null
+    petName: string | null
+    address: string | null
     about: string | null
-    avatarImage: string | null
-    socialMediaURL: string | null
-    backgroundImage: string | null
-    successMessage: string | null
+    image: string | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
+    age: number | null
+    price: number | null
+    purpose: $Enums.PetPostEnum | null
+    petCategoryId: number | null
   }
 
-  export type ProfileMaxAggregateOutputType = {
+  export type ServicePostMaxAggregateOutputType = {
     id: number | null
-    name: string | null
+    petName: string | null
+    address: string | null
     about: string | null
-    avatarImage: string | null
-    socialMediaURL: string | null
-    backgroundImage: string | null
-    successMessage: string | null
+    image: string | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
+    age: number | null
+    price: number | null
+    purpose: $Enums.PetPostEnum | null
+    petCategoryId: number | null
   }
 
-  export type ProfileCountAggregateOutputType = {
+  export type ServicePostCountAggregateOutputType = {
     id: number
-    name: number
+    petName: number
+    address: number
     about: number
-    avatarImage: number
-    socialMediaURL: number
-    backgroundImage: number
-    successMessage: number
+    image: number
+    phoneNumber: number
     createdAt: number
     updatedAt: number
     userId: number
+    age: number
+    price: number
+    purpose: number
+    petCategoryId: number
     _all: number
   }
 
 
-  export type ProfileAvgAggregateInputType = {
+  export type ServicePostAvgAggregateInputType = {
     id?: true
+    phoneNumber?: true
     userId?: true
+    age?: true
+    price?: true
+    petCategoryId?: true
   }
 
-  export type ProfileSumAggregateInputType = {
+  export type ServicePostSumAggregateInputType = {
     id?: true
+    phoneNumber?: true
     userId?: true
+    age?: true
+    price?: true
+    petCategoryId?: true
   }
 
-  export type ProfileMinAggregateInputType = {
+  export type ServicePostMinAggregateInputType = {
     id?: true
-    name?: true
+    petName?: true
+    address?: true
     about?: true
-    avatarImage?: true
-    socialMediaURL?: true
-    backgroundImage?: true
-    successMessage?: true
+    image?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
+    age?: true
+    price?: true
+    purpose?: true
+    petCategoryId?: true
   }
 
-  export type ProfileMaxAggregateInputType = {
+  export type ServicePostMaxAggregateInputType = {
     id?: true
-    name?: true
+    petName?: true
+    address?: true
     about?: true
-    avatarImage?: true
-    socialMediaURL?: true
-    backgroundImage?: true
-    successMessage?: true
+    image?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
+    age?: true
+    price?: true
+    purpose?: true
+    petCategoryId?: true
   }
 
-  export type ProfileCountAggregateInputType = {
+  export type ServicePostCountAggregateInputType = {
     id?: true
-    name?: true
+    petName?: true
+    address?: true
     about?: true
-    avatarImage?: true
-    socialMediaURL?: true
-    backgroundImage?: true
-    successMessage?: true
+    image?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
+    age?: true
+    price?: true
+    purpose?: true
+    petCategoryId?: true
     _all?: true
   }
 
-  export type ProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServicePostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Profile to aggregate.
+     * Filter which ServicePost to aggregate.
      */
-    where?: ProfileWhereInput
+    where?: ServicePostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Profiles to fetch.
+     * Determine the order of ServicePosts to fetch.
      */
-    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ProfileWhereUniqueInput
+    cursor?: ServicePostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Profiles from the position of the cursor.
+     * Take `±n` ServicePosts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Profiles.
+     * Skip the first `n` ServicePosts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Profiles
+     * Count returned ServicePosts
     **/
-    _count?: true | ProfileCountAggregateInputType
+    _count?: true | ServicePostCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ProfileAvgAggregateInputType
+    _avg?: ServicePostAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ProfileSumAggregateInputType
+    _sum?: ServicePostSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ProfileMinAggregateInputType
+    _min?: ServicePostMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ProfileMaxAggregateInputType
+    _max?: ServicePostMaxAggregateInputType
   }
 
-  export type GetProfileAggregateType<T extends ProfileAggregateArgs> = {
-        [P in keyof T & keyof AggregateProfile]: P extends '_count' | 'count'
+  export type GetServicePostAggregateType<T extends ServicePostAggregateArgs> = {
+        [P in keyof T & keyof AggregateServicePost]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateProfile[P]>
-      : GetScalarType<T[P], AggregateProfile[P]>
+        : GetScalarType<T[P], AggregateServicePost[P]>
+      : GetScalarType<T[P], AggregateServicePost[P]>
   }
 
 
 
 
-  export type ProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfileWhereInput
-    orderBy?: ProfileOrderByWithAggregationInput | ProfileOrderByWithAggregationInput[]
-    by: ProfileScalarFieldEnum[] | ProfileScalarFieldEnum
-    having?: ProfileScalarWhereWithAggregatesInput
+  export type ServicePostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicePostWhereInput
+    orderBy?: ServicePostOrderByWithAggregationInput | ServicePostOrderByWithAggregationInput[]
+    by: ServicePostScalarFieldEnum[] | ServicePostScalarFieldEnum
+    having?: ServicePostScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ProfileCountAggregateInputType | true
-    _avg?: ProfileAvgAggregateInputType
-    _sum?: ProfileSumAggregateInputType
-    _min?: ProfileMinAggregateInputType
-    _max?: ProfileMaxAggregateInputType
+    _count?: ServicePostCountAggregateInputType | true
+    _avg?: ServicePostAvgAggregateInputType
+    _sum?: ServicePostSumAggregateInputType
+    _min?: ServicePostMinAggregateInputType
+    _max?: ServicePostMaxAggregateInputType
   }
 
-  export type ProfileGroupByOutputType = {
+  export type ServicePostGroupByOutputType = {
     id: number
-    name: string
+    petName: string
+    address: string
     about: string
-    avatarImage: string
-    socialMediaURL: string
-    backgroundImage: string | null
-    successMessage: string | null
+    image: string
+    phoneNumber: number
     createdAt: Date
     updatedAt: Date
     userId: number
-    _count: ProfileCountAggregateOutputType | null
-    _avg: ProfileAvgAggregateOutputType | null
-    _sum: ProfileSumAggregateOutputType | null
-    _min: ProfileMinAggregateOutputType | null
-    _max: ProfileMaxAggregateOutputType | null
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+    _count: ServicePostCountAggregateOutputType | null
+    _avg: ServicePostAvgAggregateOutputType | null
+    _sum: ServicePostSumAggregateOutputType | null
+    _min: ServicePostMinAggregateOutputType | null
+    _max: ServicePostMaxAggregateOutputType | null
   }
 
-  type GetProfileGroupByPayload<T extends ProfileGroupByArgs> = Prisma.PrismaPromise<
+  type GetServicePostGroupByPayload<T extends ServicePostGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ProfileGroupByOutputType, T['by']> &
+      PickEnumerable<ServicePostGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ProfileGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ServicePostGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ProfileGroupByOutputType[P]>
-            : GetScalarType<T[P], ProfileGroupByOutputType[P]>
+              : GetScalarType<T[P], ServicePostGroupByOutputType[P]>
+            : GetScalarType<T[P], ServicePostGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ServicePostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    petName?: boolean
+    address?: boolean
     about?: boolean
-    avatarImage?: boolean
-    socialMediaURL?: boolean
-    backgroundImage?: boolean
-    successMessage?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["profile"]>
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["servicePost"]>
 
-  export type ProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ServicePostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    petName?: boolean
+    address?: boolean
     about?: boolean
-    avatarImage?: boolean
-    socialMediaURL?: boolean
-    backgroundImage?: boolean
-    successMessage?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["profile"]>
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["servicePost"]>
 
-  export type ProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ServicePostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    petName?: boolean
+    address?: boolean
     about?: boolean
-    avatarImage?: boolean
-    socialMediaURL?: boolean
-    backgroundImage?: boolean
-    successMessage?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["profile"]>
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["servicePost"]>
 
-  export type ProfileSelectScalar = {
+  export type ServicePostSelectScalar = {
     id?: boolean
-    name?: boolean
+    petName?: boolean
+    address?: boolean
     about?: boolean
-    avatarImage?: boolean
-    socialMediaURL?: boolean
-    backgroundImage?: boolean
-    successMessage?: boolean
+    image?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    age?: boolean
+    price?: boolean
+    purpose?: boolean
+    petCategoryId?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "socialMediaURL" | "backgroundImage" | "successMessage" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["profile"]>
-  export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServicePostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "price" | "purpose" | "petCategoryId", ExtArgs["result"]["servicePost"]>
+  export type ServicePostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
   }
-  export type ProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServicePostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
   }
-  export type ProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServicePostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    category?: boolean | PetCategoryDefaultArgs<ExtArgs>
   }
 
-  export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Profile"
+  export type $ServicePostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServicePost"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      category: Prisma.$PetCategoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      petName: string
+      address: string
+      about: string
+      image: string
+      phoneNumber: number
+      createdAt: Date
+      updatedAt: Date
+      userId: number
+      age: number
+      price: number
+      purpose: $Enums.PetPostEnum
+      petCategoryId: number
+    }, ExtArgs["result"]["servicePost"]>
+    composites: {}
+  }
+
+  type ServicePostGetPayload<S extends boolean | null | undefined | ServicePostDefaultArgs> = $Result.GetResult<Prisma.$ServicePostPayload, S>
+
+  type ServicePostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServicePostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServicePostCountAggregateInputType | true
+    }
+
+  export interface ServicePostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServicePost'], meta: { name: 'ServicePost' } }
+    /**
+     * Find zero or one ServicePost that matches the filter.
+     * @param {ServicePostFindUniqueArgs} args - Arguments to find a ServicePost
+     * @example
+     * // Get one ServicePost
+     * const servicePost = await prisma.servicePost.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServicePostFindUniqueArgs>(args: SelectSubset<T, ServicePostFindUniqueArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServicePost that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServicePostFindUniqueOrThrowArgs} args - Arguments to find a ServicePost
+     * @example
+     * // Get one ServicePost
+     * const servicePost = await prisma.servicePost.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServicePostFindUniqueOrThrowArgs>(args: SelectSubset<T, ServicePostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServicePost that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostFindFirstArgs} args - Arguments to find a ServicePost
+     * @example
+     * // Get one ServicePost
+     * const servicePost = await prisma.servicePost.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServicePostFindFirstArgs>(args?: SelectSubset<T, ServicePostFindFirstArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServicePost that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostFindFirstOrThrowArgs} args - Arguments to find a ServicePost
+     * @example
+     * // Get one ServicePost
+     * const servicePost = await prisma.servicePost.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServicePostFindFirstOrThrowArgs>(args?: SelectSubset<T, ServicePostFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServicePosts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServicePosts
+     * const servicePosts = await prisma.servicePost.findMany()
+     * 
+     * // Get first 10 ServicePosts
+     * const servicePosts = await prisma.servicePost.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const servicePostWithIdOnly = await prisma.servicePost.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServicePostFindManyArgs>(args?: SelectSubset<T, ServicePostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServicePost.
+     * @param {ServicePostCreateArgs} args - Arguments to create a ServicePost.
+     * @example
+     * // Create one ServicePost
+     * const ServicePost = await prisma.servicePost.create({
+     *   data: {
+     *     // ... data to create a ServicePost
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServicePostCreateArgs>(args: SelectSubset<T, ServicePostCreateArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServicePosts.
+     * @param {ServicePostCreateManyArgs} args - Arguments to create many ServicePosts.
+     * @example
+     * // Create many ServicePosts
+     * const servicePost = await prisma.servicePost.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServicePostCreateManyArgs>(args?: SelectSubset<T, ServicePostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServicePosts and returns the data saved in the database.
+     * @param {ServicePostCreateManyAndReturnArgs} args - Arguments to create many ServicePosts.
+     * @example
+     * // Create many ServicePosts
+     * const servicePost = await prisma.servicePost.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServicePosts and only return the `id`
+     * const servicePostWithIdOnly = await prisma.servicePost.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServicePostCreateManyAndReturnArgs>(args?: SelectSubset<T, ServicePostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServicePost.
+     * @param {ServicePostDeleteArgs} args - Arguments to delete one ServicePost.
+     * @example
+     * // Delete one ServicePost
+     * const ServicePost = await prisma.servicePost.delete({
+     *   where: {
+     *     // ... filter to delete one ServicePost
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServicePostDeleteArgs>(args: SelectSubset<T, ServicePostDeleteArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServicePost.
+     * @param {ServicePostUpdateArgs} args - Arguments to update one ServicePost.
+     * @example
+     * // Update one ServicePost
+     * const servicePost = await prisma.servicePost.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServicePostUpdateArgs>(args: SelectSubset<T, ServicePostUpdateArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServicePosts.
+     * @param {ServicePostDeleteManyArgs} args - Arguments to filter ServicePosts to delete.
+     * @example
+     * // Delete a few ServicePosts
+     * const { count } = await prisma.servicePost.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServicePostDeleteManyArgs>(args?: SelectSubset<T, ServicePostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServicePosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServicePosts
+     * const servicePost = await prisma.servicePost.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServicePostUpdateManyArgs>(args: SelectSubset<T, ServicePostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServicePosts and returns the data updated in the database.
+     * @param {ServicePostUpdateManyAndReturnArgs} args - Arguments to update many ServicePosts.
+     * @example
+     * // Update many ServicePosts
+     * const servicePost = await prisma.servicePost.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServicePosts and only return the `id`
+     * const servicePostWithIdOnly = await prisma.servicePost.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServicePostUpdateManyAndReturnArgs>(args: SelectSubset<T, ServicePostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServicePost.
+     * @param {ServicePostUpsertArgs} args - Arguments to update or create a ServicePost.
+     * @example
+     * // Update or create a ServicePost
+     * const servicePost = await prisma.servicePost.upsert({
+     *   create: {
+     *     // ... data to create a ServicePost
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServicePost we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServicePostUpsertArgs>(args: SelectSubset<T, ServicePostUpsertArgs<ExtArgs>>): Prisma__ServicePostClient<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServicePosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostCountArgs} args - Arguments to filter ServicePosts to count.
+     * @example
+     * // Count the number of ServicePosts
+     * const count = await prisma.servicePost.count({
+     *   where: {
+     *     // ... the filter for the ServicePosts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServicePostCountArgs>(
+      args?: Subset<T, ServicePostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServicePostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServicePost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServicePostAggregateArgs>(args: Subset<T, ServicePostAggregateArgs>): Prisma.PrismaPromise<GetServicePostAggregateType<T>>
+
+    /**
+     * Group by ServicePost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServicePostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServicePostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServicePostGroupByArgs['orderBy'] }
+        : { orderBy?: ServicePostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServicePostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServicePostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServicePost model
+   */
+  readonly fields: ServicePostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServicePost.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServicePostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends PetCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PetCategoryDefaultArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServicePost model
+   */
+  interface ServicePostFieldRefs {
+    readonly id: FieldRef<"ServicePost", 'Int'>
+    readonly petName: FieldRef<"ServicePost", 'String'>
+    readonly address: FieldRef<"ServicePost", 'String'>
+    readonly about: FieldRef<"ServicePost", 'String'>
+    readonly image: FieldRef<"ServicePost", 'String'>
+    readonly phoneNumber: FieldRef<"ServicePost", 'Int'>
+    readonly createdAt: FieldRef<"ServicePost", 'DateTime'>
+    readonly updatedAt: FieldRef<"ServicePost", 'DateTime'>
+    readonly userId: FieldRef<"ServicePost", 'Int'>
+    readonly age: FieldRef<"ServicePost", 'Int'>
+    readonly price: FieldRef<"ServicePost", 'Int'>
+    readonly purpose: FieldRef<"ServicePost", 'PetPostEnum'>
+    readonly petCategoryId: FieldRef<"ServicePost", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServicePost findUnique
+   */
+  export type ServicePostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicePost to fetch.
+     */
+    where: ServicePostWhereUniqueInput
+  }
+
+  /**
+   * ServicePost findUniqueOrThrow
+   */
+  export type ServicePostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicePost to fetch.
+     */
+    where: ServicePostWhereUniqueInput
+  }
+
+  /**
+   * ServicePost findFirst
+   */
+  export type ServicePostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicePost to fetch.
+     */
+    where?: ServicePostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicePosts to fetch.
+     */
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServicePosts.
+     */
+    cursor?: ServicePostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicePosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicePosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServicePosts.
+     */
+    distinct?: ServicePostScalarFieldEnum | ServicePostScalarFieldEnum[]
+  }
+
+  /**
+   * ServicePost findFirstOrThrow
+   */
+  export type ServicePostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicePost to fetch.
+     */
+    where?: ServicePostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicePosts to fetch.
+     */
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServicePosts.
+     */
+    cursor?: ServicePostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicePosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicePosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServicePosts.
+     */
+    distinct?: ServicePostScalarFieldEnum | ServicePostScalarFieldEnum[]
+  }
+
+  /**
+   * ServicePost findMany
+   */
+  export type ServicePostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * Filter, which ServicePosts to fetch.
+     */
+    where?: ServicePostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServicePosts to fetch.
+     */
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServicePosts.
+     */
+    cursor?: ServicePostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServicePosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServicePosts.
+     */
+    skip?: number
+    distinct?: ServicePostScalarFieldEnum | ServicePostScalarFieldEnum[]
+  }
+
+  /**
+   * ServicePost create
+   */
+  export type ServicePostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServicePost.
+     */
+    data: XOR<ServicePostCreateInput, ServicePostUncheckedCreateInput>
+  }
+
+  /**
+   * ServicePost createMany
+   */
+  export type ServicePostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServicePosts.
+     */
+    data: ServicePostCreateManyInput | ServicePostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServicePost createManyAndReturn
+   */
+  export type ServicePostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServicePosts.
+     */
+    data: ServicePostCreateManyInput | ServicePostCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ServicePost update
+   */
+  export type ServicePostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServicePost.
+     */
+    data: XOR<ServicePostUpdateInput, ServicePostUncheckedUpdateInput>
+    /**
+     * Choose, which ServicePost to update.
+     */
+    where: ServicePostWhereUniqueInput
+  }
+
+  /**
+   * ServicePost updateMany
+   */
+  export type ServicePostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServicePosts.
+     */
+    data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyInput>
+    /**
+     * Filter which ServicePosts to update
+     */
+    where?: ServicePostWhereInput
+    /**
+     * Limit how many ServicePosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServicePost updateManyAndReturn
+   */
+  export type ServicePostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * The data used to update ServicePosts.
+     */
+    data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyInput>
+    /**
+     * Filter which ServicePosts to update
+     */
+    where?: ServicePostWhereInput
+    /**
+     * Limit how many ServicePosts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ServicePost upsert
+   */
+  export type ServicePostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServicePost to update in case it exists.
+     */
+    where: ServicePostWhereUniqueInput
+    /**
+     * In case the ServicePost found by the `where` argument doesn't exist, create a new ServicePost with this data.
+     */
+    create: XOR<ServicePostCreateInput, ServicePostUncheckedCreateInput>
+    /**
+     * In case the ServicePost was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServicePostUpdateInput, ServicePostUncheckedUpdateInput>
+  }
+
+  /**
+   * ServicePost delete
+   */
+  export type ServicePostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    /**
+     * Filter which ServicePost to delete.
+     */
+    where: ServicePostWhereUniqueInput
+  }
+
+  /**
+   * ServicePost deleteMany
+   */
+  export type ServicePostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServicePosts to delete
+     */
+    where?: ServicePostWhereInput
+    /**
+     * Limit how many ServicePosts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServicePost without action
+   */
+  export type ServicePostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Hospital
+   */
+
+  export type AggregateHospital = {
+    _count: HospitalCountAggregateOutputType | null
+    _avg: HospitalAvgAggregateOutputType | null
+    _sum: HospitalSumAggregateOutputType | null
+    _min: HospitalMinAggregateOutputType | null
+    _max: HospitalMaxAggregateOutputType | null
+  }
+
+  export type HospitalAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    phoneNumber: number | null
+  }
+
+  export type HospitalSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    phoneNumber: number | null
+  }
+
+  export type HospitalMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    about: string | null
+    avatarImage: string | null
+    email: string | null
+    backgroundImage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
+    location: string | null
+    phoneNumber: number | null
+    workTime: string | null
+  }
+
+  export type HospitalMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    about: string | null
+    avatarImage: string | null
+    email: string | null
+    backgroundImage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
+    location: string | null
+    phoneNumber: number | null
+    workTime: string | null
+  }
+
+  export type HospitalCountAggregateOutputType = {
+    id: number
+    name: number
+    about: number
+    avatarImage: number
+    email: number
+    backgroundImage: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    location: number
+    phoneNumber: number
+    workTime: number
+    _all: number
+  }
+
+
+  export type HospitalAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    phoneNumber?: true
+  }
+
+  export type HospitalSumAggregateInputType = {
+    id?: true
+    userId?: true
+    phoneNumber?: true
+  }
+
+  export type HospitalMinAggregateInputType = {
+    id?: true
+    name?: true
+    about?: true
+    avatarImage?: true
+    email?: true
+    backgroundImage?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    location?: true
+    phoneNumber?: true
+    workTime?: true
+  }
+
+  export type HospitalMaxAggregateInputType = {
+    id?: true
+    name?: true
+    about?: true
+    avatarImage?: true
+    email?: true
+    backgroundImage?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    location?: true
+    phoneNumber?: true
+    workTime?: true
+  }
+
+  export type HospitalCountAggregateInputType = {
+    id?: true
+    name?: true
+    about?: true
+    avatarImage?: true
+    email?: true
+    backgroundImage?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    location?: true
+    phoneNumber?: true
+    workTime?: true
+    _all?: true
+  }
+
+  export type HospitalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hospital to aggregate.
+     */
+    where?: HospitalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hospitals to fetch.
+     */
+    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HospitalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hospitals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hospitals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Hospitals
+    **/
+    _count?: true | HospitalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HospitalAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HospitalSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HospitalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HospitalMaxAggregateInputType
+  }
+
+  export type GetHospitalAggregateType<T extends HospitalAggregateArgs> = {
+        [P in keyof T & keyof AggregateHospital]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHospital[P]>
+      : GetScalarType<T[P], AggregateHospital[P]>
+  }
+
+
+
+
+  export type HospitalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalWhereInput
+    orderBy?: HospitalOrderByWithAggregationInput | HospitalOrderByWithAggregationInput[]
+    by: HospitalScalarFieldEnum[] | HospitalScalarFieldEnum
+    having?: HospitalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HospitalCountAggregateInputType | true
+    _avg?: HospitalAvgAggregateInputType
+    _sum?: HospitalSumAggregateInputType
+    _min?: HospitalMinAggregateInputType
+    _max?: HospitalMaxAggregateInputType
+  }
+
+  export type HospitalGroupByOutputType = {
+    id: number
+    name: string
+    about: string
+    avatarImage: string
+    email: string
+    backgroundImage: string | null
+    createdAt: Date
+    updatedAt: Date
+    userId: number | null
+    location: string
+    phoneNumber: number
+    workTime: string
+    _count: HospitalCountAggregateOutputType | null
+    _avg: HospitalAvgAggregateOutputType | null
+    _sum: HospitalSumAggregateOutputType | null
+    _min: HospitalMinAggregateOutputType | null
+    _max: HospitalMaxAggregateOutputType | null
+  }
+
+  type GetHospitalGroupByPayload<T extends HospitalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HospitalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HospitalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HospitalGroupByOutputType[P]>
+            : GetScalarType<T[P], HospitalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HospitalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    about?: boolean
+    avatarImage?: boolean
+    email?: boolean
+    backgroundImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    location?: boolean
+    phoneNumber?: boolean
+    workTime?: boolean
+    User?: boolean | Hospital$UserArgs<ExtArgs>
+    category?: boolean | Hospital$categoryArgs<ExtArgs>
+    _count?: boolean | HospitalCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hospital"]>
+
+  export type HospitalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    about?: boolean
+    avatarImage?: boolean
+    email?: boolean
+    backgroundImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    location?: boolean
+    phoneNumber?: boolean
+    workTime?: boolean
+    User?: boolean | Hospital$UserArgs<ExtArgs>
+  }, ExtArgs["result"]["hospital"]>
+
+  export type HospitalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    about?: boolean
+    avatarImage?: boolean
+    email?: boolean
+    backgroundImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    location?: boolean
+    phoneNumber?: boolean
+    workTime?: boolean
+    User?: boolean | Hospital$UserArgs<ExtArgs>
+  }, ExtArgs["result"]["hospital"]>
+
+  export type HospitalSelectScalar = {
+    id?: boolean
+    name?: boolean
+    about?: boolean
+    avatarImage?: boolean
+    email?: boolean
+    backgroundImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    location?: boolean
+    phoneNumber?: boolean
+    workTime?: boolean
+  }
+
+  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "userId" | "location" | "phoneNumber" | "workTime", ExtArgs["result"]["hospital"]>
+  export type HospitalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | Hospital$UserArgs<ExtArgs>
+    category?: boolean | Hospital$categoryArgs<ExtArgs>
+    _count?: boolean | HospitalCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HospitalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | Hospital$UserArgs<ExtArgs>
+  }
+  export type HospitalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | Hospital$UserArgs<ExtArgs>
+  }
+
+  export type $HospitalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hospital"
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs> | null
+      category: Prisma.$PetCategoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       about: string
       avatarImage: string
-      socialMediaURL: string
+      email: string
       backgroundImage: string | null
-      successMessage: string | null
       createdAt: Date
       updatedAt: Date
-      userId: number
-    }, ExtArgs["result"]["profile"]>
+      userId: number | null
+      location: string
+      phoneNumber: number
+      workTime: string
+    }, ExtArgs["result"]["hospital"]>
     composites: {}
   }
 
-  type ProfileGetPayload<S extends boolean | null | undefined | ProfileDefaultArgs> = $Result.GetResult<Prisma.$ProfilePayload, S>
+  type HospitalGetPayload<S extends boolean | null | undefined | HospitalDefaultArgs> = $Result.GetResult<Prisma.$HospitalPayload, S>
 
-  type ProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ProfileCountAggregateInputType | true
+  type HospitalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HospitalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HospitalCountAggregateInputType | true
     }
 
-  export interface ProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Profile'], meta: { name: 'Profile' } }
+  export interface HospitalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hospital'], meta: { name: 'Hospital' } }
     /**
-     * Find zero or one Profile that matches the filter.
-     * @param {ProfileFindUniqueArgs} args - Arguments to find a Profile
+     * Find zero or one Hospital that matches the filter.
+     * @param {HospitalFindUniqueArgs} args - Arguments to find a Hospital
      * @example
-     * // Get one Profile
-     * const profile = await prisma.profile.findUnique({
+     * // Get one Hospital
+     * const hospital = await prisma.hospital.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ProfileFindUniqueArgs>(args: SelectSubset<T, ProfileFindUniqueArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends HospitalFindUniqueArgs>(args: SelectSubset<T, HospitalFindUniqueArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Profile that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Hospital that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ProfileFindUniqueOrThrowArgs} args - Arguments to find a Profile
+     * @param {HospitalFindUniqueOrThrowArgs} args - Arguments to find a Hospital
      * @example
-     * // Get one Profile
-     * const profile = await prisma.profile.findUniqueOrThrow({
+     * // Get one Hospital
+     * const hospital = await prisma.hospital.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, ProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends HospitalFindUniqueOrThrowArgs>(args: SelectSubset<T, HospitalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Profile that matches the filter.
+     * Find the first Hospital that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileFindFirstArgs} args - Arguments to find a Profile
+     * @param {HospitalFindFirstArgs} args - Arguments to find a Hospital
      * @example
-     * // Get one Profile
-     * const profile = await prisma.profile.findFirst({
+     * // Get one Hospital
+     * const hospital = await prisma.hospital.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ProfileFindFirstArgs>(args?: SelectSubset<T, ProfileFindFirstArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends HospitalFindFirstArgs>(args?: SelectSubset<T, HospitalFindFirstArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Profile that matches the filter or
+     * Find the first Hospital that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileFindFirstOrThrowArgs} args - Arguments to find a Profile
+     * @param {HospitalFindFirstOrThrowArgs} args - Arguments to find a Hospital
      * @example
-     * // Get one Profile
-     * const profile = await prisma.profile.findFirstOrThrow({
+     * // Get one Hospital
+     * const hospital = await prisma.hospital.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, ProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends HospitalFindFirstOrThrowArgs>(args?: SelectSubset<T, HospitalFindFirstOrThrowArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Profiles that matches the filter.
+     * Find zero or more Hospitals that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {HospitalFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Profiles
-     * const profiles = await prisma.profile.findMany()
+     * // Get all Hospitals
+     * const hospitals = await prisma.hospital.findMany()
      * 
-     * // Get first 10 Profiles
-     * const profiles = await prisma.profile.findMany({ take: 10 })
+     * // Get first 10 Hospitals
+     * const hospitals = await prisma.hospital.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const profileWithIdOnly = await prisma.profile.findMany({ select: { id: true } })
+     * const hospitalWithIdOnly = await prisma.hospital.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends ProfileFindManyArgs>(args?: SelectSubset<T, ProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends HospitalFindManyArgs>(args?: SelectSubset<T, HospitalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Profile.
-     * @param {ProfileCreateArgs} args - Arguments to create a Profile.
+     * Create a Hospital.
+     * @param {HospitalCreateArgs} args - Arguments to create a Hospital.
      * @example
-     * // Create one Profile
-     * const Profile = await prisma.profile.create({
+     * // Create one Hospital
+     * const Hospital = await prisma.hospital.create({
      *   data: {
-     *     // ... data to create a Profile
+     *     // ... data to create a Hospital
      *   }
      * })
      * 
      */
-    create<T extends ProfileCreateArgs>(args: SelectSubset<T, ProfileCreateArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends HospitalCreateArgs>(args: SelectSubset<T, HospitalCreateArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Profiles.
-     * @param {ProfileCreateManyArgs} args - Arguments to create many Profiles.
+     * Create many Hospitals.
+     * @param {HospitalCreateManyArgs} args - Arguments to create many Hospitals.
      * @example
-     * // Create many Profiles
-     * const profile = await prisma.profile.createMany({
+     * // Create many Hospitals
+     * const hospital = await prisma.hospital.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends ProfileCreateManyArgs>(args?: SelectSubset<T, ProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends HospitalCreateManyArgs>(args?: SelectSubset<T, HospitalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Profiles and returns the data saved in the database.
-     * @param {ProfileCreateManyAndReturnArgs} args - Arguments to create many Profiles.
+     * Create many Hospitals and returns the data saved in the database.
+     * @param {HospitalCreateManyAndReturnArgs} args - Arguments to create many Hospitals.
      * @example
-     * // Create many Profiles
-     * const profile = await prisma.profile.createManyAndReturn({
+     * // Create many Hospitals
+     * const hospital = await prisma.hospital.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Profiles and only return the `id`
-     * const profileWithIdOnly = await prisma.profile.createManyAndReturn({
+     * // Create many Hospitals and only return the `id`
+     * const hospitalWithIdOnly = await prisma.hospital.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -3989,28 +5484,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends ProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, ProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends HospitalCreateManyAndReturnArgs>(args?: SelectSubset<T, HospitalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Profile.
-     * @param {ProfileDeleteArgs} args - Arguments to delete one Profile.
+     * Delete a Hospital.
+     * @param {HospitalDeleteArgs} args - Arguments to delete one Hospital.
      * @example
-     * // Delete one Profile
-     * const Profile = await prisma.profile.delete({
+     * // Delete one Hospital
+     * const Hospital = await prisma.hospital.delete({
      *   where: {
-     *     // ... filter to delete one Profile
+     *     // ... filter to delete one Hospital
      *   }
      * })
      * 
      */
-    delete<T extends ProfileDeleteArgs>(args: SelectSubset<T, ProfileDeleteArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends HospitalDeleteArgs>(args: SelectSubset<T, HospitalDeleteArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Profile.
-     * @param {ProfileUpdateArgs} args - Arguments to update one Profile.
+     * Update one Hospital.
+     * @param {HospitalUpdateArgs} args - Arguments to update one Hospital.
      * @example
-     * // Update one Profile
-     * const profile = await prisma.profile.update({
+     * // Update one Hospital
+     * const hospital = await prisma.hospital.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4020,30 +5515,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ProfileUpdateArgs>(args: SelectSubset<T, ProfileUpdateArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends HospitalUpdateArgs>(args: SelectSubset<T, HospitalUpdateArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Profiles.
-     * @param {ProfileDeleteManyArgs} args - Arguments to filter Profiles to delete.
+     * Delete zero or more Hospitals.
+     * @param {HospitalDeleteManyArgs} args - Arguments to filter Hospitals to delete.
      * @example
-     * // Delete a few Profiles
-     * const { count } = await prisma.profile.deleteMany({
+     * // Delete a few Hospitals
+     * const { count } = await prisma.hospital.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends ProfileDeleteManyArgs>(args?: SelectSubset<T, ProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends HospitalDeleteManyArgs>(args?: SelectSubset<T, HospitalDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Profiles.
+     * Update zero or more Hospitals.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {HospitalUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Profiles
-     * const profile = await prisma.profile.updateMany({
+     * // Update many Hospitals
+     * const hospital = await prisma.hospital.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4053,14 +5548,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ProfileUpdateManyArgs>(args: SelectSubset<T, ProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends HospitalUpdateManyArgs>(args: SelectSubset<T, HospitalUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Profiles and returns the data updated in the database.
-     * @param {ProfileUpdateManyAndReturnArgs} args - Arguments to update many Profiles.
+     * Update zero or more Hospitals and returns the data updated in the database.
+     * @param {HospitalUpdateManyAndReturnArgs} args - Arguments to update many Hospitals.
      * @example
-     * // Update many Profiles
-     * const profile = await prisma.profile.updateManyAndReturn({
+     * // Update many Hospitals
+     * const hospital = await prisma.hospital.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4069,8 +5564,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Profiles and only return the `id`
-     * const profileWithIdOnly = await prisma.profile.updateManyAndReturn({
+     * // Update zero or more Hospitals and only return the `id`
+     * const hospitalWithIdOnly = await prisma.hospital.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -4083,56 +5578,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends ProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, ProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends HospitalUpdateManyAndReturnArgs>(args: SelectSubset<T, HospitalUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Profile.
-     * @param {ProfileUpsertArgs} args - Arguments to update or create a Profile.
+     * Create or update one Hospital.
+     * @param {HospitalUpsertArgs} args - Arguments to update or create a Hospital.
      * @example
-     * // Update or create a Profile
-     * const profile = await prisma.profile.upsert({
+     * // Update or create a Hospital
+     * const hospital = await prisma.hospital.upsert({
      *   create: {
-     *     // ... data to create a Profile
+     *     // ... data to create a Hospital
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Profile we want to update
+     *     // ... the filter for the Hospital we want to update
      *   }
      * })
      */
-    upsert<T extends ProfileUpsertArgs>(args: SelectSubset<T, ProfileUpsertArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends HospitalUpsertArgs>(args: SelectSubset<T, HospitalUpsertArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Profiles.
+     * Count the number of Hospitals.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileCountArgs} args - Arguments to filter Profiles to count.
+     * @param {HospitalCountArgs} args - Arguments to filter Hospitals to count.
      * @example
-     * // Count the number of Profiles
-     * const count = await prisma.profile.count({
+     * // Count the number of Hospitals
+     * const count = await prisma.hospital.count({
      *   where: {
-     *     // ... the filter for the Profiles we want to count
+     *     // ... the filter for the Hospitals we want to count
      *   }
      * })
     **/
-    count<T extends ProfileCountArgs>(
-      args?: Subset<T, ProfileCountArgs>,
+    count<T extends HospitalCountArgs>(
+      args?: Subset<T, HospitalCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ProfileCountAggregateOutputType>
+          : GetScalarType<T['select'], HospitalCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Profile.
+     * Allows you to perform aggregations operations on a Hospital.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {HospitalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -4152,13 +5647,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ProfileAggregateArgs>(args: Subset<T, ProfileAggregateArgs>): Prisma.PrismaPromise<GetProfileAggregateType<T>>
+    aggregate<T extends HospitalAggregateArgs>(args: Subset<T, HospitalAggregateArgs>): Prisma.PrismaPromise<GetHospitalAggregateType<T>>
 
     /**
-     * Group by Profile.
+     * Group by Hospital.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProfileGroupByArgs} args - Group by arguments.
+     * @param {HospitalGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -4173,14 +5668,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ProfileGroupByArgs,
+      T extends HospitalGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProfileGroupByArgs['orderBy'] }
-        : { orderBy?: ProfileGroupByArgs['orderBy'] },
+        ? { orderBy: HospitalGroupByArgs['orderBy'] }
+        : { orderBy?: HospitalGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -4229,22 +5724,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, HospitalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHospitalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Profile model
+   * Fields of the Hospital model
    */
-  readonly fields: ProfileFieldRefs;
+  readonly fields: HospitalFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Profile.
+   * The delegate class that acts as a "Promise-like" for Hospital.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__HospitalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    User<T extends Hospital$UserArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    category<T extends Hospital$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$categoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4271,864 +5767,847 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Profile model
+   * Fields of the Hospital model
    */
-  interface ProfileFieldRefs {
-    readonly id: FieldRef<"Profile", 'Int'>
-    readonly name: FieldRef<"Profile", 'String'>
-    readonly about: FieldRef<"Profile", 'String'>
-    readonly avatarImage: FieldRef<"Profile", 'String'>
-    readonly socialMediaURL: FieldRef<"Profile", 'String'>
-    readonly backgroundImage: FieldRef<"Profile", 'String'>
-    readonly successMessage: FieldRef<"Profile", 'String'>
-    readonly createdAt: FieldRef<"Profile", 'DateTime'>
-    readonly updatedAt: FieldRef<"Profile", 'DateTime'>
-    readonly userId: FieldRef<"Profile", 'Int'>
+  interface HospitalFieldRefs {
+    readonly id: FieldRef<"Hospital", 'Int'>
+    readonly name: FieldRef<"Hospital", 'String'>
+    readonly about: FieldRef<"Hospital", 'String'>
+    readonly avatarImage: FieldRef<"Hospital", 'String'>
+    readonly email: FieldRef<"Hospital", 'String'>
+    readonly backgroundImage: FieldRef<"Hospital", 'String'>
+    readonly createdAt: FieldRef<"Hospital", 'DateTime'>
+    readonly updatedAt: FieldRef<"Hospital", 'DateTime'>
+    readonly userId: FieldRef<"Hospital", 'Int'>
+    readonly location: FieldRef<"Hospital", 'String'>
+    readonly phoneNumber: FieldRef<"Hospital", 'Int'>
+    readonly workTime: FieldRef<"Hospital", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Profile findUnique
+   * Hospital findUnique
    */
-  export type ProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * Filter, which Profile to fetch.
+     * Filter, which Hospital to fetch.
      */
-    where: ProfileWhereUniqueInput
+    where: HospitalWhereUniqueInput
   }
 
   /**
-   * Profile findUniqueOrThrow
+   * Hospital findUniqueOrThrow
    */
-  export type ProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * Filter, which Profile to fetch.
+     * Filter, which Hospital to fetch.
      */
-    where: ProfileWhereUniqueInput
+    where: HospitalWhereUniqueInput
   }
 
   /**
-   * Profile findFirst
+   * Hospital findFirst
    */
-  export type ProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * Filter, which Profile to fetch.
+     * Filter, which Hospital to fetch.
      */
-    where?: ProfileWhereInput
+    where?: HospitalWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Profiles to fetch.
+     * Determine the order of Hospitals to fetch.
      */
-    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
+    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Profiles.
+     * Sets the position for searching for Hospitals.
      */
-    cursor?: ProfileWhereUniqueInput
+    cursor?: HospitalWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Profiles from the position of the cursor.
+     * Take `±n` Hospitals from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Profiles.
+     * Skip the first `n` Hospitals.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Profiles.
+     * Filter by unique combinations of Hospitals.
      */
-    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
+    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
   }
 
   /**
-   * Profile findFirstOrThrow
+   * Hospital findFirstOrThrow
    */
-  export type ProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * Filter, which Profile to fetch.
+     * Filter, which Hospital to fetch.
      */
-    where?: ProfileWhereInput
+    where?: HospitalWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Profiles to fetch.
+     * Determine the order of Hospitals to fetch.
      */
-    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
+    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Profiles.
+     * Sets the position for searching for Hospitals.
      */
-    cursor?: ProfileWhereUniqueInput
+    cursor?: HospitalWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Profiles from the position of the cursor.
+     * Take `±n` Hospitals from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Profiles.
+     * Skip the first `n` Hospitals.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Profiles.
+     * Filter by unique combinations of Hospitals.
      */
-    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
+    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
   }
 
   /**
-   * Profile findMany
+   * Hospital findMany
    */
-  export type ProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * Filter, which Profiles to fetch.
+     * Filter, which Hospitals to fetch.
      */
-    where?: ProfileWhereInput
+    where?: HospitalWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Profiles to fetch.
+     * Determine the order of Hospitals to fetch.
      */
-    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
+    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Profiles.
+     * Sets the position for listing Hospitals.
      */
-    cursor?: ProfileWhereUniqueInput
+    cursor?: HospitalWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Profiles from the position of the cursor.
+     * Take `±n` Hospitals from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Profiles.
+     * Skip the first `n` Hospitals.
      */
     skip?: number
-    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
+    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
   }
 
   /**
-   * Profile create
+   * Hospital create
    */
-  export type ProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * The data needed to create a Profile.
+     * The data needed to create a Hospital.
      */
-    data: XOR<ProfileCreateInput, ProfileUncheckedCreateInput>
+    data: XOR<HospitalCreateInput, HospitalUncheckedCreateInput>
   }
 
   /**
-   * Profile createMany
+   * Hospital createMany
    */
-  export type ProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Profiles.
+     * The data used to create many Hospitals.
      */
-    data: ProfileCreateManyInput | ProfileCreateManyInput[]
+    data: HospitalCreateManyInput | HospitalCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Profile createManyAndReturn
+   * Hospital createManyAndReturn
    */
-  export type ProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelectCreateManyAndReturn<ExtArgs> | null
+    select?: HospitalSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
-     * The data used to create many Profiles.
+     * The data used to create many Hospitals.
      */
-    data: ProfileCreateManyInput | ProfileCreateManyInput[]
+    data: HospitalCreateManyInput | HospitalCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: HospitalIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Profile update
+   * Hospital update
    */
-  export type ProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * The data needed to update a Profile.
+     * The data needed to update a Hospital.
      */
-    data: XOR<ProfileUpdateInput, ProfileUncheckedUpdateInput>
+    data: XOR<HospitalUpdateInput, HospitalUncheckedUpdateInput>
     /**
-     * Choose, which Profile to update.
+     * Choose, which Hospital to update.
      */
-    where: ProfileWhereUniqueInput
+    where: HospitalWhereUniqueInput
   }
 
   /**
-   * Profile updateMany
+   * Hospital updateMany
    */
-  export type ProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Profiles.
+     * The data used to update Hospitals.
      */
-    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyInput>
+    data: XOR<HospitalUpdateManyMutationInput, HospitalUncheckedUpdateManyInput>
     /**
-     * Filter which Profiles to update
+     * Filter which Hospitals to update
      */
-    where?: ProfileWhereInput
+    where?: HospitalWhereInput
     /**
-     * Limit how many Profiles to update.
+     * Limit how many Hospitals to update.
      */
     limit?: number
   }
 
   /**
-   * Profile updateManyAndReturn
+   * Hospital updateManyAndReturn
    */
-  export type ProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: HospitalSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
-     * The data used to update Profiles.
+     * The data used to update Hospitals.
      */
-    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyInput>
+    data: XOR<HospitalUpdateManyMutationInput, HospitalUncheckedUpdateManyInput>
     /**
-     * Filter which Profiles to update
+     * Filter which Hospitals to update
      */
-    where?: ProfileWhereInput
+    where?: HospitalWhereInput
     /**
-     * Limit how many Profiles to update.
+     * Limit how many Hospitals to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: HospitalIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Profile upsert
+   * Hospital upsert
    */
-  export type ProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * The filter to search for the Profile to update in case it exists.
+     * The filter to search for the Hospital to update in case it exists.
      */
-    where: ProfileWhereUniqueInput
+    where: HospitalWhereUniqueInput
     /**
-     * In case the Profile found by the `where` argument doesn't exist, create a new Profile with this data.
+     * In case the Hospital found by the `where` argument doesn't exist, create a new Hospital with this data.
      */
-    create: XOR<ProfileCreateInput, ProfileUncheckedCreateInput>
+    create: XOR<HospitalCreateInput, HospitalUncheckedCreateInput>
     /**
-     * In case the Profile was found with the provided `where` argument, update it with this data.
+     * In case the Hospital was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ProfileUpdateInput, ProfileUncheckedUpdateInput>
+    update: XOR<HospitalUpdateInput, HospitalUncheckedUpdateInput>
   }
 
   /**
-   * Profile delete
+   * Hospital delete
    */
-  export type ProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Hospital
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: HospitalSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the Hospital
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: HospitalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: HospitalInclude<ExtArgs> | null
     /**
-     * Filter which Profile to delete.
+     * Filter which Hospital to delete.
      */
-    where: ProfileWhereUniqueInput
+    where: HospitalWhereUniqueInput
   }
 
   /**
-   * Profile deleteMany
+   * Hospital deleteMany
    */
-  export type ProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HospitalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Profiles to delete
+     * Filter which Hospitals to delete
      */
-    where?: ProfileWhereInput
+    where?: HospitalWhereInput
     /**
-     * Limit how many Profiles to delete.
+     * Limit how many Hospitals to delete.
      */
     limit?: number
   }
 
   /**
-   * Profile without action
+   * Hospital.User
    */
-  export type ProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Hospital$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the User
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Profile
+     * Omit specific fields from the User
      */
-    omit?: ProfileOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProfileInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Hospital.category
+   */
+  export type Hospital$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PetCategory
+     */
+    select?: PetCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PetCategory
+     */
+    omit?: PetCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PetCategoryInclude<ExtArgs> | null
+    where?: PetCategoryWhereInput
+    orderBy?: PetCategoryOrderByWithRelationInput | PetCategoryOrderByWithRelationInput[]
+    cursor?: PetCategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PetCategoryScalarFieldEnum | PetCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Hospital without action
+   */
+  export type HospitalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hospital
+     */
+    select?: HospitalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hospital
+     */
+    omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model BankCard
+   * Model PetCategory
    */
 
-  export type AggregateBankCard = {
-    _count: BankCardCountAggregateOutputType | null
-    _avg: BankCardAvgAggregateOutputType | null
-    _sum: BankCardSumAggregateOutputType | null
-    _min: BankCardMinAggregateOutputType | null
-    _max: BankCardMaxAggregateOutputType | null
+  export type AggregatePetCategory = {
+    _count: PetCategoryCountAggregateOutputType | null
+    _avg: PetCategoryAvgAggregateOutputType | null
+    _sum: PetCategorySumAggregateOutputType | null
+    _min: PetCategoryMinAggregateOutputType | null
+    _max: PetCategoryMaxAggregateOutputType | null
   }
 
-  export type BankCardAvgAggregateOutputType = {
+  export type PetCategoryAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
-  export type BankCardSumAggregateOutputType = {
+  export type PetCategorySumAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
-  export type BankCardMinAggregateOutputType = {
+  export type PetCategoryMinAggregateOutputType = {
     id: number | null
-    country: string | null
-    firstName: string | null
-    lastName: string | null
-    cardNumber: string | null
-    expiryDate: string | null
+    name: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: number | null
   }
 
-  export type BankCardMaxAggregateOutputType = {
+  export type PetCategoryMaxAggregateOutputType = {
     id: number | null
-    country: string | null
-    firstName: string | null
-    lastName: string | null
-    cardNumber: string | null
-    expiryDate: string | null
+    name: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: number | null
   }
 
-  export type BankCardCountAggregateOutputType = {
+  export type PetCategoryCountAggregateOutputType = {
     id: number
-    country: number
-    firstName: number
-    lastName: number
-    cardNumber: number
-    expiryDate: number
+    name: number
     createdAt: number
     updatedAt: number
-    userId: number
     _all: number
   }
 
 
-  export type BankCardAvgAggregateInputType = {
+  export type PetCategoryAvgAggregateInputType = {
     id?: true
-    userId?: true
   }
 
-  export type BankCardSumAggregateInputType = {
+  export type PetCategorySumAggregateInputType = {
     id?: true
-    userId?: true
   }
 
-  export type BankCardMinAggregateInputType = {
+  export type PetCategoryMinAggregateInputType = {
     id?: true
-    country?: true
-    firstName?: true
-    lastName?: true
-    cardNumber?: true
-    expiryDate?: true
+    name?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
   }
 
-  export type BankCardMaxAggregateInputType = {
+  export type PetCategoryMaxAggregateInputType = {
     id?: true
-    country?: true
-    firstName?: true
-    lastName?: true
-    cardNumber?: true
-    expiryDate?: true
+    name?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
   }
 
-  export type BankCardCountAggregateInputType = {
+  export type PetCategoryCountAggregateInputType = {
     id?: true
-    country?: true
-    firstName?: true
-    lastName?: true
-    cardNumber?: true
-    expiryDate?: true
+    name?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
     _all?: true
   }
 
-  export type BankCardAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which BankCard to aggregate.
+     * Filter which PetCategory to aggregate.
      */
-    where?: BankCardWhereInput
+    where?: PetCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of BankCards to fetch.
+     * Determine the order of PetCategories to fetch.
      */
-    orderBy?: BankCardOrderByWithRelationInput | BankCardOrderByWithRelationInput[]
+    orderBy?: PetCategoryOrderByWithRelationInput | PetCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: BankCardWhereUniqueInput
+    cursor?: PetCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` BankCards from the position of the cursor.
+     * Take `±n` PetCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` BankCards.
+     * Skip the first `n` PetCategories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned BankCards
+     * Count returned PetCategories
     **/
-    _count?: true | BankCardCountAggregateInputType
+    _count?: true | PetCategoryCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: BankCardAvgAggregateInputType
+    _avg?: PetCategoryAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: BankCardSumAggregateInputType
+    _sum?: PetCategorySumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: BankCardMinAggregateInputType
+    _min?: PetCategoryMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: BankCardMaxAggregateInputType
+    _max?: PetCategoryMaxAggregateInputType
   }
 
-  export type GetBankCardAggregateType<T extends BankCardAggregateArgs> = {
-        [P in keyof T & keyof AggregateBankCard]: P extends '_count' | 'count'
+  export type GetPetCategoryAggregateType<T extends PetCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregatePetCategory]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateBankCard[P]>
-      : GetScalarType<T[P], AggregateBankCard[P]>
+        : GetScalarType<T[P], AggregatePetCategory[P]>
+      : GetScalarType<T[P], AggregatePetCategory[P]>
   }
 
 
 
 
-  export type BankCardGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BankCardWhereInput
-    orderBy?: BankCardOrderByWithAggregationInput | BankCardOrderByWithAggregationInput[]
-    by: BankCardScalarFieldEnum[] | BankCardScalarFieldEnum
-    having?: BankCardScalarWhereWithAggregatesInput
+  export type PetCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PetCategoryWhereInput
+    orderBy?: PetCategoryOrderByWithAggregationInput | PetCategoryOrderByWithAggregationInput[]
+    by: PetCategoryScalarFieldEnum[] | PetCategoryScalarFieldEnum
+    having?: PetCategoryScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: BankCardCountAggregateInputType | true
-    _avg?: BankCardAvgAggregateInputType
-    _sum?: BankCardSumAggregateInputType
-    _min?: BankCardMinAggregateInputType
-    _max?: BankCardMaxAggregateInputType
+    _count?: PetCategoryCountAggregateInputType | true
+    _avg?: PetCategoryAvgAggregateInputType
+    _sum?: PetCategorySumAggregateInputType
+    _min?: PetCategoryMinAggregateInputType
+    _max?: PetCategoryMaxAggregateInputType
   }
 
-  export type BankCardGroupByOutputType = {
+  export type PetCategoryGroupByOutputType = {
     id: number
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
+    name: string
     createdAt: Date
     updatedAt: Date
-    userId: number
-    _count: BankCardCountAggregateOutputType | null
-    _avg: BankCardAvgAggregateOutputType | null
-    _sum: BankCardSumAggregateOutputType | null
-    _min: BankCardMinAggregateOutputType | null
-    _max: BankCardMaxAggregateOutputType | null
+    _count: PetCategoryCountAggregateOutputType | null
+    _avg: PetCategoryAvgAggregateOutputType | null
+    _sum: PetCategorySumAggregateOutputType | null
+    _min: PetCategoryMinAggregateOutputType | null
+    _max: PetCategoryMaxAggregateOutputType | null
   }
 
-  type GetBankCardGroupByPayload<T extends BankCardGroupByArgs> = Prisma.PrismaPromise<
+  type GetPetCategoryGroupByPayload<T extends PetCategoryGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<BankCardGroupByOutputType, T['by']> &
+      PickEnumerable<PetCategoryGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof BankCardGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PetCategoryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], BankCardGroupByOutputType[P]>
-            : GetScalarType<T[P], BankCardGroupByOutputType[P]>
+              : GetScalarType<T[P], PetCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], PetCategoryGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type BankCardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PetCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    country?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    cardNumber?: boolean
-    expiryDate?: boolean
+    name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["bankCard"]>
+    PetPost?: boolean | PetCategory$PetPostArgs<ExtArgs>
+    ServicePost?: boolean | PetCategory$ServicePostArgs<ExtArgs>
+    Hospital?: boolean | PetCategory$HospitalArgs<ExtArgs>
+    _count?: boolean | PetCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["petCategory"]>
 
-  export type BankCardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PetCategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    country?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    cardNumber?: boolean
-    expiryDate?: boolean
+    name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["bankCard"]>
+  }, ExtArgs["result"]["petCategory"]>
 
-  export type BankCardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PetCategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    country?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    cardNumber?: boolean
-    expiryDate?: boolean
+    name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["bankCard"]>
+  }, ExtArgs["result"]["petCategory"]>
 
-  export type BankCardSelectScalar = {
+  export type PetCategorySelectScalar = {
     id?: boolean
-    country?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    cardNumber?: boolean
-    expiryDate?: boolean
+    name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
   }
 
-  export type BankCardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "firstName" | "lastName" | "cardNumber" | "expiryDate" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["bankCard"]>
-  export type BankCardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+  export type PetCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["petCategory"]>
+  export type PetCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    PetPost?: boolean | PetCategory$PetPostArgs<ExtArgs>
+    ServicePost?: boolean | PetCategory$ServicePostArgs<ExtArgs>
+    Hospital?: boolean | PetCategory$HospitalArgs<ExtArgs>
+    _count?: boolean | PetCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type BankCardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type BankCardIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
+  export type PetCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PetCategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $BankCardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "BankCard"
+  export type $PetCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PetCategory"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      PetPost: Prisma.$PetPostPayload<ExtArgs>[]
+      ServicePost: Prisma.$ServicePostPayload<ExtArgs>[]
+      Hospital: Prisma.$HospitalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      country: string
-      firstName: string
-      lastName: string
-      cardNumber: string
-      expiryDate: string
+      name: string
       createdAt: Date
       updatedAt: Date
-      userId: number
-    }, ExtArgs["result"]["bankCard"]>
+    }, ExtArgs["result"]["petCategory"]>
     composites: {}
   }
 
-  type BankCardGetPayload<S extends boolean | null | undefined | BankCardDefaultArgs> = $Result.GetResult<Prisma.$BankCardPayload, S>
+  type PetCategoryGetPayload<S extends boolean | null | undefined | PetCategoryDefaultArgs> = $Result.GetResult<Prisma.$PetCategoryPayload, S>
 
-  type BankCardCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BankCardFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BankCardCountAggregateInputType | true
+  type PetCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PetCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PetCategoryCountAggregateInputType | true
     }
 
-  export interface BankCardDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BankCard'], meta: { name: 'BankCard' } }
+  export interface PetCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PetCategory'], meta: { name: 'PetCategory' } }
     /**
-     * Find zero or one BankCard that matches the filter.
-     * @param {BankCardFindUniqueArgs} args - Arguments to find a BankCard
+     * Find zero or one PetCategory that matches the filter.
+     * @param {PetCategoryFindUniqueArgs} args - Arguments to find a PetCategory
      * @example
-     * // Get one BankCard
-     * const bankCard = await prisma.bankCard.findUnique({
+     * // Get one PetCategory
+     * const petCategory = await prisma.petCategory.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends BankCardFindUniqueArgs>(args: SelectSubset<T, BankCardFindUniqueArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PetCategoryFindUniqueArgs>(args: SelectSubset<T, PetCategoryFindUniqueArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one BankCard that matches the filter or throw an error with `error.code='P2025'`
+     * Find one PetCategory that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {BankCardFindUniqueOrThrowArgs} args - Arguments to find a BankCard
+     * @param {PetCategoryFindUniqueOrThrowArgs} args - Arguments to find a PetCategory
      * @example
-     * // Get one BankCard
-     * const bankCard = await prisma.bankCard.findUniqueOrThrow({
+     * // Get one PetCategory
+     * const petCategory = await prisma.petCategory.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends BankCardFindUniqueOrThrowArgs>(args: SelectSubset<T, BankCardFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PetCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, PetCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first BankCard that matches the filter.
+     * Find the first PetCategory that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardFindFirstArgs} args - Arguments to find a BankCard
+     * @param {PetCategoryFindFirstArgs} args - Arguments to find a PetCategory
      * @example
-     * // Get one BankCard
-     * const bankCard = await prisma.bankCard.findFirst({
+     * // Get one PetCategory
+     * const petCategory = await prisma.petCategory.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends BankCardFindFirstArgs>(args?: SelectSubset<T, BankCardFindFirstArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PetCategoryFindFirstArgs>(args?: SelectSubset<T, PetCategoryFindFirstArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first BankCard that matches the filter or
+     * Find the first PetCategory that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardFindFirstOrThrowArgs} args - Arguments to find a BankCard
+     * @param {PetCategoryFindFirstOrThrowArgs} args - Arguments to find a PetCategory
      * @example
-     * // Get one BankCard
-     * const bankCard = await prisma.bankCard.findFirstOrThrow({
+     * // Get one PetCategory
+     * const petCategory = await prisma.petCategory.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends BankCardFindFirstOrThrowArgs>(args?: SelectSubset<T, BankCardFindFirstOrThrowArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PetCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, PetCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more BankCards that matches the filter.
+     * Find zero or more PetCategories that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {PetCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all BankCards
-     * const bankCards = await prisma.bankCard.findMany()
+     * // Get all PetCategories
+     * const petCategories = await prisma.petCategory.findMany()
      * 
-     * // Get first 10 BankCards
-     * const bankCards = await prisma.bankCard.findMany({ take: 10 })
+     * // Get first 10 PetCategories
+     * const petCategories = await prisma.petCategory.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const bankCardWithIdOnly = await prisma.bankCard.findMany({ select: { id: true } })
+     * const petCategoryWithIdOnly = await prisma.petCategory.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends BankCardFindManyArgs>(args?: SelectSubset<T, BankCardFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PetCategoryFindManyArgs>(args?: SelectSubset<T, PetCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a BankCard.
-     * @param {BankCardCreateArgs} args - Arguments to create a BankCard.
+     * Create a PetCategory.
+     * @param {PetCategoryCreateArgs} args - Arguments to create a PetCategory.
      * @example
-     * // Create one BankCard
-     * const BankCard = await prisma.bankCard.create({
+     * // Create one PetCategory
+     * const PetCategory = await prisma.petCategory.create({
      *   data: {
-     *     // ... data to create a BankCard
+     *     // ... data to create a PetCategory
      *   }
      * })
      * 
      */
-    create<T extends BankCardCreateArgs>(args: SelectSubset<T, BankCardCreateArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PetCategoryCreateArgs>(args: SelectSubset<T, PetCategoryCreateArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many BankCards.
-     * @param {BankCardCreateManyArgs} args - Arguments to create many BankCards.
+     * Create many PetCategories.
+     * @param {PetCategoryCreateManyArgs} args - Arguments to create many PetCategories.
      * @example
-     * // Create many BankCards
-     * const bankCard = await prisma.bankCard.createMany({
+     * // Create many PetCategories
+     * const petCategory = await prisma.petCategory.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends BankCardCreateManyArgs>(args?: SelectSubset<T, BankCardCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PetCategoryCreateManyArgs>(args?: SelectSubset<T, PetCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many BankCards and returns the data saved in the database.
-     * @param {BankCardCreateManyAndReturnArgs} args - Arguments to create many BankCards.
+     * Create many PetCategories and returns the data saved in the database.
+     * @param {PetCategoryCreateManyAndReturnArgs} args - Arguments to create many PetCategories.
      * @example
-     * // Create many BankCards
-     * const bankCard = await prisma.bankCard.createManyAndReturn({
+     * // Create many PetCategories
+     * const petCategory = await prisma.petCategory.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many BankCards and only return the `id`
-     * const bankCardWithIdOnly = await prisma.bankCard.createManyAndReturn({
+     * // Create many PetCategories and only return the `id`
+     * const petCategoryWithIdOnly = await prisma.petCategory.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -5138,28 +6617,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends BankCardCreateManyAndReturnArgs>(args?: SelectSubset<T, BankCardCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PetCategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, PetCategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a BankCard.
-     * @param {BankCardDeleteArgs} args - Arguments to delete one BankCard.
+     * Delete a PetCategory.
+     * @param {PetCategoryDeleteArgs} args - Arguments to delete one PetCategory.
      * @example
-     * // Delete one BankCard
-     * const BankCard = await prisma.bankCard.delete({
+     * // Delete one PetCategory
+     * const PetCategory = await prisma.petCategory.delete({
      *   where: {
-     *     // ... filter to delete one BankCard
+     *     // ... filter to delete one PetCategory
      *   }
      * })
      * 
      */
-    delete<T extends BankCardDeleteArgs>(args: SelectSubset<T, BankCardDeleteArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PetCategoryDeleteArgs>(args: SelectSubset<T, PetCategoryDeleteArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one BankCard.
-     * @param {BankCardUpdateArgs} args - Arguments to update one BankCard.
+     * Update one PetCategory.
+     * @param {PetCategoryUpdateArgs} args - Arguments to update one PetCategory.
      * @example
-     * // Update one BankCard
-     * const bankCard = await prisma.bankCard.update({
+     * // Update one PetCategory
+     * const petCategory = await prisma.petCategory.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5169,30 +6648,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends BankCardUpdateArgs>(args: SelectSubset<T, BankCardUpdateArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PetCategoryUpdateArgs>(args: SelectSubset<T, PetCategoryUpdateArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more BankCards.
-     * @param {BankCardDeleteManyArgs} args - Arguments to filter BankCards to delete.
+     * Delete zero or more PetCategories.
+     * @param {PetCategoryDeleteManyArgs} args - Arguments to filter PetCategories to delete.
      * @example
-     * // Delete a few BankCards
-     * const { count } = await prisma.bankCard.deleteMany({
+     * // Delete a few PetCategories
+     * const { count } = await prisma.petCategory.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends BankCardDeleteManyArgs>(args?: SelectSubset<T, BankCardDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PetCategoryDeleteManyArgs>(args?: SelectSubset<T, PetCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more BankCards.
+     * Update zero or more PetCategories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PetCategoryUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many BankCards
-     * const bankCard = await prisma.bankCard.updateMany({
+     * // Update many PetCategories
+     * const petCategory = await prisma.petCategory.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5202,14 +6681,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends BankCardUpdateManyArgs>(args: SelectSubset<T, BankCardUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PetCategoryUpdateManyArgs>(args: SelectSubset<T, PetCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more BankCards and returns the data updated in the database.
-     * @param {BankCardUpdateManyAndReturnArgs} args - Arguments to update many BankCards.
+     * Update zero or more PetCategories and returns the data updated in the database.
+     * @param {PetCategoryUpdateManyAndReturnArgs} args - Arguments to update many PetCategories.
      * @example
-     * // Update many BankCards
-     * const bankCard = await prisma.bankCard.updateManyAndReturn({
+     * // Update many PetCategories
+     * const petCategory = await prisma.petCategory.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5218,8 +6697,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more BankCards and only return the `id`
-     * const bankCardWithIdOnly = await prisma.bankCard.updateManyAndReturn({
+     * // Update zero or more PetCategories and only return the `id`
+     * const petCategoryWithIdOnly = await prisma.petCategory.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -5232,56 +6711,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends BankCardUpdateManyAndReturnArgs>(args: SelectSubset<T, BankCardUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PetCategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, PetCategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one BankCard.
-     * @param {BankCardUpsertArgs} args - Arguments to update or create a BankCard.
+     * Create or update one PetCategory.
+     * @param {PetCategoryUpsertArgs} args - Arguments to update or create a PetCategory.
      * @example
-     * // Update or create a BankCard
-     * const bankCard = await prisma.bankCard.upsert({
+     * // Update or create a PetCategory
+     * const petCategory = await prisma.petCategory.upsert({
      *   create: {
-     *     // ... data to create a BankCard
+     *     // ... data to create a PetCategory
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the BankCard we want to update
+     *     // ... the filter for the PetCategory we want to update
      *   }
      * })
      */
-    upsert<T extends BankCardUpsertArgs>(args: SelectSubset<T, BankCardUpsertArgs<ExtArgs>>): Prisma__BankCardClient<$Result.GetResult<Prisma.$BankCardPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends PetCategoryUpsertArgs>(args: SelectSubset<T, PetCategoryUpsertArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of BankCards.
+     * Count the number of PetCategories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardCountArgs} args - Arguments to filter BankCards to count.
+     * @param {PetCategoryCountArgs} args - Arguments to filter PetCategories to count.
      * @example
-     * // Count the number of BankCards
-     * const count = await prisma.bankCard.count({
+     * // Count the number of PetCategories
+     * const count = await prisma.petCategory.count({
      *   where: {
-     *     // ... the filter for the BankCards we want to count
+     *     // ... the filter for the PetCategories we want to count
      *   }
      * })
     **/
-    count<T extends BankCardCountArgs>(
-      args?: Subset<T, BankCardCountArgs>,
+    count<T extends PetCategoryCountArgs>(
+      args?: Subset<T, PetCategoryCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], BankCardCountAggregateOutputType>
+          : GetScalarType<T['select'], PetCategoryCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a BankCard.
+     * Allows you to perform aggregations operations on a PetCategory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PetCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5301,13 +6780,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends BankCardAggregateArgs>(args: Subset<T, BankCardAggregateArgs>): Prisma.PrismaPromise<GetBankCardAggregateType<T>>
+    aggregate<T extends PetCategoryAggregateArgs>(args: Subset<T, PetCategoryAggregateArgs>): Prisma.PrismaPromise<GetPetCategoryAggregateType<T>>
 
     /**
-     * Group by BankCard.
+     * Group by PetCategory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BankCardGroupByArgs} args - Group by arguments.
+     * @param {PetCategoryGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5322,14 +6801,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends BankCardGroupByArgs,
+      T extends PetCategoryGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: BankCardGroupByArgs['orderBy'] }
-        : { orderBy?: BankCardGroupByArgs['orderBy'] },
+        ? { orderBy: PetCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: PetCategoryGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5378,22 +6857,24 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, BankCardGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBankCardGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PetCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the BankCard model
+   * Fields of the PetCategory model
    */
-  readonly fields: BankCardFieldRefs;
+  readonly fields: PetCategoryFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for BankCard.
+   * The delegate class that acts as a "Promise-like" for PetCategory.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__BankCardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PetCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    PetPost<T extends PetCategory$PetPostArgs<ExtArgs> = {}>(args?: Subset<T, PetCategory$PetPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ServicePost<T extends PetCategory$ServicePostArgs<ExtArgs> = {}>(args?: Subset<T, PetCategory$ServicePostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Hospital<T extends PetCategory$HospitalArgs<ExtArgs> = {}>(args?: Subset<T, PetCategory$HospitalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5420,429 +6901,488 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the BankCard model
+   * Fields of the PetCategory model
    */
-  interface BankCardFieldRefs {
-    readonly id: FieldRef<"BankCard", 'Int'>
-    readonly country: FieldRef<"BankCard", 'String'>
-    readonly firstName: FieldRef<"BankCard", 'String'>
-    readonly lastName: FieldRef<"BankCard", 'String'>
-    readonly cardNumber: FieldRef<"BankCard", 'String'>
-    readonly expiryDate: FieldRef<"BankCard", 'String'>
-    readonly createdAt: FieldRef<"BankCard", 'DateTime'>
-    readonly updatedAt: FieldRef<"BankCard", 'DateTime'>
-    readonly userId: FieldRef<"BankCard", 'Int'>
+  interface PetCategoryFieldRefs {
+    readonly id: FieldRef<"PetCategory", 'Int'>
+    readonly name: FieldRef<"PetCategory", 'String'>
+    readonly createdAt: FieldRef<"PetCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"PetCategory", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * BankCard findUnique
+   * PetCategory findUnique
    */
-  export type BankCardFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which BankCard to fetch.
+     * Filter, which PetCategory to fetch.
      */
-    where: BankCardWhereUniqueInput
+    where: PetCategoryWhereUniqueInput
   }
 
   /**
-   * BankCard findUniqueOrThrow
+   * PetCategory findUniqueOrThrow
    */
-  export type BankCardFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which BankCard to fetch.
+     * Filter, which PetCategory to fetch.
      */
-    where: BankCardWhereUniqueInput
+    where: PetCategoryWhereUniqueInput
   }
 
   /**
-   * BankCard findFirst
+   * PetCategory findFirst
    */
-  export type BankCardFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which BankCard to fetch.
+     * Filter, which PetCategory to fetch.
      */
-    where?: BankCardWhereInput
+    where?: PetCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of BankCards to fetch.
+     * Determine the order of PetCategories to fetch.
      */
-    orderBy?: BankCardOrderByWithRelationInput | BankCardOrderByWithRelationInput[]
+    orderBy?: PetCategoryOrderByWithRelationInput | PetCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for BankCards.
+     * Sets the position for searching for PetCategories.
      */
-    cursor?: BankCardWhereUniqueInput
+    cursor?: PetCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` BankCards from the position of the cursor.
+     * Take `±n` PetCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` BankCards.
+     * Skip the first `n` PetCategories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of BankCards.
+     * Filter by unique combinations of PetCategories.
      */
-    distinct?: BankCardScalarFieldEnum | BankCardScalarFieldEnum[]
+    distinct?: PetCategoryScalarFieldEnum | PetCategoryScalarFieldEnum[]
   }
 
   /**
-   * BankCard findFirstOrThrow
+   * PetCategory findFirstOrThrow
    */
-  export type BankCardFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which BankCard to fetch.
+     * Filter, which PetCategory to fetch.
      */
-    where?: BankCardWhereInput
+    where?: PetCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of BankCards to fetch.
+     * Determine the order of PetCategories to fetch.
      */
-    orderBy?: BankCardOrderByWithRelationInput | BankCardOrderByWithRelationInput[]
+    orderBy?: PetCategoryOrderByWithRelationInput | PetCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for BankCards.
+     * Sets the position for searching for PetCategories.
      */
-    cursor?: BankCardWhereUniqueInput
+    cursor?: PetCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` BankCards from the position of the cursor.
+     * Take `±n` PetCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` BankCards.
+     * Skip the first `n` PetCategories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of BankCards.
+     * Filter by unique combinations of PetCategories.
      */
-    distinct?: BankCardScalarFieldEnum | BankCardScalarFieldEnum[]
+    distinct?: PetCategoryScalarFieldEnum | PetCategoryScalarFieldEnum[]
   }
 
   /**
-   * BankCard findMany
+   * PetCategory findMany
    */
-  export type BankCardFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which BankCards to fetch.
+     * Filter, which PetCategories to fetch.
      */
-    where?: BankCardWhereInput
+    where?: PetCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of BankCards to fetch.
+     * Determine the order of PetCategories to fetch.
      */
-    orderBy?: BankCardOrderByWithRelationInput | BankCardOrderByWithRelationInput[]
+    orderBy?: PetCategoryOrderByWithRelationInput | PetCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing BankCards.
+     * Sets the position for listing PetCategories.
      */
-    cursor?: BankCardWhereUniqueInput
+    cursor?: PetCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` BankCards from the position of the cursor.
+     * Take `±n` PetCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` BankCards.
+     * Skip the first `n` PetCategories.
      */
     skip?: number
-    distinct?: BankCardScalarFieldEnum | BankCardScalarFieldEnum[]
+    distinct?: PetCategoryScalarFieldEnum | PetCategoryScalarFieldEnum[]
   }
 
   /**
-   * BankCard create
+   * PetCategory create
    */
-  export type BankCardCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * The data needed to create a BankCard.
+     * The data needed to create a PetCategory.
      */
-    data: XOR<BankCardCreateInput, BankCardUncheckedCreateInput>
+    data: XOR<PetCategoryCreateInput, PetCategoryUncheckedCreateInput>
   }
 
   /**
-   * BankCard createMany
+   * PetCategory createMany
    */
-  export type BankCardCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many BankCards.
+     * The data used to create many PetCategories.
      */
-    data: BankCardCreateManyInput | BankCardCreateManyInput[]
+    data: PetCategoryCreateManyInput | PetCategoryCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * BankCard createManyAndReturn
+   * PetCategory createManyAndReturn
    */
-  export type BankCardCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelectCreateManyAndReturn<ExtArgs> | null
+    select?: PetCategorySelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
-     * The data used to create many BankCards.
+     * The data used to create many PetCategories.
      */
-    data: BankCardCreateManyInput | BankCardCreateManyInput[]
+    data: PetCategoryCreateManyInput | PetCategoryCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BankCardIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * BankCard update
+   * PetCategory update
    */
-  export type BankCardUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
     /**
-     * The data needed to update a BankCard.
+     * The data needed to update a PetCategory.
      */
-    data: XOR<BankCardUpdateInput, BankCardUncheckedUpdateInput>
+    data: XOR<PetCategoryUpdateInput, PetCategoryUncheckedUpdateInput>
     /**
-     * Choose, which BankCard to update.
+     * Choose, which PetCategory to update.
      */
-    where: BankCardWhereUniqueInput
+    where: PetCategoryWhereUniqueInput
   }
 
   /**
-   * BankCard updateMany
+   * PetCategory updateMany
    */
-  export type BankCardUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update BankCards.
+     * The data used to update PetCategories.
      */
-    data: XOR<BankCardUpdateManyMutationInput, BankCardUncheckedUpdateManyInput>
+    data: XOR<PetCategoryUpdateManyMutationInput, PetCategoryUncheckedUpdateManyInput>
     /**
-     * Filter which BankCards to update
+     * Filter which PetCategories to update
      */
-    where?: BankCardWhereInput
+    where?: PetCategoryWhereInput
     /**
-     * Limit how many BankCards to update.
+     * Limit how many PetCategories to update.
      */
     limit?: number
   }
 
   /**
-   * BankCard updateManyAndReturn
+   * PetCategory updateManyAndReturn
    */
-  export type BankCardUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PetCategorySelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
-     * The data used to update BankCards.
+     * The data used to update PetCategories.
      */
-    data: XOR<BankCardUpdateManyMutationInput, BankCardUncheckedUpdateManyInput>
+    data: XOR<PetCategoryUpdateManyMutationInput, PetCategoryUncheckedUpdateManyInput>
     /**
-     * Filter which BankCards to update
+     * Filter which PetCategories to update
      */
-    where?: BankCardWhereInput
+    where?: PetCategoryWhereInput
     /**
-     * Limit how many BankCards to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BankCardIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * BankCard upsert
-   */
-  export type BankCardUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BankCard
-     */
-    select?: BankCardSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BankCard
-     */
-    omit?: BankCardOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BankCardInclude<ExtArgs> | null
-    /**
-     * The filter to search for the BankCard to update in case it exists.
-     */
-    where: BankCardWhereUniqueInput
-    /**
-     * In case the BankCard found by the `where` argument doesn't exist, create a new BankCard with this data.
-     */
-    create: XOR<BankCardCreateInput, BankCardUncheckedCreateInput>
-    /**
-     * In case the BankCard was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<BankCardUpdateInput, BankCardUncheckedUpdateInput>
-  }
-
-  /**
-   * BankCard delete
-   */
-  export type BankCardDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BankCard
-     */
-    select?: BankCardSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BankCard
-     */
-    omit?: BankCardOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BankCardInclude<ExtArgs> | null
-    /**
-     * Filter which BankCard to delete.
-     */
-    where: BankCardWhereUniqueInput
-  }
-
-  /**
-   * BankCard deleteMany
-   */
-  export type BankCardDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which BankCards to delete
-     */
-    where?: BankCardWhereInput
-    /**
-     * Limit how many BankCards to delete.
+     * Limit how many PetCategories to update.
      */
     limit?: number
   }
 
   /**
-   * BankCard without action
+   * PetCategory upsert
    */
-  export type BankCardDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PetCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BankCard
+     * Select specific fields to fetch from the PetCategory
      */
-    select?: BankCardSelect<ExtArgs> | null
+    select?: PetCategorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BankCard
+     * Omit specific fields from the PetCategory
      */
-    omit?: BankCardOmit<ExtArgs> | null
+    omit?: PetCategoryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BankCardInclude<ExtArgs> | null
+    include?: PetCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PetCategory to update in case it exists.
+     */
+    where: PetCategoryWhereUniqueInput
+    /**
+     * In case the PetCategory found by the `where` argument doesn't exist, create a new PetCategory with this data.
+     */
+    create: XOR<PetCategoryCreateInput, PetCategoryUncheckedCreateInput>
+    /**
+     * In case the PetCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PetCategoryUpdateInput, PetCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * PetCategory delete
+   */
+  export type PetCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PetCategory
+     */
+    select?: PetCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PetCategory
+     */
+    omit?: PetCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PetCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which PetCategory to delete.
+     */
+    where: PetCategoryWhereUniqueInput
+  }
+
+  /**
+   * PetCategory deleteMany
+   */
+  export type PetCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PetCategories to delete
+     */
+    where?: PetCategoryWhereInput
+    /**
+     * Limit how many PetCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PetCategory.PetPost
+   */
+  export type PetCategory$PetPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PetPost
+     */
+    select?: PetPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PetPost
+     */
+    omit?: PetPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PetPostInclude<ExtArgs> | null
+    where?: PetPostWhereInput
+    orderBy?: PetPostOrderByWithRelationInput | PetPostOrderByWithRelationInput[]
+    cursor?: PetPostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PetPostScalarFieldEnum | PetPostScalarFieldEnum[]
+  }
+
+  /**
+   * PetCategory.ServicePost
+   */
+  export type PetCategory$ServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    where?: ServicePostWhereInput
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
+    cursor?: ServicePostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServicePostScalarFieldEnum | ServicePostScalarFieldEnum[]
+  }
+
+  /**
+   * PetCategory.Hospital
+   */
+  export type PetCategory$HospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hospital
+     */
+    select?: HospitalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hospital
+     */
+    omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+    where?: HospitalWhereInput
+    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
+    cursor?: HospitalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
+  }
+
+  /**
+   * PetCategory without action
+   */
+  export type PetCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PetCategory
+     */
+    select?: PetCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PetCategory
+     */
+    omit?: PetCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PetCategoryInclude<ExtArgs> | null
   }
 
 
@@ -5872,49 +7412,70 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const DonationsScalarFieldEnum: {
+  export const PetPostScalarFieldEnum: {
     id: 'id',
-    amount: 'amount',
-    specialMessage: 'specialMessage',
-    socialURLOrBuyMeACoffee: 'socialURLOrBuyMeACoffee',
-    recipientId: 'recipientId',
-    donorId: 'donorId',
+    petName: 'petName',
+    address: 'address',
+    about: 'about',
+    image: 'image',
+    phoneNumber: 'phoneNumber',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    userId: 'userId',
+    age: 'age',
+    price: 'price',
+    purpose: 'purpose',
+    petCategoryId: 'petCategoryId'
   };
 
-  export type DonationsScalarFieldEnum = (typeof DonationsScalarFieldEnum)[keyof typeof DonationsScalarFieldEnum]
+  export type PetPostScalarFieldEnum = (typeof PetPostScalarFieldEnum)[keyof typeof PetPostScalarFieldEnum]
 
 
-  export const ProfileScalarFieldEnum: {
+  export const ServicePostScalarFieldEnum: {
+    id: 'id',
+    petName: 'petName',
+    address: 'address',
+    about: 'about',
+    image: 'image',
+    phoneNumber: 'phoneNumber',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId',
+    age: 'age',
+    price: 'price',
+    purpose: 'purpose',
+    petCategoryId: 'petCategoryId'
+  };
+
+  export type ServicePostScalarFieldEnum = (typeof ServicePostScalarFieldEnum)[keyof typeof ServicePostScalarFieldEnum]
+
+
+  export const HospitalScalarFieldEnum: {
     id: 'id',
     name: 'name',
     about: 'about',
     avatarImage: 'avatarImage',
-    socialMediaURL: 'socialMediaURL',
+    email: 'email',
     backgroundImage: 'backgroundImage',
-    successMessage: 'successMessage',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    userId: 'userId'
+    userId: 'userId',
+    location: 'location',
+    phoneNumber: 'phoneNumber',
+    workTime: 'workTime'
   };
 
-  export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+  export type HospitalScalarFieldEnum = (typeof HospitalScalarFieldEnum)[keyof typeof HospitalScalarFieldEnum]
 
 
-  export const BankCardScalarFieldEnum: {
+  export const PetCategoryScalarFieldEnum: {
     id: 'id',
-    country: 'country',
-    firstName: 'firstName',
-    lastName: 'lastName',
-    cardNumber: 'cardNumber',
-    expiryDate: 'expiryDate',
+    name: 'name',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    userId: 'userId'
+    updatedAt: 'updatedAt'
   };
 
-  export type BankCardScalarFieldEnum = (typeof BankCardScalarFieldEnum)[keyof typeof BankCardScalarFieldEnum]
+  export type PetCategoryScalarFieldEnum = (typeof PetCategoryScalarFieldEnum)[keyof typeof PetCategoryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5989,6 +7550,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'PetPostEnum'
+   */
+  export type EnumPetPostEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetPostEnum'>
+    
+
+
+  /**
+   * Reference to a field of type 'PetPostEnum[]'
+   */
+  export type ListEnumPetPostEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetPostEnum[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -6015,10 +7590,9 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    receivedDonations?: DonationsListRelationFilter
-    bankCard?: BankCardListRelationFilter
-    Donations?: DonationsListRelationFilter
-    Profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
+    PetPost?: PetPostListRelationFilter
+    ServicePost?: ServicePostListRelationFilter
+    Hospital?: HospitalListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6028,10 +7602,9 @@ export namespace Prisma {
     username?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    receivedDonations?: DonationsOrderByRelationAggregateInput
-    bankCard?: BankCardOrderByRelationAggregateInput
-    Donations?: DonationsOrderByRelationAggregateInput
-    Profile?: ProfileOrderByWithRelationInput
+    PetPost?: PetPostOrderByRelationAggregateInput
+    ServicePost?: ServicePostOrderByRelationAggregateInput
+    Hospital?: HospitalOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6044,10 +7617,9 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    receivedDonations?: DonationsListRelationFilter
-    bankCard?: BankCardListRelationFilter
-    Donations?: DonationsListRelationFilter
-    Profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
+    PetPost?: PetPostListRelationFilter
+    ServicePost?: ServicePostListRelationFilter
+    Hospital?: HospitalListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -6076,238 +7648,357 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
-  export type DonationsWhereInput = {
-    AND?: DonationsWhereInput | DonationsWhereInput[]
-    OR?: DonationsWhereInput[]
-    NOT?: DonationsWhereInput | DonationsWhereInput[]
-    id?: IntFilter<"Donations"> | number
-    amount?: IntFilter<"Donations"> | number
-    specialMessage?: StringFilter<"Donations"> | string
-    socialURLOrBuyMeACoffee?: StringFilter<"Donations"> | string
-    recipientId?: IntFilter<"Donations"> | number
-    donorId?: IntFilter<"Donations"> | number
-    createdAt?: DateTimeFilter<"Donations"> | Date | string
-    updatedAt?: DateTimeFilter<"Donations"> | Date | string
-    donor?: XOR<UserScalarRelationFilter, UserWhereInput>
-    recipient?: XOR<UserScalarRelationFilter, UserWhereInput>
+  export type PetPostWhereInput = {
+    AND?: PetPostWhereInput | PetPostWhereInput[]
+    OR?: PetPostWhereInput[]
+    NOT?: PetPostWhereInput | PetPostWhereInput[]
+    id?: IntFilter<"PetPost"> | number
+    petName?: StringFilter<"PetPost"> | string
+    address?: StringFilter<"PetPost"> | string
+    about?: StringFilter<"PetPost"> | string
+    image?: StringFilter<"PetPost"> | string
+    phoneNumber?: IntFilter<"PetPost"> | number
+    createdAt?: DateTimeFilter<"PetPost"> | Date | string
+    updatedAt?: DateTimeFilter<"PetPost"> | Date | string
+    userId?: IntFilter<"PetPost"> | number
+    age?: IntFilter<"PetPost"> | number
+    price?: IntFilter<"PetPost"> | number
+    purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
+    petCategoryId?: IntFilter<"PetPost"> | number
+    category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type DonationsOrderByWithRelationInput = {
+  export type PetPostOrderByWithRelationInput = {
     id?: SortOrder
-    amount?: SortOrder
-    specialMessage?: SortOrder
-    socialURLOrBuyMeACoffee?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    donor?: UserOrderByWithRelationInput
-    recipient?: UserOrderByWithRelationInput
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+    category?: PetCategoryOrderByWithRelationInput
+    User?: UserOrderByWithRelationInput
   }
 
-  export type DonationsWhereUniqueInput = Prisma.AtLeast<{
+  export type PetPostWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: DonationsWhereInput | DonationsWhereInput[]
-    OR?: DonationsWhereInput[]
-    NOT?: DonationsWhereInput | DonationsWhereInput[]
-    amount?: IntFilter<"Donations"> | number
-    specialMessage?: StringFilter<"Donations"> | string
-    socialURLOrBuyMeACoffee?: StringFilter<"Donations"> | string
-    recipientId?: IntFilter<"Donations"> | number
-    donorId?: IntFilter<"Donations"> | number
-    createdAt?: DateTimeFilter<"Donations"> | Date | string
-    updatedAt?: DateTimeFilter<"Donations"> | Date | string
-    donor?: XOR<UserScalarRelationFilter, UserWhereInput>
-    recipient?: XOR<UserScalarRelationFilter, UserWhereInput>
+    AND?: PetPostWhereInput | PetPostWhereInput[]
+    OR?: PetPostWhereInput[]
+    NOT?: PetPostWhereInput | PetPostWhereInput[]
+    petName?: StringFilter<"PetPost"> | string
+    address?: StringFilter<"PetPost"> | string
+    about?: StringFilter<"PetPost"> | string
+    image?: StringFilter<"PetPost"> | string
+    phoneNumber?: IntFilter<"PetPost"> | number
+    createdAt?: DateTimeFilter<"PetPost"> | Date | string
+    updatedAt?: DateTimeFilter<"PetPost"> | Date | string
+    userId?: IntFilter<"PetPost"> | number
+    age?: IntFilter<"PetPost"> | number
+    price?: IntFilter<"PetPost"> | number
+    purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
+    petCategoryId?: IntFilter<"PetPost"> | number
+    category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
-  export type DonationsOrderByWithAggregationInput = {
+  export type PetPostOrderByWithAggregationInput = {
     id?: SortOrder
-    amount?: SortOrder
-    specialMessage?: SortOrder
-    socialURLOrBuyMeACoffee?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: DonationsCountOrderByAggregateInput
-    _avg?: DonationsAvgOrderByAggregateInput
-    _max?: DonationsMaxOrderByAggregateInput
-    _min?: DonationsMinOrderByAggregateInput
-    _sum?: DonationsSumOrderByAggregateInput
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+    _count?: PetPostCountOrderByAggregateInput
+    _avg?: PetPostAvgOrderByAggregateInput
+    _max?: PetPostMaxOrderByAggregateInput
+    _min?: PetPostMinOrderByAggregateInput
+    _sum?: PetPostSumOrderByAggregateInput
   }
 
-  export type DonationsScalarWhereWithAggregatesInput = {
-    AND?: DonationsScalarWhereWithAggregatesInput | DonationsScalarWhereWithAggregatesInput[]
-    OR?: DonationsScalarWhereWithAggregatesInput[]
-    NOT?: DonationsScalarWhereWithAggregatesInput | DonationsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Donations"> | number
-    amount?: IntWithAggregatesFilter<"Donations"> | number
-    specialMessage?: StringWithAggregatesFilter<"Donations"> | string
-    socialURLOrBuyMeACoffee?: StringWithAggregatesFilter<"Donations"> | string
-    recipientId?: IntWithAggregatesFilter<"Donations"> | number
-    donorId?: IntWithAggregatesFilter<"Donations"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Donations"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Donations"> | Date | string
+  export type PetPostScalarWhereWithAggregatesInput = {
+    AND?: PetPostScalarWhereWithAggregatesInput | PetPostScalarWhereWithAggregatesInput[]
+    OR?: PetPostScalarWhereWithAggregatesInput[]
+    NOT?: PetPostScalarWhereWithAggregatesInput | PetPostScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PetPost"> | number
+    petName?: StringWithAggregatesFilter<"PetPost"> | string
+    address?: StringWithAggregatesFilter<"PetPost"> | string
+    about?: StringWithAggregatesFilter<"PetPost"> | string
+    image?: StringWithAggregatesFilter<"PetPost"> | string
+    phoneNumber?: IntWithAggregatesFilter<"PetPost"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"PetPost"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PetPost"> | Date | string
+    userId?: IntWithAggregatesFilter<"PetPost"> | number
+    age?: IntWithAggregatesFilter<"PetPost"> | number
+    price?: IntWithAggregatesFilter<"PetPost"> | number
+    purpose?: EnumPetPostEnumWithAggregatesFilter<"PetPost"> | $Enums.PetPostEnum
+    petCategoryId?: IntWithAggregatesFilter<"PetPost"> | number
   }
 
-  export type ProfileWhereInput = {
-    AND?: ProfileWhereInput | ProfileWhereInput[]
-    OR?: ProfileWhereInput[]
-    NOT?: ProfileWhereInput | ProfileWhereInput[]
-    id?: IntFilter<"Profile"> | number
-    name?: StringFilter<"Profile"> | string
-    about?: StringFilter<"Profile"> | string
-    avatarImage?: StringFilter<"Profile"> | string
-    socialMediaURL?: StringFilter<"Profile"> | string
-    backgroundImage?: StringNullableFilter<"Profile"> | string | null
-    successMessage?: StringNullableFilter<"Profile"> | string | null
-    createdAt?: DateTimeFilter<"Profile"> | Date | string
-    updatedAt?: DateTimeFilter<"Profile"> | Date | string
-    userId?: IntFilter<"Profile"> | number
+  export type ServicePostWhereInput = {
+    AND?: ServicePostWhereInput | ServicePostWhereInput[]
+    OR?: ServicePostWhereInput[]
+    NOT?: ServicePostWhereInput | ServicePostWhereInput[]
+    id?: IntFilter<"ServicePost"> | number
+    petName?: StringFilter<"ServicePost"> | string
+    address?: StringFilter<"ServicePost"> | string
+    about?: StringFilter<"ServicePost"> | string
+    image?: StringFilter<"ServicePost"> | string
+    phoneNumber?: IntFilter<"ServicePost"> | number
+    createdAt?: DateTimeFilter<"ServicePost"> | Date | string
+    updatedAt?: DateTimeFilter<"ServicePost"> | Date | string
+    userId?: IntFilter<"ServicePost"> | number
+    age?: IntFilter<"ServicePost"> | number
+    price?: IntFilter<"ServicePost"> | number
+    purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
+    petCategoryId?: IntFilter<"ServicePost"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
   }
 
-  export type ProfileOrderByWithRelationInput = {
+  export type ServicePostOrderByWithRelationInput = {
+    id?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    category?: PetCategoryOrderByWithRelationInput
+  }
+
+  export type ServicePostWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ServicePostWhereInput | ServicePostWhereInput[]
+    OR?: ServicePostWhereInput[]
+    NOT?: ServicePostWhereInput | ServicePostWhereInput[]
+    petName?: StringFilter<"ServicePost"> | string
+    address?: StringFilter<"ServicePost"> | string
+    about?: StringFilter<"ServicePost"> | string
+    image?: StringFilter<"ServicePost"> | string
+    phoneNumber?: IntFilter<"ServicePost"> | number
+    createdAt?: DateTimeFilter<"ServicePost"> | Date | string
+    updatedAt?: DateTimeFilter<"ServicePost"> | Date | string
+    userId?: IntFilter<"ServicePost"> | number
+    age?: IntFilter<"ServicePost"> | number
+    price?: IntFilter<"ServicePost"> | number
+    purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
+    petCategoryId?: IntFilter<"ServicePost"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
+  }, "id">
+
+  export type ServicePostOrderByWithAggregationInput = {
+    id?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+    _count?: ServicePostCountOrderByAggregateInput
+    _avg?: ServicePostAvgOrderByAggregateInput
+    _max?: ServicePostMaxOrderByAggregateInput
+    _min?: ServicePostMinOrderByAggregateInput
+    _sum?: ServicePostSumOrderByAggregateInput
+  }
+
+  export type ServicePostScalarWhereWithAggregatesInput = {
+    AND?: ServicePostScalarWhereWithAggregatesInput | ServicePostScalarWhereWithAggregatesInput[]
+    OR?: ServicePostScalarWhereWithAggregatesInput[]
+    NOT?: ServicePostScalarWhereWithAggregatesInput | ServicePostScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ServicePost"> | number
+    petName?: StringWithAggregatesFilter<"ServicePost"> | string
+    address?: StringWithAggregatesFilter<"ServicePost"> | string
+    about?: StringWithAggregatesFilter<"ServicePost"> | string
+    image?: StringWithAggregatesFilter<"ServicePost"> | string
+    phoneNumber?: IntWithAggregatesFilter<"ServicePost"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ServicePost"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ServicePost"> | Date | string
+    userId?: IntWithAggregatesFilter<"ServicePost"> | number
+    age?: IntWithAggregatesFilter<"ServicePost"> | number
+    price?: IntWithAggregatesFilter<"ServicePost"> | number
+    purpose?: EnumPetPostEnumWithAggregatesFilter<"ServicePost"> | $Enums.PetPostEnum
+    petCategoryId?: IntWithAggregatesFilter<"ServicePost"> | number
+  }
+
+  export type HospitalWhereInput = {
+    AND?: HospitalWhereInput | HospitalWhereInput[]
+    OR?: HospitalWhereInput[]
+    NOT?: HospitalWhereInput | HospitalWhereInput[]
+    id?: IntFilter<"Hospital"> | number
+    name?: StringFilter<"Hospital"> | string
+    about?: StringFilter<"Hospital"> | string
+    avatarImage?: StringFilter<"Hospital"> | string
+    email?: StringFilter<"Hospital"> | string
+    backgroundImage?: StringNullableFilter<"Hospital"> | string | null
+    createdAt?: DateTimeFilter<"Hospital"> | Date | string
+    updatedAt?: DateTimeFilter<"Hospital"> | Date | string
+    userId?: IntNullableFilter<"Hospital"> | number | null
+    location?: StringFilter<"Hospital"> | string
+    phoneNumber?: IntFilter<"Hospital"> | number
+    workTime?: StringFilter<"Hospital"> | string
+    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    category?: PetCategoryListRelationFilter
+  }
+
+  export type HospitalOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
     avatarImage?: SortOrder
-    socialMediaURL?: SortOrder
+    email?: SortOrder
     backgroundImage?: SortOrderInput | SortOrder
-    successMessage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    user?: UserOrderByWithRelationInput
+    userId?: SortOrderInput | SortOrder
+    location?: SortOrder
+    phoneNumber?: SortOrder
+    workTime?: SortOrder
+    User?: UserOrderByWithRelationInput
+    category?: PetCategoryOrderByRelationAggregateInput
   }
 
-  export type ProfileWhereUniqueInput = Prisma.AtLeast<{
+  export type HospitalWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    name?: string
-    userId?: number
-    AND?: ProfileWhereInput | ProfileWhereInput[]
-    OR?: ProfileWhereInput[]
-    NOT?: ProfileWhereInput | ProfileWhereInput[]
-    about?: StringFilter<"Profile"> | string
-    avatarImage?: StringFilter<"Profile"> | string
-    socialMediaURL?: StringFilter<"Profile"> | string
-    backgroundImage?: StringNullableFilter<"Profile"> | string | null
-    successMessage?: StringNullableFilter<"Profile"> | string | null
-    createdAt?: DateTimeFilter<"Profile"> | Date | string
-    updatedAt?: DateTimeFilter<"Profile"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "name" | "userId">
+    AND?: HospitalWhereInput | HospitalWhereInput[]
+    OR?: HospitalWhereInput[]
+    NOT?: HospitalWhereInput | HospitalWhereInput[]
+    name?: StringFilter<"Hospital"> | string
+    about?: StringFilter<"Hospital"> | string
+    avatarImage?: StringFilter<"Hospital"> | string
+    email?: StringFilter<"Hospital"> | string
+    backgroundImage?: StringNullableFilter<"Hospital"> | string | null
+    createdAt?: DateTimeFilter<"Hospital"> | Date | string
+    updatedAt?: DateTimeFilter<"Hospital"> | Date | string
+    userId?: IntNullableFilter<"Hospital"> | number | null
+    location?: StringFilter<"Hospital"> | string
+    phoneNumber?: IntFilter<"Hospital"> | number
+    workTime?: StringFilter<"Hospital"> | string
+    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    category?: PetCategoryListRelationFilter
+  }, "id">
 
-  export type ProfileOrderByWithAggregationInput = {
+  export type HospitalOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
     avatarImage?: SortOrder
-    socialMediaURL?: SortOrder
+    email?: SortOrder
     backgroundImage?: SortOrderInput | SortOrder
-    successMessage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    _count?: ProfileCountOrderByAggregateInput
-    _avg?: ProfileAvgOrderByAggregateInput
-    _max?: ProfileMaxOrderByAggregateInput
-    _min?: ProfileMinOrderByAggregateInput
-    _sum?: ProfileSumOrderByAggregateInput
+    userId?: SortOrderInput | SortOrder
+    location?: SortOrder
+    phoneNumber?: SortOrder
+    workTime?: SortOrder
+    _count?: HospitalCountOrderByAggregateInput
+    _avg?: HospitalAvgOrderByAggregateInput
+    _max?: HospitalMaxOrderByAggregateInput
+    _min?: HospitalMinOrderByAggregateInput
+    _sum?: HospitalSumOrderByAggregateInput
   }
 
-  export type ProfileScalarWhereWithAggregatesInput = {
-    AND?: ProfileScalarWhereWithAggregatesInput | ProfileScalarWhereWithAggregatesInput[]
-    OR?: ProfileScalarWhereWithAggregatesInput[]
-    NOT?: ProfileScalarWhereWithAggregatesInput | ProfileScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Profile"> | number
-    name?: StringWithAggregatesFilter<"Profile"> | string
-    about?: StringWithAggregatesFilter<"Profile"> | string
-    avatarImage?: StringWithAggregatesFilter<"Profile"> | string
-    socialMediaURL?: StringWithAggregatesFilter<"Profile"> | string
-    backgroundImage?: StringNullableWithAggregatesFilter<"Profile"> | string | null
-    successMessage?: StringNullableWithAggregatesFilter<"Profile"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
-    userId?: IntWithAggregatesFilter<"Profile"> | number
+  export type HospitalScalarWhereWithAggregatesInput = {
+    AND?: HospitalScalarWhereWithAggregatesInput | HospitalScalarWhereWithAggregatesInput[]
+    OR?: HospitalScalarWhereWithAggregatesInput[]
+    NOT?: HospitalScalarWhereWithAggregatesInput | HospitalScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Hospital"> | number
+    name?: StringWithAggregatesFilter<"Hospital"> | string
+    about?: StringWithAggregatesFilter<"Hospital"> | string
+    avatarImage?: StringWithAggregatesFilter<"Hospital"> | string
+    email?: StringWithAggregatesFilter<"Hospital"> | string
+    backgroundImage?: StringNullableWithAggregatesFilter<"Hospital"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
+    userId?: IntNullableWithAggregatesFilter<"Hospital"> | number | null
+    location?: StringWithAggregatesFilter<"Hospital"> | string
+    phoneNumber?: IntWithAggregatesFilter<"Hospital"> | number
+    workTime?: StringWithAggregatesFilter<"Hospital"> | string
   }
 
-  export type BankCardWhereInput = {
-    AND?: BankCardWhereInput | BankCardWhereInput[]
-    OR?: BankCardWhereInput[]
-    NOT?: BankCardWhereInput | BankCardWhereInput[]
-    id?: IntFilter<"BankCard"> | number
-    country?: StringFilter<"BankCard"> | string
-    firstName?: StringFilter<"BankCard"> | string
-    lastName?: StringFilter<"BankCard"> | string
-    cardNumber?: StringFilter<"BankCard"> | string
-    expiryDate?: StringFilter<"BankCard"> | string
-    createdAt?: DateTimeFilter<"BankCard"> | Date | string
-    updatedAt?: DateTimeFilter<"BankCard"> | Date | string
-    userId?: IntFilter<"BankCard"> | number
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  export type PetCategoryWhereInput = {
+    AND?: PetCategoryWhereInput | PetCategoryWhereInput[]
+    OR?: PetCategoryWhereInput[]
+    NOT?: PetCategoryWhereInput | PetCategoryWhereInput[]
+    id?: IntFilter<"PetCategory"> | number
+    name?: StringFilter<"PetCategory"> | string
+    createdAt?: DateTimeFilter<"PetCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
+    PetPost?: PetPostListRelationFilter
+    ServicePost?: ServicePostListRelationFilter
+    Hospital?: HospitalListRelationFilter
   }
 
-  export type BankCardOrderByWithRelationInput = {
+  export type PetCategoryOrderByWithRelationInput = {
     id?: SortOrder
-    country?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    cardNumber?: SortOrder
-    expiryDate?: SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    user?: UserOrderByWithRelationInput
+    PetPost?: PetPostOrderByRelationAggregateInput
+    ServicePost?: ServicePostOrderByRelationAggregateInput
+    Hospital?: HospitalOrderByRelationAggregateInput
   }
 
-  export type BankCardWhereUniqueInput = Prisma.AtLeast<{
+  export type PetCategoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    cardNumber?: string
-    AND?: BankCardWhereInput | BankCardWhereInput[]
-    OR?: BankCardWhereInput[]
-    NOT?: BankCardWhereInput | BankCardWhereInput[]
-    country?: StringFilter<"BankCard"> | string
-    firstName?: StringFilter<"BankCard"> | string
-    lastName?: StringFilter<"BankCard"> | string
-    expiryDate?: StringFilter<"BankCard"> | string
-    createdAt?: DateTimeFilter<"BankCard"> | Date | string
-    updatedAt?: DateTimeFilter<"BankCard"> | Date | string
-    userId?: IntFilter<"BankCard"> | number
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "cardNumber">
+    AND?: PetCategoryWhereInput | PetCategoryWhereInput[]
+    OR?: PetCategoryWhereInput[]
+    NOT?: PetCategoryWhereInput | PetCategoryWhereInput[]
+    name?: StringFilter<"PetCategory"> | string
+    createdAt?: DateTimeFilter<"PetCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
+    PetPost?: PetPostListRelationFilter
+    ServicePost?: ServicePostListRelationFilter
+    Hospital?: HospitalListRelationFilter
+  }, "id">
 
-  export type BankCardOrderByWithAggregationInput = {
+  export type PetCategoryOrderByWithAggregationInput = {
     id?: SortOrder
-    country?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    cardNumber?: SortOrder
-    expiryDate?: SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    _count?: BankCardCountOrderByAggregateInput
-    _avg?: BankCardAvgOrderByAggregateInput
-    _max?: BankCardMaxOrderByAggregateInput
-    _min?: BankCardMinOrderByAggregateInput
-    _sum?: BankCardSumOrderByAggregateInput
+    _count?: PetCategoryCountOrderByAggregateInput
+    _avg?: PetCategoryAvgOrderByAggregateInput
+    _max?: PetCategoryMaxOrderByAggregateInput
+    _min?: PetCategoryMinOrderByAggregateInput
+    _sum?: PetCategorySumOrderByAggregateInput
   }
 
-  export type BankCardScalarWhereWithAggregatesInput = {
-    AND?: BankCardScalarWhereWithAggregatesInput | BankCardScalarWhereWithAggregatesInput[]
-    OR?: BankCardScalarWhereWithAggregatesInput[]
-    NOT?: BankCardScalarWhereWithAggregatesInput | BankCardScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"BankCard"> | number
-    country?: StringWithAggregatesFilter<"BankCard"> | string
-    firstName?: StringWithAggregatesFilter<"BankCard"> | string
-    lastName?: StringWithAggregatesFilter<"BankCard"> | string
-    cardNumber?: StringWithAggregatesFilter<"BankCard"> | string
-    expiryDate?: StringWithAggregatesFilter<"BankCard"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"BankCard"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"BankCard"> | Date | string
-    userId?: IntWithAggregatesFilter<"BankCard"> | number
+  export type PetCategoryScalarWhereWithAggregatesInput = {
+    AND?: PetCategoryScalarWhereWithAggregatesInput | PetCategoryScalarWhereWithAggregatesInput[]
+    OR?: PetCategoryScalarWhereWithAggregatesInput[]
+    NOT?: PetCategoryScalarWhereWithAggregatesInput | PetCategoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PetCategory"> | number
+    name?: StringWithAggregatesFilter<"PetCategory"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"PetCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PetCategory"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -6316,10 +8007,9 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    receivedDonations?: DonationsCreateNestedManyWithoutDonorInput
-    bankCard?: BankCardCreateNestedManyWithoutUserInput
-    Donations?: DonationsCreateNestedManyWithoutRecipientInput
-    Profile?: ProfileCreateNestedOneWithoutUserInput
+    PetPost?: PetPostCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostCreateNestedManyWithoutUserInput
+    Hospital?: HospitalCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6329,10 +8019,9 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    receivedDonations?: DonationsUncheckedCreateNestedManyWithoutDonorInput
-    bankCard?: BankCardUncheckedCreateNestedManyWithoutUserInput
-    Donations?: DonationsUncheckedCreateNestedManyWithoutRecipientInput
-    Profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
+    Hospital?: HospitalUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6341,10 +8030,9 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUpdateManyWithoutDonorNestedInput
-    bankCard?: BankCardUpdateManyWithoutUserNestedInput
-    Donations?: DonationsUpdateManyWithoutRecipientNestedInput
-    Profile?: ProfileUpdateOneWithoutUserNestedInput
+    PetPost?: PetPostUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
+    Hospital?: HospitalUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6354,10 +8042,9 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUncheckedUpdateManyWithoutDonorNestedInput
-    bankCard?: BankCardUncheckedUpdateManyWithoutUserNestedInput
-    Donations?: DonationsUncheckedUpdateManyWithoutRecipientNestedInput
-    Profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
+    PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
+    Hospital?: HospitalUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6386,243 +8073,381 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DonationsCreateInput = {
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
+  export type PetPostCreateInput = {
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    donor: UserCreateNestedOneWithoutReceivedDonationsInput
-    recipient: UserCreateNestedOneWithoutDonationsInput
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    category: PetCategoryCreateNestedOneWithoutPetPostInput
+    User: UserCreateNestedOneWithoutPetPostInput
   }
 
-  export type DonationsUncheckedCreateInput = {
+  export type PetPostUncheckedCreateInput = {
     id?: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    recipientId: number
-    donorId: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
   }
 
-  export type DonationsUpdateInput = {
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
+  export type PetPostUpdateInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    donor?: UserUpdateOneRequiredWithoutReceivedDonationsNestedInput
-    recipient?: UserUpdateOneRequiredWithoutDonationsNestedInput
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
+    User?: UserUpdateOneRequiredWithoutPetPostNestedInput
   }
 
-  export type DonationsUncheckedUpdateInput = {
+  export type PetPostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    recipientId?: IntFieldUpdateOperationsInput | number
-    donorId?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type DonationsCreateManyInput = {
+  export type PetPostCreateManyInput = {
     id?: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    recipientId: number
-    donorId: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
   }
 
-  export type DonationsUpdateManyMutationInput = {
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
+  export type PetPostUpdateManyMutationInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
   }
 
-  export type DonationsUncheckedUpdateManyInput = {
+  export type PetPostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    recipientId?: IntFieldUpdateOperationsInput | number
-    donorId?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ProfileCreateInput = {
+  export type ServicePostCreateInput = {
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    user: UserCreateNestedOneWithoutServicePostInput
+    category: PetCategoryCreateNestedOneWithoutServicePostInput
+  }
+
+  export type ServicePostUncheckedCreateInput = {
+    id?: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+  }
+
+  export type ServicePostUpdateInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    user?: UserUpdateOneRequiredWithoutServicePostNestedInput
+    category?: PetCategoryUpdateOneRequiredWithoutServicePostNestedInput
+  }
+
+  export type ServicePostUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ServicePostCreateManyInput = {
+    id?: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+  }
+
+  export type ServicePostUpdateManyMutationInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+  }
+
+  export type ServicePostUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type HospitalCreateInput = {
     name: string
     about: string
     avatarImage: string
-    socialMediaURL: string
+    email: string
     backgroundImage?: string | null
-    successMessage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutProfileInput
+    location: string
+    phoneNumber: number
+    workTime: string
+    User?: UserCreateNestedOneWithoutHospitalInput
+    category?: PetCategoryCreateNestedManyWithoutHospitalInput
   }
 
-  export type ProfileUncheckedCreateInput = {
+  export type HospitalUncheckedCreateInput = {
     id?: number
     name: string
     about: string
     avatarImage: string
-    socialMediaURL: string
+    email: string
     backgroundImage?: string | null
-    successMessage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId: number
+    userId?: number | null
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: PetCategoryUncheckedCreateNestedManyWithoutHospitalInput
   }
 
-  export type ProfileUpdateInput = {
+  export type HospitalUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     avatarImage?: StringFieldUpdateOperationsInput | string
-    socialMediaURL?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    successMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutProfileNestedInput
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    User?: UserUpdateOneWithoutHospitalNestedInput
+    category?: PetCategoryUpdateManyWithoutHospitalNestedInput
   }
 
-  export type ProfileUncheckedUpdateInput = {
+  export type HospitalUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     avatarImage?: StringFieldUpdateOperationsInput | string
-    socialMediaURL?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    successMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: PetCategoryUncheckedUpdateManyWithoutHospitalNestedInput
   }
 
-  export type ProfileCreateManyInput = {
+  export type HospitalCreateManyInput = {
     id?: number
     name: string
     about: string
     avatarImage: string
-    socialMediaURL: string
+    email: string
     backgroundImage?: string | null
-    successMessage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId: number
+    userId?: number | null
+    location: string
+    phoneNumber: number
+    workTime: string
   }
 
-  export type ProfileUpdateManyMutationInput = {
+  export type HospitalUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     avatarImage?: StringFieldUpdateOperationsInput | string
-    socialMediaURL?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    successMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProfileUncheckedUpdateManyInput = {
+  export type HospitalUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     avatarImage?: StringFieldUpdateOperationsInput | string
-    socialMediaURL?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    successMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
   }
 
-  export type BankCardCreateInput = {
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
+  export type PetCategoryCreateInput = {
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutBankCardInput
+    PetPost?: PetPostCreateNestedManyWithoutCategoryInput
+    ServicePost?: ServicePostCreateNestedManyWithoutCategoryInput
+    Hospital?: HospitalCreateNestedManyWithoutCategoryInput
   }
 
-  export type BankCardUncheckedCreateInput = {
+  export type PetCategoryUncheckedCreateInput = {
     id?: number
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId: number
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutCategoryInput
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutCategoryInput
+    Hospital?: HospitalUncheckedCreateNestedManyWithoutCategoryInput
   }
 
-  export type BankCardUpdateInput = {
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
+  export type PetCategoryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutBankCardNestedInput
+    PetPost?: PetPostUpdateManyWithoutCategoryNestedInput
+    ServicePost?: ServicePostUpdateManyWithoutCategoryNestedInput
+    Hospital?: HospitalUpdateManyWithoutCategoryNestedInput
   }
 
-  export type BankCardUncheckedUpdateInput = {
+  export type PetCategoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: IntFieldUpdateOperationsInput | number
+    PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutCategoryNestedInput
+    Hospital?: HospitalUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
-  export type BankCardCreateManyInput = {
+  export type PetCategoryCreateManyInput = {
     id?: number
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId: number
   }
 
-  export type BankCardUpdateManyMutationInput = {
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
+  export type PetCategoryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BankCardUncheckedUpdateManyInput = {
+  export type PetCategoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6662,28 +8487,33 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type DonationsListRelationFilter = {
-    every?: DonationsWhereInput
-    some?: DonationsWhereInput
-    none?: DonationsWhereInput
+  export type PetPostListRelationFilter = {
+    every?: PetPostWhereInput
+    some?: PetPostWhereInput
+    none?: PetPostWhereInput
   }
 
-  export type BankCardListRelationFilter = {
-    every?: BankCardWhereInput
-    some?: BankCardWhereInput
-    none?: BankCardWhereInput
+  export type ServicePostListRelationFilter = {
+    every?: ServicePostWhereInput
+    some?: ServicePostWhereInput
+    none?: ServicePostWhereInput
   }
 
-  export type ProfileNullableScalarRelationFilter = {
-    is?: ProfileWhereInput | null
-    isNot?: ProfileWhereInput | null
+  export type HospitalListRelationFilter = {
+    every?: HospitalWhereInput
+    some?: HospitalWhereInput
+    none?: HospitalWhereInput
   }
 
-  export type DonationsOrderByRelationAggregateInput = {
+  export type PetPostOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type BankCardOrderByRelationAggregateInput = {
+  export type ServicePostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HospitalOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6770,56 +8600,163 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumPetPostEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetPostEnumFilter<$PrismaModel> | $Enums.PetPostEnum
+  }
+
+  export type PetCategoryScalarRelationFilter = {
+    is?: PetCategoryWhereInput
+    isNot?: PetCategoryWhereInput
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
 
-  export type DonationsCountOrderByAggregateInput = {
+  export type PetPostCountOrderByAggregateInput = {
     id?: SortOrder
-    amount?: SortOrder
-    specialMessage?: SortOrder
-    socialURLOrBuyMeACoffee?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
   }
 
-  export type DonationsAvgOrderByAggregateInput = {
+  export type PetPostAvgOrderByAggregateInput = {
     id?: SortOrder
-    amount?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    phoneNumber?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    petCategoryId?: SortOrder
   }
 
-  export type DonationsMaxOrderByAggregateInput = {
+  export type PetPostMaxOrderByAggregateInput = {
     id?: SortOrder
-    amount?: SortOrder
-    specialMessage?: SortOrder
-    socialURLOrBuyMeACoffee?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
   }
 
-  export type DonationsMinOrderByAggregateInput = {
+  export type PetPostMinOrderByAggregateInput = {
     id?: SortOrder
-    amount?: SortOrder
-    specialMessage?: SortOrder
-    socialURLOrBuyMeACoffee?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
   }
 
-  export type DonationsSumOrderByAggregateInput = {
+  export type PetPostSumOrderByAggregateInput = {
     id?: SortOrder
-    amount?: SortOrder
-    recipientId?: SortOrder
-    donorId?: SortOrder
+    phoneNumber?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    petCategoryId?: SortOrder
+  }
+
+  export type EnumPetPostEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetPostEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetPostEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
+  }
+
+  export type ServicePostCountOrderByAggregateInput = {
+    id?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+  }
+
+  export type ServicePostAvgOrderByAggregateInput = {
+    id?: SortOrder
+    phoneNumber?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    petCategoryId?: SortOrder
+  }
+
+  export type ServicePostMaxOrderByAggregateInput = {
+    id?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+  }
+
+  export type ServicePostMinOrderByAggregateInput = {
+    id?: SortOrder
+    petName?: SortOrder
+    address?: SortOrder
+    about?: SortOrder
+    image?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    purpose?: SortOrder
+    petCategoryId?: SortOrder
+  }
+
+  export type ServicePostSumOrderByAggregateInput = {
+    id?: SortOrder
+    phoneNumber?: SortOrder
+    userId?: SortOrder
+    age?: SortOrder
+    price?: SortOrder
+    petCategoryId?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -6837,58 +8774,92 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type PetCategoryListRelationFilter = {
+    every?: PetCategoryWhereInput
+    some?: PetCategoryWhereInput
+    none?: PetCategoryWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
-  export type ProfileCountOrderByAggregateInput = {
+  export type PetCategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HospitalCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
     avatarImage?: SortOrder
-    socialMediaURL?: SortOrder
+    email?: SortOrder
     backgroundImage?: SortOrder
-    successMessage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    location?: SortOrder
+    phoneNumber?: SortOrder
+    workTime?: SortOrder
   }
 
-  export type ProfileAvgOrderByAggregateInput = {
+  export type HospitalAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    phoneNumber?: SortOrder
   }
 
-  export type ProfileMaxOrderByAggregateInput = {
+  export type HospitalMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
     avatarImage?: SortOrder
-    socialMediaURL?: SortOrder
+    email?: SortOrder
     backgroundImage?: SortOrder
-    successMessage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    location?: SortOrder
+    phoneNumber?: SortOrder
+    workTime?: SortOrder
   }
 
-  export type ProfileMinOrderByAggregateInput = {
+  export type HospitalMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
     avatarImage?: SortOrder
-    socialMediaURL?: SortOrder
+    email?: SortOrder
     backgroundImage?: SortOrder
-    successMessage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    location?: SortOrder
+    phoneNumber?: SortOrder
+    workTime?: SortOrder
   }
 
-  export type ProfileSumOrderByAggregateInput = {
+  export type HospitalSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    phoneNumber?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6909,104 +8880,91 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type BankCardCountOrderByAggregateInput = {
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type PetCategoryCountOrderByAggregateInput = {
     id?: SortOrder
-    country?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    cardNumber?: SortOrder
-    expiryDate?: SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
   }
 
-  export type BankCardAvgOrderByAggregateInput = {
+  export type PetCategoryAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
-  export type BankCardMaxOrderByAggregateInput = {
+  export type PetCategoryMaxOrderByAggregateInput = {
     id?: SortOrder
-    country?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    cardNumber?: SortOrder
-    expiryDate?: SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
   }
 
-  export type BankCardMinOrderByAggregateInput = {
+  export type PetCategoryMinOrderByAggregateInput = {
     id?: SortOrder
-    country?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    cardNumber?: SortOrder
-    expiryDate?: SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
   }
 
-  export type BankCardSumOrderByAggregateInput = {
+  export type PetCategorySumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
-  export type DonationsCreateNestedManyWithoutDonorInput = {
-    create?: XOR<DonationsCreateWithoutDonorInput, DonationsUncheckedCreateWithoutDonorInput> | DonationsCreateWithoutDonorInput[] | DonationsUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutDonorInput | DonationsCreateOrConnectWithoutDonorInput[]
-    createMany?: DonationsCreateManyDonorInputEnvelope
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
+  export type PetPostCreateNestedManyWithoutUserInput = {
+    create?: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput> | PetPostCreateWithoutUserInput[] | PetPostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutUserInput | PetPostCreateOrConnectWithoutUserInput[]
+    createMany?: PetPostCreateManyUserInputEnvelope
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
   }
 
-  export type BankCardCreateNestedManyWithoutUserInput = {
-    create?: XOR<BankCardCreateWithoutUserInput, BankCardUncheckedCreateWithoutUserInput> | BankCardCreateWithoutUserInput[] | BankCardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BankCardCreateOrConnectWithoutUserInput | BankCardCreateOrConnectWithoutUserInput[]
-    createMany?: BankCardCreateManyUserInputEnvelope
-    connect?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
+  export type ServicePostCreateNestedManyWithoutUserInput = {
+    create?: XOR<ServicePostCreateWithoutUserInput, ServicePostUncheckedCreateWithoutUserInput> | ServicePostCreateWithoutUserInput[] | ServicePostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutUserInput | ServicePostCreateOrConnectWithoutUserInput[]
+    createMany?: ServicePostCreateManyUserInputEnvelope
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
   }
 
-  export type DonationsCreateNestedManyWithoutRecipientInput = {
-    create?: XOR<DonationsCreateWithoutRecipientInput, DonationsUncheckedCreateWithoutRecipientInput> | DonationsCreateWithoutRecipientInput[] | DonationsUncheckedCreateWithoutRecipientInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutRecipientInput | DonationsCreateOrConnectWithoutRecipientInput[]
-    createMany?: DonationsCreateManyRecipientInputEnvelope
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
+  export type HospitalCreateNestedManyWithoutUserInput = {
+    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
+    createMany?: HospitalCreateManyUserInputEnvelope
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
   }
 
-  export type ProfileCreateNestedOneWithoutUserInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
-    connect?: ProfileWhereUniqueInput
+  export type PetPostUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput> | PetPostCreateWithoutUserInput[] | PetPostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutUserInput | PetPostCreateOrConnectWithoutUserInput[]
+    createMany?: PetPostCreateManyUserInputEnvelope
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
   }
 
-  export type DonationsUncheckedCreateNestedManyWithoutDonorInput = {
-    create?: XOR<DonationsCreateWithoutDonorInput, DonationsUncheckedCreateWithoutDonorInput> | DonationsCreateWithoutDonorInput[] | DonationsUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutDonorInput | DonationsCreateOrConnectWithoutDonorInput[]
-    createMany?: DonationsCreateManyDonorInputEnvelope
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
+  export type ServicePostUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ServicePostCreateWithoutUserInput, ServicePostUncheckedCreateWithoutUserInput> | ServicePostCreateWithoutUserInput[] | ServicePostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutUserInput | ServicePostCreateOrConnectWithoutUserInput[]
+    createMany?: ServicePostCreateManyUserInputEnvelope
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
   }
 
-  export type BankCardUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<BankCardCreateWithoutUserInput, BankCardUncheckedCreateWithoutUserInput> | BankCardCreateWithoutUserInput[] | BankCardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BankCardCreateOrConnectWithoutUserInput | BankCardCreateOrConnectWithoutUserInput[]
-    createMany?: BankCardCreateManyUserInputEnvelope
-    connect?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-  }
-
-  export type DonationsUncheckedCreateNestedManyWithoutRecipientInput = {
-    create?: XOR<DonationsCreateWithoutRecipientInput, DonationsUncheckedCreateWithoutRecipientInput> | DonationsCreateWithoutRecipientInput[] | DonationsUncheckedCreateWithoutRecipientInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutRecipientInput | DonationsCreateOrConnectWithoutRecipientInput[]
-    createMany?: DonationsCreateManyRecipientInputEnvelope
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-  }
-
-  export type ProfileUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
-    connect?: ProfileWhereUniqueInput
+  export type HospitalUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
+    createMany?: HospitalCreateManyUserInputEnvelope
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7017,56 +8975,46 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type DonationsUpdateManyWithoutDonorNestedInput = {
-    create?: XOR<DonationsCreateWithoutDonorInput, DonationsUncheckedCreateWithoutDonorInput> | DonationsCreateWithoutDonorInput[] | DonationsUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutDonorInput | DonationsCreateOrConnectWithoutDonorInput[]
-    upsert?: DonationsUpsertWithWhereUniqueWithoutDonorInput | DonationsUpsertWithWhereUniqueWithoutDonorInput[]
-    createMany?: DonationsCreateManyDonorInputEnvelope
-    set?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    disconnect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    delete?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    update?: DonationsUpdateWithWhereUniqueWithoutDonorInput | DonationsUpdateWithWhereUniqueWithoutDonorInput[]
-    updateMany?: DonationsUpdateManyWithWhereWithoutDonorInput | DonationsUpdateManyWithWhereWithoutDonorInput[]
-    deleteMany?: DonationsScalarWhereInput | DonationsScalarWhereInput[]
+  export type PetPostUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput> | PetPostCreateWithoutUserInput[] | PetPostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutUserInput | PetPostCreateOrConnectWithoutUserInput[]
+    upsert?: PetPostUpsertWithWhereUniqueWithoutUserInput | PetPostUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PetPostCreateManyUserInputEnvelope
+    set?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    disconnect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    delete?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    update?: PetPostUpdateWithWhereUniqueWithoutUserInput | PetPostUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PetPostUpdateManyWithWhereWithoutUserInput | PetPostUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PetPostScalarWhereInput | PetPostScalarWhereInput[]
   }
 
-  export type BankCardUpdateManyWithoutUserNestedInput = {
-    create?: XOR<BankCardCreateWithoutUserInput, BankCardUncheckedCreateWithoutUserInput> | BankCardCreateWithoutUserInput[] | BankCardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BankCardCreateOrConnectWithoutUserInput | BankCardCreateOrConnectWithoutUserInput[]
-    upsert?: BankCardUpsertWithWhereUniqueWithoutUserInput | BankCardUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: BankCardCreateManyUserInputEnvelope
-    set?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    disconnect?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    delete?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    connect?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    update?: BankCardUpdateWithWhereUniqueWithoutUserInput | BankCardUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: BankCardUpdateManyWithWhereWithoutUserInput | BankCardUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: BankCardScalarWhereInput | BankCardScalarWhereInput[]
+  export type ServicePostUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ServicePostCreateWithoutUserInput, ServicePostUncheckedCreateWithoutUserInput> | ServicePostCreateWithoutUserInput[] | ServicePostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutUserInput | ServicePostCreateOrConnectWithoutUserInput[]
+    upsert?: ServicePostUpsertWithWhereUniqueWithoutUserInput | ServicePostUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ServicePostCreateManyUserInputEnvelope
+    set?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    disconnect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    delete?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    update?: ServicePostUpdateWithWhereUniqueWithoutUserInput | ServicePostUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ServicePostUpdateManyWithWhereWithoutUserInput | ServicePostUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
-  export type DonationsUpdateManyWithoutRecipientNestedInput = {
-    create?: XOR<DonationsCreateWithoutRecipientInput, DonationsUncheckedCreateWithoutRecipientInput> | DonationsCreateWithoutRecipientInput[] | DonationsUncheckedCreateWithoutRecipientInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutRecipientInput | DonationsCreateOrConnectWithoutRecipientInput[]
-    upsert?: DonationsUpsertWithWhereUniqueWithoutRecipientInput | DonationsUpsertWithWhereUniqueWithoutRecipientInput[]
-    createMany?: DonationsCreateManyRecipientInputEnvelope
-    set?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    disconnect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    delete?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    update?: DonationsUpdateWithWhereUniqueWithoutRecipientInput | DonationsUpdateWithWhereUniqueWithoutRecipientInput[]
-    updateMany?: DonationsUpdateManyWithWhereWithoutRecipientInput | DonationsUpdateManyWithWhereWithoutRecipientInput[]
-    deleteMany?: DonationsScalarWhereInput | DonationsScalarWhereInput[]
-  }
-
-  export type ProfileUpdateOneWithoutUserNestedInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
-    upsert?: ProfileUpsertWithoutUserInput
-    disconnect?: ProfileWhereInput | boolean
-    delete?: ProfileWhereInput | boolean
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutUserInput, ProfileUpdateWithoutUserInput>, ProfileUncheckedUpdateWithoutUserInput>
+  export type HospitalUpdateManyWithoutUserNestedInput = {
+    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
+    upsert?: HospitalUpsertWithWhereUniqueWithoutUserInput | HospitalUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: HospitalCreateManyUserInputEnvelope
+    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    update?: HospitalUpdateWithWhereUniqueWithoutUserInput | HospitalUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: HospitalUpdateManyWithWhereWithoutUserInput | HospitalUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -7077,116 +9025,294 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type DonationsUncheckedUpdateManyWithoutDonorNestedInput = {
-    create?: XOR<DonationsCreateWithoutDonorInput, DonationsUncheckedCreateWithoutDonorInput> | DonationsCreateWithoutDonorInput[] | DonationsUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutDonorInput | DonationsCreateOrConnectWithoutDonorInput[]
-    upsert?: DonationsUpsertWithWhereUniqueWithoutDonorInput | DonationsUpsertWithWhereUniqueWithoutDonorInput[]
-    createMany?: DonationsCreateManyDonorInputEnvelope
-    set?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    disconnect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    delete?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    update?: DonationsUpdateWithWhereUniqueWithoutDonorInput | DonationsUpdateWithWhereUniqueWithoutDonorInput[]
-    updateMany?: DonationsUpdateManyWithWhereWithoutDonorInput | DonationsUpdateManyWithWhereWithoutDonorInput[]
-    deleteMany?: DonationsScalarWhereInput | DonationsScalarWhereInput[]
+  export type PetPostUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput> | PetPostCreateWithoutUserInput[] | PetPostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutUserInput | PetPostCreateOrConnectWithoutUserInput[]
+    upsert?: PetPostUpsertWithWhereUniqueWithoutUserInput | PetPostUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PetPostCreateManyUserInputEnvelope
+    set?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    disconnect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    delete?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    update?: PetPostUpdateWithWhereUniqueWithoutUserInput | PetPostUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PetPostUpdateManyWithWhereWithoutUserInput | PetPostUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PetPostScalarWhereInput | PetPostScalarWhereInput[]
   }
 
-  export type BankCardUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<BankCardCreateWithoutUserInput, BankCardUncheckedCreateWithoutUserInput> | BankCardCreateWithoutUserInput[] | BankCardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BankCardCreateOrConnectWithoutUserInput | BankCardCreateOrConnectWithoutUserInput[]
-    upsert?: BankCardUpsertWithWhereUniqueWithoutUserInput | BankCardUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: BankCardCreateManyUserInputEnvelope
-    set?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    disconnect?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    delete?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    connect?: BankCardWhereUniqueInput | BankCardWhereUniqueInput[]
-    update?: BankCardUpdateWithWhereUniqueWithoutUserInput | BankCardUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: BankCardUpdateManyWithWhereWithoutUserInput | BankCardUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: BankCardScalarWhereInput | BankCardScalarWhereInput[]
+  export type ServicePostUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ServicePostCreateWithoutUserInput, ServicePostUncheckedCreateWithoutUserInput> | ServicePostCreateWithoutUserInput[] | ServicePostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutUserInput | ServicePostCreateOrConnectWithoutUserInput[]
+    upsert?: ServicePostUpsertWithWhereUniqueWithoutUserInput | ServicePostUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ServicePostCreateManyUserInputEnvelope
+    set?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    disconnect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    delete?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    update?: ServicePostUpdateWithWhereUniqueWithoutUserInput | ServicePostUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ServicePostUpdateManyWithWhereWithoutUserInput | ServicePostUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
-  export type DonationsUncheckedUpdateManyWithoutRecipientNestedInput = {
-    create?: XOR<DonationsCreateWithoutRecipientInput, DonationsUncheckedCreateWithoutRecipientInput> | DonationsCreateWithoutRecipientInput[] | DonationsUncheckedCreateWithoutRecipientInput[]
-    connectOrCreate?: DonationsCreateOrConnectWithoutRecipientInput | DonationsCreateOrConnectWithoutRecipientInput[]
-    upsert?: DonationsUpsertWithWhereUniqueWithoutRecipientInput | DonationsUpsertWithWhereUniqueWithoutRecipientInput[]
-    createMany?: DonationsCreateManyRecipientInputEnvelope
-    set?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    disconnect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    delete?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    connect?: DonationsWhereUniqueInput | DonationsWhereUniqueInput[]
-    update?: DonationsUpdateWithWhereUniqueWithoutRecipientInput | DonationsUpdateWithWhereUniqueWithoutRecipientInput[]
-    updateMany?: DonationsUpdateManyWithWhereWithoutRecipientInput | DonationsUpdateManyWithWhereWithoutRecipientInput[]
-    deleteMany?: DonationsScalarWhereInput | DonationsScalarWhereInput[]
+  export type HospitalUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
+    upsert?: HospitalUpsertWithWhereUniqueWithoutUserInput | HospitalUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: HospitalCreateManyUserInputEnvelope
+    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    update?: HospitalUpdateWithWhereUniqueWithoutUserInput | HospitalUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: HospitalUpdateManyWithWhereWithoutUserInput | HospitalUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
   }
 
-  export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
-    upsert?: ProfileUpsertWithoutUserInput
-    disconnect?: ProfileWhereInput | boolean
-    delete?: ProfileWhereInput | boolean
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutUserInput, ProfileUpdateWithoutUserInput>, ProfileUncheckedUpdateWithoutUserInput>
+  export type PetCategoryCreateNestedOneWithoutPetPostInput = {
+    create?: XOR<PetCategoryCreateWithoutPetPostInput, PetCategoryUncheckedCreateWithoutPetPostInput>
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutPetPostInput
+    connect?: PetCategoryWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutReceivedDonationsInput = {
-    create?: XOR<UserCreateWithoutReceivedDonationsInput, UserUncheckedCreateWithoutReceivedDonationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutReceivedDonationsInput
+  export type UserCreateNestedOneWithoutPetPostInput = {
+    create?: XOR<UserCreateWithoutPetPostInput, UserUncheckedCreateWithoutPetPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPetPostInput
     connect?: UserWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutDonationsInput = {
-    create?: XOR<UserCreateWithoutDonationsInput, UserUncheckedCreateWithoutDonationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDonationsInput
+  export type EnumPetPostEnumFieldUpdateOperationsInput = {
+    set?: $Enums.PetPostEnum
+  }
+
+  export type PetCategoryUpdateOneRequiredWithoutPetPostNestedInput = {
+    create?: XOR<PetCategoryCreateWithoutPetPostInput, PetCategoryUncheckedCreateWithoutPetPostInput>
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutPetPostInput
+    upsert?: PetCategoryUpsertWithoutPetPostInput
+    connect?: PetCategoryWhereUniqueInput
+    update?: XOR<XOR<PetCategoryUpdateToOneWithWhereWithoutPetPostInput, PetCategoryUpdateWithoutPetPostInput>, PetCategoryUncheckedUpdateWithoutPetPostInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutPetPostNestedInput = {
+    create?: XOR<UserCreateWithoutPetPostInput, UserUncheckedCreateWithoutPetPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPetPostInput
+    upsert?: UserUpsertWithoutPetPostInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPetPostInput, UserUpdateWithoutPetPostInput>, UserUncheckedUpdateWithoutPetPostInput>
+  }
+
+  export type UserCreateNestedOneWithoutServicePostInput = {
+    create?: XOR<UserCreateWithoutServicePostInput, UserUncheckedCreateWithoutServicePostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutServicePostInput
     connect?: UserWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutReceivedDonationsNestedInput = {
-    create?: XOR<UserCreateWithoutReceivedDonationsInput, UserUncheckedCreateWithoutReceivedDonationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutReceivedDonationsInput
-    upsert?: UserUpsertWithoutReceivedDonationsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReceivedDonationsInput, UserUpdateWithoutReceivedDonationsInput>, UserUncheckedUpdateWithoutReceivedDonationsInput>
+  export type PetCategoryCreateNestedOneWithoutServicePostInput = {
+    create?: XOR<PetCategoryCreateWithoutServicePostInput, PetCategoryUncheckedCreateWithoutServicePostInput>
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutServicePostInput
+    connect?: PetCategoryWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutDonationsNestedInput = {
-    create?: XOR<UserCreateWithoutDonationsInput, UserUncheckedCreateWithoutDonationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDonationsInput
-    upsert?: UserUpsertWithoutDonationsInput
+  export type UserUpdateOneRequiredWithoutServicePostNestedInput = {
+    create?: XOR<UserCreateWithoutServicePostInput, UserUncheckedCreateWithoutServicePostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutServicePostInput
+    upsert?: UserUpsertWithoutServicePostInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDonationsInput, UserUpdateWithoutDonationsInput>, UserUncheckedUpdateWithoutDonationsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutServicePostInput, UserUpdateWithoutServicePostInput>, UserUncheckedUpdateWithoutServicePostInput>
   }
 
-  export type UserCreateNestedOneWithoutProfileInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+  export type PetCategoryUpdateOneRequiredWithoutServicePostNestedInput = {
+    create?: XOR<PetCategoryCreateWithoutServicePostInput, PetCategoryUncheckedCreateWithoutServicePostInput>
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutServicePostInput
+    upsert?: PetCategoryUpsertWithoutServicePostInput
+    connect?: PetCategoryWhereUniqueInput
+    update?: XOR<XOR<PetCategoryUpdateToOneWithWhereWithoutServicePostInput, PetCategoryUpdateWithoutServicePostInput>, PetCategoryUncheckedUpdateWithoutServicePostInput>
+  }
+
+  export type UserCreateNestedOneWithoutHospitalInput = {
+    create?: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
+    connectOrCreate?: UserCreateOrConnectWithoutHospitalInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type PetCategoryCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
+    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+  }
+
+  export type PetCategoryUncheckedCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
+    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
-  export type UserUpdateOneRequiredWithoutProfileNestedInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
-    upsert?: UserUpsertWithoutProfileInput
+  export type UserUpdateOneWithoutHospitalNestedInput = {
+    create?: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
+    connectOrCreate?: UserCreateOrConnectWithoutHospitalInput
+    upsert?: UserUpsertWithoutHospitalInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileInput, UserUpdateWithoutProfileInput>, UserUncheckedUpdateWithoutProfileInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHospitalInput, UserUpdateWithoutHospitalInput>, UserUncheckedUpdateWithoutHospitalInput>
   }
 
-  export type UserCreateNestedOneWithoutBankCardInput = {
-    create?: XOR<UserCreateWithoutBankCardInput, UserUncheckedCreateWithoutBankCardInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBankCardInput
-    connect?: UserWhereUniqueInput
+  export type PetCategoryUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
+    upsert?: PetCategoryUpsertWithWhereUniqueWithoutHospitalInput | PetCategoryUpsertWithWhereUniqueWithoutHospitalInput[]
+    set?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    disconnect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    delete?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    update?: PetCategoryUpdateWithWhereUniqueWithoutHospitalInput | PetCategoryUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: PetCategoryUpdateManyWithWhereWithoutHospitalInput | PetCategoryUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
   }
 
-  export type UserUpdateOneRequiredWithoutBankCardNestedInput = {
-    create?: XOR<UserCreateWithoutBankCardInput, UserUncheckedCreateWithoutBankCardInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBankCardInput
-    upsert?: UserUpsertWithoutBankCardInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBankCardInput, UserUpdateWithoutBankCardInput>, UserUncheckedUpdateWithoutBankCardInput>
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type PetCategoryUncheckedUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
+    upsert?: PetCategoryUpsertWithWhereUniqueWithoutHospitalInput | PetCategoryUpsertWithWhereUniqueWithoutHospitalInput[]
+    set?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    disconnect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    delete?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
+    update?: PetCategoryUpdateWithWhereUniqueWithoutHospitalInput | PetCategoryUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: PetCategoryUpdateManyWithWhereWithoutHospitalInput | PetCategoryUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
+  }
+
+  export type PetPostCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput> | PetPostCreateWithoutCategoryInput[] | PetPostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutCategoryInput | PetPostCreateOrConnectWithoutCategoryInput[]
+    createMany?: PetPostCreateManyCategoryInputEnvelope
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+  }
+
+  export type ServicePostCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<ServicePostCreateWithoutCategoryInput, ServicePostUncheckedCreateWithoutCategoryInput> | ServicePostCreateWithoutCategoryInput[] | ServicePostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutCategoryInput | ServicePostCreateOrConnectWithoutCategoryInput[]
+    createMany?: ServicePostCreateManyCategoryInputEnvelope
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+  }
+
+  export type HospitalCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+  }
+
+  export type PetPostUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput> | PetPostCreateWithoutCategoryInput[] | PetPostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutCategoryInput | PetPostCreateOrConnectWithoutCategoryInput[]
+    createMany?: PetPostCreateManyCategoryInputEnvelope
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+  }
+
+  export type ServicePostUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<ServicePostCreateWithoutCategoryInput, ServicePostUncheckedCreateWithoutCategoryInput> | ServicePostCreateWithoutCategoryInput[] | ServicePostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutCategoryInput | ServicePostCreateOrConnectWithoutCategoryInput[]
+    createMany?: ServicePostCreateManyCategoryInputEnvelope
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+  }
+
+  export type HospitalUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+  }
+
+  export type PetPostUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput> | PetPostCreateWithoutCategoryInput[] | PetPostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutCategoryInput | PetPostCreateOrConnectWithoutCategoryInput[]
+    upsert?: PetPostUpsertWithWhereUniqueWithoutCategoryInput | PetPostUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: PetPostCreateManyCategoryInputEnvelope
+    set?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    disconnect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    delete?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    update?: PetPostUpdateWithWhereUniqueWithoutCategoryInput | PetPostUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: PetPostUpdateManyWithWhereWithoutCategoryInput | PetPostUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: PetPostScalarWhereInput | PetPostScalarWhereInput[]
+  }
+
+  export type ServicePostUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<ServicePostCreateWithoutCategoryInput, ServicePostUncheckedCreateWithoutCategoryInput> | ServicePostCreateWithoutCategoryInput[] | ServicePostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutCategoryInput | ServicePostCreateOrConnectWithoutCategoryInput[]
+    upsert?: ServicePostUpsertWithWhereUniqueWithoutCategoryInput | ServicePostUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: ServicePostCreateManyCategoryInputEnvelope
+    set?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    disconnect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    delete?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    update?: ServicePostUpdateWithWhereUniqueWithoutCategoryInput | ServicePostUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: ServicePostUpdateManyWithWhereWithoutCategoryInput | ServicePostUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
+  }
+
+  export type HospitalUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
+    upsert?: HospitalUpsertWithWhereUniqueWithoutCategoryInput | HospitalUpsertWithWhereUniqueWithoutCategoryInput[]
+    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    update?: HospitalUpdateWithWhereUniqueWithoutCategoryInput | HospitalUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: HospitalUpdateManyWithWhereWithoutCategoryInput | HospitalUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
+  }
+
+  export type PetPostUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput> | PetPostCreateWithoutCategoryInput[] | PetPostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: PetPostCreateOrConnectWithoutCategoryInput | PetPostCreateOrConnectWithoutCategoryInput[]
+    upsert?: PetPostUpsertWithWhereUniqueWithoutCategoryInput | PetPostUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: PetPostCreateManyCategoryInputEnvelope
+    set?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    disconnect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    delete?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    connect?: PetPostWhereUniqueInput | PetPostWhereUniqueInput[]
+    update?: PetPostUpdateWithWhereUniqueWithoutCategoryInput | PetPostUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: PetPostUpdateManyWithWhereWithoutCategoryInput | PetPostUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: PetPostScalarWhereInput | PetPostScalarWhereInput[]
+  }
+
+  export type ServicePostUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<ServicePostCreateWithoutCategoryInput, ServicePostUncheckedCreateWithoutCategoryInput> | ServicePostCreateWithoutCategoryInput[] | ServicePostUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutCategoryInput | ServicePostCreateOrConnectWithoutCategoryInput[]
+    upsert?: ServicePostUpsertWithWhereUniqueWithoutCategoryInput | ServicePostUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: ServicePostCreateManyCategoryInputEnvelope
+    set?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    disconnect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    delete?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    update?: ServicePostUpdateWithWhereUniqueWithoutCategoryInput | ServicePostUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: ServicePostUpdateManyWithWhereWithoutCategoryInput | ServicePostUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
+  }
+
+  export type HospitalUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
+    upsert?: HospitalUpsertWithWhereUniqueWithoutCategoryInput | HospitalUpsertWithWhereUniqueWithoutCategoryInput[]
+    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
+    update?: HospitalUpdateWithWhereUniqueWithoutCategoryInput | HospitalUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: HospitalUpdateManyWithWhereWithoutCategoryInput | HospitalUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -7283,6 +9409,23 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumPetPostEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetPostEnumFilter<$PrismaModel> | $Enums.PetPostEnum
+  }
+
+  export type NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetPostEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetPostEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -7295,6 +9438,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7314,7 +9468,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -7322,604 +9476,1087 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type DonationsCreateWithoutDonorInput = {
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type PetPostCreateWithoutUserInput = {
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    recipient: UserCreateNestedOneWithoutDonationsInput
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    category: PetCategoryCreateNestedOneWithoutPetPostInput
   }
 
-  export type DonationsUncheckedCreateWithoutDonorInput = {
+  export type PetPostUncheckedCreateWithoutUserInput = {
     id?: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    recipientId: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
   }
 
-  export type DonationsCreateOrConnectWithoutDonorInput = {
-    where: DonationsWhereUniqueInput
-    create: XOR<DonationsCreateWithoutDonorInput, DonationsUncheckedCreateWithoutDonorInput>
+  export type PetPostCreateOrConnectWithoutUserInput = {
+    where: PetPostWhereUniqueInput
+    create: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput>
   }
 
-  export type DonationsCreateManyDonorInputEnvelope = {
-    data: DonationsCreateManyDonorInput | DonationsCreateManyDonorInput[]
+  export type PetPostCreateManyUserInputEnvelope = {
+    data: PetPostCreateManyUserInput | PetPostCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type BankCardCreateWithoutUserInput = {
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
+  export type ServicePostCreateWithoutUserInput = {
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    category: PetCategoryCreateNestedOneWithoutServicePostInput
   }
 
-  export type BankCardUncheckedCreateWithoutUserInput = {
+  export type ServicePostUncheckedCreateWithoutUserInput = {
     id?: number
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
   }
 
-  export type BankCardCreateOrConnectWithoutUserInput = {
-    where: BankCardWhereUniqueInput
-    create: XOR<BankCardCreateWithoutUserInput, BankCardUncheckedCreateWithoutUserInput>
+  export type ServicePostCreateOrConnectWithoutUserInput = {
+    where: ServicePostWhereUniqueInput
+    create: XOR<ServicePostCreateWithoutUserInput, ServicePostUncheckedCreateWithoutUserInput>
   }
 
-  export type BankCardCreateManyUserInputEnvelope = {
-    data: BankCardCreateManyUserInput | BankCardCreateManyUserInput[]
+  export type ServicePostCreateManyUserInputEnvelope = {
+    data: ServicePostCreateManyUserInput | ServicePostCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type DonationsCreateWithoutRecipientInput = {
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    donor: UserCreateNestedOneWithoutReceivedDonationsInput
-  }
-
-  export type DonationsUncheckedCreateWithoutRecipientInput = {
-    id?: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    donorId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DonationsCreateOrConnectWithoutRecipientInput = {
-    where: DonationsWhereUniqueInput
-    create: XOR<DonationsCreateWithoutRecipientInput, DonationsUncheckedCreateWithoutRecipientInput>
-  }
-
-  export type DonationsCreateManyRecipientInputEnvelope = {
-    data: DonationsCreateManyRecipientInput | DonationsCreateManyRecipientInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ProfileCreateWithoutUserInput = {
+  export type HospitalCreateWithoutUserInput = {
     name: string
     about: string
     avatarImage: string
-    socialMediaURL: string
+    email: string
     backgroundImage?: string | null
-    successMessage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: PetCategoryCreateNestedManyWithoutHospitalInput
   }
 
-  export type ProfileUncheckedCreateWithoutUserInput = {
+  export type HospitalUncheckedCreateWithoutUserInput = {
     id?: number
     name: string
     about: string
     avatarImage: string
-    socialMediaURL: string
+    email: string
     backgroundImage?: string | null
-    successMessage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: PetCategoryUncheckedCreateNestedManyWithoutHospitalInput
   }
 
-  export type ProfileCreateOrConnectWithoutUserInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+  export type HospitalCreateOrConnectWithoutUserInput = {
+    where: HospitalWhereUniqueInput
+    create: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput>
   }
 
-  export type DonationsUpsertWithWhereUniqueWithoutDonorInput = {
-    where: DonationsWhereUniqueInput
-    update: XOR<DonationsUpdateWithoutDonorInput, DonationsUncheckedUpdateWithoutDonorInput>
-    create: XOR<DonationsCreateWithoutDonorInput, DonationsUncheckedCreateWithoutDonorInput>
+  export type HospitalCreateManyUserInputEnvelope = {
+    data: HospitalCreateManyUserInput | HospitalCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
-  export type DonationsUpdateWithWhereUniqueWithoutDonorInput = {
-    where: DonationsWhereUniqueInput
-    data: XOR<DonationsUpdateWithoutDonorInput, DonationsUncheckedUpdateWithoutDonorInput>
+  export type PetPostUpsertWithWhereUniqueWithoutUserInput = {
+    where: PetPostWhereUniqueInput
+    update: XOR<PetPostUpdateWithoutUserInput, PetPostUncheckedUpdateWithoutUserInput>
+    create: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput>
   }
 
-  export type DonationsUpdateManyWithWhereWithoutDonorInput = {
-    where: DonationsScalarWhereInput
-    data: XOR<DonationsUpdateManyMutationInput, DonationsUncheckedUpdateManyWithoutDonorInput>
+  export type PetPostUpdateWithWhereUniqueWithoutUserInput = {
+    where: PetPostWhereUniqueInput
+    data: XOR<PetPostUpdateWithoutUserInput, PetPostUncheckedUpdateWithoutUserInput>
   }
 
-  export type DonationsScalarWhereInput = {
-    AND?: DonationsScalarWhereInput | DonationsScalarWhereInput[]
-    OR?: DonationsScalarWhereInput[]
-    NOT?: DonationsScalarWhereInput | DonationsScalarWhereInput[]
-    id?: IntFilter<"Donations"> | number
-    amount?: IntFilter<"Donations"> | number
-    specialMessage?: StringFilter<"Donations"> | string
-    socialURLOrBuyMeACoffee?: StringFilter<"Donations"> | string
-    recipientId?: IntFilter<"Donations"> | number
-    donorId?: IntFilter<"Donations"> | number
-    createdAt?: DateTimeFilter<"Donations"> | Date | string
-    updatedAt?: DateTimeFilter<"Donations"> | Date | string
+  export type PetPostUpdateManyWithWhereWithoutUserInput = {
+    where: PetPostScalarWhereInput
+    data: XOR<PetPostUpdateManyMutationInput, PetPostUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type BankCardUpsertWithWhereUniqueWithoutUserInput = {
-    where: BankCardWhereUniqueInput
-    update: XOR<BankCardUpdateWithoutUserInput, BankCardUncheckedUpdateWithoutUserInput>
-    create: XOR<BankCardCreateWithoutUserInput, BankCardUncheckedCreateWithoutUserInput>
+  export type PetPostScalarWhereInput = {
+    AND?: PetPostScalarWhereInput | PetPostScalarWhereInput[]
+    OR?: PetPostScalarWhereInput[]
+    NOT?: PetPostScalarWhereInput | PetPostScalarWhereInput[]
+    id?: IntFilter<"PetPost"> | number
+    petName?: StringFilter<"PetPost"> | string
+    address?: StringFilter<"PetPost"> | string
+    about?: StringFilter<"PetPost"> | string
+    image?: StringFilter<"PetPost"> | string
+    phoneNumber?: IntFilter<"PetPost"> | number
+    createdAt?: DateTimeFilter<"PetPost"> | Date | string
+    updatedAt?: DateTimeFilter<"PetPost"> | Date | string
+    userId?: IntFilter<"PetPost"> | number
+    age?: IntFilter<"PetPost"> | number
+    price?: IntFilter<"PetPost"> | number
+    purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
+    petCategoryId?: IntFilter<"PetPost"> | number
   }
 
-  export type BankCardUpdateWithWhereUniqueWithoutUserInput = {
-    where: BankCardWhereUniqueInput
-    data: XOR<BankCardUpdateWithoutUserInput, BankCardUncheckedUpdateWithoutUserInput>
+  export type ServicePostUpsertWithWhereUniqueWithoutUserInput = {
+    where: ServicePostWhereUniqueInput
+    update: XOR<ServicePostUpdateWithoutUserInput, ServicePostUncheckedUpdateWithoutUserInput>
+    create: XOR<ServicePostCreateWithoutUserInput, ServicePostUncheckedCreateWithoutUserInput>
   }
 
-  export type BankCardUpdateManyWithWhereWithoutUserInput = {
-    where: BankCardScalarWhereInput
-    data: XOR<BankCardUpdateManyMutationInput, BankCardUncheckedUpdateManyWithoutUserInput>
+  export type ServicePostUpdateWithWhereUniqueWithoutUserInput = {
+    where: ServicePostWhereUniqueInput
+    data: XOR<ServicePostUpdateWithoutUserInput, ServicePostUncheckedUpdateWithoutUserInput>
   }
 
-  export type BankCardScalarWhereInput = {
-    AND?: BankCardScalarWhereInput | BankCardScalarWhereInput[]
-    OR?: BankCardScalarWhereInput[]
-    NOT?: BankCardScalarWhereInput | BankCardScalarWhereInput[]
-    id?: IntFilter<"BankCard"> | number
-    country?: StringFilter<"BankCard"> | string
-    firstName?: StringFilter<"BankCard"> | string
-    lastName?: StringFilter<"BankCard"> | string
-    cardNumber?: StringFilter<"BankCard"> | string
-    expiryDate?: StringFilter<"BankCard"> | string
-    createdAt?: DateTimeFilter<"BankCard"> | Date | string
-    updatedAt?: DateTimeFilter<"BankCard"> | Date | string
-    userId?: IntFilter<"BankCard"> | number
+  export type ServicePostUpdateManyWithWhereWithoutUserInput = {
+    where: ServicePostScalarWhereInput
+    data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type DonationsUpsertWithWhereUniqueWithoutRecipientInput = {
-    where: DonationsWhereUniqueInput
-    update: XOR<DonationsUpdateWithoutRecipientInput, DonationsUncheckedUpdateWithoutRecipientInput>
-    create: XOR<DonationsCreateWithoutRecipientInput, DonationsUncheckedCreateWithoutRecipientInput>
+  export type ServicePostScalarWhereInput = {
+    AND?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
+    OR?: ServicePostScalarWhereInput[]
+    NOT?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
+    id?: IntFilter<"ServicePost"> | number
+    petName?: StringFilter<"ServicePost"> | string
+    address?: StringFilter<"ServicePost"> | string
+    about?: StringFilter<"ServicePost"> | string
+    image?: StringFilter<"ServicePost"> | string
+    phoneNumber?: IntFilter<"ServicePost"> | number
+    createdAt?: DateTimeFilter<"ServicePost"> | Date | string
+    updatedAt?: DateTimeFilter<"ServicePost"> | Date | string
+    userId?: IntFilter<"ServicePost"> | number
+    age?: IntFilter<"ServicePost"> | number
+    price?: IntFilter<"ServicePost"> | number
+    purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
+    petCategoryId?: IntFilter<"ServicePost"> | number
   }
 
-  export type DonationsUpdateWithWhereUniqueWithoutRecipientInput = {
-    where: DonationsWhereUniqueInput
-    data: XOR<DonationsUpdateWithoutRecipientInput, DonationsUncheckedUpdateWithoutRecipientInput>
+  export type HospitalUpsertWithWhereUniqueWithoutUserInput = {
+    where: HospitalWhereUniqueInput
+    update: XOR<HospitalUpdateWithoutUserInput, HospitalUncheckedUpdateWithoutUserInput>
+    create: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput>
   }
 
-  export type DonationsUpdateManyWithWhereWithoutRecipientInput = {
-    where: DonationsScalarWhereInput
-    data: XOR<DonationsUpdateManyMutationInput, DonationsUncheckedUpdateManyWithoutRecipientInput>
+  export type HospitalUpdateWithWhereUniqueWithoutUserInput = {
+    where: HospitalWhereUniqueInput
+    data: XOR<HospitalUpdateWithoutUserInput, HospitalUncheckedUpdateWithoutUserInput>
   }
 
-  export type ProfileUpsertWithoutUserInput = {
-    update: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
-    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    where?: ProfileWhereInput
+  export type HospitalUpdateManyWithWhereWithoutUserInput = {
+    where: HospitalScalarWhereInput
+    data: XOR<HospitalUpdateManyMutationInput, HospitalUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type ProfileUpdateToOneWithWhereWithoutUserInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
+  export type HospitalScalarWhereInput = {
+    AND?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
+    OR?: HospitalScalarWhereInput[]
+    NOT?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
+    id?: IntFilter<"Hospital"> | number
+    name?: StringFilter<"Hospital"> | string
+    about?: StringFilter<"Hospital"> | string
+    avatarImage?: StringFilter<"Hospital"> | string
+    email?: StringFilter<"Hospital"> | string
+    backgroundImage?: StringNullableFilter<"Hospital"> | string | null
+    createdAt?: DateTimeFilter<"Hospital"> | Date | string
+    updatedAt?: DateTimeFilter<"Hospital"> | Date | string
+    userId?: IntNullableFilter<"Hospital"> | number | null
+    location?: StringFilter<"Hospital"> | string
+    phoneNumber?: IntFilter<"Hospital"> | number
+    workTime?: StringFilter<"Hospital"> | string
   }
 
-  export type ProfileUpdateWithoutUserInput = {
+  export type PetCategoryCreateWithoutPetPostInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ServicePost?: ServicePostCreateNestedManyWithoutCategoryInput
+    Hospital?: HospitalCreateNestedManyWithoutCategoryInput
+  }
+
+  export type PetCategoryUncheckedCreateWithoutPetPostInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutCategoryInput
+    Hospital?: HospitalUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type PetCategoryCreateOrConnectWithoutPetPostInput = {
+    where: PetCategoryWhereUniqueInput
+    create: XOR<PetCategoryCreateWithoutPetPostInput, PetCategoryUncheckedCreateWithoutPetPostInput>
+  }
+
+  export type UserCreateWithoutPetPostInput = {
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ServicePost?: ServicePostCreateNestedManyWithoutUserInput
+    Hospital?: HospitalCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPetPostInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
+    Hospital?: HospitalUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPetPostInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPetPostInput, UserUncheckedCreateWithoutPetPostInput>
+  }
+
+  export type PetCategoryUpsertWithoutPetPostInput = {
+    update: XOR<PetCategoryUpdateWithoutPetPostInput, PetCategoryUncheckedUpdateWithoutPetPostInput>
+    create: XOR<PetCategoryCreateWithoutPetPostInput, PetCategoryUncheckedCreateWithoutPetPostInput>
+    where?: PetCategoryWhereInput
+  }
+
+  export type PetCategoryUpdateToOneWithWhereWithoutPetPostInput = {
+    where?: PetCategoryWhereInput
+    data: XOR<PetCategoryUpdateWithoutPetPostInput, PetCategoryUncheckedUpdateWithoutPetPostInput>
+  }
+
+  export type PetCategoryUpdateWithoutPetPostInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ServicePost?: ServicePostUpdateManyWithoutCategoryNestedInput
+    Hospital?: HospitalUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type PetCategoryUncheckedUpdateWithoutPetPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutCategoryNestedInput
+    Hospital?: HospitalUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type UserUpsertWithoutPetPostInput = {
+    update: XOR<UserUpdateWithoutPetPostInput, UserUncheckedUpdateWithoutPetPostInput>
+    create: XOR<UserCreateWithoutPetPostInput, UserUncheckedCreateWithoutPetPostInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPetPostInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPetPostInput, UserUncheckedUpdateWithoutPetPostInput>
+  }
+
+  export type UserUpdateWithoutPetPostInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
+    Hospital?: HospitalUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPetPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
+    Hospital?: HospitalUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutServicePostInput = {
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostCreateNestedManyWithoutUserInput
+    Hospital?: HospitalCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutServicePostInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
+    Hospital?: HospitalUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutServicePostInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutServicePostInput, UserUncheckedCreateWithoutServicePostInput>
+  }
+
+  export type PetCategoryCreateWithoutServicePostInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostCreateNestedManyWithoutCategoryInput
+    Hospital?: HospitalCreateNestedManyWithoutCategoryInput
+  }
+
+  export type PetCategoryUncheckedCreateWithoutServicePostInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutCategoryInput
+    Hospital?: HospitalUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type PetCategoryCreateOrConnectWithoutServicePostInput = {
+    where: PetCategoryWhereUniqueInput
+    create: XOR<PetCategoryCreateWithoutServicePostInput, PetCategoryUncheckedCreateWithoutServicePostInput>
+  }
+
+  export type UserUpsertWithoutServicePostInput = {
+    update: XOR<UserUpdateWithoutServicePostInput, UserUncheckedUpdateWithoutServicePostInput>
+    create: XOR<UserCreateWithoutServicePostInput, UserUncheckedCreateWithoutServicePostInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutServicePostInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutServicePostInput, UserUncheckedUpdateWithoutServicePostInput>
+  }
+
+  export type UserUpdateWithoutServicePostInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUpdateManyWithoutUserNestedInput
+    Hospital?: HospitalUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutServicePostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
+    Hospital?: HospitalUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PetCategoryUpsertWithoutServicePostInput = {
+    update: XOR<PetCategoryUpdateWithoutServicePostInput, PetCategoryUncheckedUpdateWithoutServicePostInput>
+    create: XOR<PetCategoryCreateWithoutServicePostInput, PetCategoryUncheckedCreateWithoutServicePostInput>
+    where?: PetCategoryWhereInput
+  }
+
+  export type PetCategoryUpdateToOneWithWhereWithoutServicePostInput = {
+    where?: PetCategoryWhereInput
+    data: XOR<PetCategoryUpdateWithoutServicePostInput, PetCategoryUncheckedUpdateWithoutServicePostInput>
+  }
+
+  export type PetCategoryUpdateWithoutServicePostInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUpdateManyWithoutCategoryNestedInput
+    Hospital?: HospitalUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type PetCategoryUncheckedUpdateWithoutServicePostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
+    Hospital?: HospitalUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type UserCreateWithoutHospitalInput = {
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutHospitalInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutHospitalInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type PetCategoryCreateWithoutHospitalInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostCreateNestedManyWithoutCategoryInput
+    ServicePost?: ServicePostCreateNestedManyWithoutCategoryInput
+  }
+
+  export type PetCategoryUncheckedCreateWithoutHospitalInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutCategoryInput
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type PetCategoryCreateOrConnectWithoutHospitalInput = {
+    where: PetCategoryWhereUniqueInput
+    create: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type UserUpsertWithoutHospitalInput = {
+    update: XOR<UserUpdateWithoutHospitalInput, UserUncheckedUpdateWithoutHospitalInput>
+    create: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutHospitalInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutHospitalInput, UserUncheckedUpdateWithoutHospitalInput>
+  }
+
+  export type UserUpdateWithoutHospitalInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutHospitalInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PetCategoryUpsertWithWhereUniqueWithoutHospitalInput = {
+    where: PetCategoryWhereUniqueInput
+    update: XOR<PetCategoryUpdateWithoutHospitalInput, PetCategoryUncheckedUpdateWithoutHospitalInput>
+    create: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type PetCategoryUpdateWithWhereUniqueWithoutHospitalInput = {
+    where: PetCategoryWhereUniqueInput
+    data: XOR<PetCategoryUpdateWithoutHospitalInput, PetCategoryUncheckedUpdateWithoutHospitalInput>
+  }
+
+  export type PetCategoryUpdateManyWithWhereWithoutHospitalInput = {
+    where: PetCategoryScalarWhereInput
+    data: XOR<PetCategoryUpdateManyMutationInput, PetCategoryUncheckedUpdateManyWithoutHospitalInput>
+  }
+
+  export type PetCategoryScalarWhereInput = {
+    AND?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
+    OR?: PetCategoryScalarWhereInput[]
+    NOT?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
+    id?: IntFilter<"PetCategory"> | number
+    name?: StringFilter<"PetCategory"> | string
+    createdAt?: DateTimeFilter<"PetCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
+  }
+
+  export type PetPostCreateWithoutCategoryInput = {
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    User: UserCreateNestedOneWithoutPetPostInput
+  }
+
+  export type PetPostUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+  }
+
+  export type PetPostCreateOrConnectWithoutCategoryInput = {
+    where: PetPostWhereUniqueInput
+    create: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type PetPostCreateManyCategoryInputEnvelope = {
+    data: PetPostCreateManyCategoryInput | PetPostCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ServicePostCreateWithoutCategoryInput = {
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    user: UserCreateNestedOneWithoutServicePostInput
+  }
+
+  export type ServicePostUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+  }
+
+  export type ServicePostCreateOrConnectWithoutCategoryInput = {
+    where: ServicePostWhereUniqueInput
+    create: XOR<ServicePostCreateWithoutCategoryInput, ServicePostUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type ServicePostCreateManyCategoryInputEnvelope = {
+    data: ServicePostCreateManyCategoryInput | ServicePostCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HospitalCreateWithoutCategoryInput = {
+    name: string
+    about: string
+    avatarImage: string
+    email: string
+    backgroundImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    location: string
+    phoneNumber: number
+    workTime: string
+    User?: UserCreateNestedOneWithoutHospitalInput
+  }
+
+  export type HospitalUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    name: string
+    about: string
+    avatarImage: string
+    email: string
+    backgroundImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: number | null
+    location: string
+    phoneNumber: number
+    workTime: string
+  }
+
+  export type HospitalCreateOrConnectWithoutCategoryInput = {
+    where: HospitalWhereUniqueInput
+    create: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type PetPostUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: PetPostWhereUniqueInput
+    update: XOR<PetPostUpdateWithoutCategoryInput, PetPostUncheckedUpdateWithoutCategoryInput>
+    create: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type PetPostUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: PetPostWhereUniqueInput
+    data: XOR<PetPostUpdateWithoutCategoryInput, PetPostUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type PetPostUpdateManyWithWhereWithoutCategoryInput = {
+    where: PetPostScalarWhereInput
+    data: XOR<PetPostUpdateManyMutationInput, PetPostUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type ServicePostUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: ServicePostWhereUniqueInput
+    update: XOR<ServicePostUpdateWithoutCategoryInput, ServicePostUncheckedUpdateWithoutCategoryInput>
+    create: XOR<ServicePostCreateWithoutCategoryInput, ServicePostUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type ServicePostUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: ServicePostWhereUniqueInput
+    data: XOR<ServicePostUpdateWithoutCategoryInput, ServicePostUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type ServicePostUpdateManyWithWhereWithoutCategoryInput = {
+    where: ServicePostScalarWhereInput
+    data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type HospitalUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: HospitalWhereUniqueInput
+    update: XOR<HospitalUpdateWithoutCategoryInput, HospitalUncheckedUpdateWithoutCategoryInput>
+    create: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type HospitalUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: HospitalWhereUniqueInput
+    data: XOR<HospitalUpdateWithoutCategoryInput, HospitalUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type HospitalUpdateManyWithWhereWithoutCategoryInput = {
+    where: HospitalScalarWhereInput
+    data: XOR<HospitalUpdateManyMutationInput, HospitalUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type PetPostCreateManyUserInput = {
+    id?: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+  }
+
+  export type ServicePostCreateManyUserInput = {
+    id?: number
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+  }
+
+  export type HospitalCreateManyUserInput = {
+    id?: number
+    name: string
+    about: string
+    avatarImage: string
+    email: string
+    backgroundImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    location: string
+    phoneNumber: number
+    workTime: string
+  }
+
+  export type PetPostUpdateWithoutUserInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
+  }
+
+  export type PetPostUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PetPostUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ServicePostUpdateWithoutUserInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    category?: PetCategoryUpdateOneRequiredWithoutServicePostNestedInput
+  }
+
+  export type ServicePostUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ServicePostUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type HospitalUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     avatarImage?: StringFieldUpdateOperationsInput | string
-    socialMediaURL?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    successMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: PetCategoryUpdateManyWithoutHospitalNestedInput
   }
 
-  export type ProfileUncheckedUpdateWithoutUserInput = {
+  export type HospitalUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     avatarImage?: StringFieldUpdateOperationsInput | string
-    socialMediaURL?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    successMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: PetCategoryUncheckedUpdateManyWithoutHospitalNestedInput
+  }
+
+  export type HospitalUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PetCategoryUpdateWithoutHospitalInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUpdateManyWithoutCategoryNestedInput
+    ServicePost?: ServicePostUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type PetCategoryUncheckedUpdateWithoutHospitalInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type PetCategoryUncheckedUpdateManyWithoutHospitalInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserCreateWithoutReceivedDonationsInput = {
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    bankCard?: BankCardCreateNestedManyWithoutUserInput
-    Donations?: DonationsCreateNestedManyWithoutRecipientInput
-    Profile?: ProfileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutReceivedDonationsInput = {
+  export type PetPostCreateManyCategoryInput = {
     id?: number
-    email: string
-    password: string
-    username: string
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    bankCard?: BankCardUncheckedCreateNestedManyWithoutUserInput
-    Donations?: DonationsUncheckedCreateNestedManyWithoutRecipientInput
-    Profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
   }
 
-  export type UserCreateOrConnectWithoutReceivedDonationsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutReceivedDonationsInput, UserUncheckedCreateWithoutReceivedDonationsInput>
-  }
-
-  export type UserCreateWithoutDonationsInput = {
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    receivedDonations?: DonationsCreateNestedManyWithoutDonorInput
-    bankCard?: BankCardCreateNestedManyWithoutUserInput
-    Profile?: ProfileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutDonationsInput = {
+  export type ServicePostCreateManyCategoryInput = {
     id?: number
-    email: string
-    password: string
-    username: string
+    petName: string
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    receivedDonations?: DonationsUncheckedCreateNestedManyWithoutDonorInput
-    bankCard?: BankCardUncheckedCreateNestedManyWithoutUserInput
-    Profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
+    userId: number
+    age: number
+    price: number
+    purpose: $Enums.PetPostEnum
   }
 
-  export type UserCreateOrConnectWithoutDonationsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutDonationsInput, UserUncheckedCreateWithoutDonationsInput>
+  export type PetPostUpdateWithoutCategoryInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    User?: UserUpdateOneRequiredWithoutPetPostNestedInput
   }
 
-  export type UserUpsertWithoutReceivedDonationsInput = {
-    update: XOR<UserUpdateWithoutReceivedDonationsInput, UserUncheckedUpdateWithoutReceivedDonationsInput>
-    create: XOR<UserCreateWithoutReceivedDonationsInput, UserUncheckedCreateWithoutReceivedDonationsInput>
-    where?: UserWhereInput
+  export type PetPostUncheckedUpdateWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
   }
 
-  export type UserUpdateToOneWithWhereWithoutReceivedDonationsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutReceivedDonationsInput, UserUncheckedUpdateWithoutReceivedDonationsInput>
+  export type PetPostUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
   }
 
-  export type UserUpdateWithoutReceivedDonationsInput = {
+  export type ServicePostUpdateWithoutCategoryInput = {
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    user?: UserUpdateOneRequiredWithoutServicePostNestedInput
+  }
+
+  export type ServicePostUncheckedUpdateWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+  }
+
+  export type ServicePostUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    petName?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+  }
+
+  export type HospitalUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bankCard?: BankCardUpdateManyWithoutUserNestedInput
-    Donations?: DonationsUpdateManyWithoutRecipientNestedInput
-    Profile?: ProfileUpdateOneWithoutUserNestedInput
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    User?: UserUpdateOneWithoutHospitalNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutReceivedDonationsInput = {
+  export type HospitalUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bankCard?: BankCardUncheckedUpdateManyWithoutUserNestedInput
-    Donations?: DonationsUncheckedUpdateManyWithoutRecipientNestedInput
-    Profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
   }
 
-  export type UserUpsertWithoutDonationsInput = {
-    update: XOR<UserUpdateWithoutDonationsInput, UserUncheckedUpdateWithoutDonationsInput>
-    create: XOR<UserCreateWithoutDonationsInput, UserUncheckedCreateWithoutDonationsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutDonationsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutDonationsInput, UserUncheckedUpdateWithoutDonationsInput>
-  }
-
-  export type UserUpdateWithoutDonationsInput = {
+  export type HospitalUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUpdateManyWithoutDonorNestedInput
-    bankCard?: BankCardUpdateManyWithoutUserNestedInput
-    Profile?: ProfileUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutDonationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUncheckedUpdateManyWithoutDonorNestedInput
-    bankCard?: BankCardUncheckedUpdateManyWithoutUserNestedInput
-    Profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutProfileInput = {
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    receivedDonations?: DonationsCreateNestedManyWithoutDonorInput
-    bankCard?: BankCardCreateNestedManyWithoutUserInput
-    Donations?: DonationsCreateNestedManyWithoutRecipientInput
-  }
-
-  export type UserUncheckedCreateWithoutProfileInput = {
-    id?: number
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    receivedDonations?: DonationsUncheckedCreateNestedManyWithoutDonorInput
-    bankCard?: BankCardUncheckedCreateNestedManyWithoutUserInput
-    Donations?: DonationsUncheckedCreateNestedManyWithoutRecipientInput
-  }
-
-  export type UserCreateOrConnectWithoutProfileInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
-  }
-
-  export type UserUpsertWithoutProfileInput = {
-    update: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
-    create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutProfileInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
-  }
-
-  export type UserUpdateWithoutProfileInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUpdateManyWithoutDonorNestedInput
-    bankCard?: BankCardUpdateManyWithoutUserNestedInput
-    Donations?: DonationsUpdateManyWithoutRecipientNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutProfileInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUncheckedUpdateManyWithoutDonorNestedInput
-    bankCard?: BankCardUncheckedUpdateManyWithoutUserNestedInput
-    Donations?: DonationsUncheckedUpdateManyWithoutRecipientNestedInput
-  }
-
-  export type UserCreateWithoutBankCardInput = {
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    receivedDonations?: DonationsCreateNestedManyWithoutDonorInput
-    Donations?: DonationsCreateNestedManyWithoutRecipientInput
-    Profile?: ProfileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutBankCardInput = {
-    id?: number
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    receivedDonations?: DonationsUncheckedCreateNestedManyWithoutDonorInput
-    Donations?: DonationsUncheckedCreateNestedManyWithoutRecipientInput
-    Profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutBankCardInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutBankCardInput, UserUncheckedCreateWithoutBankCardInput>
-  }
-
-  export type UserUpsertWithoutBankCardInput = {
-    update: XOR<UserUpdateWithoutBankCardInput, UserUncheckedUpdateWithoutBankCardInput>
-    create: XOR<UserCreateWithoutBankCardInput, UserUncheckedCreateWithoutBankCardInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutBankCardInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutBankCardInput, UserUncheckedUpdateWithoutBankCardInput>
-  }
-
-  export type UserUpdateWithoutBankCardInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUpdateManyWithoutDonorNestedInput
-    Donations?: DonationsUpdateManyWithoutRecipientNestedInput
-    Profile?: ProfileUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutBankCardInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receivedDonations?: DonationsUncheckedUpdateManyWithoutDonorNestedInput
-    Donations?: DonationsUncheckedUpdateManyWithoutRecipientNestedInput
-    Profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type DonationsCreateManyDonorInput = {
-    id?: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    recipientId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type BankCardCreateManyUserInput = {
-    id?: number
-    country: string
-    firstName: string
-    lastName: string
-    cardNumber: string
-    expiryDate: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DonationsCreateManyRecipientInput = {
-    id?: number
-    amount: number
-    specialMessage: string
-    socialURLOrBuyMeACoffee: string
-    donorId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type DonationsUpdateWithoutDonorInput = {
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    recipient?: UserUpdateOneRequiredWithoutDonationsNestedInput
-  }
-
-  export type DonationsUncheckedUpdateWithoutDonorInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    recipientId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DonationsUncheckedUpdateManyWithoutDonorInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    recipientId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BankCardUpdateWithoutUserInput = {
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BankCardUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BankCardUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    country?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    cardNumber?: StringFieldUpdateOperationsInput | string
-    expiryDate?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DonationsUpdateWithoutRecipientInput = {
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    donor?: UserUpdateOneRequiredWithoutReceivedDonationsNestedInput
-  }
-
-  export type DonationsUncheckedUpdateWithoutRecipientInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    donorId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DonationsUncheckedUpdateManyWithoutRecipientInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    amount?: IntFieldUpdateOperationsInput | number
-    specialMessage?: StringFieldUpdateOperationsInput | string
-    socialURLOrBuyMeACoffee?: StringFieldUpdateOperationsInput | string
-    donorId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
   }
 
 
