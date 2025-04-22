@@ -170,7 +170,8 @@ exports.Prisma.HospitalScalarFieldEnum = {
   userId: 'userId',
   location: 'location',
   phoneNumber: 'phoneNumber',
-  workTime: 'workTime'
+  workTime: 'workTime',
+  category: 'category'
 };
 
 exports.Prisma.PetCategoryScalarFieldEnum = {

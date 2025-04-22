@@ -1,32 +1,34 @@
 import { Request, Response } from "express";
 import prisma from "../../prismaClient";
-export const addHospital = async (req: Request, res: Response) => {
+export const updateHospitalInfo = async (req: Request, res: Response) => {
   const {
+    id,
     name,
-    about,
     phoneNumber,
+    about,
+    email,
+    location,
+    avatarImage,
+    backgroundImage,
     workTime,
     category,
-    location,
-    email,
-    userId,
-    avatarImage,
   } = req.body;
   try {
-    const newHospital = await prisma.hospital.create({
+    const updatedInfo = await prisma.hospital.update({
+      where: { id },
       data: {
         name: name,
+        phoneNumber: phoneNumber,
         about: about,
         email: email,
-        userId: userId,
         location: location,
-        phoneNumber: phoneNumber,
+        avatarImage: avatarImage,
+        backgroundImage: backgroundImage,
         workTime: workTime,
         category: category,
-        avatarImage: avatarImage,
       },
     });
-    res.status(200).json({ data: newHospital });
+    res.status(200).json({ data: updatedInfo });
   } catch (error) {
     res.status(500).json({ error: true, message: "Internal error" });
   }

@@ -63,20 +63,20 @@ model ServicePost {
 }
 
 model Hospital {
-  id              Int           @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   name            String
   about           String
   avatarImage     String
   email           String
-  backgroundImage String?       @default("")
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  User            User?         @relation(fields: [userId], references: [id])
+  backgroundImage String?  @default("")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  User            User?    @relation(fields: [userId], references: [id])
   userId          Int?
   location        String
   phoneNumber     Int
   workTime        String
-  category        PetCategory[]
+  category        String[]
 }
 
 model PetCategory {
@@ -86,8 +86,6 @@ model PetCategory {
   updatedAt   DateTime      @updatedAt
   PetPost     PetPost[]
   ServicePost ServicePost[]
-
-  Hospital Hospital[]
 }
 
 enum PetPostEnum {
