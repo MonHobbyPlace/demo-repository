@@ -13,10 +13,16 @@ export const createPetPost = async (req: Request, res: Response) => {
     price,
     purpose,
     petCategoryId,
+    size,
+    gender,
+    breed,
   } = req.body;
   try {
     const newPetPost = await prisma.petPost.create({
       data: {
+        size: size,
+        gender: gender,
+        breed: breed,
         petName: petName,
         address: address,
         about: about,

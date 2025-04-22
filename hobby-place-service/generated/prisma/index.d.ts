@@ -50,11 +50,48 @@ export namespace $Enums {
 
 export type PetPostEnum = (typeof PetPostEnum)[keyof typeof PetPostEnum]
 
+
+export const PetSizeEnum: {
+  SMALL: 'SMALL',
+  MIDDLE: 'MIDDLE',
+  BIG: 'BIG'
+};
+
+export type PetSizeEnum = (typeof PetSizeEnum)[keyof typeof PetSizeEnum]
+
+
+export const PetGenderEnum: {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+};
+
+export type PetGenderEnum = (typeof PetGenderEnum)[keyof typeof PetGenderEnum]
+
+
+export const userRoleEnum: {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
+
+export type userRoleEnum = (typeof userRoleEnum)[keyof typeof userRoleEnum]
+
 }
 
 export type PetPostEnum = $Enums.PetPostEnum
 
 export const PetPostEnum: typeof $Enums.PetPostEnum
+
+export type PetSizeEnum = $Enums.PetSizeEnum
+
+export const PetSizeEnum: typeof $Enums.PetSizeEnum
+
+export type PetGenderEnum = $Enums.PetGenderEnum
+
+export const PetGenderEnum: typeof $Enums.PetGenderEnum
+
+export type userRoleEnum = $Enums.userRoleEnum
+
+export const userRoleEnum: typeof $Enums.userRoleEnum
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1252,13 +1289,11 @@ export namespace Prisma {
   export type UserCountOutputType = {
     PetPost: number
     ServicePost: number
-    Hospital: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | UserCountOutputTypeCountPetPostArgs
     ServicePost?: boolean | UserCountOutputTypeCountServicePostArgs
-    Hospital?: boolean | UserCountOutputTypeCountHospitalArgs
   }
 
   // Custom InputTypes
@@ -1284,13 +1319,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ServicePostWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountHospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HospitalWhereInput
   }
 
 
@@ -1365,6 +1393,8 @@ export namespace Prisma {
     username: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    role: $Enums.userRoleEnum | null
+    location: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1374,6 +1404,8 @@ export namespace Prisma {
     username: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    role: $Enums.userRoleEnum | null
+    location: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1383,6 +1415,8 @@ export namespace Prisma {
     username: number
     createdAt: number
     updatedAt: number
+    role: number
+    location: number
     _all: number
   }
 
@@ -1402,6 +1436,8 @@ export namespace Prisma {
     username?: true
     createdAt?: true
     updatedAt?: true
+    role?: true
+    location?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1411,6 +1447,8 @@ export namespace Prisma {
     username?: true
     createdAt?: true
     updatedAt?: true
+    role?: true
+    location?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1420,6 +1458,8 @@ export namespace Prisma {
     username?: true
     createdAt?: true
     updatedAt?: true
+    role?: true
+    location?: true
     _all?: true
   }
 
@@ -1516,6 +1556,8 @@ export namespace Prisma {
     username: string
     createdAt: Date
     updatedAt: Date
+    role: $Enums.userRoleEnum
+    location: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1544,9 +1586,10 @@ export namespace Prisma {
     username?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
+    location?: boolean
     PetPost?: boolean | User$PetPostArgs<ExtArgs>
     ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
-    Hospital?: boolean | User$HospitalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1557,6 +1600,8 @@ export namespace Prisma {
     username?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
+    location?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1566,6 +1611,8 @@ export namespace Prisma {
     username?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
+    location?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1575,13 +1622,14 @@ export namespace Prisma {
     username?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
+    location?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "createdAt" | "updatedAt" | "role" | "location", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | User$PetPostArgs<ExtArgs>
     ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
-    Hospital?: boolean | User$HospitalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1592,7 +1640,6 @@ export namespace Prisma {
     objects: {
       PetPost: Prisma.$PetPostPayload<ExtArgs>[]
       ServicePost: Prisma.$ServicePostPayload<ExtArgs>[]
-      Hospital: Prisma.$HospitalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1601,6 +1648,8 @@ export namespace Prisma {
       username: string
       createdAt: Date
       updatedAt: Date
+      role: $Enums.userRoleEnum
+      location: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1997,7 +2046,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     PetPost<T extends User$PetPostArgs<ExtArgs> = {}>(args?: Subset<T, User$PetPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ServicePost<T extends User$ServicePostArgs<ExtArgs> = {}>(args?: Subset<T, User$ServicePostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Hospital<T extends User$HospitalArgs<ExtArgs> = {}>(args?: Subset<T, User$HospitalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2033,6 +2081,8 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly role: FieldRef<"User", 'userRoleEnum'>
+    readonly location: FieldRef<"User", 'String'>
   }
     
 
@@ -2469,30 +2519,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.Hospital
-   */
-  export type User$HospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hospital
-     */
-    select?: HospitalSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hospital
-     */
-    omit?: HospitalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    where?: HospitalWhereInput
-    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
-    cursor?: HospitalWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
-  }
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2552,6 +2578,9 @@ export namespace Prisma {
     updatedAt: Date | null
     userId: number | null
     age: number | null
+    breed: string | null
+    size: $Enums.PetSizeEnum | null
+    gender: $Enums.PetGenderEnum | null
     price: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
@@ -2568,6 +2597,9 @@ export namespace Prisma {
     updatedAt: Date | null
     userId: number | null
     age: number | null
+    breed: string | null
+    size: $Enums.PetSizeEnum | null
+    gender: $Enums.PetGenderEnum | null
     price: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
@@ -2584,6 +2616,9 @@ export namespace Prisma {
     updatedAt: number
     userId: number
     age: number
+    breed: number
+    size: number
+    gender: number
     price: number
     purpose: number
     petCategoryId: number
@@ -2620,6 +2655,9 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     age?: true
+    breed?: true
+    size?: true
+    gender?: true
     price?: true
     purpose?: true
     petCategoryId?: true
@@ -2636,6 +2674,9 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     age?: true
+    breed?: true
+    size?: true
+    gender?: true
     price?: true
     purpose?: true
     petCategoryId?: true
@@ -2652,6 +2693,9 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     age?: true
+    breed?: true
+    size?: true
+    gender?: true
     price?: true
     purpose?: true
     petCategoryId?: true
@@ -2755,6 +2799,9 @@ export namespace Prisma {
     updatedAt: Date
     userId: number
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
@@ -2790,6 +2837,9 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
+    breed?: boolean
+    size?: boolean
+    gender?: boolean
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
@@ -2808,6 +2858,9 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
+    breed?: boolean
+    size?: boolean
+    gender?: boolean
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
@@ -2826,6 +2879,9 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
+    breed?: boolean
+    size?: boolean
+    gender?: boolean
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
@@ -2844,12 +2900,15 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
+    breed?: boolean
+    size?: boolean
+    gender?: boolean
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
   }
 
-  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "price" | "purpose" | "petCategoryId", ExtArgs["result"]["petPost"]>
+  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "breed" | "size" | "gender" | "price" | "purpose" | "petCategoryId", ExtArgs["result"]["petPost"]>
   export type PetPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
@@ -2880,6 +2939,9 @@ export namespace Prisma {
       updatedAt: Date
       userId: number
       age: number
+      breed: string
+      size: $Enums.PetSizeEnum
+      gender: $Enums.PetGenderEnum
       price: number
       purpose: $Enums.PetPostEnum
       petCategoryId: number
@@ -3318,6 +3380,9 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"PetPost", 'DateTime'>
     readonly userId: FieldRef<"PetPost", 'Int'>
     readonly age: FieldRef<"PetPost", 'Int'>
+    readonly breed: FieldRef<"PetPost", 'String'>
+    readonly size: FieldRef<"PetPost", 'PetSizeEnum'>
+    readonly gender: FieldRef<"PetPost", 'PetGenderEnum'>
     readonly price: FieldRef<"PetPost", 'Int'>
     readonly purpose: FieldRef<"PetPost", 'PetPostEnum'>
     readonly petCategoryId: FieldRef<"PetPost", 'Int'>
@@ -5225,7 +5290,6 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    User?: boolean | Hospital$UserArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5242,7 +5306,6 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    User?: boolean | Hospital$UserArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5259,7 +5322,6 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    User?: boolean | Hospital$UserArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectScalar = {
@@ -5279,21 +5341,10 @@ export namespace Prisma {
   }
 
   export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "userId" | "location" | "phoneNumber" | "workTime" | "category", ExtArgs["result"]["hospital"]>
-  export type HospitalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | Hospital$UserArgs<ExtArgs>
-  }
-  export type HospitalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | Hospital$UserArgs<ExtArgs>
-  }
-  export type HospitalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | Hospital$UserArgs<ExtArgs>
-  }
 
   export type $HospitalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Hospital"
-    objects: {
-      User: Prisma.$UserPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -5702,7 +5753,6 @@ export namespace Prisma {
    */
   export interface Prisma__HospitalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends Hospital$UserArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5762,10 +5812,6 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    /**
      * Filter, which Hospital to fetch.
      */
     where: HospitalWhereUniqueInput
@@ -5784,10 +5830,6 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    /**
      * Filter, which Hospital to fetch.
      */
     where: HospitalWhereUniqueInput
@@ -5805,10 +5847,6 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
     /**
      * Filter, which Hospital to fetch.
      */
@@ -5858,10 +5896,6 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    /**
      * Filter, which Hospital to fetch.
      */
     where?: HospitalWhereInput
@@ -5910,10 +5944,6 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    /**
      * Filter, which Hospitals to fetch.
      */
     where?: HospitalWhereInput
@@ -5957,10 +5987,6 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    /**
      * The data needed to create a Hospital.
      */
     data: XOR<HospitalCreateInput, HospitalUncheckedCreateInput>
@@ -5994,10 +6020,6 @@ export namespace Prisma {
      */
     data: HospitalCreateManyInput | HospitalCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6012,10 +6034,6 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
     /**
      * The data needed to update a Hospital.
      */
@@ -6068,10 +6086,6 @@ export namespace Prisma {
      * Limit how many Hospitals to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6086,10 +6100,6 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
     /**
      * The filter to search for the Hospital to update in case it exists.
      */
@@ -6117,10 +6127,6 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    /**
      * Filter which Hospital to delete.
      */
     where: HospitalWhereUniqueInput
@@ -6141,25 +6147,6 @@ export namespace Prisma {
   }
 
   /**
-   * Hospital.User
-   */
-  export type Hospital$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * Hospital without action
    */
   export type HospitalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6171,10 +6158,6 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
   }
 
 
@@ -7317,7 +7300,9 @@ export namespace Prisma {
     password: 'password',
     username: 'username',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    role: 'role',
+    location: 'location'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -7334,6 +7319,9 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     userId: 'userId',
     age: 'age',
+    breed: 'breed',
+    size: 'size',
+    gender: 'gender',
     price: 'price',
     purpose: 'purpose',
     petCategoryId: 'petCategoryId'
@@ -7462,6 +7450,48 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'userRoleEnum'
+   */
+  export type EnumuserRoleEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRoleEnum'>
+    
+
+
+  /**
+   * Reference to a field of type 'userRoleEnum[]'
+   */
+  export type ListEnumuserRoleEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRoleEnum[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PetSizeEnum'
+   */
+  export type EnumPetSizeEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetSizeEnum'>
+    
+
+
+  /**
+   * Reference to a field of type 'PetSizeEnum[]'
+   */
+  export type ListEnumPetSizeEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetSizeEnum[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PetGenderEnum'
+   */
+  export type EnumPetGenderEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetGenderEnum'>
+    
+
+
+  /**
+   * Reference to a field of type 'PetGenderEnum[]'
+   */
+  export type ListEnumPetGenderEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetGenderEnum[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PetPostEnum'
    */
   export type EnumPetPostEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PetPostEnum'>
@@ -7502,9 +7532,10 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumuserRoleEnumFilter<"User"> | $Enums.userRoleEnum
+    location?: StringNullableFilter<"User"> | string | null
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
-    Hospital?: HospitalListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7514,9 +7545,10 @@ export namespace Prisma {
     username?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
+    location?: SortOrderInput | SortOrder
     PetPost?: PetPostOrderByRelationAggregateInput
     ServicePost?: ServicePostOrderByRelationAggregateInput
-    Hospital?: HospitalOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7529,9 +7561,10 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumuserRoleEnumFilter<"User"> | $Enums.userRoleEnum
+    location?: StringNullableFilter<"User"> | string | null
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
-    Hospital?: HospitalListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -7541,6 +7574,8 @@ export namespace Prisma {
     username?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
+    location?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -7558,6 +7593,8 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    role?: EnumuserRoleEnumWithAggregatesFilter<"User"> | $Enums.userRoleEnum
+    location?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type PetPostWhereInput = {
@@ -7574,6 +7611,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PetPost"> | Date | string
     userId?: IntFilter<"PetPost"> | number
     age?: IntFilter<"PetPost"> | number
+    breed?: StringFilter<"PetPost"> | string
+    size?: EnumPetSizeEnumFilter<"PetPost"> | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFilter<"PetPost"> | $Enums.PetGenderEnum
     price?: IntFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
@@ -7592,6 +7632,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
+    breed?: SortOrder
+    size?: SortOrder
+    gender?: SortOrder
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
@@ -7613,6 +7656,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PetPost"> | Date | string
     userId?: IntFilter<"PetPost"> | number
     age?: IntFilter<"PetPost"> | number
+    breed?: StringFilter<"PetPost"> | string
+    size?: EnumPetSizeEnumFilter<"PetPost"> | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFilter<"PetPost"> | $Enums.PetGenderEnum
     price?: IntFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
@@ -7631,6 +7677,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
+    breed?: SortOrder
+    size?: SortOrder
+    gender?: SortOrder
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
@@ -7655,6 +7704,9 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PetPost"> | Date | string
     userId?: IntWithAggregatesFilter<"PetPost"> | number
     age?: IntWithAggregatesFilter<"PetPost"> | number
+    breed?: StringWithAggregatesFilter<"PetPost"> | string
+    size?: EnumPetSizeEnumWithAggregatesFilter<"PetPost"> | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumWithAggregatesFilter<"PetPost"> | $Enums.PetGenderEnum
     price?: IntWithAggregatesFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumWithAggregatesFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntWithAggregatesFilter<"PetPost"> | number
@@ -7777,7 +7829,6 @@ export namespace Prisma {
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type HospitalOrderByWithRelationInput = {
@@ -7794,7 +7845,6 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
-    User?: UserOrderByWithRelationInput
   }
 
   export type HospitalWhereUniqueInput = Prisma.AtLeast<{
@@ -7814,7 +7864,6 @@ export namespace Prisma {
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type HospitalOrderByWithAggregationInput = {
@@ -7918,9 +7967,10 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
     PetPost?: PetPostCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
-    Hospital?: HospitalCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7930,9 +7980,10 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
-    Hospital?: HospitalUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -7941,9 +7992,10 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
-    Hospital?: HospitalUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7953,9 +8005,10 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
-    Hospital?: HospitalUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -7965,6 +8018,8 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -7973,6 +8028,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -7982,6 +8039,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PetPostCreateInput = {
@@ -7993,6 +8052,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     category: PetCategoryCreateNestedOneWithoutPetPostInput
@@ -8010,6 +8072,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
@@ -8024,6 +8089,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
@@ -8041,6 +8109,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
@@ -8057,6 +8128,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
@@ -8071,6 +8145,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
   }
@@ -8086,6 +8163,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
@@ -8206,11 +8286,11 @@ export namespace Prisma {
     backgroundImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId?: number | null
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
-    User?: UserCreateNestedOneWithoutHospitalInput
   }
 
   export type HospitalUncheckedCreateInput = {
@@ -8237,11 +8317,11 @@ export namespace Prisma {
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
-    User?: UserUpdateOneWithoutHospitalNestedInput
   }
 
   export type HospitalUncheckedUpdateInput = {
@@ -8284,6 +8364,7 @@ export namespace Prisma {
     backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
@@ -8397,6 +8478,28 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumuserRoleEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRoleEnum | EnumuserRoleEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumuserRoleEnumFilter<$PrismaModel> | $Enums.userRoleEnum
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type PetPostListRelationFilter = {
     every?: PetPostWhereInput
     some?: PetPostWhereInput
@@ -8409,10 +8512,9 @@ export namespace Prisma {
     none?: ServicePostWhereInput
   }
 
-  export type HospitalListRelationFilter = {
-    every?: HospitalWhereInput
-    some?: HospitalWhereInput
-    none?: HospitalWhereInput
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type PetPostOrderByRelationAggregateInput = {
@@ -8423,10 +8525,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type HospitalOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -8434,6 +8532,8 @@ export namespace Prisma {
     username?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
+    location?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -8447,6 +8547,8 @@ export namespace Prisma {
     username?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
+    location?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -8456,6 +8558,8 @@ export namespace Prisma {
     username?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
+    location?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -8510,6 +8614,48 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumuserRoleEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRoleEnum | EnumuserRoleEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumuserRoleEnumWithAggregatesFilter<$PrismaModel> | $Enums.userRoleEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumuserRoleEnumFilter<$PrismaModel>
+    _max?: NestedEnumuserRoleEnumFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumPetSizeEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetSizeEnum | EnumPetSizeEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetSizeEnumFilter<$PrismaModel> | $Enums.PetSizeEnum
+  }
+
+  export type EnumPetGenderEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetGenderEnum | EnumPetGenderEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetGenderEnumFilter<$PrismaModel> | $Enums.PetGenderEnum
+  }
+
   export type EnumPetPostEnumFilter<$PrismaModel = never> = {
     equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
     in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
@@ -8538,6 +8684,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
+    breed?: SortOrder
+    size?: SortOrder
+    gender?: SortOrder
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
@@ -8563,6 +8712,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
+    breed?: SortOrder
+    size?: SortOrder
+    gender?: SortOrder
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
@@ -8579,6 +8731,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
+    breed?: SortOrder
+    size?: SortOrder
+    gender?: SortOrder
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
@@ -8591,6 +8746,26 @@ export namespace Prisma {
     age?: SortOrder
     price?: SortOrder
     petCategoryId?: SortOrder
+  }
+
+  export type EnumPetSizeEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetSizeEnum | EnumPetSizeEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetSizeEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetSizeEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetSizeEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetSizeEnumFilter<$PrismaModel>
+  }
+
+  export type EnumPetGenderEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetGenderEnum | EnumPetGenderEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetGenderEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetGenderEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetGenderEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetGenderEnumFilter<$PrismaModel>
   }
 
   export type EnumPetPostEnumWithAggregatesFilter<$PrismaModel = never> = {
@@ -8669,21 +8844,6 @@ export namespace Prisma {
     petCategoryId?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -8701,16 +8861,6 @@ export namespace Prisma {
     hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
-  }
-
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type HospitalCountOrderByAggregateInput = {
@@ -8769,24 +8919,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     phoneNumber?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8848,13 +8980,6 @@ export namespace Prisma {
     connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
   }
 
-  export type HospitalCreateNestedManyWithoutUserInput = {
-    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
-    createMany?: HospitalCreateManyUserInputEnvelope
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-  }
-
   export type PetPostUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput> | PetPostCreateWithoutUserInput[] | PetPostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PetPostCreateOrConnectWithoutUserInput | PetPostCreateOrConnectWithoutUserInput[]
@@ -8869,19 +8994,20 @@ export namespace Prisma {
     connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
   }
 
-  export type HospitalUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
-    createMany?: HospitalCreateManyUserInputEnvelope
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type EnumuserRoleEnumFieldUpdateOperationsInput = {
+    set?: $Enums.userRoleEnum
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type PetPostUpdateManyWithoutUserNestedInput = {
@@ -8910,20 +9036,6 @@ export namespace Prisma {
     update?: ServicePostUpdateWithWhereUniqueWithoutUserInput | ServicePostUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ServicePostUpdateManyWithWhereWithoutUserInput | ServicePostUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
-  }
-
-  export type HospitalUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
-    upsert?: HospitalUpsertWithWhereUniqueWithoutUserInput | HospitalUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HospitalCreateManyUserInputEnvelope
-    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    update?: HospitalUpdateWithWhereUniqueWithoutUserInput | HospitalUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HospitalUpdateManyWithWhereWithoutUserInput | HospitalUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -8962,20 +9074,6 @@ export namespace Prisma {
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
-  export type HospitalUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput> | HospitalCreateWithoutUserInput[] | HospitalUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutUserInput | HospitalCreateOrConnectWithoutUserInput[]
-    upsert?: HospitalUpsertWithWhereUniqueWithoutUserInput | HospitalUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HospitalCreateManyUserInputEnvelope
-    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    update?: HospitalUpdateWithWhereUniqueWithoutUserInput | HospitalUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HospitalUpdateManyWithWhereWithoutUserInput | HospitalUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
-  }
-
   export type PetCategoryCreateNestedOneWithoutPetPostInput = {
     create?: XOR<PetCategoryCreateWithoutPetPostInput, PetCategoryUncheckedCreateWithoutPetPostInput>
     connectOrCreate?: PetCategoryCreateOrConnectWithoutPetPostInput
@@ -8986,6 +9084,14 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutPetPostInput, UserUncheckedCreateWithoutPetPostInput>
     connectOrCreate?: UserCreateOrConnectWithoutPetPostInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type EnumPetSizeEnumFieldUpdateOperationsInput = {
+    set?: $Enums.PetSizeEnum
+  }
+
+  export type EnumPetGenderEnumFieldUpdateOperationsInput = {
+    set?: $Enums.PetGenderEnum
   }
 
   export type EnumPetPostEnumFieldUpdateOperationsInput = {
@@ -9040,37 +9146,17 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type UserCreateNestedOneWithoutHospitalInput = {
-    create?: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHospitalInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type HospitalUpdatecategoryInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type UserUpdateOneWithoutHospitalNestedInput = {
-    create?: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHospitalInput
-    upsert?: UserUpsertWithoutHospitalInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHospitalInput, UserUpdateWithoutHospitalInput>, UserUncheckedUpdateWithoutHospitalInput>
-  }
-
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type HospitalUpdatecategoryInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type PetPostCreateNestedManyWithoutCategoryInput = {
@@ -9193,6 +9279,27 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumuserRoleEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRoleEnum | EnumuserRoleEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumuserRoleEnumFilter<$PrismaModel> | $Enums.userRoleEnum
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9251,46 +9358,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumPetPostEnumFilter<$PrismaModel = never> = {
-    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
-    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
-    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
-    not?: NestedEnumPetPostEnumFilter<$PrismaModel> | $Enums.PetPostEnum
-  }
-
-  export type NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
-    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
-    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
-    not?: NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetPostEnum
+  export type NestedEnumuserRoleEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRoleEnum | EnumuserRoleEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.userRoleEnum[] | ListEnumuserRoleEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumuserRoleEnumWithAggregatesFilter<$PrismaModel> | $Enums.userRoleEnum
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumPetPostEnumFilter<$PrismaModel>
-    _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    _min?: NestedEnumuserRoleEnumFilter<$PrismaModel>
+    _max?: NestedEnumuserRoleEnumFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9308,6 +9383,68 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumPetSizeEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetSizeEnum | EnumPetSizeEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetSizeEnumFilter<$PrismaModel> | $Enums.PetSizeEnum
+  }
+
+  export type NestedEnumPetGenderEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetGenderEnum | EnumPetGenderEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetGenderEnumFilter<$PrismaModel> | $Enums.PetGenderEnum
+  }
+
+  export type NestedEnumPetPostEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetPostEnumFilter<$PrismaModel> | $Enums.PetPostEnum
+  }
+
+  export type NestedEnumPetSizeEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetSizeEnum | EnumPetSizeEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetSizeEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetSizeEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetSizeEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetSizeEnumFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPetGenderEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetGenderEnum | EnumPetGenderEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetGenderEnum[] | ListEnumPetGenderEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetGenderEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetGenderEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetGenderEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetGenderEnumFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PetPostEnum | EnumPetPostEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumPetPostEnumWithAggregatesFilter<$PrismaModel> | $Enums.PetPostEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPetPostEnumFilter<$PrismaModel>
+    _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9346,6 +9483,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     category: PetCategoryCreateNestedOneWithoutPetPostInput
@@ -9361,6 +9501,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
@@ -9415,45 +9558,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type HospitalCreateWithoutUserInput = {
-    name: string
-    about: string
-    avatarImage: string
-    email: string
-    backgroundImage?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    location: string
-    phoneNumber: number
-    workTime: string
-    category?: HospitalCreatecategoryInput | string[]
-  }
-
-  export type HospitalUncheckedCreateWithoutUserInput = {
-    id?: number
-    name: string
-    about: string
-    avatarImage: string
-    email: string
-    backgroundImage?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    location: string
-    phoneNumber: number
-    workTime: string
-    category?: HospitalCreatecategoryInput | string[]
-  }
-
-  export type HospitalCreateOrConnectWithoutUserInput = {
-    where: HospitalWhereUniqueInput
-    create: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput>
-  }
-
-  export type HospitalCreateManyUserInputEnvelope = {
-    data: HospitalCreateManyUserInput | HospitalCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type PetPostUpsertWithWhereUniqueWithoutUserInput = {
     where: PetPostWhereUniqueInput
     update: XOR<PetPostUpdateWithoutUserInput, PetPostUncheckedUpdateWithoutUserInput>
@@ -9484,6 +9588,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PetPost"> | Date | string
     userId?: IntFilter<"PetPost"> | number
     age?: IntFilter<"PetPost"> | number
+    breed?: StringFilter<"PetPost"> | string
+    size?: EnumPetSizeEnumFilter<"PetPost"> | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFilter<"PetPost"> | $Enums.PetGenderEnum
     price?: IntFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
@@ -9524,41 +9631,6 @@ export namespace Prisma {
     petCategoryId?: IntFilter<"ServicePost"> | number
   }
 
-  export type HospitalUpsertWithWhereUniqueWithoutUserInput = {
-    where: HospitalWhereUniqueInput
-    update: XOR<HospitalUpdateWithoutUserInput, HospitalUncheckedUpdateWithoutUserInput>
-    create: XOR<HospitalCreateWithoutUserInput, HospitalUncheckedCreateWithoutUserInput>
-  }
-
-  export type HospitalUpdateWithWhereUniqueWithoutUserInput = {
-    where: HospitalWhereUniqueInput
-    data: XOR<HospitalUpdateWithoutUserInput, HospitalUncheckedUpdateWithoutUserInput>
-  }
-
-  export type HospitalUpdateManyWithWhereWithoutUserInput = {
-    where: HospitalScalarWhereInput
-    data: XOR<HospitalUpdateManyMutationInput, HospitalUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type HospitalScalarWhereInput = {
-    AND?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
-    OR?: HospitalScalarWhereInput[]
-    NOT?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
-    id?: IntFilter<"Hospital"> | number
-    name?: StringFilter<"Hospital"> | string
-    about?: StringFilter<"Hospital"> | string
-    avatarImage?: StringFilter<"Hospital"> | string
-    email?: StringFilter<"Hospital"> | string
-    backgroundImage?: StringNullableFilter<"Hospital"> | string | null
-    createdAt?: DateTimeFilter<"Hospital"> | Date | string
-    updatedAt?: DateTimeFilter<"Hospital"> | Date | string
-    userId?: IntNullableFilter<"Hospital"> | number | null
-    location?: StringFilter<"Hospital"> | string
-    phoneNumber?: IntFilter<"Hospital"> | number
-    workTime?: StringFilter<"Hospital"> | string
-    category?: StringNullableListFilter<"Hospital">
-  }
-
   export type PetCategoryCreateWithoutPetPostInput = {
     name: string
     createdAt?: Date | string
@@ -9585,8 +9657,9 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
-    Hospital?: HospitalCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPetPostInput = {
@@ -9596,8 +9669,9 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
-    Hospital?: HospitalUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPetPostInput = {
@@ -9648,8 +9722,9 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
-    Hospital?: HospitalUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPetPostInput = {
@@ -9659,8 +9734,9 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
-    Hospital?: HospitalUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutServicePostInput = {
@@ -9669,8 +9745,9 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
     PetPost?: PetPostCreateNestedManyWithoutUserInput
-    Hospital?: HospitalCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutServicePostInput = {
@@ -9680,8 +9757,9 @@ export namespace Prisma {
     username: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
-    Hospital?: HospitalUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutServicePostInput = {
@@ -9726,8 +9804,9 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
-    Hospital?: HospitalUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutServicePostInput = {
@@ -9737,8 +9816,9 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
-    Hospital?: HospitalUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PetCategoryUpsertWithoutServicePostInput = {
@@ -9767,64 +9847,6 @@ export namespace Prisma {
     PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
-  export type UserCreateWithoutHospitalInput = {
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    PetPost?: PetPostCreateNestedManyWithoutUserInput
-    ServicePost?: ServicePostCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutHospitalInput = {
-    id?: number
-    email: string
-    password: string
-    username: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
-    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutHospitalInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
-  }
-
-  export type UserUpsertWithoutHospitalInput = {
-    update: XOR<UserUpdateWithoutHospitalInput, UserUncheckedUpdateWithoutHospitalInput>
-    create: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutHospitalInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutHospitalInput, UserUncheckedUpdateWithoutHospitalInput>
-  }
-
-  export type UserUpdateWithoutHospitalInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    PetPost?: PetPostUpdateManyWithoutUserNestedInput
-    ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutHospitalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
-    ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
-  }
-
   export type PetPostCreateWithoutCategoryInput = {
     petName: string
     address: string
@@ -9834,6 +9856,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     User: UserCreateNestedOneWithoutPetPostInput
@@ -9850,6 +9875,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
   }
@@ -9945,6 +9973,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
@@ -9965,21 +9996,6 @@ export namespace Prisma {
     petCategoryId: number
   }
 
-  export type HospitalCreateManyUserInput = {
-    id?: number
-    name: string
-    about: string
-    avatarImage: string
-    email: string
-    backgroundImage?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    location: string
-    phoneNumber: number
-    workTime: string
-    category?: HospitalCreatecategoryInput | string[]
-  }
-
   export type PetPostUpdateWithoutUserInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -9989,6 +10005,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
@@ -10004,6 +10023,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
@@ -10019,6 +10041,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
@@ -10068,50 +10093,6 @@ export namespace Prisma {
     petCategoryId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type HospitalUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: IntFieldUpdateOperationsInput | number
-    workTime?: StringFieldUpdateOperationsInput | string
-    category?: HospitalUpdatecategoryInput | string[]
-  }
-
-  export type HospitalUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: IntFieldUpdateOperationsInput | number
-    workTime?: StringFieldUpdateOperationsInput | string
-    category?: HospitalUpdatecategoryInput | string[]
-  }
-
-  export type HospitalUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: IntFieldUpdateOperationsInput | number
-    workTime?: StringFieldUpdateOperationsInput | string
-    category?: HospitalUpdatecategoryInput | string[]
-  }
-
   export type PetPostCreateManyCategoryInput = {
     id?: number
     petName: string
@@ -10123,6 +10104,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
+    breed: string
+    size: $Enums.PetSizeEnum
+    gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
   }
@@ -10151,6 +10135,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     User?: UserUpdateOneRequiredWithoutPetPostNestedInput
@@ -10167,6 +10154,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
   }
@@ -10182,6 +10172,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
+    breed?: StringFieldUpdateOperationsInput | string
+    size?: EnumPetSizeEnumFieldUpdateOperationsInput | $Enums.PetSizeEnum
+    gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
   }

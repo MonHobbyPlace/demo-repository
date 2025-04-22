@@ -3,7 +3,7 @@ import { hospitalRouter } from "./routers/hospitalRouter";
 import { petPostRouter } from "./routers/petPost.routes";
 import { servicePostRouter } from "./routers/servicePost.routes";
 import { categoryRouter } from "./routers/categoryRouter";
-import dotenv from "dotenv"; // ✅ Load .env variables
+import dotenv from "dotenv";
 import cors from "cors";
 
 dotenv.config();
