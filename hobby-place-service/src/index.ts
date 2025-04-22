@@ -1,12 +1,24 @@
 import express, { Request, Response } from "express";
 import { hospitalRouter } from "./routers/hospitalRouter";
+import { categoryRouter } from "./routers/categoryRouter";
+import dotenv from "dotenv"; // ✅ Load .env variables
+import cors from "cors";
+
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors()); // ✅ Enable CORS
+app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, TypeScript with Express!");
 });
+
 app.use("/hospital", hospitalRouter);
+app.use("/category", categoryRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
