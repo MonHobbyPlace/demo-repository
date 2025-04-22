@@ -77,7 +77,7 @@ model Hospital {
   location        String
   phoneNumber     Int
   workTime        String
-  category        PetCategory[]
+  category        String[]
 }
 
 model PetCategory {
@@ -87,8 +87,6 @@ model PetCategory {
   updatedAt   DateTime      @updatedAt
   PetPost     PetPost[]
   ServicePost ServicePost[]
-
-  Hospital Hospital[]
 }
 
 enum PetPostEnum {

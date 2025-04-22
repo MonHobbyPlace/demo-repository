@@ -1295,50 +1295,17 @@ export namespace Prisma {
 
 
   /**
-   * Count Type HospitalCountOutputType
-   */
-
-  export type HospitalCountOutputType = {
-    category: number
-  }
-
-  export type HospitalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    category?: boolean | HospitalCountOutputTypeCountCategoryArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * HospitalCountOutputType without action
-   */
-  export type HospitalCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HospitalCountOutputType
-     */
-    select?: HospitalCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * HospitalCountOutputType without action
-   */
-  export type HospitalCountOutputTypeCountCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PetCategoryWhereInput
-  }
-
-
-  /**
    * Count Type PetCategoryCountOutputType
    */
 
   export type PetCategoryCountOutputType = {
     PetPost: number
     ServicePost: number
-    Hospital: number
   }
 
   export type PetCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | PetCategoryCountOutputTypeCountPetPostArgs
     ServicePost?: boolean | PetCategoryCountOutputTypeCountServicePostArgs
-    Hospital?: boolean | PetCategoryCountOutputTypeCountHospitalArgs
   }
 
   // Custom InputTypes
@@ -1364,13 +1331,6 @@ export namespace Prisma {
    */
   export type PetCategoryCountOutputTypeCountServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ServicePostWhereInput
-  }
-
-  /**
-   * PetCategoryCountOutputType without action
-   */
-  export type PetCategoryCountOutputTypeCountHospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HospitalWhereInput
   }
 
 
@@ -5066,6 +5026,7 @@ export namespace Prisma {
     location: number
     phoneNumber: number
     workTime: number
+    category: number
     _all: number
   }
 
@@ -5125,6 +5086,7 @@ export namespace Prisma {
     location?: true
     phoneNumber?: true
     workTime?: true
+    category?: true
     _all?: true
   }
 
@@ -5227,6 +5189,7 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
+    category: string[]
     _count: HospitalCountAggregateOutputType | null
     _avg: HospitalAvgAggregateOutputType | null
     _sum: HospitalSumAggregateOutputType | null
@@ -5261,9 +5224,8 @@ export namespace Prisma {
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
+    category?: boolean
     User?: boolean | Hospital$UserArgs<ExtArgs>
-    category?: boolean | Hospital$categoryArgs<ExtArgs>
-    _count?: boolean | HospitalCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5279,6 +5241,7 @@ export namespace Prisma {
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
+    category?: boolean
     User?: boolean | Hospital$UserArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
@@ -5295,6 +5258,7 @@ export namespace Prisma {
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
+    category?: boolean
     User?: boolean | Hospital$UserArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
@@ -5311,13 +5275,12 @@ export namespace Prisma {
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
+    category?: boolean
   }
 
-  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "userId" | "location" | "phoneNumber" | "workTime", ExtArgs["result"]["hospital"]>
+  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "userId" | "location" | "phoneNumber" | "workTime" | "category", ExtArgs["result"]["hospital"]>
   export type HospitalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | Hospital$UserArgs<ExtArgs>
-    category?: boolean | Hospital$categoryArgs<ExtArgs>
-    _count?: boolean | HospitalCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type HospitalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | Hospital$UserArgs<ExtArgs>
@@ -5330,7 +5293,6 @@ export namespace Prisma {
     name: "Hospital"
     objects: {
       User: Prisma.$UserPayload<ExtArgs> | null
-      category: Prisma.$PetCategoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5345,6 +5307,7 @@ export namespace Prisma {
       location: string
       phoneNumber: number
       workTime: string
+      category: string[]
     }, ExtArgs["result"]["hospital"]>
     composites: {}
   }
@@ -5740,7 +5703,6 @@ export namespace Prisma {
   export interface Prisma__HospitalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     User<T extends Hospital$UserArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    category<T extends Hospital$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$categoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5782,6 +5744,7 @@ export namespace Prisma {
     readonly location: FieldRef<"Hospital", 'String'>
     readonly phoneNumber: FieldRef<"Hospital", 'Int'>
     readonly workTime: FieldRef<"Hospital", 'String'>
+    readonly category: FieldRef<"Hospital", 'String[]'>
   }
     
 
@@ -6197,30 +6160,6 @@ export namespace Prisma {
   }
 
   /**
-   * Hospital.category
-   */
-  export type Hospital$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PetCategory
-     */
-    select?: PetCategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PetCategory
-     */
-    omit?: PetCategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PetCategoryInclude<ExtArgs> | null
-    where?: PetCategoryWhereInput
-    orderBy?: PetCategoryOrderByWithRelationInput | PetCategoryOrderByWithRelationInput[]
-    cursor?: PetCategoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PetCategoryScalarFieldEnum | PetCategoryScalarFieldEnum[]
-  }
-
-  /**
    * Hospital without action
    */
   export type HospitalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6431,7 +6370,6 @@ export namespace Prisma {
     updatedAt?: boolean
     PetPost?: boolean | PetCategory$PetPostArgs<ExtArgs>
     ServicePost?: boolean | PetCategory$ServicePostArgs<ExtArgs>
-    Hospital?: boolean | PetCategory$HospitalArgs<ExtArgs>
     _count?: boolean | PetCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petCategory"]>
 
@@ -6460,7 +6398,6 @@ export namespace Prisma {
   export type PetCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | PetCategory$PetPostArgs<ExtArgs>
     ServicePost?: boolean | PetCategory$ServicePostArgs<ExtArgs>
-    Hospital?: boolean | PetCategory$HospitalArgs<ExtArgs>
     _count?: boolean | PetCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PetCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6471,7 +6408,6 @@ export namespace Prisma {
     objects: {
       PetPost: Prisma.$PetPostPayload<ExtArgs>[]
       ServicePost: Prisma.$ServicePostPayload<ExtArgs>[]
-      Hospital: Prisma.$HospitalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6874,7 +6810,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     PetPost<T extends PetCategory$PetPostArgs<ExtArgs> = {}>(args?: Subset<T, PetCategory$PetPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ServicePost<T extends PetCategory$ServicePostArgs<ExtArgs> = {}>(args?: Subset<T, PetCategory$ServicePostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Hospital<T extends PetCategory$HospitalArgs<ExtArgs> = {}>(args?: Subset<T, PetCategory$HospitalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7344,30 +7279,6 @@ export namespace Prisma {
   }
 
   /**
-   * PetCategory.Hospital
-   */
-  export type PetCategory$HospitalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hospital
-     */
-    select?: HospitalSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hospital
-     */
-    omit?: HospitalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalInclude<ExtArgs> | null
-    where?: HospitalWhereInput
-    orderBy?: HospitalOrderByWithRelationInput | HospitalOrderByWithRelationInput[]
-    cursor?: HospitalWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HospitalScalarFieldEnum | HospitalScalarFieldEnum[]
-  }
-
-  /**
    * PetCategory without action
    */
   export type PetCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7462,7 +7373,8 @@ export namespace Prisma {
     userId: 'userId',
     location: 'location',
     phoneNumber: 'phoneNumber',
-    workTime: 'workTime'
+    workTime: 'workTime',
+    category: 'category'
   };
 
   export type HospitalScalarFieldEnum = (typeof HospitalScalarFieldEnum)[keyof typeof HospitalScalarFieldEnum]
@@ -7864,8 +7776,8 @@ export namespace Prisma {
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
+    category?: StringNullableListFilter<"Hospital">
     User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    category?: PetCategoryListRelationFilter
   }
 
   export type HospitalOrderByWithRelationInput = {
@@ -7881,8 +7793,8 @@ export namespace Prisma {
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
+    category?: SortOrder
     User?: UserOrderByWithRelationInput
-    category?: PetCategoryOrderByRelationAggregateInput
   }
 
   export type HospitalWhereUniqueInput = Prisma.AtLeast<{
@@ -7901,8 +7813,8 @@ export namespace Prisma {
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
+    category?: StringNullableListFilter<"Hospital">
     User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    category?: PetCategoryListRelationFilter
   }, "id">
 
   export type HospitalOrderByWithAggregationInput = {
@@ -7918,6 +7830,7 @@ export namespace Prisma {
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
+    category?: SortOrder
     _count?: HospitalCountOrderByAggregateInput
     _avg?: HospitalAvgOrderByAggregateInput
     _max?: HospitalMaxOrderByAggregateInput
@@ -7941,6 +7854,7 @@ export namespace Prisma {
     location?: StringWithAggregatesFilter<"Hospital"> | string
     phoneNumber?: IntWithAggregatesFilter<"Hospital"> | number
     workTime?: StringWithAggregatesFilter<"Hospital"> | string
+    category?: StringNullableListFilter<"Hospital">
   }
 
   export type PetCategoryWhereInput = {
@@ -7953,7 +7867,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
-    Hospital?: HospitalListRelationFilter
   }
 
   export type PetCategoryOrderByWithRelationInput = {
@@ -7963,7 +7876,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     PetPost?: PetPostOrderByRelationAggregateInput
     ServicePost?: ServicePostOrderByRelationAggregateInput
-    Hospital?: HospitalOrderByRelationAggregateInput
   }
 
   export type PetCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -7976,7 +7888,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
-    Hospital?: HospitalListRelationFilter
   }, "id">
 
   export type PetCategoryOrderByWithAggregationInput = {
@@ -8298,8 +8209,8 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
+    category?: HospitalCreatecategoryInput | string[]
     User?: UserCreateNestedOneWithoutHospitalInput
-    category?: PetCategoryCreateNestedManyWithoutHospitalInput
   }
 
   export type HospitalUncheckedCreateInput = {
@@ -8315,7 +8226,7 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
-    category?: PetCategoryUncheckedCreateNestedManyWithoutHospitalInput
+    category?: HospitalCreatecategoryInput | string[]
   }
 
   export type HospitalUpdateInput = {
@@ -8329,8 +8240,8 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
     User?: UserUpdateOneWithoutHospitalNestedInput
-    category?: PetCategoryUpdateManyWithoutHospitalNestedInput
   }
 
   export type HospitalUncheckedUpdateInput = {
@@ -8346,7 +8257,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
-    category?: PetCategoryUncheckedUpdateManyWithoutHospitalNestedInput
+    category?: HospitalUpdatecategoryInput | string[]
   }
 
   export type HospitalCreateManyInput = {
@@ -8362,6 +8273,7 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
+    category?: HospitalCreatecategoryInput | string[]
   }
 
   export type HospitalUpdateManyMutationInput = {
@@ -8375,6 +8287,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
   }
 
   export type HospitalUncheckedUpdateManyInput = {
@@ -8390,6 +8303,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
   }
 
   export type PetCategoryCreateInput = {
@@ -8398,7 +8312,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     PetPost?: PetPostCreateNestedManyWithoutCategoryInput
     ServicePost?: ServicePostCreateNestedManyWithoutCategoryInput
-    Hospital?: HospitalCreateNestedManyWithoutCategoryInput
   }
 
   export type PetCategoryUncheckedCreateInput = {
@@ -8408,7 +8321,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     PetPost?: PetPostUncheckedCreateNestedManyWithoutCategoryInput
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutCategoryInput
-    Hospital?: HospitalUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type PetCategoryUpdateInput = {
@@ -8417,7 +8329,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PetPost?: PetPostUpdateManyWithoutCategoryNestedInput
     ServicePost?: ServicePostUpdateManyWithoutCategoryNestedInput
-    Hospital?: HospitalUpdateManyWithoutCategoryNestedInput
   }
 
   export type PetCategoryUncheckedUpdateInput = {
@@ -8427,7 +8338,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
     ServicePost?: ServicePostUncheckedUpdateManyWithoutCategoryNestedInput
-    Hospital?: HospitalUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type PetCategoryCreateManyInput = {
@@ -8785,24 +8695,22 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
   }
 
-  export type PetCategoryListRelationFilter = {
-    every?: PetCategoryWhereInput
-    some?: PetCategoryWhereInput
-    none?: PetCategoryWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type PetCategoryOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type HospitalCountOrderByAggregateInput = {
@@ -8818,6 +8726,7 @@ export namespace Prisma {
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
+    category?: SortOrder
   }
 
   export type HospitalAvgOrderByAggregateInput = {
@@ -9127,26 +9036,23 @@ export namespace Prisma {
     update?: XOR<XOR<PetCategoryUpdateToOneWithWhereWithoutServicePostInput, PetCategoryUpdateWithoutServicePostInput>, PetCategoryUncheckedUpdateWithoutServicePostInput>
   }
 
+  export type HospitalCreatecategoryInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutHospitalInput = {
     create?: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
     connectOrCreate?: UserCreateOrConnectWithoutHospitalInput
     connect?: UserWhereUniqueInput
   }
 
-  export type PetCategoryCreateNestedManyWithoutHospitalInput = {
-    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
-    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
-    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-  }
-
-  export type PetCategoryUncheckedCreateNestedManyWithoutHospitalInput = {
-    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
-    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
-    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type HospitalUpdatecategoryInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneWithoutHospitalNestedInput = {
@@ -9159,38 +9065,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHospitalInput, UserUpdateWithoutHospitalInput>, UserUncheckedUpdateWithoutHospitalInput>
   }
 
-  export type PetCategoryUpdateManyWithoutHospitalNestedInput = {
-    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
-    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
-    upsert?: PetCategoryUpsertWithWhereUniqueWithoutHospitalInput | PetCategoryUpsertWithWhereUniqueWithoutHospitalInput[]
-    set?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    disconnect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    delete?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    update?: PetCategoryUpdateWithWhereUniqueWithoutHospitalInput | PetCategoryUpdateWithWhereUniqueWithoutHospitalInput[]
-    updateMany?: PetCategoryUpdateManyWithWhereWithoutHospitalInput | PetCategoryUpdateManyWithWhereWithoutHospitalInput[]
-    deleteMany?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
-  }
-
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type PetCategoryUncheckedUpdateManyWithoutHospitalNestedInput = {
-    create?: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput> | PetCategoryCreateWithoutHospitalInput[] | PetCategoryUncheckedCreateWithoutHospitalInput[]
-    connectOrCreate?: PetCategoryCreateOrConnectWithoutHospitalInput | PetCategoryCreateOrConnectWithoutHospitalInput[]
-    upsert?: PetCategoryUpsertWithWhereUniqueWithoutHospitalInput | PetCategoryUpsertWithWhereUniqueWithoutHospitalInput[]
-    set?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    disconnect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    delete?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    connect?: PetCategoryWhereUniqueInput | PetCategoryWhereUniqueInput[]
-    update?: PetCategoryUpdateWithWhereUniqueWithoutHospitalInput | PetCategoryUpdateWithWhereUniqueWithoutHospitalInput[]
-    updateMany?: PetCategoryUpdateManyWithWhereWithoutHospitalInput | PetCategoryUpdateManyWithWhereWithoutHospitalInput[]
-    deleteMany?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
   }
 
   export type PetPostCreateNestedManyWithoutCategoryInput = {
@@ -9207,12 +9087,6 @@ export namespace Prisma {
     connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
   }
 
-  export type HospitalCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-  }
-
   export type PetPostUncheckedCreateNestedManyWithoutCategoryInput = {
     create?: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput> | PetPostCreateWithoutCategoryInput[] | PetPostUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: PetPostCreateOrConnectWithoutCategoryInput | PetPostCreateOrConnectWithoutCategoryInput[]
@@ -9225,12 +9099,6 @@ export namespace Prisma {
     connectOrCreate?: ServicePostCreateOrConnectWithoutCategoryInput | ServicePostCreateOrConnectWithoutCategoryInput[]
     createMany?: ServicePostCreateManyCategoryInputEnvelope
     connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
-  }
-
-  export type HospitalUncheckedCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
   }
 
   export type PetPostUpdateManyWithoutCategoryNestedInput = {
@@ -9261,19 +9129,6 @@ export namespace Prisma {
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
-  export type HospitalUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
-    upsert?: HospitalUpsertWithWhereUniqueWithoutCategoryInput | HospitalUpsertWithWhereUniqueWithoutCategoryInput[]
-    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    update?: HospitalUpdateWithWhereUniqueWithoutCategoryInput | HospitalUpdateWithWhereUniqueWithoutCategoryInput[]
-    updateMany?: HospitalUpdateManyWithWhereWithoutCategoryInput | HospitalUpdateManyWithWhereWithoutCategoryInput[]
-    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
-  }
-
   export type PetPostUncheckedUpdateManyWithoutCategoryNestedInput = {
     create?: XOR<PetPostCreateWithoutCategoryInput, PetPostUncheckedCreateWithoutCategoryInput> | PetPostCreateWithoutCategoryInput[] | PetPostUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: PetPostCreateOrConnectWithoutCategoryInput | PetPostCreateOrConnectWithoutCategoryInput[]
@@ -9300,19 +9155,6 @@ export namespace Prisma {
     update?: ServicePostUpdateWithWhereUniqueWithoutCategoryInput | ServicePostUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: ServicePostUpdateManyWithWhereWithoutCategoryInput | ServicePostUpdateManyWithWhereWithoutCategoryInput[]
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
-  }
-
-  export type HospitalUncheckedUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput> | HospitalCreateWithoutCategoryInput[] | HospitalUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: HospitalCreateOrConnectWithoutCategoryInput | HospitalCreateOrConnectWithoutCategoryInput[]
-    upsert?: HospitalUpsertWithWhereUniqueWithoutCategoryInput | HospitalUpsertWithWhereUniqueWithoutCategoryInput[]
-    set?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    disconnect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    delete?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    connect?: HospitalWhereUniqueInput | HospitalWhereUniqueInput[]
-    update?: HospitalUpdateWithWhereUniqueWithoutCategoryInput | HospitalUpdateWithWhereUniqueWithoutCategoryInput[]
-    updateMany?: HospitalUpdateManyWithWhereWithoutCategoryInput | HospitalUpdateManyWithWhereWithoutCategoryInput[]
-    deleteMany?: HospitalScalarWhereInput | HospitalScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9584,7 +9426,7 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
-    category?: PetCategoryCreateNestedManyWithoutHospitalInput
+    category?: HospitalCreatecategoryInput | string[]
   }
 
   export type HospitalUncheckedCreateWithoutUserInput = {
@@ -9599,7 +9441,7 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
-    category?: PetCategoryUncheckedCreateNestedManyWithoutHospitalInput
+    category?: HospitalCreatecategoryInput | string[]
   }
 
   export type HospitalCreateOrConnectWithoutUserInput = {
@@ -9714,6 +9556,7 @@ export namespace Prisma {
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
+    category?: StringNullableListFilter<"Hospital">
   }
 
   export type PetCategoryCreateWithoutPetPostInput = {
@@ -9721,7 +9564,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ServicePost?: ServicePostCreateNestedManyWithoutCategoryInput
-    Hospital?: HospitalCreateNestedManyWithoutCategoryInput
   }
 
   export type PetCategoryUncheckedCreateWithoutPetPostInput = {
@@ -9730,7 +9572,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutCategoryInput
-    Hospital?: HospitalUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type PetCategoryCreateOrConnectWithoutPetPostInput = {
@@ -9780,7 +9621,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ServicePost?: ServicePostUpdateManyWithoutCategoryNestedInput
-    Hospital?: HospitalUpdateManyWithoutCategoryNestedInput
   }
 
   export type PetCategoryUncheckedUpdateWithoutPetPostInput = {
@@ -9789,7 +9629,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ServicePost?: ServicePostUncheckedUpdateManyWithoutCategoryNestedInput
-    Hospital?: HospitalUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type UserUpsertWithoutPetPostInput = {
@@ -9855,7 +9694,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     PetPost?: PetPostCreateNestedManyWithoutCategoryInput
-    Hospital?: HospitalCreateNestedManyWithoutCategoryInput
   }
 
   export type PetCategoryUncheckedCreateWithoutServicePostInput = {
@@ -9864,7 +9702,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     PetPost?: PetPostUncheckedCreateNestedManyWithoutCategoryInput
-    Hospital?: HospitalUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type PetCategoryCreateOrConnectWithoutServicePostInput = {
@@ -9920,7 +9757,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PetPost?: PetPostUpdateManyWithoutCategoryNestedInput
-    Hospital?: HospitalUpdateManyWithoutCategoryNestedInput
   }
 
   export type PetCategoryUncheckedUpdateWithoutServicePostInput = {
@@ -9929,7 +9765,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
-    Hospital?: HospitalUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type UserCreateWithoutHospitalInput = {
@@ -9956,28 +9791,6 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutHospitalInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput>
-  }
-
-  export type PetCategoryCreateWithoutHospitalInput = {
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    PetPost?: PetPostCreateNestedManyWithoutCategoryInput
-    ServicePost?: ServicePostCreateNestedManyWithoutCategoryInput
-  }
-
-  export type PetCategoryUncheckedCreateWithoutHospitalInput = {
-    id?: number
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    PetPost?: PetPostUncheckedCreateNestedManyWithoutCategoryInput
-    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type PetCategoryCreateOrConnectWithoutHospitalInput = {
-    where: PetCategoryWhereUniqueInput
-    create: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput>
   }
 
   export type UserUpsertWithoutHospitalInput = {
@@ -10010,32 +9823,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type PetCategoryUpsertWithWhereUniqueWithoutHospitalInput = {
-    where: PetCategoryWhereUniqueInput
-    update: XOR<PetCategoryUpdateWithoutHospitalInput, PetCategoryUncheckedUpdateWithoutHospitalInput>
-    create: XOR<PetCategoryCreateWithoutHospitalInput, PetCategoryUncheckedCreateWithoutHospitalInput>
-  }
-
-  export type PetCategoryUpdateWithWhereUniqueWithoutHospitalInput = {
-    where: PetCategoryWhereUniqueInput
-    data: XOR<PetCategoryUpdateWithoutHospitalInput, PetCategoryUncheckedUpdateWithoutHospitalInput>
-  }
-
-  export type PetCategoryUpdateManyWithWhereWithoutHospitalInput = {
-    where: PetCategoryScalarWhereInput
-    data: XOR<PetCategoryUpdateManyMutationInput, PetCategoryUncheckedUpdateManyWithoutHospitalInput>
-  }
-
-  export type PetCategoryScalarWhereInput = {
-    AND?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
-    OR?: PetCategoryScalarWhereInput[]
-    NOT?: PetCategoryScalarWhereInput | PetCategoryScalarWhereInput[]
-    id?: IntFilter<"PetCategory"> | number
-    name?: StringFilter<"PetCategory"> | string
-    createdAt?: DateTimeFilter<"PetCategory"> | Date | string
-    updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
   }
 
   export type PetPostCreateWithoutCategoryInput = {
@@ -10116,40 +9903,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type HospitalCreateWithoutCategoryInput = {
-    name: string
-    about: string
-    avatarImage: string
-    email: string
-    backgroundImage?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    location: string
-    phoneNumber: number
-    workTime: string
-    User?: UserCreateNestedOneWithoutHospitalInput
-  }
-
-  export type HospitalUncheckedCreateWithoutCategoryInput = {
-    id?: number
-    name: string
-    about: string
-    avatarImage: string
-    email: string
-    backgroundImage?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: number | null
-    location: string
-    phoneNumber: number
-    workTime: string
-  }
-
-  export type HospitalCreateOrConnectWithoutCategoryInput = {
-    where: HospitalWhereUniqueInput
-    create: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput>
-  }
-
   export type PetPostUpsertWithWhereUniqueWithoutCategoryInput = {
     where: PetPostWhereUniqueInput
     update: XOR<PetPostUpdateWithoutCategoryInput, PetPostUncheckedUpdateWithoutCategoryInput>
@@ -10180,22 +9933,6 @@ export namespace Prisma {
   export type ServicePostUpdateManyWithWhereWithoutCategoryInput = {
     where: ServicePostScalarWhereInput
     data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyWithoutCategoryInput>
-  }
-
-  export type HospitalUpsertWithWhereUniqueWithoutCategoryInput = {
-    where: HospitalWhereUniqueInput
-    update: XOR<HospitalUpdateWithoutCategoryInput, HospitalUncheckedUpdateWithoutCategoryInput>
-    create: XOR<HospitalCreateWithoutCategoryInput, HospitalUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type HospitalUpdateWithWhereUniqueWithoutCategoryInput = {
-    where: HospitalWhereUniqueInput
-    data: XOR<HospitalUpdateWithoutCategoryInput, HospitalUncheckedUpdateWithoutCategoryInput>
-  }
-
-  export type HospitalUpdateManyWithWhereWithoutCategoryInput = {
-    where: HospitalScalarWhereInput
-    data: XOR<HospitalUpdateManyMutationInput, HospitalUncheckedUpdateManyWithoutCategoryInput>
   }
 
   export type PetPostCreateManyUserInput = {
@@ -10240,6 +9977,7 @@ export namespace Prisma {
     location: string
     phoneNumber: number
     workTime: string
+    category?: HospitalCreatecategoryInput | string[]
   }
 
   export type PetPostUpdateWithoutUserInput = {
@@ -10341,7 +10079,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
-    category?: PetCategoryUpdateManyWithoutHospitalNestedInput
+    category?: HospitalUpdatecategoryInput | string[]
   }
 
   export type HospitalUncheckedUpdateWithoutUserInput = {
@@ -10356,7 +10094,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
-    category?: PetCategoryUncheckedUpdateManyWithoutHospitalNestedInput
+    category?: HospitalUpdatecategoryInput | string[]
   }
 
   export type HospitalUncheckedUpdateManyWithoutUserInput = {
@@ -10371,30 +10109,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PetCategoryUpdateWithoutHospitalInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    PetPost?: PetPostUpdateManyWithoutCategoryNestedInput
-    ServicePost?: ServicePostUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type PetCategoryUncheckedUpdateWithoutHospitalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
-    ServicePost?: ServicePostUncheckedUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type PetCategoryUncheckedUpdateManyWithoutHospitalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: HospitalUpdatecategoryInput | string[]
   }
 
   export type PetPostCreateManyCategoryInput = {
@@ -10513,50 +10228,6 @@ export namespace Prisma {
     age?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
-  }
-
-  export type HospitalUpdateWithoutCategoryInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: IntFieldUpdateOperationsInput | number
-    workTime?: StringFieldUpdateOperationsInput | string
-    User?: UserUpdateOneWithoutHospitalNestedInput
-  }
-
-  export type HospitalUncheckedUpdateWithoutCategoryInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-    location?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: IntFieldUpdateOperationsInput | number
-    workTime?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type HospitalUncheckedUpdateManyWithoutCategoryInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-    location?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: IntFieldUpdateOperationsInput | number
-    workTime?: StringFieldUpdateOperationsInput | string
   }
 
 
