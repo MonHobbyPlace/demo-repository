@@ -11,18 +11,18 @@ export const categoryMiddlewarePost = async (
   try {
     const existingCategory = await prisma.petCategory.findUnique({
       where: {
-        name,
+        name: name,
       },
     });
 
     if (existingCategory) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: "Category already exists.",
       });
+    } else {
+      next();
     }
-
-    next();
   } catch (error) {
     res.status(500).json({
       success: false,
