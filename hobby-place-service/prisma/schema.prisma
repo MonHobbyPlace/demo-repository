@@ -24,7 +24,6 @@ model User {
   PetPost     PetPost[]
   ServicePost ServicePost[]
   Hospital    Hospital[]
-
 }
 
 model PetPost {
@@ -42,7 +41,7 @@ model PetPost {
   price         Int
   purpose       PetPostEnum
   petCategoryId Int
-  User User @relation(fields: [userId], references: [id])
+  User          User        @relation(fields: [userId], references: [id])
 }
 
 model ServicePost {
@@ -93,4 +92,3 @@ enum PetPostEnum {
   SALE
   ADOPT
 }
-
