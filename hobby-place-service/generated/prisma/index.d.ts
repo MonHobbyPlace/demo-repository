@@ -7880,15 +7880,15 @@ export namespace Prisma {
 
   export type PetCategoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name?: string
     AND?: PetCategoryWhereInput | PetCategoryWhereInput[]
     OR?: PetCategoryWhereInput[]
     NOT?: PetCategoryWhereInput | PetCategoryWhereInput[]
-    name?: StringFilter<"PetCategory"> | string
     createdAt?: DateTimeFilter<"PetCategory"> | Date | string
     updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
-  }, "id">
+  }, "id" | "name">
 
   export type PetCategoryOrderByWithAggregationInput = {
     id?: SortOrder
