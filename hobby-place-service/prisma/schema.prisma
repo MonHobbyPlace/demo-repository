@@ -21,9 +21,10 @@ model User {
   username    String        @unique
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  role        userRoleEnum  @default(USER)
   PetPost     PetPost[]
   ServicePost ServicePost[]
-  Hospital    Hospital[]
+  location    String?
 }
 
 model PetPost {
@@ -37,6 +38,9 @@ model PetPost {
   updatedAt     DateTime    @updatedAt
   userId        Int
   age           Int
+  breed         String
+  size          PetSizeEnum
+  gender        PetGenderEnum
   category      PetCategory @relation(fields: [petCategoryId], references: [id])
   price         Int
   purpose       PetPostEnum
@@ -71,7 +75,6 @@ model Hospital {
   backgroundImage String?  @default("")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  User            User?    @relation(fields: [userId], references: [id])
   userId          Int?
   location        String
   phoneNumber     Int
@@ -91,4 +94,17 @@ model PetCategory {
 enum PetPostEnum {
   SALE
   ADOPT
+}
+enum PetSizeEnum {
+  SMALL
+  MIDDLE
+  BIG
+}
+enum PetGenderEnum {
+  MALE
+  FEMALE
+}
+enum userRoleEnum {
+  ADMIN
+  USER
 }

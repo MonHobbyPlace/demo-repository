@@ -123,7 +123,9 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   username: 'username',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role',
+  location: 'location'
 };
 
 exports.Prisma.PetPostScalarFieldEnum = {
@@ -137,6 +139,9 @@ exports.Prisma.PetPostScalarFieldEnum = {
   updatedAt: 'updatedAt',
   userId: 'userId',
   age: 'age',
+  breed: 'breed',
+  size: 'size',
+  gender: 'gender',
   price: 'price',
   purpose: 'purpose',
   petCategoryId: 'petCategoryId'
@@ -195,6 +200,22 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.userRoleEnum = exports.$Enums.userRoleEnum = {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
+
+exports.PetSizeEnum = exports.$Enums.PetSizeEnum = {
+  SMALL: 'SMALL',
+  MIDDLE: 'MIDDLE',
+  BIG: 'BIG'
+};
+
+exports.PetGenderEnum = exports.$Enums.PetGenderEnum = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+};
+
 exports.PetPostEnum = exports.$Enums.PetPostEnum = {
   SALE: 'SALE',
   ADOPT: 'ADOPT'
