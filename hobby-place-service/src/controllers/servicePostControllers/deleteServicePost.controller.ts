@@ -9,11 +9,6 @@ export const deleteServicePost = async (req: Request, res: Response) => {
         id: id,
       },
     });
-    if (!deletedServicePost) {
-      return res
-        .status(404)
-        .json({ error: true, message: "Pet post not found" });
-    }
     res.status(200).json({ success: true, data: deletedServicePost });
   } catch (error) {
     console.log(error);

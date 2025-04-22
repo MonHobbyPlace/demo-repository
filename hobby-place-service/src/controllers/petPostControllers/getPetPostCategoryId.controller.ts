@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
 import prisma from "../../prismaClient";
 
-export const getPetPost = async (req: Request, res: Response) => {
+export const getPetPostCategoryId = async (req: Request, res: Response) => {
+  const categoryId = Number(req.params.categoryId);
   try {
-    const petPost = await prisma.petPost.findMany({});
-
+    const petPost = await prisma.petPost.findMany({
+      where: {
+        petCategoryId: categoryId,
+      },
+    });
 
     res.status(200).json({ data: petPost });
   } catch (error) {

@@ -14,7 +14,7 @@ export const putPetPost = async (req: Request, res: Response) => {
     purpose,
     petCategoryId,
   } = req.body;
-  const id = Number(req.params);
+  const id = Number(req.params.id);
   try {
     const updatedPetPost = await prisma.petPost.updateMany({
       data: {

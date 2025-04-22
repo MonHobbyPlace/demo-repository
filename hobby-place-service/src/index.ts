@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 import { hospitalRouter } from "./routers/hospitalRouter";
+import { petPostRouter } from "./routers/petPost.routes";
+import { servicePostRouter } from "./routers/servicePost.routes";
 import { categoryRouter } from "./routers/categoryRouter";
 import dotenv from "dotenv"; // ✅ Load .env variables
 import cors from "cors";
@@ -17,6 +19,8 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/hospital", hospitalRouter);
+app.use("/petPost", petPostRouter);
+app.use("/servicePost", servicePostRouter);
 app.use("/category", categoryRouter);
 
 app.listen(PORT, () => {
