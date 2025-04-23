@@ -1,7 +1,8 @@
-import { AdoptMeCrausel } from "./_features/_components/AdoptMeCarousel";
-import { Categories } from "./_features/_components/Categories";
-import { Header } from "./_features/_components/Header";
-import { PetCards } from "./_features/_components/petCards";
+import { AdoptMeCrausel } from "./_components/AdoptMeCarousel";
+import { Header } from "../components/Header";
+import { PetCards } from "./_components/petCards";
+import { Footer } from "../components/Footer";
+import { Categories } from "./_components/Categories";
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
       <AdoptMeCrausel />
       <Categories />
       <PetCards />
+      <Footer />
     </div>
   );
 };
