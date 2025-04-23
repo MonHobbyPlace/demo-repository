@@ -1,0 +1,79 @@
+"use client";
+import axios from "axios";
+import { parseAsFloat, useQueryState } from "nuqs";
+import { useState, createContext, useContext, useEffect } from "react";
+
+type petPostType = {
+  about: string;
+  address: string;
+  age: number;
+  breed: string;
+  createdAt: string;
+  gender: string;
+  id: number;
+  image: string;
+  petCategoryId: number;
+  petName: string;
+  phoneNumber: number;
+  price: number;
+  purpose: string;
+  size: string;
+  updatedAt: string;
+  userId: number;
+};
+type categoryType = {
+  name: string;
+  id: string;
+};
+type petPostContextType = {
+  petPost: petPostType[];
+  category: categoryType[];
+};
+
+const PetPostContext = createContext<petPostContextType>(
+  {} as petPostContextType
+);
+
+export const PetPostProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [petPost, setPetPost] = useState([]);
+  const getPetPostData = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:4000/petPost`);
+      setPetPost(data.data);
+      console.log("Pet posts fetched successfully:", data.data);
+    } catch (error) {
+      console.error("Error fetching pet posts:", error);
+    }
+  };
+  const [category, setCategory] = useState([]);
+  const getCategoryData = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:4000/category`);
+      setCategory(data.Category);
+      console.log("Category fetched successfully:", data.Category);
+    } catch (error) {
+      console.error("Error fetching category:", error);
+    }
+  };
+  useEffect(() => {
+    getPetPostData();
+    getCategoryData();
+  }, []);
+
+  return (
+    <PetPostContext.Provider value={{ petPost, category }}>
+      {children}
+    </PetPostContext.Provider>
+  );
+};
+export const usePetPost = () => {
+  const context = useContext(PetPostContext);
+  if (!context) {
+    console.log("hohho");
+  }
+  return context;
+};

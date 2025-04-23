@@ -8,7 +8,6 @@ export const createPetPost = async (req: Request, res: Response) => {
     about,
     image,
     phoneNumber,
-    userId,
     age,
     price,
     purpose,
@@ -17,6 +16,9 @@ export const createPetPost = async (req: Request, res: Response) => {
     gender,
     breed,
   } = req.body;
+
+  const userId = Number(req.params.id);
+
   try {
     const newPetPost = await prisma.petPost.create({
       data: {
@@ -28,16 +30,17 @@ export const createPetPost = async (req: Request, res: Response) => {
         about: about,
         image: image,
         phoneNumber: phoneNumber,
-        userId: userId,
         age: age,
         price: price,
         purpose: purpose,
         petCategoryId: petCategoryId,
+        userId: userId,
       },
     });
-    res.status(200).json({ sucsess: true, data: newPetPost });
+
+    res.status(201).json({ success: true, data: newPetPost });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: true, message: "INternal error" });
+    console.error(error);
+    res.status(500).json({ error: true, message: "Internal server error" });
   }
 };
