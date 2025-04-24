@@ -12,12 +12,5 @@ export default function Home() {
       {page === 1 && <SignIn setPage={setPage} />}
       {page === 2 && <LogIn setPage={setPage} />}
     </div>
-import HomePage from "./homePage/page";
-
-export default function Home() {
-  return (
-    <>
-      <HomePage />
-    </>
   );
 }

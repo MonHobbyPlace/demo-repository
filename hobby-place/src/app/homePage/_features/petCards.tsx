@@ -1,12 +1,6 @@
 "use client";
 import { usePetPost } from "@/app/provider/PetPostProvider";
-import {
-  ArrowRight,
-  ChevronRight,
-  LocateIcon,
-  MapPin,
-  MoveRight,
-} from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 /* eslint-disable @next/next/no-img-element */
 export const PetCards = () => {
@@ -31,7 +25,7 @@ export const PetCards = () => {
           return (
             <div
               key={index}
-              className="w-2/7  f-fit p-1 border rounded-lg shadow-md"
+              className="w-2/7  f-fit p-1 border rounded-lg shadow-xl"
             >
               <img
                 alt=""

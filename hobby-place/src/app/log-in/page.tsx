@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ChevronLeft } from "lucide-react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 type Props = {
   setPage: (page: number) => void;
@@ -15,6 +16,7 @@ export default function LogIn({ setPage }: Props) {
     email: "",
     password: "",
   });
+  const router = useRouter();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,8 +35,8 @@ export default function LogIn({ setPage }: Props) {
       if (data.success) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
+        router.push("/homePage");
         toast.success("Login successful!");
-        setPage(2);
       } else {
         toast.error(data.message || "Login failed.");
       }
