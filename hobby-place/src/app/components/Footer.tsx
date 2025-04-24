@@ -9,7 +9,7 @@ import {
 
 export const Footer = () => {
   return (
-    <div className="flex justify-between items-center bg-[#1E0342] p-4 rounded-xl shadow-md text-[#E1F7F5]">
+    <div className="flex justify-between items-center bg-[#03346E] p-4 rounded-xl shadow-md text-[#E1F7F5]">
       <button>
         <HomeIcon />
       </button>
