@@ -3,10 +3,14 @@
 import { useState } from "react";
 import axios from "axios";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Eye, EyeOff } from "lucide-react";
 =======
 import { ChevronLeft, Eye, EyeOff } from "lucide-react";
 >>>>>>> 94ac174 (introduction and Auth check token style log sign up)
+=======
+import { Eye, EyeOff } from "lucide-react";
+>>>>>>> fe0ed1c (button sign up login)
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -64,6 +68,7 @@ export default function LogIn() {
       <button
         onClick={() => router.push("/sign-up")}
 <<<<<<< HEAD
+<<<<<<< HEAD
         className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
       >
         Sign up
@@ -72,6 +77,11 @@ export default function LogIn() {
       >
         <ChevronLeft size={28} />
 >>>>>>> 94ac174 (introduction and Auth check token style log sign up)
+=======
+        className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
+      >
+        Sign up
+>>>>>>> fe0ed1c (button sign up login)
       </button>
 
       <h1 className="text-2xl font-bold text-white">Log In</h1>
