@@ -11,8 +11,8 @@ import { useState } from "react";
 export const HospitalInfoBox = () => {
   const [liked, setLiked] = useState(false);
   return (
-    <div className="h-[120px] w-full flex  rounded-3xl justify-between text-black overflow-hidden gap-4 my-3">
-      <div className="w-full h-full rounded-t-3xl justify-between flex gap-2 overflow-hidden bg-[#D8C4B6] p-1">
+    <div className="h-[120px] w-full flex  rounded-3xl justify-between text-black overflow-hidden gap-4 my-3 shadow-md border">
+      <div className="w-full h-full rounded-t-3xl justify-between flex gap-2 overflow-hidden bg-[#e1f7f5]  p-1">
         <div className="flex">
           <div className="flex flex-col px-3  justify-around">
             <div>
