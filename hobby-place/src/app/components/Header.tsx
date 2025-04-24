@@ -17,10 +17,7 @@ export const Header = () => {
           <Search />
         </div>
       </div>
-      <div>
-        <div className="text-2xl extrabold">Hello (here is userName)</div>
-        <p className="text-xs">Local pet care services for you</p>
-      </div>
+      
     </div>
   );
 };

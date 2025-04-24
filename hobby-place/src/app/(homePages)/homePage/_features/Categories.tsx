@@ -8,7 +8,7 @@ export const Categories = () => {
   const { category } = usePetPost();
   return (
     <div>
-      <div className="flex items-center justify-between w-full h-16 ">
+      <div className="flex items-center justify-between w-full h-10 ">
         <div className="text-xl extrabold">Categories</div>
         <p className="text-sm flex items-center">
           see more <ArrowRight size={14} />
@@ -18,6 +18,7 @@ export const Categories = () => {
         {category.map((element, index) => {
           return (
             <button
+              key={index}
               className={`btn btn-outline bg-[#1E0342] flex items-center justify-between rounded-full p-0`}
             >
               <img

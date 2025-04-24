@@ -7,7 +7,7 @@ export const PetCards = () => {
   const { petPost } = usePetPost();
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between w-full h-16 ">
+      <div className="flex items-center justify-between w-full h-10 ">
         <div className="text-xl extrabold">Rehoming a Pets</div>
         <p className="text-sm flex items-center">
           see more <ArrowRight size={14} />

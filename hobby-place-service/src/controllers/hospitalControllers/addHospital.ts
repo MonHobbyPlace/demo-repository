@@ -13,7 +13,7 @@ export const addHospital = async (req: Request, res: Response) => {
     avatarImage,
   } = req.body;
   try {
-    const newHospital = await prisma.hospital.create({
+    const newHospital = await prisma.hospital.createMany({
       data: {
         name: name,
         about: about,

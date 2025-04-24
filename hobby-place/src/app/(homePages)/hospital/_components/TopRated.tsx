@@ -47,16 +47,16 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
           />
           <div
             style={{ backgroundColor: "rgba(154, 154, 154, 0.3)" }}
-            className="z-[100] text-[#213555] from-opacity-0 to-opacity-50 w-1/2 h-[70%] rounded-r-xl flex flex-col items-center "
+            className="z-[100] text-[white] from-opacity-0 p-3 to-opacity-50 w-1/2 h-[70%] rounded-r-xl flex flex-col gap-2 items-center "
           >
-            <p className="text-base font-bold opacity-100 text-[#023e8a] w-[80%]">
+            <p className="text-base font-bold opacity-100 text-[#023e8a] ">
               Furry Friends Hospital
             </p>
-            <div className="flex gap-1 items-center w-1/2 text-base ">
-              <PawPrint color="#023e8a" fill="#023e8a" size={15} />
+            <div className="flex gap-1 text-xs items-center w-1/2 text-base w-full ">
+              <PawPrint color="white" fill="white" size={15} />
               <p>Dog</p>
             </div>
-            <div className="flex shrink-0 gap-1 items-center w-1/2 ">
+            <div className="flex shrink-0 gap-1 items-center w-full ">
               <MapPinned color="white" size={20} />
               <p className=" text-xs text-white  w-full whitespace-nowrap overflow-hidden text-ellipsis">
                 Ard Ayush Ave, BGD - 13 khoroo, Ulaanbaatar 16091

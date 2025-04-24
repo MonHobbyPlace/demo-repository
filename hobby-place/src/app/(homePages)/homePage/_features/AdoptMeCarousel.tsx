@@ -18,7 +18,7 @@ export const AdoptMeCrausel = () => {
             return null;
           }
           return (
-            <CarouselItem>
+            <CarouselItem key={index}>
               {" "}
               <img
                 alt=""
