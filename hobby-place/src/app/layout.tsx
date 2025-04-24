@@ -1,10 +1,11 @@
+// app/layout.tsx or app/layout.jsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { PetPostProvider } from "./provider/PetPostProvider";
+import { AuthProvider } from "./provider/AuthProvider"; // ✅ Import the right one
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,16 +24,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
+<<<<<<< HEAD
         <ToastContainer position="top-right" autoClose={3000} />
         <PetPostProvider>{children}</PetPostProvider>
+=======
+        <AuthProvider>
+          <ToastContainer position="top-right" autoClose={3000} />
+          {children}
+        </AuthProvider>
+>>>>>>> 94ac174 (introduction and Auth check token style log sign up)
       </body>
     </html>
   );
