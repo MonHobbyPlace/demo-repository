@@ -2,6 +2,7 @@
 "use client";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { MapPinned, PawPrint } from "lucide-react";
 
 export const TopRated = () => {
   return (
@@ -33,18 +34,33 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
       viewport={{ amount: 0.8 }}
     >
       <div style={{ ...splash, backgroundColor: "#F5EFE7" }} />
-      <motion.div style={card} variants={cardVariants} className="card ">
+      <motion.div
+        style={card}
+        variants={cardVariants}
+        className="card relative"
+      >
         <div className="w-full h-full flex items-center justify-end rounded-2xl relative p-3 gap-3">
           <img
-            src="hospitalDef.jpeg"
+            src="hospital2.jpeg"
             className="w-[93%] h-[65%] absolute rounded-xl"
             alt={emoji}
           />
           <div
-            style={{ backgroundColor: "rgba(43, 34, 34, 0.4)" }}
-            className="z-[100] text-[#213555]  w-1/2 h-[70%] rounded-r-xl flex flex-col "
+            style={{ backgroundColor: "rgba(154, 154, 154, 0.3)" }}
+            className="z-[100] text-[#213555] from-opacity-0 to-opacity-50 w-1/2 h-[70%] rounded-r-xl flex flex-col items-center "
           >
-            <p className="text-base opacity-100 text-white">name doo</p>
+            <p className="text-base font-bold opacity-100 text-[#023e8a] w-[80%]">
+              Furry Friends Hospital
+            </p>
+            <div className="flex gap-1 items-center w-1/2 text-base ">
+              <PawPrint color="#023e8a" fill="#023e8a" size={15} />
+              <p>Dog</p>
+            </div>
+            <div className="flex gap-1 items-center w-1/2 ">
+              <MapPinned color="white" />
+
+              <p className=" text-base text-ellipsis w-full">location</p>
+            </div>
           </div>
         </div>
       </motion.div>
