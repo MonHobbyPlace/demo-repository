@@ -39,7 +39,7 @@ export const LogIn = async (req: Request, res: Response) => {
           })
           .status(200);
       } else {
-        res.send({
+        res.status(500).send({
           success: false,
           message: "Password or username did not match.",
         });

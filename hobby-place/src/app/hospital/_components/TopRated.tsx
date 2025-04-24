@@ -33,7 +33,7 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
       whileInView="onscreen"
       viewport={{ amount: 0.8 }}
     >
-      <div style={{ ...splash, backgroundColor: "#F5EFE7" }} />
+      <div style={{ ...splash, backgroundColor: "white" }} />
       <motion.div
         style={card}
         variants={cardVariants}
@@ -56,10 +56,11 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
               <PawPrint color="#023e8a" fill="#023e8a" size={15} />
               <p>Dog</p>
             </div>
-            <div className="flex gap-1 items-center w-1/2 ">
-              <MapPinned color="white" />
-
-              <p className=" text-base text-ellipsis w-full">location</p>
+            <div className="flex shrink-0 gap-1 items-center w-1/2 ">
+              <MapPinned color="white" size={20} />
+              <p className=" text-xs text-white  w-full whitespace-nowrap overflow-hidden text-ellipsis">
+                Ard Ayush Ave, BGD - 13 khoroo, Ulaanbaatar 16091
+              </p>
             </div>
           </div>
         </div>
@@ -118,7 +119,7 @@ const card: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   borderRadius: 20,
-  background: "#F5EFE7",
+  background: "white",
   boxShadow:
     "0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075), 0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075), 0 0 16px hsl(0deg 0% 0% / 0.075)",
   transformOrigin: "10% 60%",
