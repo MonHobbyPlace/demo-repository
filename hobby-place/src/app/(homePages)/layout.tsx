@@ -13,22 +13,28 @@ export default function RootLayout({
   return (
     <div
       className={`relative h-screen overflow-hidden  bg-[#e1f7f5] ${
-        pathName.includes("hospital/") ? "p-0" : "p-5"
+        pathName.includes("hospital/") || pathName.includes("homePage/")
+          ? "p-0"
+          : "p-5"
       }`}
     >
-      {!pathName.includes("hospital/") && <Header />}
+      {!pathName.includes("hospital/") ||
+        (!pathName.includes("homePage/") && <Header />)}
 
       <PetPostProvider>
         <div
           className={`${
-            pathName.includes("hospital/") ? "h-screen" : "h-[90%]"
+            pathName.includes("hospital/") || pathName.includes("homePage/")
+              ? "h-screen"
+              : "h-[90%]"
           } `}
         >
           {children}
         </div>
       </PetPostProvider>
       <div className="sticky bottom-0">
-        {!pathName.includes("hospital/") && <Footer />}
+        {!pathName.includes("hospital/") ||
+          (!pathName.includes("homePage/") && <Footer />)}
       </div>
     </div>
   );
