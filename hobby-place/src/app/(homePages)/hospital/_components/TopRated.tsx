@@ -52,7 +52,7 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
             <p className="text-base font-bold opacity-100 text-[#023e8a] ">
               Furry Friends Hospital
             </p>
-            <div className="flex gap-1 text-xs items-center w-1/2 text-base w-full ">
+            <div className="flex gap-1 text-xs items-center w-1/2  ">
               <PawPrint color="white" fill="white" size={15} />
               <p>Dog</p>
             </div>

@@ -4,12 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 import { ChevronRight } from "lucide-react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-type Props = {
-  setPage: (page: number) => void;
-};
-
-export default function SignIn({ setPage }: Props) {
+export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const [existingUser, setExistingUser] = useState([]);
   const [user, setUser] = useState({
@@ -17,6 +14,7 @@ export default function SignIn({ setPage }: Props) {
     email: "",
     password: "",
   });
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,7 +35,6 @@ export default function SignIn({ setPage }: Props) {
         console.log("User created:", response.data);
         localStorage.setItem("token", response.data.token);
         toast.success("Good job created user");
-        setPage(2);
       }
 
       setLoading(false);
@@ -51,7 +48,7 @@ export default function SignIn({ setPage }: Props) {
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/cat.jpg')] bg-cover bg-center gap-6 px-4 py-6">
       <div
-        onClick={() => setPage(2)}
+        onClick={() => router.push("/log-in")}
         className="absolute top-6 right-6 text-white cursor-pointer hover:scale-110 transition"
       >
         <ChevronRight size={28} />
