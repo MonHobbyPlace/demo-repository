@@ -2,11 +2,9 @@ import { Request, Response } from "express";
 import prisma from "../../prismaClient";
 
 export const getByCategory = async (req: Request, res: Response) => {
-  const { category, id } = req.query as unknown as {
-    category?: string;
-    id?: number;
+  const { category } = req.params as unknown as {
+    category: string;
   };
-  console.log(req.query);
 
   try {
     let whereClause = undefined;
@@ -21,19 +19,12 @@ export const getByCategory = async (req: Request, res: Response) => {
           hasSome: categoryArray, // checks if any of the given categories exist
         },
       };
-      const hospitals = await prisma.hospital.findMany({
-        where: whereClause,
-      });
-
-      res.status(200).json({ data: hospitals });
-    } else if (id) {
-      const hospital = await prisma.hospital.findUnique({
-        where: {
-          id: id,
-        },
-      });
-      res.status(200).json(hospital);
     }
+    const hospitals = await prisma.hospital.findMany({
+      where: whereClause,
+    });
+
+    res.status(200).json({ data: hospitals });
   } catch (error) {
     console.error(error);
     res.status(500).json({
