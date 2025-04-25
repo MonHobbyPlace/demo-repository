@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import { PetPostProvider } from "../provider/PetPostProvider";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
@@ -11,7 +10,6 @@ export default function RootLayout({
   return (
     <div className="relative h-screen overflow-hidden p-5 bg-[#e1f7f5]">
       <Header />
-      <ToastContainer position="top-right" autoClose={3000} />
       <PetPostProvider>
         <div className="h-[90%]">{children}</div>
       </PetPostProvider>
@@ -21,4 +19,3 @@ export default function RootLayout({
     </div>
   );
 }
-//react-leaflet

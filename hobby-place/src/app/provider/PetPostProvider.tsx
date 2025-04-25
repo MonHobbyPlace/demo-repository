@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import { parseAsFloat, useQueryState } from "nuqs";
 import { useState, createContext, useContext, useEffect } from "react";
 
 type petPostType = {
