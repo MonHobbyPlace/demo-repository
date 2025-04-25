@@ -41,7 +41,9 @@ export const PetPostProvider = ({
   const [petPost, setPetPost] = useState([]);
   const getPetPostData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:4000/petPost`);
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petPost`
+      );
       setPetPost(data.data);
       console.log("Pet posts fetched successfully:", data.data);
     } catch (error) {
@@ -51,7 +53,9 @@ export const PetPostProvider = ({
   const [category, setCategory] = useState([]);
   const getCategoryData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:4000/category`);
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/category`
+      );
       setCategory(data.Category);
       console.log("Category fetched successfully:", data.Category);
     } catch (error) {

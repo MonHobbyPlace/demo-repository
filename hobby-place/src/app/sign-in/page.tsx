@@ -24,14 +24,19 @@ export default function SignIn() {
   const handleSignIn = async () => {
     try {
       setLoading(true);
-      const existingUsers = await axios.get("http://localhost:4000/users");
+      const existingUsers = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users`
+      );
       setExistingUser(existingUsers.data.email);
       console.log(existingUsers.data.email);
 
       if (existingUser && user.email) {
         toast.warning("user already exist");
       } else {
-        const response = await axios.post("http://localhost:4000/users", user);
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/users`,
+          user
+        );
         console.log("User created:", response.data);
         localStorage.setItem("token", response.data.token);
         toast.success("Good job created user");

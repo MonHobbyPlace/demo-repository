@@ -24,7 +24,7 @@ const LogIn = () => {
       setLoading(true);
 
       const { data } = await axios.post(
-        "http://localhost:4000/users/login",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/login`,
         user
       );
 

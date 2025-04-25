@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 export const AllHospitals = () => {
   const [hospitals, setHospitals] = useState([]);
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:4000/hospital");
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
+    );
     setHospitals(response.data.data);
     console.log(response.data.data);
   };
