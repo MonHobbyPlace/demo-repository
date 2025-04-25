@@ -6,11 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-type Props = {
-  setPage: (page: number) => void;
-};
-
-export default function LogIn({ setPage }: Props) {
+const LogIn = () => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -51,7 +47,7 @@ export default function LogIn({ setPage }: Props) {
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/dog.jpg')] bg-cover gap-4 px-4">
       <div
-        onClick={() => setPage(1)}
+        onClick={() => router.push("/sign-in")}
         className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition"
       >
         <ChevronLeft size={28} />
@@ -83,4 +79,5 @@ export default function LogIn({ setPage }: Props) {
       </div>
     </div>
   );
-}
+};
+export default LogIn;
