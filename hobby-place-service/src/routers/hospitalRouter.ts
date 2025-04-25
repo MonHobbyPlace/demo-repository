@@ -4,7 +4,7 @@ import { getByCategory } from "../controllers/hospitalControllers/getByCategory"
 import { updateHospitalInfo } from "../controllers/hospitalControllers/updateHospitalInfo";
 import { getAll } from "../controllers/hospitalControllers/getAll";
 export const hospitalRouter = express.Router();
-hospitalRouter.get("/:category", getByCategory);
+hospitalRouter.get("/:category/:id", getByCategory);
 hospitalRouter.get("/", getAll);
 hospitalRouter.post("/", addHospital);
 hospitalRouter.put("/", updateHospitalInfo);
