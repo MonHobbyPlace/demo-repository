@@ -19,7 +19,6 @@ export const AdoptMeCrausel = () => {
           }
           return (
             <CarouselItem key={index}>
-              {" "}
               <img
                 alt=""
                 src={element.image}
