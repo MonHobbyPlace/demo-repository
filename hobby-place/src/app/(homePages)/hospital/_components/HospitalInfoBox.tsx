@@ -31,7 +31,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
         <div className="flex w-[57%] justify-between">
           <div className="flex flex-col px-3 w-[90%] justify-around">
             <div>
-              <p className="text-ellipsis text-[#023e8a] font-bold text-[12px] w-full whitespace-nowrap overflow-hidden text-ellipsis">
+              <p className=" text-[#023e8a] font-bold text-[12px] w-full whitespace-nowrap overflow-hidden text-ellipsis">
                 {hospital.location}
               </p>
               <p className="text-sm text-[#213555] font-bold ">
