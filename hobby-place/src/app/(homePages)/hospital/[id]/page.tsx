@@ -7,7 +7,9 @@ export default function Home() {
   const { id } = useParams();
   // const [hospital, setHospital] = useState();
   const fetchData = async () => {
-    const response = await axios.get(`http://localhost:4000/hospital/${id}`);
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/${id}`
+    );
     console.log("response", response.data);
     console.log("aksjdhfasfgkg");
   };
