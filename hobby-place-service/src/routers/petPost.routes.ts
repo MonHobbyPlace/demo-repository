@@ -6,10 +6,16 @@ import { getPetPost } from "../controllers/petPostControllers/getPetPost.control
 import { getPetPostCategoryId } from "../controllers/petPostControllers/getPetPostCategoryId.controller";
 import { getPetPostMid } from "../middlewares/petPostMiddlewares/getPetPostMid";
 import { postIdFoundMid } from "../middlewares/petPostMiddlewares/postIdFoundMid";
+import { getPetPostId } from "../controllers/petPostControllers/getPetPostId.controller";
 
 export const petPostRouter = express.Router();
 petPostRouter.get("/", getPetPost);
 petPostRouter.post("/:id", createPetPost);
 petPostRouter.delete("/:id", postIdFoundMid, deletePetPost);
 petPostRouter.put("/:id", postIdFoundMid, putPetPost);
-petPostRouter.get("/:categoryId", getPetPostMid, getPetPostCategoryId);
+petPostRouter.get(
+  "/categoryId/:categoryId",
+  getPetPostMid,
+  getPetPostCategoryId
+);
+petPostRouter.get("/petId/:Id", getPetPostId);
