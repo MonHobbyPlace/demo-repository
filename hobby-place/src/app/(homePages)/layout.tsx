@@ -1,20 +1,34 @@
+"use client";
 import { PetPostProvider } from "../provider/PetPostProvider";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathName = usePathname();
   return (
-    <div className="relative h-screen overflow-hidden p-5 bg-[#e1f7f5]">
-      <Header />
+    <div
+      className={`relative h-screen overflow-hidden  bg-[#e1f7f5] ${
+        pathName.includes("hospital/") ? "p-0" : "p-5"
+      }`}
+    >
+      {!pathName.includes("hospital/") && <Header />}
+
       <PetPostProvider>
-        <div className="h-[90%]">{children}</div>
+        <div
+          className={`${
+            pathName.includes("hospital/") ? "h-screen" : "h-[90%]"
+          } `}
+        >
+          {children}
+        </div>
       </PetPostProvider>
       <div className="sticky bottom-0">
-        <Footer />
+        {!pathName.includes("hospital/") && <Footer />}
       </div>
     </div>
   );

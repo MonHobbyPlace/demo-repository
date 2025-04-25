@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-type Hospital = {
+export type Hospital = {
   id: number;
   name: string;
   location: string;
