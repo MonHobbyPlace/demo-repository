@@ -1,29 +1,44 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import axios from "axios";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { MapPinned, PawPrint } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Hospital } from "./HospitalInfoBox";
+import { useRouter } from "next/navigation";
 
 export const TopRated = () => {
+  const [hospitals, setHospitals] = useState([] as unknown as Hospital[]);
+  const getTopratedHospitals = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
+      );
+      setHospitals(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getTopratedHospitals();
+  }, []);
   return (
     <div style={container} className="h-[300px] overflow-scroll ">
-      {food.map(([emoji, hueA, hueB], i) => (
-        <Card i={i} emoji={emoji} hueA={hueA} hueB={hueB} key={emoji} />
+      {hospitals.map((hospital, i) => (
+        <Card i={i} key={hospital.id} hospital={hospital} />
       ))}
     </div>
   );
 };
 
 interface CardProps {
-  emoji: string;
-  hueA: number;
-  hueB: number;
   i: number;
+  hospital: Hospital;
 }
 
-function Card({ emoji, hueA, hueB, i }: CardProps) {
-  const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
-  console.log(background);
+function Card({ i, hospital }: CardProps) {
+  const router = useRouter();
 
   return (
     <motion.div
@@ -39,27 +54,30 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
         variants={cardVariants}
         className="card relative"
       >
-        <div className="w-full h-full flex items-center justify-end rounded-2xl relative p-3 gap-3">
+        <div
+          className="w-full h-full flex items-center justify-end rounded-2xl relative p-3 gap-3"
+          onClick={() => router.push(`/hospital/${hospital.id}`)}
+        >
           <img
-            src="hospital2.jpeg"
+            src={hospital.avatarImage}
             className="w-[93%] h-[65%] absolute rounded-xl"
-            alt={emoji}
+            alt="Each hospital image"
           />
           <div
             style={{ backgroundColor: "rgba(154, 154, 154, 0.3)" }}
             className="z-[100] text-[white] from-opacity-0 p-3 to-opacity-50 w-1/2 h-[70%] rounded-r-xl flex flex-col gap-2 items-center "
           >
             <p className="text-base font-bold opacity-100 text-[#023e8a] ">
-              Furry Friends Hospital
+              {hospital.name}
             </p>
             <div className="flex gap-1 text-xs items-center w-1/2  ">
               <PawPrint color="white" fill="white" size={15} />
-              <p>Dog</p>
+              <p>{hospital.category[0]}</p>
             </div>
             <div className="flex shrink-0 gap-1 items-center w-full ">
               <MapPinned color="white" size={20} />
               <p className=" text-xs text-white  w-full whitespace-nowrap overflow-hidden text-ellipsis">
-                Ard Ayush Ave, BGD - 13 khoroo, Ulaanbaatar 16091
+                {hospital.location}
               </p>
             </div>
           </div>
@@ -83,8 +101,6 @@ const cardVariants: Variants = {
     },
   },
 };
-
-const hue = (h: number) => `hsl(${h}, 85%, 100%)`;
 
 const container: React.CSSProperties = {
   maxWidth: 500,
@@ -124,11 +140,3 @@ const card: React.CSSProperties = {
     "0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075), 0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075), 0 0 16px hsl(0deg 0% 0% / 0.075)",
   transformOrigin: "10% 60%",
 };
-
-const food: [string, number, number][] = [
-  ["🍅", 100, 120],
-  ["🍊", 20, 40],
-  ["🍋", 60, 90],
-  ["🍐", 80, 120],
-  ["🍏", 100, 140],
-];

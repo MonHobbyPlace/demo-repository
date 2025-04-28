@@ -70,20 +70,22 @@ model Hospital {
   id              Int      @id @default(autoincrement())
   name            String
   about           String
-  avatarImage     String
+  avatarImage     String[]
   email           String
-  backgroundImage String?  @default("")
+  backgroundImage String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  userId          Int?
+  rating          Int
   location        String
   phoneNumber     Int
   workTime        String
   category        String[]
+  views           Int
 }
 
 model PetCategory {
   id          Int           @id @default(autoincrement())
+  image       String
   name        String        @unique
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
