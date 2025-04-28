@@ -1,10 +1,12 @@
 "use client";
 import { usePetPost } from "@/app/provider/PetPostProvider";
 import { ArrowRight, MapPin } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 /* eslint-disable @next/next/no-img-element */
 export const PetCards = () => {
   const { petPost } = usePetPost();
+  const router = useRouter();
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between w-full h-10 ">
@@ -24,6 +26,7 @@ export const PetCards = () => {
           }
           return (
             <div
+              onClick={() => router.push(`/homePage/${element.id.toString()}`)}
               key={index}
               className="w-2/7  f-fit p-1 border rounded-lg shadow-xl"
             >
