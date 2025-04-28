@@ -253,12 +253,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://hobby-place_owner:npg_o3P4vsLBCmiO@ep-morning-mouse-a4196prm-pooler.us-east-1.aws.neon.tech/hobby-place?sslmode=require"
       }
     }
   },
