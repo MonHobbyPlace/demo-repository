@@ -20,12 +20,11 @@ export const CategoryFilter = () => {
   const fetchInfo = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/hospital/General"
+        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/General`
       );
       console.log(response.data);
     } catch (error) {
       console.log(error);
-      
     }
   };
   return (

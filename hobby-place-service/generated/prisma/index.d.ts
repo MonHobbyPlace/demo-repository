@@ -3963,7 +3963,7 @@ export namespace Prisma {
     userId: number | null
     age: number | null
     petCategoryId: number | null
-    serviceId: number[]
+    serviceId: number | null
     cost: number | null
   }
 
@@ -3979,6 +3979,7 @@ export namespace Prisma {
     age: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
+    serviceId: number | null
     cost: number | null
   }
 
@@ -3994,6 +3995,7 @@ export namespace Prisma {
     age: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
+    serviceId: number | null
     cost: number | null
   }
 
@@ -4048,6 +4050,7 @@ export namespace Prisma {
     age?: true
     purpose?: true
     petCategoryId?: true
+    serviceId?: true
     cost?: true
   }
 
@@ -4063,6 +4066,7 @@ export namespace Prisma {
     age?: true
     purpose?: true
     petCategoryId?: true
+    serviceId?: true
     cost?: true
   }
 
@@ -4182,7 +4186,7 @@ export namespace Prisma {
     age: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
-    serviceId: number[]
+    serviceId: number
     cost: number
     skill: string[]
     _count: ServicePostCountAggregateOutputType | null
@@ -4319,7 +4323,7 @@ export namespace Prisma {
       age: number
       purpose: $Enums.PetPostEnum
       petCategoryId: number
-      serviceId: number[]
+      serviceId: number
       cost: number
       skill: string[]
     }, ExtArgs["result"]["servicePost"]>
@@ -4759,7 +4763,7 @@ export namespace Prisma {
     readonly age: FieldRef<"ServicePost", 'Int'>
     readonly purpose: FieldRef<"ServicePost", 'PetPostEnum'>
     readonly petCategoryId: FieldRef<"ServicePost", 'Int'>
-    readonly serviceId: FieldRef<"ServicePost", 'Int[]'>
+    readonly serviceId: FieldRef<"ServicePost", 'Int'>
     readonly cost: FieldRef<"ServicePost", 'Int'>
     readonly skill: FieldRef<"ServicePost", 'String[]'>
   }
@@ -9029,7 +9033,7 @@ export namespace Prisma {
     age?: IntFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"ServicePost"> | number
-    serviceId?: IntNullableListFilter<"ServicePost">
+    serviceId?: IntFilter<"ServicePost"> | number
     cost?: IntFilter<"ServicePost"> | number
     skill?: StringNullableListFilter<"ServicePost">
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -9072,7 +9076,7 @@ export namespace Prisma {
     age?: IntFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"ServicePost"> | number
-    serviceId?: IntNullableListFilter<"ServicePost">
+    serviceId?: IntFilter<"ServicePost"> | number
     cost?: IntFilter<"ServicePost"> | number
     skill?: StringNullableListFilter<"ServicePost">
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -9117,7 +9121,7 @@ export namespace Prisma {
     age?: IntWithAggregatesFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumWithAggregatesFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntWithAggregatesFilter<"ServicePost"> | number
-    serviceId?: IntNullableListFilter<"ServicePost">
+    serviceId?: IntWithAggregatesFilter<"ServicePost"> | number
     cost?: IntWithAggregatesFilter<"ServicePost"> | number
     skill?: StringNullableListFilter<"ServicePost">
   }
@@ -9583,7 +9587,7 @@ export namespace Prisma {
     age: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
-    serviceId?: ServicePostCreateserviceIdInput | number[]
+    serviceId: number
     cost: number
     skill?: ServicePostCreateskillInput | string[]
   }
@@ -9616,7 +9620,7 @@ export namespace Prisma {
     age?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
-    serviceId?: ServicePostUpdateserviceIdInput | number[]
+    serviceId?: IntFieldUpdateOperationsInput | number
     cost?: IntFieldUpdateOperationsInput | number
     skill?: ServicePostUpdateskillInput | string[]
   }
@@ -9633,7 +9637,7 @@ export namespace Prisma {
     age: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
-    serviceId?: ServicePostCreateserviceIdInput | number[]
+    serviceId: number
     cost: number
     skill?: ServicePostCreateskillInput | string[]
   }
@@ -9663,7 +9667,7 @@ export namespace Prisma {
     age?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
-    serviceId?: ServicePostUpdateserviceIdInput | number[]
+    serviceId?: IntFieldUpdateOperationsInput | number
     cost?: IntFieldUpdateOperationsInput | number
     skill?: ServicePostUpdateskillInput | string[]
   }
@@ -10242,14 +10246,6 @@ export namespace Prisma {
     _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
   }
 
-  export type IntNullableListFilter<$PrismaModel = never> = {
-    equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    has?: number | IntFieldRefInput<$PrismaModel> | null
-    hasEvery?: number[] | ListIntFieldRefInput<$PrismaModel>
-    hasSome?: number[] | ListIntFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
-  }
-
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -10302,6 +10298,7 @@ export namespace Prisma {
     age?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
     cost?: SortOrder
   }
 
@@ -10317,6 +10314,7 @@ export namespace Prisma {
     age?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
     cost?: SortOrder
   }
 
@@ -10625,10 +10623,6 @@ export namespace Prisma {
     connect?: ServiceCategoryWhereUniqueInput
   }
 
-  export type ServicePostCreateserviceIdInput = {
-    set: number[]
-  }
-
   export type ServicePostUpdateskillInput = {
     set?: string[]
     push?: string | string[]
@@ -10656,11 +10650,6 @@ export namespace Prisma {
     upsert?: ServiceCategoryUpsertWithoutServicePostInput
     connect?: ServiceCategoryWhereUniqueInput
     update?: XOR<XOR<ServiceCategoryUpdateToOneWithWhereWithoutServicePostInput, ServiceCategoryUpdateWithoutServicePostInput>, ServiceCategoryUncheckedUpdateWithoutServicePostInput>
-  }
-
-  export type ServicePostUpdateserviceIdInput = {
-    set?: number[]
-    push?: number | number[]
   }
 
   export type HospitalCreateavatarImageInput = {
@@ -11084,7 +11073,7 @@ export namespace Prisma {
     age: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
-    serviceId?: ServicePostCreateserviceIdInput | number[]
+    serviceId: number
     cost: number
     skill?: ServicePostCreateskillInput | string[]
   }
@@ -11169,7 +11158,7 @@ export namespace Prisma {
     age?: IntFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"ServicePost"> | number
-    serviceId?: IntNullableListFilter<"ServicePost">
+    serviceId?: IntFilter<"ServicePost"> | number
     cost?: IntFilter<"ServicePost"> | number
     skill?: StringNullableListFilter<"ServicePost">
   }
@@ -11517,7 +11506,7 @@ export namespace Prisma {
     userId: number
     age: number
     purpose: $Enums.PetPostEnum
-    serviceId?: ServicePostCreateserviceIdInput | number[]
+    serviceId: number
     cost: number
     skill?: ServicePostCreateskillInput | string[]
   }
@@ -11651,7 +11640,7 @@ export namespace Prisma {
     age: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
-    serviceId?: ServicePostCreateserviceIdInput | number[]
+    serviceId: number
     cost: number
     skill?: ServicePostCreateskillInput | string[]
   }
@@ -11738,7 +11727,7 @@ export namespace Prisma {
     age?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
-    serviceId?: ServicePostUpdateserviceIdInput | number[]
+    serviceId?: IntFieldUpdateOperationsInput | number
     cost?: IntFieldUpdateOperationsInput | number
     skill?: ServicePostUpdateskillInput | string[]
   }
@@ -11754,7 +11743,7 @@ export namespace Prisma {
     age?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
-    serviceId?: ServicePostUpdateserviceIdInput | number[]
+    serviceId?: IntFieldUpdateOperationsInput | number
     cost?: IntFieldUpdateOperationsInput | number
     skill?: ServicePostUpdateskillInput | string[]
   }
@@ -11789,7 +11778,7 @@ export namespace Prisma {
     userId: number
     age: number
     purpose: $Enums.PetPostEnum
-    serviceId?: ServicePostCreateserviceIdInput | number[]
+    serviceId: number
     cost: number
     skill?: ServicePostCreateskillInput | string[]
   }
@@ -11876,7 +11865,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
-    serviceId?: ServicePostUpdateserviceIdInput | number[]
+    serviceId?: IntFieldUpdateOperationsInput | number
     cost?: IntFieldUpdateOperationsInput | number
     skill?: ServicePostUpdateskillInput | string[]
   }
@@ -11892,7 +11881,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
-    serviceId?: ServicePostUpdateserviceIdInput | number[]
+    serviceId?: IntFieldUpdateOperationsInput | number
     cost?: IntFieldUpdateOperationsInput | number
     skill?: ServicePostUpdateskillInput | string[]
   }

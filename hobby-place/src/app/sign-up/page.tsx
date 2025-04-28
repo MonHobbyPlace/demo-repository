@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -45,7 +46,10 @@ export default function SignUp() {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:4000/users", user);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users`,
+        user
+      );
       localStorage.setItem("token", response.data.token);
       toast.success("Account created successfully!");
       router.push("/login");
