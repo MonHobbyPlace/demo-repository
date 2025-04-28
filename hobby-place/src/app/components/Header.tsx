@@ -16,7 +16,7 @@ export const Header = () => {
     console.log(value);
 
     const response = await axios.get(
-      `http://localhost:4000/petPost/search/${value}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/search/${value}`
     );
     console.log(response.data);
   };
