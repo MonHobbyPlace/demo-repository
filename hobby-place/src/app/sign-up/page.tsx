@@ -64,6 +64,7 @@ export default function SignUp() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/cat.jpg')] bg-cover bg-center gap-6 px-4 py-6">
       <button
         onClick={() => router.push("/login")}
@@ -83,52 +84,106 @@ export default function SignUp() {
         Log in
 >>>>>>> fe0ed1c (button sign up login)
       </button>
+=======
+    // bg-[url('/cat.jpg')]
+    <div className="relative h-screen w-screen  bg-[#b2e0da] bg-cover bg-center overflow-hidden">
+      {/* Decorative Images */}
+      <img
+        src="/dog5.jpg"
+        alt="Decor 1"
+        className="absolute top-5 left-10 w-48 h-48 rotate-12 animate-[wiggle_6s_ease-in-out_infinite] rounded-full"
+      />
+      <img
+        src="/dog2.jpg"
+        alt="Decor 2"
+        className="absolute top-20 right-8 w-16 h-16 -rotate-8 animate-[wiggle_4s_ease-in-out_infinite] rounded-full"
+      />
+      <img
+        src="/dog3.jpg"
+        alt="Decor 3"
+        className="absolute bottom-40 right-32 w-36 h-36 rotate-10 animate-[float_5s_ease-in-out_infinite] rounded-full"
+      />
+      <img
+        src="/dog4.jpg"
+        alt="Decor 4"
+        className="absolute bottom-10 left-12 w-24 h-24 rotate-18 animate-[wiggle_5s_ease-in-out_infinite] rounded-full"
+      />
+      <img
+        src="/dog1.jpg"
+        alt="Decor 5"
+        className="absolute bottom-8 right-6 w-20 h-20 -rotate-15 animate-[wiggle_4s_ease-in-out_infinite] rounded-full"
+      />
+>>>>>>> cb710a6 (login sign up)
 
-      <h1 className="text-3xl font-bold text-white text-center">Sign Up</h1>
+      {/* Main Content */}
+      <div className="flex flex-col items-center justify-center gap-6 h-full w-full px-4 py-6">
+        {/* Navigation Buttons */}
+        <button
+          onClick={() => router.push("/")}
+          className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
+        >
+          Back
+        </button>
+        <button
+          onClick={() => router.push("/login")}
+          className="absolute top-6 right-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
+        >
+          Log in
+        </button>
 
-      <div className="flex flex-col items-center gap-4 w-full max-w-sm">
-        <input
-          name="username"
-          placeholder="Username"
-          value={user.username}
-          onChange={handleChange}
-          className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          value={user.email}
-          onChange={handleChange}
-          className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <div className="relative w-full">
+        {/* Heading */}
+        <h1 className="text-3xl font-bold text-white text-center">Sign Up</h1>
+
+        {/* Form */}
+        <div className="flex flex-col items-center gap-4 w-full max-w-sm">
+          {/* Username */}
           <input
-            name="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={user.password}
+            name="username"
+            placeholder="Username"
+            value={user.username}
             onChange={handleChange}
             className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {/* Email */}
+          <input
+            name="email"
+            placeholder="Email"
+            value={user.email}
+            onChange={handleChange}
+            className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {/* Password with toggle */}
+          <div className="relative w-full">
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={user.password}
+              onChange={handleChange}
+              className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+            >
+              {showPassword ? (
+                <EyeOff size={20} className="text-blue-500" />
+              ) : (
+                <Eye size={20} className="text-blue-500" />
+              )}
+            </button>
+          </div>
+
+          {/* Submit Button */}
           <button
-            type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+            onClick={handleSignUp}
+            disabled={loading}
+            className="text-white font-semibold rounded-lg w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none backdrop-blur-[8px]"
           >
-            {showPassword ? (
-              <EyeOff size={20} className="text-[blue]" />
-            ) : (
-              <Eye size={20} className="text-[blue]" />
-            )}
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
         </div>
-        <button
-          onClick={handleSignUp}
-          disabled={loading}
-          className="bg-[#4f8541] text-white font-semibold rounded-lg hover:bg-green-700 w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
-        >
-          {loading ? "Signing Up..." : "Sign Up"}
-        </button>
       </div>
     </div>
   );

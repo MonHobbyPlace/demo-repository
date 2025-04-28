@@ -18,7 +18,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-blue-600 text-white">
+    <div className="w-screen h-screen flex items-center justify-center bg-blue-900 text-white">
       <div className="text-center">
         <h1 className="text-3xl font-bold">Welcome to Pet Adoption</h1>
         <p className="mt-4 text-lg">Ready to find your furry friend?</p>

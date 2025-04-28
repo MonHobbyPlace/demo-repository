@@ -10,9 +10,9 @@ export default function OnboardingTwo() {
           homeless animals.
         </p>
         <img
-          src="/comm.png"
+          src="/fam-dog.jpg"
           alt="Help"
-          className="mt-6 w-48 h-48 object-contain mx-auto"
+          className="mt-6 w-full h-48 object-fill mx-auto rounded-[8px]"
         />
       </div>
     </div>

@@ -18,9 +18,9 @@ export default function OnboardingOne() {
           loving home.
         </p>
         <img
-          src="/comm.png"
+          src="/friend.jpg"
           alt="Adopt"
-          className="mt-6 w-48 h-48 object-contain mx-auto"
+          className="mt-6 w-full h-48 object-fill mx-auto rounded-[8px]"
         />
       </div>
     </div>
