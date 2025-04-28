@@ -1,24 +1,41 @@
 "use client";
 import { usePetPost } from "@/app/provider/PetPostProvider";
+import { ChevronLeft, MapPin } from "lucide-react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+/* eslint-disable @next/next/no-img-element */
 
 const PetCardId = () => {
   const { id } = useParams();
   const { setPetPostForId, petPostId } = usePetPost();
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   useEffect(() => {
     setPetPostForId(Number(id));
   }, [id]);
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const shortText = petPostId?.about?.slice(0, 150);
+
   return (
     <div className="relative min-h-screen bg-gray-100">
-      <div className="h-[45vh] overflow-hidden">
+      <div className="h-[45vh] overflow-hidden relative">
         <img
           src={petPostId?.image}
           alt={petPostId?.petName || "Pet image"}
           className="w-full h-full object-cover"
         />
+        <Link
+          className="absolute top-4 left-4 bg-white p-2 rounded-full shadow-lg cursor-pointer"
+          href={"/homePage"}
+        >
+          <ChevronLeft size={24} className="text-gray-800" />
+        </Link>
       </div>
 
       <div className="w-full bg-white p-6 rounded-t-[40px] shadow-2xl absolute top-[35vh] left-0 z-10">
@@ -31,15 +48,10 @@ const PetCardId = () => {
           </span>
         </div>
 
-        <p className="text-sm text-gray-600 mb-4">{petPostId?.about}</p>
-
         <div className="grid grid-cols-4 gap-2 text-xs">
           <AttributeCard label="Age" value={petPostId?.age} />
           <AttributeCard label="Sex" value={petPostId?.gender} />
-          <AttributeCard
-            label="Breed"
-            value={petPostId?.breed?.split(" ")[0]}
-          />
+          <AttributeCard label="Breed" value={petPostId?.breed} />
           <AttributeCard label="Size" value={petPostId?.size} />
         </div>
 
@@ -47,9 +59,37 @@ const PetCardId = () => {
           <div className="absolute left-4 w-14 h-14 rounded-full bg-gray-300 shadow-inner" />
           <div className="w-[85%] bg-blue-500 text-white py-4 px-5 rounded-2xl shadow-lg">
             <div className="text-sm font-semibold">UserName is here</div>
-            <div className="text-xs">{petPostId?.address}</div>
+            <div className="flex items-center mt-1">
+              <MapPin size={12} />
+              <div className="text-xs">{petPostId?.address}</div>
+            </div>
           </div>
         </div>
+
+        <div className="flex flex-col mt-4">
+          <p className="text-sm text-gray-600 mb-2">
+            {isExpanded
+              ? petPostId?.about
+              : `${shortText}${petPostId?.about?.length > 150 ? "..." : ""}`}
+          </p>
+
+          {petPostId?.about?.length > 150 && (
+            <button
+              onClick={toggleExpand}
+              className="text-blue-500 text-sm hover:underline self-end"
+            >
+              {isExpanded ? "See Less" : "See More"}
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between mt-4 w-full bg-amber-200">
+          <video className="w-full" src="" />
+        </div>
+
+        <button className="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 shadow-lg hover:bg-blue-700 transition duration-200">
+          Adopt Me
+        </button>
       </div>
     </div>
   );
