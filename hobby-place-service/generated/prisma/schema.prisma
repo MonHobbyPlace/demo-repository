@@ -64,7 +64,7 @@ model ServicePost {
   purpose         PetPostEnum
   petCategoryId   Int
   serviceCategory ServiceCategory @relation(fields: [serviceId], references: [id])
-  serviceId       Int[]
+  serviceId       Int
   cost            Int
   skill           String[]
 }
