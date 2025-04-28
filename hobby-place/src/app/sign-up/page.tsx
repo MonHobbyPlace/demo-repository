@@ -4,7 +4,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { ChevronRight, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -61,45 +61,15 @@ export default function SignUp() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/cat.jpg')] bg-cover bg-center gap-6 px-4 py-6">
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-center gap-6 px-4  text-black">
       <button
         onClick={() => router.push("/login")}
         className="absolute top-6 right-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
       >
         Log in
-        <ChevronRight size={28} />
       </button>
-      <div className="relative h-screen w-screen  bg-[#b2e0da] bg-cover bg-center overflow-hidden">
-        {/* Decorative Images */}
-        <img
-          src="/dog5.jpg"
-          alt="Decor 1"
-          className="absolute top-5 left-10 w-48 h-48 rotate-12 animate-[wiggle_6s_ease-in-out_infinite] rounded-full"
-        />
-        <img
-          src="/dog2.jpg"
-          alt="Decor 2"
-          className="absolute top-20 right-8 w-16 h-16 -rotate-8 animate-[wiggle_4s_ease-in-out_infinite] rounded-full"
-        />
-        <img
-          src="/dog3.jpg"
-          alt="Decor 3"
-          className="absolute bottom-40 right-32 w-36 h-36 rotate-10 animate-[float_5s_ease-in-out_infinite] rounded-full"
-        />
-        <img
-          src="/dog4.jpg"
-          alt="Decor 4"
-          className="absolute bottom-10 left-12 w-24 h-24 rotate-18 animate-[wiggle_5s_ease-in-out_infinite] rounded-full"
-        />
-        <img
-          src="/dog1.jpg"
-          alt="Decor 5"
-          className="absolute bottom-8 right-6 w-20 h-20 -rotate-15 animate-[wiggle_4s_ease-in-out_infinite] rounded-full"
-        />
-
-        {/* Main Content */}
+      <div className="relative h-screen w-screen  bg-blue-400 bg-cover bg-center overflow-hidden">
         <div className="flex flex-col items-center justify-center gap-6 h-full w-full px-4 py-6">
-          {/* Navigation Buttons */}
           <button
             onClick={() => router.push("/")}
             className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"

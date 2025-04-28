@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { Search } from "lucide-react";
 import { ChangeEvent, useState } from "react";
