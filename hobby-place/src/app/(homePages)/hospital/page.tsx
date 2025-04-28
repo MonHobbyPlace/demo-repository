@@ -1,5 +1,4 @@
 import { TopRated } from "./_components/TopRated";
-import { AllHospitals } from "./_features/AllHospitals";
 import { CategoryFilter } from "./_features/CategoryFilter";
 
 export default function Home() {
@@ -8,7 +7,6 @@ export default function Home() {
       <p className="text-[#213555] font-bold text-xl">Top rated Hospitals</p>
       <TopRated />
       <CategoryFilter />
-      <AllHospitals />
     </div>
   );
 }

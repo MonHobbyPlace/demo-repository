@@ -24,7 +24,7 @@ export const getByCategory = async (req: Request, res: Response) => {
       where: whereClause,
     });
 
-    res.status(200).json({ data: hospitals });
+    res.status(200).json(hospitals);
   } catch (error) {
     console.error(error);
     res.status(500).json({

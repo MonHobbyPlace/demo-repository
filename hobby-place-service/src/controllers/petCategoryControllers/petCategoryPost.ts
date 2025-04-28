@@ -2,11 +2,12 @@ import { Request, Response } from "express";
 import prisma from "../../prismaClient";
 
 export const petCategoryPost = async (req: Request, res: Response) => {
-  const { name } = req.body;
+  const { name, image } = req.body;
   try {
     const categoryPost = await prisma.petCategory.create({
       data: {
         name: name,
+        image: image,
       },
     });
     res.status(201).json({

@@ -38,6 +38,11 @@ export type Hospital = $Result.DefaultSelection<Prisma.$HospitalPayload>
  * 
  */
 export type PetCategory = $Result.DefaultSelection<Prisma.$PetCategoryPayload>
+/**
+ * Model ServiceCategory
+ * 
+ */
+export type ServiceCategory = $Result.DefaultSelection<Prisma.$ServiceCategoryPayload>
 
 /**
  * Enums
@@ -267,6 +272,16 @@ export class PrismaClient<
     * ```
     */
   get petCategory(): Prisma.PetCategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serviceCategory`: Exposes CRUD operations for the **ServiceCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceCategories
+    * const serviceCategories = await prisma.serviceCategory.findMany()
+    * ```
+    */
+  get serviceCategory(): Prisma.ServiceCategoryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -711,7 +726,8 @@ export namespace Prisma {
     PetPost: 'PetPost',
     ServicePost: 'ServicePost',
     Hospital: 'Hospital',
-    PetCategory: 'PetCategory'
+    PetCategory: 'PetCategory',
+    ServiceCategory: 'ServiceCategory'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -730,7 +746,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "petPost" | "servicePost" | "hospital" | "petCategory"
+      modelProps: "user" | "petPost" | "servicePost" | "hospital" | "petCategory" | "serviceCategory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1104,6 +1120,80 @@ export namespace Prisma {
           }
         }
       }
+      ServiceCategory: {
+        payload: Prisma.$ServiceCategoryPayload<ExtArgs>
+        fields: Prisma.ServiceCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServiceCategoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[]
+          }
+          delete: {
+            args: Prisma.ServiceCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          update: {
+            args: Prisma.ServiceCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ServiceCategoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.ServiceCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceCategory>
+          }
+          groupBy: {
+            args: Prisma.ServiceCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceCategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServiceCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceCategoryCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1193,6 +1283,7 @@ export namespace Prisma {
     servicePost?: ServicePostOmit
     hospital?: HospitalOmit
     petCategory?: PetCategoryOmit
+    serviceCategory?: ServiceCategoryOmit
   }
 
   /* Types for Logging */
@@ -1358,6 +1449,37 @@ export namespace Prisma {
    * PetCategoryCountOutputType without action
    */
   export type PetCategoryCountOutputTypeCountServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServicePostWhereInput
+  }
+
+
+  /**
+   * Count Type ServiceCategoryCountOutputType
+   */
+
+  export type ServiceCategoryCountOutputType = {
+    ServicePost: number
+  }
+
+  export type ServiceCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ServicePost?: boolean | ServiceCategoryCountOutputTypeCountServicePostArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategoryCountOutputType
+     */
+    select?: ServiceCategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServiceCategoryCountOutputType without action
+   */
+  export type ServiceCategoryCountOutputTypeCountServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ServicePostWhereInput
   }
 
@@ -2584,6 +2706,7 @@ export namespace Prisma {
     price: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
+    video: string | null
   }
 
   export type PetPostMaxAggregateOutputType = {
@@ -2603,6 +2726,7 @@ export namespace Prisma {
     price: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
+    video: string | null
   }
 
   export type PetPostCountAggregateOutputType = {
@@ -2622,6 +2746,7 @@ export namespace Prisma {
     price: number
     purpose: number
     petCategoryId: number
+    video: number
     _all: number
   }
 
@@ -2661,6 +2786,7 @@ export namespace Prisma {
     price?: true
     purpose?: true
     petCategoryId?: true
+    video?: true
   }
 
   export type PetPostMaxAggregateInputType = {
@@ -2680,6 +2806,7 @@ export namespace Prisma {
     price?: true
     purpose?: true
     petCategoryId?: true
+    video?: true
   }
 
   export type PetPostCountAggregateInputType = {
@@ -2699,6 +2826,7 @@ export namespace Prisma {
     price?: true
     purpose?: true
     petCategoryId?: true
+    video?: true
     _all?: true
   }
 
@@ -2805,6 +2933,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    video: string
     _count: PetPostCountAggregateOutputType | null
     _avg: PetPostAvgAggregateOutputType | null
     _sum: PetPostSumAggregateOutputType | null
@@ -2843,6 +2972,7 @@ export namespace Prisma {
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    video?: boolean
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petPost"]>
@@ -2864,6 +2994,7 @@ export namespace Prisma {
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    video?: boolean
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petPost"]>
@@ -2885,6 +3016,7 @@ export namespace Prisma {
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    video?: boolean
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petPost"]>
@@ -2906,9 +3038,10 @@ export namespace Prisma {
     price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    video?: boolean
   }
 
-  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "breed" | "size" | "gender" | "price" | "purpose" | "petCategoryId", ExtArgs["result"]["petPost"]>
+  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "breed" | "size" | "gender" | "price" | "purpose" | "petCategoryId" | "video", ExtArgs["result"]["petPost"]>
   export type PetPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
@@ -2945,6 +3078,7 @@ export namespace Prisma {
       price: number
       purpose: $Enums.PetPostEnum
       petCategoryId: number
+      video: string
     }, ExtArgs["result"]["petPost"]>
     composites: {}
   }
@@ -3386,6 +3520,7 @@ export namespace Prisma {
     readonly price: FieldRef<"PetPost", 'Int'>
     readonly purpose: FieldRef<"PetPost", 'PetPostEnum'>
     readonly petCategoryId: FieldRef<"PetPost", 'Int'>
+    readonly video: FieldRef<"PetPost", 'String'>
   }
     
 
@@ -3817,8 +3952,9 @@ export namespace Prisma {
     phoneNumber: number | null
     userId: number | null
     age: number | null
-    price: number | null
     petCategoryId: number | null
+    serviceId: number | null
+    cost: number | null
   }
 
   export type ServicePostSumAggregateOutputType = {
@@ -3826,13 +3962,13 @@ export namespace Prisma {
     phoneNumber: number | null
     userId: number | null
     age: number | null
-    price: number | null
     petCategoryId: number | null
+    serviceId: number | null
+    cost: number | null
   }
 
   export type ServicePostMinAggregateOutputType = {
     id: number | null
-    petName: string | null
     address: string | null
     about: string | null
     image: string | null
@@ -3841,14 +3977,14 @@ export namespace Prisma {
     updatedAt: Date | null
     userId: number | null
     age: number | null
-    price: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
+    serviceId: number | null
+    cost: number | null
   }
 
   export type ServicePostMaxAggregateOutputType = {
     id: number | null
-    petName: string | null
     address: string | null
     about: string | null
     image: string | null
@@ -3857,14 +3993,14 @@ export namespace Prisma {
     updatedAt: Date | null
     userId: number | null
     age: number | null
-    price: number | null
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
+    serviceId: number | null
+    cost: number | null
   }
 
   export type ServicePostCountAggregateOutputType = {
     id: number
-    petName: number
     address: number
     about: number
     image: number
@@ -3873,9 +4009,11 @@ export namespace Prisma {
     updatedAt: number
     userId: number
     age: number
-    price: number
     purpose: number
     petCategoryId: number
+    serviceId: number
+    cost: number
+    skill: number
     _all: number
   }
 
@@ -3885,8 +4023,9 @@ export namespace Prisma {
     phoneNumber?: true
     userId?: true
     age?: true
-    price?: true
     petCategoryId?: true
+    serviceId?: true
+    cost?: true
   }
 
   export type ServicePostSumAggregateInputType = {
@@ -3894,13 +4033,13 @@ export namespace Prisma {
     phoneNumber?: true
     userId?: true
     age?: true
-    price?: true
     petCategoryId?: true
+    serviceId?: true
+    cost?: true
   }
 
   export type ServicePostMinAggregateInputType = {
     id?: true
-    petName?: true
     address?: true
     about?: true
     image?: true
@@ -3909,14 +4048,14 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     age?: true
-    price?: true
     purpose?: true
     petCategoryId?: true
+    serviceId?: true
+    cost?: true
   }
 
   export type ServicePostMaxAggregateInputType = {
     id?: true
-    petName?: true
     address?: true
     about?: true
     image?: true
@@ -3925,14 +4064,14 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     age?: true
-    price?: true
     purpose?: true
     petCategoryId?: true
+    serviceId?: true
+    cost?: true
   }
 
   export type ServicePostCountAggregateInputType = {
     id?: true
-    petName?: true
     address?: true
     about?: true
     image?: true
@@ -3941,9 +4080,11 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     age?: true
-    price?: true
     purpose?: true
     petCategoryId?: true
+    serviceId?: true
+    cost?: true
+    skill?: true
     _all?: true
   }
 
@@ -4035,7 +4176,6 @@ export namespace Prisma {
 
   export type ServicePostGroupByOutputType = {
     id: number
-    petName: string
     address: string
     about: string
     image: string
@@ -4044,9 +4184,11 @@ export namespace Prisma {
     updatedAt: Date
     userId: number
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    serviceId: number
+    cost: number
+    skill: string[]
     _count: ServicePostCountAggregateOutputType | null
     _avg: ServicePostAvgAggregateOutputType | null
     _sum: ServicePostSumAggregateOutputType | null
@@ -4070,7 +4212,6 @@ export namespace Prisma {
 
   export type ServicePostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    petName?: boolean
     address?: boolean
     about?: boolean
     image?: boolean
@@ -4079,16 +4220,18 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
-    price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    serviceId?: boolean
+    cost?: boolean
+    skill?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    serviceCategory?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicePost"]>
 
   export type ServicePostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    petName?: boolean
     address?: boolean
     about?: boolean
     image?: boolean
@@ -4097,16 +4240,18 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
-    price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    serviceId?: boolean
+    cost?: boolean
+    skill?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    serviceCategory?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicePost"]>
 
   export type ServicePostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    petName?: boolean
     address?: boolean
     about?: boolean
     image?: boolean
@@ -4115,16 +4260,18 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
-    price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    serviceId?: boolean
+    cost?: boolean
+    skill?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    serviceCategory?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicePost"]>
 
   export type ServicePostSelectScalar = {
     id?: boolean
-    petName?: boolean
     address?: boolean
     about?: boolean
     image?: boolean
@@ -4133,23 +4280,28 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     age?: boolean
-    price?: boolean
     purpose?: boolean
     petCategoryId?: boolean
+    serviceId?: boolean
+    cost?: boolean
+    skill?: boolean
   }
 
-  export type ServicePostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "price" | "purpose" | "petCategoryId", ExtArgs["result"]["servicePost"]>
+  export type ServicePostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "purpose" | "petCategoryId" | "serviceId" | "cost" | "skill", ExtArgs["result"]["servicePost"]>
   export type ServicePostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    serviceCategory?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
   }
   export type ServicePostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    serviceCategory?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
   }
   export type ServicePostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
+    serviceCategory?: boolean | ServiceCategoryDefaultArgs<ExtArgs>
   }
 
   export type $ServicePostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4157,10 +4309,10 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       category: Prisma.$PetCategoryPayload<ExtArgs>
+      serviceCategory: Prisma.$ServiceCategoryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      petName: string
       address: string
       about: string
       image: string
@@ -4169,9 +4321,11 @@ export namespace Prisma {
       updatedAt: Date
       userId: number
       age: number
-      price: number
       purpose: $Enums.PetPostEnum
       petCategoryId: number
+      serviceId: number
+      cost: number
+      skill: string[]
     }, ExtArgs["result"]["servicePost"]>
     composites: {}
   }
@@ -4568,6 +4722,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     category<T extends PetCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PetCategoryDefaultArgs<ExtArgs>>): Prisma__PetCategoryClient<$Result.GetResult<Prisma.$PetCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    serviceCategory<T extends ServiceCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryDefaultArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4598,7 +4753,6 @@ export namespace Prisma {
    */
   interface ServicePostFieldRefs {
     readonly id: FieldRef<"ServicePost", 'Int'>
-    readonly petName: FieldRef<"ServicePost", 'String'>
     readonly address: FieldRef<"ServicePost", 'String'>
     readonly about: FieldRef<"ServicePost", 'String'>
     readonly image: FieldRef<"ServicePost", 'String'>
@@ -4607,9 +4761,11 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"ServicePost", 'DateTime'>
     readonly userId: FieldRef<"ServicePost", 'Int'>
     readonly age: FieldRef<"ServicePost", 'Int'>
-    readonly price: FieldRef<"ServicePost", 'Int'>
     readonly purpose: FieldRef<"ServicePost", 'PetPostEnum'>
     readonly petCategoryId: FieldRef<"ServicePost", 'Int'>
+    readonly serviceId: FieldRef<"ServicePost", 'Int'>
+    readonly cost: FieldRef<"ServicePost", 'Int'>
+    readonly skill: FieldRef<"ServicePost", 'String[]'>
   }
     
 
@@ -5038,44 +5194,46 @@ export namespace Prisma {
 
   export type HospitalAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
+    rating: number | null
     phoneNumber: number | null
+    views: number | null
   }
 
   export type HospitalSumAggregateOutputType = {
     id: number | null
-    userId: number | null
+    rating: number | null
     phoneNumber: number | null
+    views: number | null
   }
 
   export type HospitalMinAggregateOutputType = {
     id: number | null
     name: string | null
     about: string | null
-    avatarImage: string | null
     email: string | null
     backgroundImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: number | null
+    rating: number | null
     location: string | null
     phoneNumber: number | null
     workTime: string | null
+    views: number | null
   }
 
   export type HospitalMaxAggregateOutputType = {
     id: number | null
     name: string | null
     about: string | null
-    avatarImage: string | null
     email: string | null
     backgroundImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: number | null
+    rating: number | null
     location: string | null
     phoneNumber: number | null
     workTime: string | null
+    views: number | null
   }
 
   export type HospitalCountAggregateOutputType = {
@@ -5087,55 +5245,58 @@ export namespace Prisma {
     backgroundImage: number
     createdAt: number
     updatedAt: number
-    userId: number
+    rating: number
     location: number
     phoneNumber: number
     workTime: number
     category: number
+    views: number
     _all: number
   }
 
 
   export type HospitalAvgAggregateInputType = {
     id?: true
-    userId?: true
+    rating?: true
     phoneNumber?: true
+    views?: true
   }
 
   export type HospitalSumAggregateInputType = {
     id?: true
-    userId?: true
+    rating?: true
     phoneNumber?: true
+    views?: true
   }
 
   export type HospitalMinAggregateInputType = {
     id?: true
     name?: true
     about?: true
-    avatarImage?: true
     email?: true
     backgroundImage?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
+    rating?: true
     location?: true
     phoneNumber?: true
     workTime?: true
+    views?: true
   }
 
   export type HospitalMaxAggregateInputType = {
     id?: true
     name?: true
     about?: true
-    avatarImage?: true
     email?: true
     backgroundImage?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
+    rating?: true
     location?: true
     phoneNumber?: true
     workTime?: true
+    views?: true
   }
 
   export type HospitalCountAggregateInputType = {
@@ -5147,11 +5308,12 @@ export namespace Prisma {
     backgroundImage?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
+    rating?: true
     location?: true
     phoneNumber?: true
     workTime?: true
     category?: true
+    views?: true
     _all?: true
   }
 
@@ -5245,16 +5407,17 @@ export namespace Prisma {
     id: number
     name: string
     about: string
-    avatarImage: string
+    avatarImage: string[]
     email: string
-    backgroundImage: string | null
+    backgroundImage: string
     createdAt: Date
     updatedAt: Date
-    userId: number | null
+    rating: number
     location: string
     phoneNumber: number
     workTime: string
     category: string[]
+    views: number
     _count: HospitalCountAggregateOutputType | null
     _avg: HospitalAvgAggregateOutputType | null
     _sum: HospitalSumAggregateOutputType | null
@@ -5285,11 +5448,12 @@ export namespace Prisma {
     backgroundImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
+    rating?: boolean
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
+    views?: boolean
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5301,11 +5465,12 @@ export namespace Prisma {
     backgroundImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
+    rating?: boolean
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
+    views?: boolean
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5317,11 +5482,12 @@ export namespace Prisma {
     backgroundImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
+    rating?: boolean
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
+    views?: boolean
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectScalar = {
@@ -5333,14 +5499,15 @@ export namespace Prisma {
     backgroundImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
+    rating?: boolean
     location?: boolean
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
+    views?: boolean
   }
 
-  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "userId" | "location" | "phoneNumber" | "workTime" | "category", ExtArgs["result"]["hospital"]>
+  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "rating" | "location" | "phoneNumber" | "workTime" | "category" | "views", ExtArgs["result"]["hospital"]>
 
   export type $HospitalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Hospital"
@@ -5349,16 +5516,17 @@ export namespace Prisma {
       id: number
       name: string
       about: string
-      avatarImage: string
+      avatarImage: string[]
       email: string
-      backgroundImage: string | null
+      backgroundImage: string
       createdAt: Date
       updatedAt: Date
-      userId: number | null
+      rating: number
       location: string
       phoneNumber: number
       workTime: string
       category: string[]
+      views: number
     }, ExtArgs["result"]["hospital"]>
     composites: {}
   }
@@ -5785,16 +5953,17 @@ export namespace Prisma {
     readonly id: FieldRef<"Hospital", 'Int'>
     readonly name: FieldRef<"Hospital", 'String'>
     readonly about: FieldRef<"Hospital", 'String'>
-    readonly avatarImage: FieldRef<"Hospital", 'String'>
+    readonly avatarImage: FieldRef<"Hospital", 'String[]'>
     readonly email: FieldRef<"Hospital", 'String'>
     readonly backgroundImage: FieldRef<"Hospital", 'String'>
     readonly createdAt: FieldRef<"Hospital", 'DateTime'>
     readonly updatedAt: FieldRef<"Hospital", 'DateTime'>
-    readonly userId: FieldRef<"Hospital", 'Int'>
+    readonly rating: FieldRef<"Hospital", 'Int'>
     readonly location: FieldRef<"Hospital", 'String'>
     readonly phoneNumber: FieldRef<"Hospital", 'Int'>
     readonly workTime: FieldRef<"Hospital", 'String'>
     readonly category: FieldRef<"Hospital", 'String[]'>
+    readonly views: FieldRef<"Hospital", 'Int'>
   }
     
 
@@ -6183,6 +6352,7 @@ export namespace Prisma {
 
   export type PetCategoryMinAggregateOutputType = {
     id: number | null
+    image: string | null
     name: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6190,6 +6360,7 @@ export namespace Prisma {
 
   export type PetCategoryMaxAggregateOutputType = {
     id: number | null
+    image: string | null
     name: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6197,6 +6368,7 @@ export namespace Prisma {
 
   export type PetCategoryCountAggregateOutputType = {
     id: number
+    image: number
     name: number
     createdAt: number
     updatedAt: number
@@ -6214,6 +6386,7 @@ export namespace Prisma {
 
   export type PetCategoryMinAggregateInputType = {
     id?: true
+    image?: true
     name?: true
     createdAt?: true
     updatedAt?: true
@@ -6221,6 +6394,7 @@ export namespace Prisma {
 
   export type PetCategoryMaxAggregateInputType = {
     id?: true
+    image?: true
     name?: true
     createdAt?: true
     updatedAt?: true
@@ -6228,6 +6402,7 @@ export namespace Prisma {
 
   export type PetCategoryCountAggregateInputType = {
     id?: true
+    image?: true
     name?: true
     createdAt?: true
     updatedAt?: true
@@ -6322,6 +6497,7 @@ export namespace Prisma {
 
   export type PetCategoryGroupByOutputType = {
     id: number
+    image: string
     name: string
     createdAt: Date
     updatedAt: Date
@@ -6348,6 +6524,7 @@ export namespace Prisma {
 
   export type PetCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    image?: boolean
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6358,6 +6535,7 @@ export namespace Prisma {
 
   export type PetCategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    image?: boolean
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6365,6 +6543,7 @@ export namespace Prisma {
 
   export type PetCategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    image?: boolean
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6372,12 +6551,13 @@ export namespace Prisma {
 
   export type PetCategorySelectScalar = {
     id?: boolean
+    image?: boolean
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PetCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["petCategory"]>
+  export type PetCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "image" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["petCategory"]>
   export type PetCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | PetCategory$PetPostArgs<ExtArgs>
     ServicePost?: boolean | PetCategory$ServicePostArgs<ExtArgs>
@@ -6394,6 +6574,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      image: string
       name: string
       createdAt: Date
       updatedAt: Date
@@ -6823,6 +7004,7 @@ export namespace Prisma {
    */
   interface PetCategoryFieldRefs {
     readonly id: FieldRef<"PetCategory", 'Int'>
+    readonly image: FieldRef<"PetCategory", 'String'>
     readonly name: FieldRef<"PetCategory", 'String'>
     readonly createdAt: FieldRef<"PetCategory", 'DateTime'>
     readonly updatedAt: FieldRef<"PetCategory", 'DateTime'>
@@ -7281,6 +7463,1110 @@ export namespace Prisma {
 
 
   /**
+   * Model ServiceCategory
+   */
+
+  export type AggregateServiceCategory = {
+    _count: ServiceCategoryCountAggregateOutputType | null
+    _avg: ServiceCategoryAvgAggregateOutputType | null
+    _sum: ServiceCategorySumAggregateOutputType | null
+    _min: ServiceCategoryMinAggregateOutputType | null
+    _max: ServiceCategoryMaxAggregateOutputType | null
+  }
+
+  export type ServiceCategoryAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ServiceCategorySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ServiceCategoryMinAggregateOutputType = {
+    id: number | null
+    image: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ServiceCategoryMaxAggregateOutputType = {
+    id: number | null
+    image: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ServiceCategoryCountAggregateOutputType = {
+    id: number
+    image: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ServiceCategoryAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ServiceCategorySumAggregateInputType = {
+    id?: true
+  }
+
+  export type ServiceCategoryMinAggregateInputType = {
+    id?: true
+    image?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ServiceCategoryMaxAggregateInputType = {
+    id?: true
+    image?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ServiceCategoryCountAggregateInputType = {
+    id?: true
+    image?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ServiceCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceCategory to aggregate.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceCategories
+    **/
+    _count?: true | ServiceCategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ServiceCategoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServiceCategorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceCategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceCategoryMaxAggregateInputType
+  }
+
+  export type GetServiceCategoryAggregateType<T extends ServiceCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceCategory[P]>
+      : GetScalarType<T[P], AggregateServiceCategory[P]>
+  }
+
+
+
+
+  export type ServiceCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceCategoryWhereInput
+    orderBy?: ServiceCategoryOrderByWithAggregationInput | ServiceCategoryOrderByWithAggregationInput[]
+    by: ServiceCategoryScalarFieldEnum[] | ServiceCategoryScalarFieldEnum
+    having?: ServiceCategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceCategoryCountAggregateInputType | true
+    _avg?: ServiceCategoryAvgAggregateInputType
+    _sum?: ServiceCategorySumAggregateInputType
+    _min?: ServiceCategoryMinAggregateInputType
+    _max?: ServiceCategoryMaxAggregateInputType
+  }
+
+  export type ServiceCategoryGroupByOutputType = {
+    id: number
+    image: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ServiceCategoryCountAggregateOutputType | null
+    _avg: ServiceCategoryAvgAggregateOutputType | null
+    _sum: ServiceCategorySumAggregateOutputType | null
+    _min: ServiceCategoryMinAggregateOutputType | null
+    _max: ServiceCategoryMaxAggregateOutputType | null
+  }
+
+  type GetServiceCategoryGroupByPayload<T extends ServiceCategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceCategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceCategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ServicePost?: boolean | ServiceCategory$ServicePostArgs<ExtArgs>
+    _count?: boolean | ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["serviceCategory"]>
+
+  export type ServiceCategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["serviceCategory"]>
+
+  export type ServiceCategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["serviceCategory"]>
+
+  export type ServiceCategorySelectScalar = {
+    id?: boolean
+    image?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ServiceCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "image" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["serviceCategory"]>
+  export type ServiceCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ServicePost?: boolean | ServiceCategory$ServicePostArgs<ExtArgs>
+    _count?: boolean | ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ServiceCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ServiceCategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ServiceCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceCategory"
+    objects: {
+      ServicePost: Prisma.$ServicePostPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      image: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["serviceCategory"]>
+    composites: {}
+  }
+
+  type ServiceCategoryGetPayload<S extends boolean | null | undefined | ServiceCategoryDefaultArgs> = $Result.GetResult<Prisma.$ServiceCategoryPayload, S>
+
+  type ServiceCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServiceCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServiceCategoryCountAggregateInputType | true
+    }
+
+  export interface ServiceCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategory'], meta: { name: 'ServiceCategory' } }
+    /**
+     * Find zero or one ServiceCategory that matches the filter.
+     * @param {ServiceCategoryFindUniqueArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceCategoryFindUniqueArgs>(args: SelectSubset<T, ServiceCategoryFindUniqueArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServiceCategory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServiceCategoryFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceCategory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryFindFirstArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceCategoryFindFirstArgs>(args?: SelectSubset<T, ServiceCategoryFindFirstArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServiceCategory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryFindFirstOrThrowArgs} args - Arguments to find a ServiceCategory
+     * @example
+     * // Get one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServiceCategories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceCategories
+     * const serviceCategories = await prisma.serviceCategory.findMany()
+     * 
+     * // Get first 10 ServiceCategories
+     * const serviceCategories = await prisma.serviceCategory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceCategoryFindManyArgs>(args?: SelectSubset<T, ServiceCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServiceCategory.
+     * @param {ServiceCategoryCreateArgs} args - Arguments to create a ServiceCategory.
+     * @example
+     * // Create one ServiceCategory
+     * const ServiceCategory = await prisma.serviceCategory.create({
+     *   data: {
+     *     // ... data to create a ServiceCategory
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceCategoryCreateArgs>(args: SelectSubset<T, ServiceCategoryCreateArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServiceCategories.
+     * @param {ServiceCategoryCreateManyArgs} args - Arguments to create many ServiceCategories.
+     * @example
+     * // Create many ServiceCategories
+     * const serviceCategory = await prisma.serviceCategory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceCategoryCreateManyArgs>(args?: SelectSubset<T, ServiceCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServiceCategories and returns the data saved in the database.
+     * @param {ServiceCategoryCreateManyAndReturnArgs} args - Arguments to create many ServiceCategories.
+     * @example
+     * // Create many ServiceCategories
+     * const serviceCategory = await prisma.serviceCategory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServiceCategories and only return the `id`
+     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServiceCategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, ServiceCategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServiceCategory.
+     * @param {ServiceCategoryDeleteArgs} args - Arguments to delete one ServiceCategory.
+     * @example
+     * // Delete one ServiceCategory
+     * const ServiceCategory = await prisma.serviceCategory.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceCategory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceCategoryDeleteArgs>(args: SelectSubset<T, ServiceCategoryDeleteArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServiceCategory.
+     * @param {ServiceCategoryUpdateArgs} args - Arguments to update one ServiceCategory.
+     * @example
+     * // Update one ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceCategoryUpdateArgs>(args: SelectSubset<T, ServiceCategoryUpdateArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServiceCategories.
+     * @param {ServiceCategoryDeleteManyArgs} args - Arguments to filter ServiceCategories to delete.
+     * @example
+     * // Delete a few ServiceCategories
+     * const { count } = await prisma.serviceCategory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceCategoryDeleteManyArgs>(args?: SelectSubset<T, ServiceCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceCategories
+     * const serviceCategory = await prisma.serviceCategory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceCategoryUpdateManyArgs>(args: SelectSubset<T, ServiceCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceCategories and returns the data updated in the database.
+     * @param {ServiceCategoryUpdateManyAndReturnArgs} args - Arguments to update many ServiceCategories.
+     * @example
+     * // Update many ServiceCategories
+     * const serviceCategory = await prisma.serviceCategory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServiceCategories and only return the `id`
+     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServiceCategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, ServiceCategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServiceCategory.
+     * @param {ServiceCategoryUpsertArgs} args - Arguments to update or create a ServiceCategory.
+     * @example
+     * // Update or create a ServiceCategory
+     * const serviceCategory = await prisma.serviceCategory.upsert({
+     *   create: {
+     *     // ... data to create a ServiceCategory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceCategory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceCategoryUpsertArgs>(args: SelectSubset<T, ServiceCategoryUpsertArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Result.GetResult<Prisma.$ServiceCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServiceCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryCountArgs} args - Arguments to filter ServiceCategories to count.
+     * @example
+     * // Count the number of ServiceCategories
+     * const count = await prisma.serviceCategory.count({
+     *   where: {
+     *     // ... the filter for the ServiceCategories we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceCategoryCountArgs>(
+      args?: Subset<T, ServiceCategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceCategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceCategoryAggregateArgs>(args: Subset<T, ServiceCategoryAggregateArgs>): Prisma.PrismaPromise<GetServiceCategoryAggregateType<T>>
+
+    /**
+     * Group by ServiceCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceCategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceCategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceCategory model
+   */
+  readonly fields: ServiceCategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceCategory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ServicePost<T extends ServiceCategory$ServicePostArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$ServicePostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceCategory model
+   */
+  interface ServiceCategoryFieldRefs {
+    readonly id: FieldRef<"ServiceCategory", 'Int'>
+    readonly image: FieldRef<"ServiceCategory", 'String'>
+    readonly name: FieldRef<"ServiceCategory", 'String'>
+    readonly createdAt: FieldRef<"ServiceCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"ServiceCategory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceCategory findUnique
+   */
+  export type ServiceCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory findUniqueOrThrow
+   */
+  export type ServiceCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory findFirst
+   */
+  export type ServiceCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceCategories.
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceCategories.
+     */
+    distinct?: ServiceCategoryScalarFieldEnum | ServiceCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory findFirstOrThrow
+   */
+  export type ServiceCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategory to fetch.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceCategories.
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceCategories.
+     */
+    distinct?: ServiceCategoryScalarFieldEnum | ServiceCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory findMany
+   */
+  export type ServiceCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategories to fetch.
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategories to fetch.
+     */
+    orderBy?: ServiceCategoryOrderByWithRelationInput | ServiceCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceCategories.
+     */
+    cursor?: ServiceCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategories.
+     */
+    skip?: number
+    distinct?: ServiceCategoryScalarFieldEnum | ServiceCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory create
+   */
+  export type ServiceCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceCategory.
+     */
+    data: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceCategory createMany
+   */
+  export type ServiceCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceCategories.
+     */
+    data: ServiceCategoryCreateManyInput | ServiceCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceCategory createManyAndReturn
+   */
+  export type ServiceCategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServiceCategories.
+     */
+    data: ServiceCategoryCreateManyInput | ServiceCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceCategory update
+   */
+  export type ServiceCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceCategory.
+     */
+    data: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceCategory to update.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory updateMany
+   */
+  export type ServiceCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceCategories.
+     */
+    data: XOR<ServiceCategoryUpdateManyMutationInput, ServiceCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceCategories to update
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * Limit how many ServiceCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceCategory updateManyAndReturn
+   */
+  export type ServiceCategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * The data used to update ServiceCategories.
+     */
+    data: XOR<ServiceCategoryUpdateManyMutationInput, ServiceCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceCategories to update
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * Limit how many ServiceCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceCategory upsert
+   */
+  export type ServiceCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceCategory to update in case it exists.
+     */
+    where: ServiceCategoryWhereUniqueInput
+    /**
+     * In case the ServiceCategory found by the `where` argument doesn't exist, create a new ServiceCategory with this data.
+     */
+    create: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>
+    /**
+     * In case the ServiceCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceCategory delete
+   */
+  export type ServiceCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which ServiceCategory to delete.
+     */
+    where: ServiceCategoryWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategory deleteMany
+   */
+  export type ServiceCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceCategories to delete
+     */
+    where?: ServiceCategoryWhereInput
+    /**
+     * Limit how many ServiceCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServiceCategory.ServicePost
+   */
+  export type ServiceCategory$ServicePostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicePost
+     */
+    select?: ServicePostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServicePost
+     */
+    omit?: ServicePostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicePostInclude<ExtArgs> | null
+    where?: ServicePostWhereInput
+    orderBy?: ServicePostOrderByWithRelationInput | ServicePostOrderByWithRelationInput[]
+    cursor?: ServicePostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServicePostScalarFieldEnum | ServicePostScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceCategory without action
+   */
+  export type ServiceCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategory
+     */
+    select?: ServiceCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServiceCategory
+     */
+    omit?: ServiceCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServiceCategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7324,7 +8610,8 @@ export namespace Prisma {
     gender: 'gender',
     price: 'price',
     purpose: 'purpose',
-    petCategoryId: 'petCategoryId'
+    petCategoryId: 'petCategoryId',
+    video: 'video'
   };
 
   export type PetPostScalarFieldEnum = (typeof PetPostScalarFieldEnum)[keyof typeof PetPostScalarFieldEnum]
@@ -7332,7 +8619,6 @@ export namespace Prisma {
 
   export const ServicePostScalarFieldEnum: {
     id: 'id',
-    petName: 'petName',
     address: 'address',
     about: 'about',
     image: 'image',
@@ -7341,9 +8627,11 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     userId: 'userId',
     age: 'age',
-    price: 'price',
     purpose: 'purpose',
-    petCategoryId: 'petCategoryId'
+    petCategoryId: 'petCategoryId',
+    serviceId: 'serviceId',
+    cost: 'cost',
+    skill: 'skill'
   };
 
   export type ServicePostScalarFieldEnum = (typeof ServicePostScalarFieldEnum)[keyof typeof ServicePostScalarFieldEnum]
@@ -7358,11 +8646,12 @@ export namespace Prisma {
     backgroundImage: 'backgroundImage',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    userId: 'userId',
+    rating: 'rating',
     location: 'location',
     phoneNumber: 'phoneNumber',
     workTime: 'workTime',
-    category: 'category'
+    category: 'category',
+    views: 'views'
   };
 
   export type HospitalScalarFieldEnum = (typeof HospitalScalarFieldEnum)[keyof typeof HospitalScalarFieldEnum]
@@ -7370,12 +8659,24 @@ export namespace Prisma {
 
   export const PetCategoryScalarFieldEnum: {
     id: 'id',
+    image: 'image',
     name: 'name',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type PetCategoryScalarFieldEnum = (typeof PetCategoryScalarFieldEnum)[keyof typeof PetCategoryScalarFieldEnum]
+
+
+  export const ServiceCategoryScalarFieldEnum: {
+    id: 'id',
+    image: 'image',
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ServiceCategoryScalarFieldEnum = (typeof ServiceCategoryScalarFieldEnum)[keyof typeof ServiceCategoryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7617,6 +8918,7 @@ export namespace Prisma {
     price?: IntFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
+    video?: StringFilter<"PetPost"> | string
     category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -7638,6 +8940,7 @@ export namespace Prisma {
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    video?: SortOrder
     category?: PetCategoryOrderByWithRelationInput
     User?: UserOrderByWithRelationInput
   }
@@ -7662,6 +8965,7 @@ export namespace Prisma {
     price?: IntFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
+    video?: StringFilter<"PetPost"> | string
     category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -7683,6 +8987,7 @@ export namespace Prisma {
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    video?: SortOrder
     _count?: PetPostCountOrderByAggregateInput
     _avg?: PetPostAvgOrderByAggregateInput
     _max?: PetPostMaxOrderByAggregateInput
@@ -7710,6 +9015,7 @@ export namespace Prisma {
     price?: IntWithAggregatesFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumWithAggregatesFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntWithAggregatesFilter<"PetPost"> | number
+    video?: StringWithAggregatesFilter<"PetPost"> | string
   }
 
   export type ServicePostWhereInput = {
@@ -7717,7 +9023,6 @@ export namespace Prisma {
     OR?: ServicePostWhereInput[]
     NOT?: ServicePostWhereInput | ServicePostWhereInput[]
     id?: IntFilter<"ServicePost"> | number
-    petName?: StringFilter<"ServicePost"> | string
     address?: StringFilter<"ServicePost"> | string
     about?: StringFilter<"ServicePost"> | string
     image?: StringFilter<"ServicePost"> | string
@@ -7726,16 +9031,18 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ServicePost"> | Date | string
     userId?: IntFilter<"ServicePost"> | number
     age?: IntFilter<"ServicePost"> | number
-    price?: IntFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"ServicePost"> | number
+    serviceId?: IntFilter<"ServicePost"> | number
+    cost?: IntFilter<"ServicePost"> | number
+    skill?: StringNullableListFilter<"ServicePost">
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
+    serviceCategory?: XOR<ServiceCategoryScalarRelationFilter, ServiceCategoryWhereInput>
   }
 
   export type ServicePostOrderByWithRelationInput = {
     id?: SortOrder
-    petName?: SortOrder
     address?: SortOrder
     about?: SortOrder
     image?: SortOrder
@@ -7744,11 +9051,14 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
+    cost?: SortOrder
+    skill?: SortOrder
     user?: UserOrderByWithRelationInput
     category?: PetCategoryOrderByWithRelationInput
+    serviceCategory?: ServiceCategoryOrderByWithRelationInput
   }
 
   export type ServicePostWhereUniqueInput = Prisma.AtLeast<{
@@ -7756,7 +9066,6 @@ export namespace Prisma {
     AND?: ServicePostWhereInput | ServicePostWhereInput[]
     OR?: ServicePostWhereInput[]
     NOT?: ServicePostWhereInput | ServicePostWhereInput[]
-    petName?: StringFilter<"ServicePost"> | string
     address?: StringFilter<"ServicePost"> | string
     about?: StringFilter<"ServicePost"> | string
     image?: StringFilter<"ServicePost"> | string
@@ -7765,16 +9074,18 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ServicePost"> | Date | string
     userId?: IntFilter<"ServicePost"> | number
     age?: IntFilter<"ServicePost"> | number
-    price?: IntFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"ServicePost"> | number
+    serviceId?: IntFilter<"ServicePost"> | number
+    cost?: IntFilter<"ServicePost"> | number
+    skill?: StringNullableListFilter<"ServicePost">
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
+    serviceCategory?: XOR<ServiceCategoryScalarRelationFilter, ServiceCategoryWhereInput>
   }, "id">
 
   export type ServicePostOrderByWithAggregationInput = {
     id?: SortOrder
-    petName?: SortOrder
     address?: SortOrder
     about?: SortOrder
     image?: SortOrder
@@ -7783,9 +9094,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
+    cost?: SortOrder
+    skill?: SortOrder
     _count?: ServicePostCountOrderByAggregateInput
     _avg?: ServicePostAvgOrderByAggregateInput
     _max?: ServicePostMaxOrderByAggregateInput
@@ -7798,7 +9111,6 @@ export namespace Prisma {
     OR?: ServicePostScalarWhereWithAggregatesInput[]
     NOT?: ServicePostScalarWhereWithAggregatesInput | ServicePostScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ServicePost"> | number
-    petName?: StringWithAggregatesFilter<"ServicePost"> | string
     address?: StringWithAggregatesFilter<"ServicePost"> | string
     about?: StringWithAggregatesFilter<"ServicePost"> | string
     image?: StringWithAggregatesFilter<"ServicePost"> | string
@@ -7807,9 +9119,11 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"ServicePost"> | Date | string
     userId?: IntWithAggregatesFilter<"ServicePost"> | number
     age?: IntWithAggregatesFilter<"ServicePost"> | number
-    price?: IntWithAggregatesFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumWithAggregatesFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntWithAggregatesFilter<"ServicePost"> | number
+    serviceId?: IntWithAggregatesFilter<"ServicePost"> | number
+    cost?: IntWithAggregatesFilter<"ServicePost"> | number
+    skill?: StringNullableListFilter<"ServicePost">
   }
 
   export type HospitalWhereInput = {
@@ -7819,16 +9133,17 @@ export namespace Prisma {
     id?: IntFilter<"Hospital"> | number
     name?: StringFilter<"Hospital"> | string
     about?: StringFilter<"Hospital"> | string
-    avatarImage?: StringFilter<"Hospital"> | string
+    avatarImage?: StringNullableListFilter<"Hospital">
     email?: StringFilter<"Hospital"> | string
-    backgroundImage?: StringNullableFilter<"Hospital"> | string | null
+    backgroundImage?: StringFilter<"Hospital"> | string
     createdAt?: DateTimeFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeFilter<"Hospital"> | Date | string
-    userId?: IntNullableFilter<"Hospital"> | number | null
+    rating?: IntFilter<"Hospital"> | number
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
+    views?: IntFilter<"Hospital"> | number
   }
 
   export type HospitalOrderByWithRelationInput = {
@@ -7837,14 +9152,15 @@ export namespace Prisma {
     about?: SortOrder
     avatarImage?: SortOrder
     email?: SortOrder
-    backgroundImage?: SortOrderInput | SortOrder
+    backgroundImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
+    rating?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
+    views?: SortOrder
   }
 
   export type HospitalWhereUniqueInput = Prisma.AtLeast<{
@@ -7854,16 +9170,17 @@ export namespace Prisma {
     NOT?: HospitalWhereInput | HospitalWhereInput[]
     name?: StringFilter<"Hospital"> | string
     about?: StringFilter<"Hospital"> | string
-    avatarImage?: StringFilter<"Hospital"> | string
+    avatarImage?: StringNullableListFilter<"Hospital">
     email?: StringFilter<"Hospital"> | string
-    backgroundImage?: StringNullableFilter<"Hospital"> | string | null
+    backgroundImage?: StringFilter<"Hospital"> | string
     createdAt?: DateTimeFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeFilter<"Hospital"> | Date | string
-    userId?: IntNullableFilter<"Hospital"> | number | null
+    rating?: IntFilter<"Hospital"> | number
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
+    views?: IntFilter<"Hospital"> | number
   }, "id">
 
   export type HospitalOrderByWithAggregationInput = {
@@ -7872,14 +9189,15 @@ export namespace Prisma {
     about?: SortOrder
     avatarImage?: SortOrder
     email?: SortOrder
-    backgroundImage?: SortOrderInput | SortOrder
+    backgroundImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
+    rating?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
+    views?: SortOrder
     _count?: HospitalCountOrderByAggregateInput
     _avg?: HospitalAvgOrderByAggregateInput
     _max?: HospitalMaxOrderByAggregateInput
@@ -7894,16 +9212,17 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Hospital"> | number
     name?: StringWithAggregatesFilter<"Hospital"> | string
     about?: StringWithAggregatesFilter<"Hospital"> | string
-    avatarImage?: StringWithAggregatesFilter<"Hospital"> | string
+    avatarImage?: StringNullableListFilter<"Hospital">
     email?: StringWithAggregatesFilter<"Hospital"> | string
-    backgroundImage?: StringNullableWithAggregatesFilter<"Hospital"> | string | null
+    backgroundImage?: StringWithAggregatesFilter<"Hospital"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
-    userId?: IntNullableWithAggregatesFilter<"Hospital"> | number | null
+    rating?: IntWithAggregatesFilter<"Hospital"> | number
     location?: StringWithAggregatesFilter<"Hospital"> | string
     phoneNumber?: IntWithAggregatesFilter<"Hospital"> | number
     workTime?: StringWithAggregatesFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
+    views?: IntWithAggregatesFilter<"Hospital"> | number
   }
 
   export type PetCategoryWhereInput = {
@@ -7911,6 +9230,7 @@ export namespace Prisma {
     OR?: PetCategoryWhereInput[]
     NOT?: PetCategoryWhereInput | PetCategoryWhereInput[]
     id?: IntFilter<"PetCategory"> | number
+    image?: StringFilter<"PetCategory"> | string
     name?: StringFilter<"PetCategory"> | string
     createdAt?: DateTimeFilter<"PetCategory"> | Date | string
     updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
@@ -7920,6 +9240,7 @@ export namespace Prisma {
 
   export type PetCategoryOrderByWithRelationInput = {
     id?: SortOrder
+    image?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7933,6 +9254,7 @@ export namespace Prisma {
     AND?: PetCategoryWhereInput | PetCategoryWhereInput[]
     OR?: PetCategoryWhereInput[]
     NOT?: PetCategoryWhereInput | PetCategoryWhereInput[]
+    image?: StringFilter<"PetCategory"> | string
     createdAt?: DateTimeFilter<"PetCategory"> | Date | string
     updatedAt?: DateTimeFilter<"PetCategory"> | Date | string
     PetPost?: PetPostListRelationFilter
@@ -7941,6 +9263,7 @@ export namespace Prisma {
 
   export type PetCategoryOrderByWithAggregationInput = {
     id?: SortOrder
+    image?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7956,9 +9279,67 @@ export namespace Prisma {
     OR?: PetCategoryScalarWhereWithAggregatesInput[]
     NOT?: PetCategoryScalarWhereWithAggregatesInput | PetCategoryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PetCategory"> | number
+    image?: StringWithAggregatesFilter<"PetCategory"> | string
     name?: StringWithAggregatesFilter<"PetCategory"> | string
     createdAt?: DateTimeWithAggregatesFilter<"PetCategory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PetCategory"> | Date | string
+  }
+
+  export type ServiceCategoryWhereInput = {
+    AND?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    OR?: ServiceCategoryWhereInput[]
+    NOT?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    id?: IntFilter<"ServiceCategory"> | number
+    image?: StringFilter<"ServiceCategory"> | string
+    name?: StringFilter<"ServiceCategory"> | string
+    createdAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    ServicePost?: ServicePostListRelationFilter
+  }
+
+  export type ServiceCategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    image?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ServicePost?: ServicePostOrderByRelationAggregateInput
+  }
+
+  export type ServiceCategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    OR?: ServiceCategoryWhereInput[]
+    NOT?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[]
+    image?: StringFilter<"ServiceCategory"> | string
+    name?: StringFilter<"ServiceCategory"> | string
+    createdAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"ServiceCategory"> | Date | string
+    ServicePost?: ServicePostListRelationFilter
+  }, "id">
+
+  export type ServiceCategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    image?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ServiceCategoryCountOrderByAggregateInput
+    _avg?: ServiceCategoryAvgOrderByAggregateInput
+    _max?: ServiceCategoryMaxOrderByAggregateInput
+    _min?: ServiceCategoryMinOrderByAggregateInput
+    _sum?: ServiceCategorySumOrderByAggregateInput
+  }
+
+  export type ServiceCategoryScalarWhereWithAggregatesInput = {
+    AND?: ServiceCategoryScalarWhereWithAggregatesInput | ServiceCategoryScalarWhereWithAggregatesInput[]
+    OR?: ServiceCategoryScalarWhereWithAggregatesInput[]
+    NOT?: ServiceCategoryScalarWhereWithAggregatesInput | ServiceCategoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ServiceCategory"> | number
+    image?: StringWithAggregatesFilter<"ServiceCategory"> | string
+    name?: StringWithAggregatesFilter<"ServiceCategory"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ServiceCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ServiceCategory"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -8057,6 +9438,7 @@ export namespace Prisma {
     gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
+    video: string
     category: PetCategoryCreateNestedOneWithoutPetPostInput
     User: UserCreateNestedOneWithoutPetPostInput
   }
@@ -8078,6 +9460,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    video: string
   }
 
   export type PetPostUpdateInput = {
@@ -8094,6 +9477,7 @@ export namespace Prisma {
     gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    video?: StringFieldUpdateOperationsInput | string
     category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
     User?: UserUpdateOneRequiredWithoutPetPostNestedInput
   }
@@ -8115,6 +9499,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type PetPostCreateManyInput = {
@@ -8134,6 +9519,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    video: string
   }
 
   export type PetPostUpdateManyMutationInput = {
@@ -8150,6 +9536,7 @@ export namespace Prisma {
     gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type PetPostUncheckedUpdateManyInput = {
@@ -8169,10 +9556,10 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServicePostCreateInput = {
-    petName: string
     address: string
     about: string
     image: string
@@ -8180,15 +9567,16 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
     user: UserCreateNestedOneWithoutServicePostInput
     category: PetCategoryCreateNestedOneWithoutServicePostInput
+    serviceCategory: ServiceCategoryCreateNestedOneWithoutServicePostInput
   }
 
   export type ServicePostUncheckedCreateInput = {
     id?: number
-    petName: string
     address: string
     about: string
     image: string
@@ -8197,13 +9585,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    serviceId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
   }
 
   export type ServicePostUpdateInput = {
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -8211,15 +9600,16 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
     user?: UserUpdateOneRequiredWithoutServicePostNestedInput
     category?: PetCategoryUpdateOneRequiredWithoutServicePostNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneRequiredWithoutServicePostNestedInput
   }
 
   export type ServicePostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -8228,14 +9618,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    serviceId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
   export type ServicePostCreateManyInput = {
     id?: number
-    petName: string
     address: string
     about: string
     image: string
@@ -8244,13 +9635,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    serviceId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
   }
 
   export type ServicePostUpdateManyMutationInput = {
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -8258,13 +9650,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
   export type ServicePostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -8273,121 +9665,131 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    serviceId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
   export type HospitalCreateInput = {
     name: string
     about: string
-    avatarImage: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
     email: string
-    backgroundImage?: string | null
+    backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: number | null
+    rating: number
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
+    views?: number
   }
 
   export type HospitalUncheckedCreateInput = {
     id?: number
     name: string
     about: string
-    avatarImage: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
     email: string
-    backgroundImage?: string | null
+    backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: number | null
+    rating: number
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
+    views?: number
   }
 
   export type HospitalUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
     email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    rating?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
+    views?: IntFieldUpdateOperationsInput | number
   }
 
   export type HospitalUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
     email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    rating?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
+    views?: IntFieldUpdateOperationsInput | number
   }
 
   export type HospitalCreateManyInput = {
     id?: number
     name: string
     about: string
-    avatarImage: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
     email: string
-    backgroundImage?: string | null
+    backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: number | null
+    rating: number
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
+    views?: number
   }
 
   export type HospitalUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
     email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    rating?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
+    views?: IntFieldUpdateOperationsInput | number
   }
 
   export type HospitalUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
-    avatarImage?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
     email?: StringFieldUpdateOperationsInput | string
-    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    rating?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
+    views?: IntFieldUpdateOperationsInput | number
   }
 
   export type PetCategoryCreateInput = {
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8397,6 +9799,7 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedCreateInput = {
     id?: number
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8405,6 +9808,7 @@ export namespace Prisma {
   }
 
   export type PetCategoryUpdateInput = {
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8414,6 +9818,7 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8423,12 +9828,14 @@ export namespace Prisma {
 
   export type PetCategoryCreateManyInput = {
     id?: number
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PetCategoryUpdateManyMutationInput = {
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8436,6 +9843,64 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategoryCreateInput = {
+    image: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ServicePost?: ServicePostCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUncheckedCreateInput = {
+    id?: number
+    image: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutServiceCategoryInput
+  }
+
+  export type ServiceCategoryUpdateInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ServicePost?: ServicePostUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutServiceCategoryNestedInput
+  }
+
+  export type ServiceCategoryCreateManyInput = {
+    id?: number
+    image: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategoryUpdateManyMutationInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8690,6 +10155,7 @@ export namespace Prisma {
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    video?: SortOrder
   }
 
   export type PetPostAvgOrderByAggregateInput = {
@@ -8718,6 +10184,7 @@ export namespace Prisma {
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    video?: SortOrder
   }
 
   export type PetPostMinOrderByAggregateInput = {
@@ -8737,6 +10204,7 @@ export namespace Prisma {
     price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    video?: SortOrder
   }
 
   export type PetPostSumOrderByAggregateInput = {
@@ -8778,9 +10246,21 @@ export namespace Prisma {
     _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type ServiceCategoryScalarRelationFilter = {
+    is?: ServiceCategoryWhereInput
+    isNot?: ServiceCategoryWhereInput
+  }
+
   export type ServicePostCountOrderByAggregateInput = {
     id?: SortOrder
-    petName?: SortOrder
     address?: SortOrder
     about?: SortOrder
     image?: SortOrder
@@ -8789,9 +10269,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
+    cost?: SortOrder
+    skill?: SortOrder
   }
 
   export type ServicePostAvgOrderByAggregateInput = {
@@ -8799,13 +10281,13 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
+    cost?: SortOrder
   }
 
   export type ServicePostMaxOrderByAggregateInput = {
     id?: SortOrder
-    petName?: SortOrder
     address?: SortOrder
     about?: SortOrder
     image?: SortOrder
@@ -8814,14 +10296,14 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
+    cost?: SortOrder
   }
 
   export type ServicePostMinOrderByAggregateInput = {
     id?: SortOrder
-    petName?: SortOrder
     address?: SortOrder
     about?: SortOrder
     image?: SortOrder
@@ -8830,9 +10312,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     purpose?: SortOrder
     petCategoryId?: SortOrder
+    serviceId?: SortOrder
+    cost?: SortOrder
   }
 
   export type ServicePostSumOrderByAggregateInput = {
@@ -8840,27 +10323,9 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     userId?: SortOrder
     age?: SortOrder
-    price?: SortOrder
     petCategoryId?: SortOrder
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
+    serviceId?: SortOrder
+    cost?: SortOrder
   }
 
   export type HospitalCountOrderByAggregateInput = {
@@ -8872,73 +10337,61 @@ export namespace Prisma {
     backgroundImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
+    rating?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
+    views?: SortOrder
   }
 
   export type HospitalAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    rating?: SortOrder
     phoneNumber?: SortOrder
+    views?: SortOrder
   }
 
   export type HospitalMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
-    avatarImage?: SortOrder
     email?: SortOrder
     backgroundImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
+    rating?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
+    views?: SortOrder
   }
 
   export type HospitalMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     about?: SortOrder
-    avatarImage?: SortOrder
     email?: SortOrder
     backgroundImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
+    rating?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
+    views?: SortOrder
   }
 
   export type HospitalSumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    rating?: SortOrder
     phoneNumber?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
+    views?: SortOrder
   }
 
   export type PetCategoryCountOrderByAggregateInput = {
     id?: SortOrder
+    image?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8950,6 +10403,7 @@ export namespace Prisma {
 
   export type PetCategoryMaxOrderByAggregateInput = {
     id?: SortOrder
+    image?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8957,12 +10411,45 @@ export namespace Prisma {
 
   export type PetCategoryMinOrderByAggregateInput = {
     id?: SortOrder
+    image?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type PetCategorySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ServiceCategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ServiceCategoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ServiceCategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ServiceCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ServiceCategorySumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -9114,6 +10601,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPetPostInput, UserUpdateWithoutPetPostInput>, UserUncheckedUpdateWithoutPetPostInput>
   }
 
+  export type ServicePostCreateskillInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutServicePostInput = {
     create?: XOR<UserCreateWithoutServicePostInput, UserUncheckedCreateWithoutServicePostInput>
     connectOrCreate?: UserCreateOrConnectWithoutServicePostInput
@@ -9124,6 +10615,17 @@ export namespace Prisma {
     create?: XOR<PetCategoryCreateWithoutServicePostInput, PetCategoryUncheckedCreateWithoutServicePostInput>
     connectOrCreate?: PetCategoryCreateOrConnectWithoutServicePostInput
     connect?: PetCategoryWhereUniqueInput
+  }
+
+  export type ServiceCategoryCreateNestedOneWithoutServicePostInput = {
+    create?: XOR<ServiceCategoryCreateWithoutServicePostInput, ServiceCategoryUncheckedCreateWithoutServicePostInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicePostInput
+    connect?: ServiceCategoryWhereUniqueInput
+  }
+
+  export type ServicePostUpdateskillInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneRequiredWithoutServicePostNestedInput = {
@@ -9142,16 +10644,25 @@ export namespace Prisma {
     update?: XOR<XOR<PetCategoryUpdateToOneWithWhereWithoutServicePostInput, PetCategoryUpdateWithoutServicePostInput>, PetCategoryUncheckedUpdateWithoutServicePostInput>
   }
 
+  export type ServiceCategoryUpdateOneRequiredWithoutServicePostNestedInput = {
+    create?: XOR<ServiceCategoryCreateWithoutServicePostInput, ServiceCategoryUncheckedCreateWithoutServicePostInput>
+    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicePostInput
+    upsert?: ServiceCategoryUpsertWithoutServicePostInput
+    connect?: ServiceCategoryWhereUniqueInput
+    update?: XOR<XOR<ServiceCategoryUpdateToOneWithWhereWithoutServicePostInput, ServiceCategoryUpdateWithoutServicePostInput>, ServiceCategoryUncheckedUpdateWithoutServicePostInput>
+  }
+
+  export type HospitalCreateavatarImageInput = {
+    set: string[]
+  }
+
   export type HospitalCreatecategoryInput = {
     set: string[]
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type HospitalUpdateavatarImageInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type HospitalUpdatecategoryInput = {
@@ -9240,6 +10751,48 @@ export namespace Prisma {
     connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
     update?: ServicePostUpdateWithWhereUniqueWithoutCategoryInput | ServicePostUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: ServicePostUpdateManyWithWhereWithoutCategoryInput | ServicePostUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
+  }
+
+  export type ServicePostCreateNestedManyWithoutServiceCategoryInput = {
+    create?: XOR<ServicePostCreateWithoutServiceCategoryInput, ServicePostUncheckedCreateWithoutServiceCategoryInput> | ServicePostCreateWithoutServiceCategoryInput[] | ServicePostUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutServiceCategoryInput | ServicePostCreateOrConnectWithoutServiceCategoryInput[]
+    createMany?: ServicePostCreateManyServiceCategoryInputEnvelope
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+  }
+
+  export type ServicePostUncheckedCreateNestedManyWithoutServiceCategoryInput = {
+    create?: XOR<ServicePostCreateWithoutServiceCategoryInput, ServicePostUncheckedCreateWithoutServiceCategoryInput> | ServicePostCreateWithoutServiceCategoryInput[] | ServicePostUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutServiceCategoryInput | ServicePostCreateOrConnectWithoutServiceCategoryInput[]
+    createMany?: ServicePostCreateManyServiceCategoryInputEnvelope
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+  }
+
+  export type ServicePostUpdateManyWithoutServiceCategoryNestedInput = {
+    create?: XOR<ServicePostCreateWithoutServiceCategoryInput, ServicePostUncheckedCreateWithoutServiceCategoryInput> | ServicePostCreateWithoutServiceCategoryInput[] | ServicePostUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutServiceCategoryInput | ServicePostCreateOrConnectWithoutServiceCategoryInput[]
+    upsert?: ServicePostUpsertWithWhereUniqueWithoutServiceCategoryInput | ServicePostUpsertWithWhereUniqueWithoutServiceCategoryInput[]
+    createMany?: ServicePostCreateManyServiceCategoryInputEnvelope
+    set?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    disconnect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    delete?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    update?: ServicePostUpdateWithWhereUniqueWithoutServiceCategoryInput | ServicePostUpdateWithWhereUniqueWithoutServiceCategoryInput[]
+    updateMany?: ServicePostUpdateManyWithWhereWithoutServiceCategoryInput | ServicePostUpdateManyWithWhereWithoutServiceCategoryInput[]
+    deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
+  }
+
+  export type ServicePostUncheckedUpdateManyWithoutServiceCategoryNestedInput = {
+    create?: XOR<ServicePostCreateWithoutServiceCategoryInput, ServicePostUncheckedCreateWithoutServiceCategoryInput> | ServicePostCreateWithoutServiceCategoryInput[] | ServicePostUncheckedCreateWithoutServiceCategoryInput[]
+    connectOrCreate?: ServicePostCreateOrConnectWithoutServiceCategoryInput | ServicePostCreateOrConnectWithoutServiceCategoryInput[]
+    upsert?: ServicePostUpsertWithWhereUniqueWithoutServiceCategoryInput | ServicePostUpsertWithWhereUniqueWithoutServiceCategoryInput[]
+    createMany?: ServicePostCreateManyServiceCategoryInputEnvelope
+    set?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    disconnect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    delete?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    connect?: ServicePostWhereUniqueInput | ServicePostWhereUniqueInput[]
+    update?: ServicePostUpdateWithWhereUniqueWithoutServiceCategoryInput | ServicePostUpdateWithWhereUniqueWithoutServiceCategoryInput[]
+    updateMany?: ServicePostUpdateManyWithWhereWithoutServiceCategoryInput | ServicePostUpdateManyWithWhereWithoutServiceCategoryInput[]
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
@@ -9447,33 +11000,6 @@ export namespace Prisma {
     _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type PetPostCreateWithoutUserInput = {
     petName: string
     address: string
@@ -9488,6 +11014,7 @@ export namespace Prisma {
     gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
+    video: string
     category: PetCategoryCreateNestedOneWithoutPetPostInput
   }
 
@@ -9507,6 +11034,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    video: string
   }
 
   export type PetPostCreateOrConnectWithoutUserInput = {
@@ -9520,7 +11048,6 @@ export namespace Prisma {
   }
 
   export type ServicePostCreateWithoutUserInput = {
-    petName: string
     address: string
     about: string
     image: string
@@ -9528,14 +11055,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
     category: PetCategoryCreateNestedOneWithoutServicePostInput
+    serviceCategory: ServiceCategoryCreateNestedOneWithoutServicePostInput
   }
 
   export type ServicePostUncheckedCreateWithoutUserInput = {
     id?: number
-    petName: string
     address: string
     about: string
     image: string
@@ -9543,9 +11071,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    serviceId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
   }
 
   export type ServicePostCreateOrConnectWithoutUserInput = {
@@ -9594,6 +11124,7 @@ export namespace Prisma {
     price?: IntFilter<"PetPost"> | number
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
+    video?: StringFilter<"PetPost"> | string
   }
 
   export type ServicePostUpsertWithWhereUniqueWithoutUserInput = {
@@ -9617,7 +11148,6 @@ export namespace Prisma {
     OR?: ServicePostScalarWhereInput[]
     NOT?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
     id?: IntFilter<"ServicePost"> | number
-    petName?: StringFilter<"ServicePost"> | string
     address?: StringFilter<"ServicePost"> | string
     about?: StringFilter<"ServicePost"> | string
     image?: StringFilter<"ServicePost"> | string
@@ -9626,12 +11156,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ServicePost"> | Date | string
     userId?: IntFilter<"ServicePost"> | number
     age?: IntFilter<"ServicePost"> | number
-    price?: IntFilter<"ServicePost"> | number
     purpose?: EnumPetPostEnumFilter<"ServicePost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"ServicePost"> | number
+    serviceId?: IntFilter<"ServicePost"> | number
+    cost?: IntFilter<"ServicePost"> | number
+    skill?: StringNullableListFilter<"ServicePost">
   }
 
   export type PetCategoryCreateWithoutPetPostInput = {
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9640,6 +11173,7 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedCreateWithoutPetPostInput = {
     id?: number
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9691,6 +11225,7 @@ export namespace Prisma {
   }
 
   export type PetCategoryUpdateWithoutPetPostInput = {
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9699,6 +11234,7 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedUpdateWithoutPetPostInput = {
     id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9768,6 +11304,7 @@ export namespace Prisma {
   }
 
   export type PetCategoryCreateWithoutServicePostInput = {
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9776,6 +11313,7 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedCreateWithoutServicePostInput = {
     id?: number
+    image: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9785,6 +11323,26 @@ export namespace Prisma {
   export type PetCategoryCreateOrConnectWithoutServicePostInput = {
     where: PetCategoryWhereUniqueInput
     create: XOR<PetCategoryCreateWithoutServicePostInput, PetCategoryUncheckedCreateWithoutServicePostInput>
+  }
+
+  export type ServiceCategoryCreateWithoutServicePostInput = {
+    image: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategoryUncheckedCreateWithoutServicePostInput = {
+    id?: number
+    image: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategoryCreateOrConnectWithoutServicePostInput = {
+    where: ServiceCategoryWhereUniqueInput
+    create: XOR<ServiceCategoryCreateWithoutServicePostInput, ServiceCategoryUncheckedCreateWithoutServicePostInput>
   }
 
   export type UserUpsertWithoutServicePostInput = {
@@ -9833,6 +11391,7 @@ export namespace Prisma {
   }
 
   export type PetCategoryUpdateWithoutServicePostInput = {
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9841,10 +11400,37 @@ export namespace Prisma {
 
   export type PetCategoryUncheckedUpdateWithoutServicePostInput = {
     id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PetPost?: PetPostUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type ServiceCategoryUpsertWithoutServicePostInput = {
+    update: XOR<ServiceCategoryUpdateWithoutServicePostInput, ServiceCategoryUncheckedUpdateWithoutServicePostInput>
+    create: XOR<ServiceCategoryCreateWithoutServicePostInput, ServiceCategoryUncheckedCreateWithoutServicePostInput>
+    where?: ServiceCategoryWhereInput
+  }
+
+  export type ServiceCategoryUpdateToOneWithWhereWithoutServicePostInput = {
+    where?: ServiceCategoryWhereInput
+    data: XOR<ServiceCategoryUpdateWithoutServicePostInput, ServiceCategoryUncheckedUpdateWithoutServicePostInput>
+  }
+
+  export type ServiceCategoryUpdateWithoutServicePostInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategoryUncheckedUpdateWithoutServicePostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PetPostCreateWithoutCategoryInput = {
@@ -9861,6 +11447,7 @@ export namespace Prisma {
     gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
+    video: string
     User: UserCreateNestedOneWithoutPetPostInput
   }
 
@@ -9880,6 +11467,7 @@ export namespace Prisma {
     gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
+    video: string
   }
 
   export type PetPostCreateOrConnectWithoutCategoryInput = {
@@ -9893,7 +11481,6 @@ export namespace Prisma {
   }
 
   export type ServicePostCreateWithoutCategoryInput = {
-    petName: string
     address: string
     about: string
     image: string
@@ -9901,14 +11488,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
     user: UserCreateNestedOneWithoutServicePostInput
+    serviceCategory: ServiceCategoryCreateNestedOneWithoutServicePostInput
   }
 
   export type ServicePostUncheckedCreateWithoutCategoryInput = {
     id?: number
-    petName: string
     address: string
     about: string
     image: string
@@ -9917,8 +11505,10 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
+    serviceId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
   }
 
   export type ServicePostCreateOrConnectWithoutCategoryInput = {
@@ -9963,6 +11553,63 @@ export namespace Prisma {
     data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyWithoutCategoryInput>
   }
 
+  export type ServicePostCreateWithoutServiceCategoryInput = {
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    age: number
+    purpose: $Enums.PetPostEnum
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
+    user: UserCreateNestedOneWithoutServicePostInput
+    category: PetCategoryCreateNestedOneWithoutServicePostInput
+  }
+
+  export type ServicePostUncheckedCreateWithoutServiceCategoryInput = {
+    id?: number
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    age: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
+  }
+
+  export type ServicePostCreateOrConnectWithoutServiceCategoryInput = {
+    where: ServicePostWhereUniqueInput
+    create: XOR<ServicePostCreateWithoutServiceCategoryInput, ServicePostUncheckedCreateWithoutServiceCategoryInput>
+  }
+
+  export type ServicePostCreateManyServiceCategoryInputEnvelope = {
+    data: ServicePostCreateManyServiceCategoryInput | ServicePostCreateManyServiceCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ServicePostUpsertWithWhereUniqueWithoutServiceCategoryInput = {
+    where: ServicePostWhereUniqueInput
+    update: XOR<ServicePostUpdateWithoutServiceCategoryInput, ServicePostUncheckedUpdateWithoutServiceCategoryInput>
+    create: XOR<ServicePostCreateWithoutServiceCategoryInput, ServicePostUncheckedCreateWithoutServiceCategoryInput>
+  }
+
+  export type ServicePostUpdateWithWhereUniqueWithoutServiceCategoryInput = {
+    where: ServicePostWhereUniqueInput
+    data: XOR<ServicePostUpdateWithoutServiceCategoryInput, ServicePostUncheckedUpdateWithoutServiceCategoryInput>
+  }
+
+  export type ServicePostUpdateManyWithWhereWithoutServiceCategoryInput = {
+    where: ServicePostScalarWhereInput
+    data: XOR<ServicePostUpdateManyMutationInput, ServicePostUncheckedUpdateManyWithoutServiceCategoryInput>
+  }
+
   export type PetPostCreateManyUserInput = {
     id?: number
     petName: string
@@ -9979,11 +11626,11 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    video: string
   }
 
   export type ServicePostCreateManyUserInput = {
     id?: number
-    petName: string
     address: string
     about: string
     image: string
@@ -9991,9 +11638,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
     petCategoryId: number
+    serviceId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
   }
 
   export type PetPostUpdateWithoutUserInput = {
@@ -10010,6 +11659,7 @@ export namespace Prisma {
     gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    video?: StringFieldUpdateOperationsInput | string
     category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
   }
 
@@ -10029,6 +11679,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type PetPostUncheckedUpdateManyWithoutUserInput = {
@@ -10047,10 +11698,10 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServicePostUpdateWithoutUserInput = {
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -10058,14 +11709,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
     category?: PetCategoryUpdateOneRequiredWithoutServicePostNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneRequiredWithoutServicePostNestedInput
   }
 
   export type ServicePostUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -10073,14 +11725,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    serviceId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
   export type ServicePostUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -10088,9 +11741,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
+    serviceId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
   export type PetPostCreateManyCategoryInput = {
@@ -10109,11 +11764,11 @@ export namespace Prisma {
     gender: $Enums.PetGenderEnum
     price: number
     purpose: $Enums.PetPostEnum
+    video: string
   }
 
   export type ServicePostCreateManyCategoryInput = {
     id?: number
-    petName: string
     address: string
     about: string
     image: string
@@ -10122,8 +11777,10 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     age: number
-    price: number
     purpose: $Enums.PetPostEnum
+    serviceId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
   }
 
   export type PetPostUpdateWithoutCategoryInput = {
@@ -10140,6 +11797,7 @@ export namespace Prisma {
     gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    video?: StringFieldUpdateOperationsInput | string
     User?: UserUpdateOneRequiredWithoutPetPostNestedInput
   }
 
@@ -10159,6 +11817,7 @@ export namespace Prisma {
     gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type PetPostUncheckedUpdateManyWithoutCategoryInput = {
@@ -10177,10 +11836,10 @@ export namespace Prisma {
     gender?: EnumPetGenderEnumFieldUpdateOperationsInput | $Enums.PetGenderEnum
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    video?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServicePostUpdateWithoutCategoryInput = {
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -10188,14 +11847,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
     user?: UserUpdateOneRequiredWithoutServicePostNestedInput
+    serviceCategory?: ServiceCategoryUpdateOneRequiredWithoutServicePostNestedInput
   }
 
   export type ServicePostUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -10204,13 +11864,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    serviceId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
   export type ServicePostUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
-    petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
@@ -10219,8 +11880,73 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     age?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    serviceId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
+  }
+
+  export type ServicePostCreateManyServiceCategoryInput = {
+    id?: number
+    address: string
+    about: string
+    image: string
+    phoneNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    age: number
+    purpose: $Enums.PetPostEnum
+    petCategoryId: number
+    cost: number
+    skill?: ServicePostCreateskillInput | string[]
+  }
+
+  export type ServicePostUpdateWithoutServiceCategoryInput = {
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    age?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
+    user?: UserUpdateOneRequiredWithoutServicePostNestedInput
+    category?: PetCategoryUpdateOneRequiredWithoutServicePostNestedInput
+  }
+
+  export type ServicePostUncheckedUpdateWithoutServiceCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
+  }
+
+  export type ServicePostUncheckedUpdateManyWithoutServiceCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    address?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    age?: IntFieldUpdateOperationsInput | number
+    purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
+    petCategoryId?: IntFieldUpdateOperationsInput | number
+    cost?: IntFieldUpdateOperationsInput | number
+    skill?: ServicePostUpdateskillInput | string[]
   }
 
 

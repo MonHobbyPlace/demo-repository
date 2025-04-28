@@ -10,23 +10,26 @@ export const putServicePost = async (req: Request, res: Response) => {
     phoneNumber,
     userId,
     age,
-    price,
+    serviceId,
     purpose,
     petCategoryId,
+    cost,
+    skill,
   } = req.body;
   const id = Number(req.params.id);
   try {
     const updatedServicePost = await prisma.servicePost.updateMany({
       data: {
-        petName: petName,
         address: address,
         about: about,
         image: image,
         phoneNumber: phoneNumber,
         userId: userId,
         age: age,
-        price: price,
         purpose: purpose,
+        serviceId: serviceId,
+        cost: cost,
+        skill: skill,
         petCategoryId: petCategoryId,
       },
       where: {

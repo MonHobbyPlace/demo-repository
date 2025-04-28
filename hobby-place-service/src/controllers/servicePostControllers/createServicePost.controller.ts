@@ -3,30 +3,32 @@ import prisma from "../../prismaClient";
 
 export const createServicePost = async (req: Request, res: Response) => {
   const {
-    petName,
     address,
     about,
     image,
     phoneNumber,
     userId,
     age,
-    price,
     purpose,
     petCategoryId,
+    cost,
+    skill,
+    serviceId,
   } = req.body;
   try {
     const newServicePost = await prisma.servicePost.create({
       data: {
-        petName: petName,
         address: address,
         about: about,
         image: image,
         phoneNumber: phoneNumber,
         userId: userId,
         age: age,
-        price: price,
         purpose: purpose,
         petCategoryId: petCategoryId,
+        cost: cost,
+        skill: skill,
+        serviceId: serviceId,
       },
     });
     res.status(200).json({ success: true, data: newServicePost });

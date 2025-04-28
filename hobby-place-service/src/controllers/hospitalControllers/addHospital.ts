@@ -9,21 +9,23 @@ export const addHospital = async (req: Request, res: Response) => {
     category,
     location,
     email,
-    userId,
     avatarImage,
+    rating,
+    backgroundImage,
   } = req.body;
   try {
     const newHospital = await prisma.hospital.createMany({
       data: {
+        rating: rating,
         name: name,
         about: about,
         email: email,
-        userId: userId,
         location: location,
         phoneNumber: phoneNumber,
         workTime: workTime,
         category: category,
         avatarImage: avatarImage,
+        backgroundImage: backgroundImage,
       },
     });
     res.status(200).json({ data: newHospital });
