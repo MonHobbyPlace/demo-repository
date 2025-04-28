@@ -4,25 +4,29 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { MapPinned, PawPrint } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Hospital } from "./HospitalInfoBox";
+import { useRouter } from "next/navigation";
 
 export const TopRated = () => {
-  const [foods, setFoods] = useState([] as unknown as Hospital[]);
+  const [hospitals, setHospitals] = useState([] as unknown as Hospital[]);
   const getTopratedHospitals = async () => {
     try {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
       );
-      setFoods(response.data.data);
+      setHospitals(response.data.data);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    getTopratedHospitals();
+  }, []);
   return (
     <div style={container} className="h-[300px] overflow-scroll ">
-      {foods.map((food, i) => (
-        <Card i={i} key={food.id} />
+      {hospitals.map((hospital, i) => (
+        <Card i={i} key={hospital.id} hospital={hospital} />
       ))}
     </div>
   );
@@ -30,9 +34,12 @@ export const TopRated = () => {
 
 interface CardProps {
   i: number;
+  hospital: Hospital;
 }
 
-function Card({ i }: CardProps) {
+function Card({ i, hospital }: CardProps) {
+  const router = useRouter();
+
   return (
     <motion.div
       className={`card-container-${i}`}
@@ -47,9 +54,12 @@ function Card({ i }: CardProps) {
         variants={cardVariants}
         className="card relative"
       >
-        <div className="w-full h-full flex items-center justify-end rounded-2xl relative p-3 gap-3">
+        <div
+          className="w-full h-full flex items-center justify-end rounded-2xl relative p-3 gap-3"
+          onClick={() => router.push(`/hospital/${hospital.id}`)}
+        >
           <img
-            src="hospital2.jpeg"
+            src={hospital.avatarImage}
             className="w-[93%] h-[65%] absolute rounded-xl"
             alt="Each hospital image"
           />
@@ -58,16 +68,16 @@ function Card({ i }: CardProps) {
             className="z-[100] text-[white] from-opacity-0 p-3 to-opacity-50 w-1/2 h-[70%] rounded-r-xl flex flex-col gap-2 items-center "
           >
             <p className="text-base font-bold opacity-100 text-[#023e8a] ">
-              Furry Friends Hospital
+              {hospital.name}
             </p>
             <div className="flex gap-1 text-xs items-center w-1/2  ">
               <PawPrint color="white" fill="white" size={15} />
-              <p>Dog</p>
+              <p>{hospital.category[0]}</p>
             </div>
             <div className="flex shrink-0 gap-1 items-center w-full ">
               <MapPinned color="white" size={20} />
               <p className=" text-xs text-white  w-full whitespace-nowrap overflow-hidden text-ellipsis">
-                Ard Ayush Ave, BGD - 13 khoroo, Ulaanbaatar 16091
+                {hospital.location}
               </p>
             </div>
           </div>
