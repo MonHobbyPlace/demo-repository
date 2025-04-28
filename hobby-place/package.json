@@ -23,7 +23,11 @@
     "embla-carousel-react": "^8.6.0",
     "express": "^5.1.0",
     "formik": "^2.4.6",
+<<<<<<< HEAD
     "framer-motion": "^12.7.5",
+=======
+    "jsonwebtoken": "^9.0.2",
+>>>>>>> 94ac174 (introduction and Auth check token style log sign up)
     "jwt-decode": "^4.0.0",
     "lightningcss": "^1.29.3",
     "lucide-react": "^0.503.0",
@@ -46,11 +50,17 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+<<<<<<< HEAD
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
     "eslint": "^9.25.1",
     "eslint-config-next": "^15.3.1",
     "tailwindcss": "^4",
+=======
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4",
+>>>>>>> cb710a6 (login sign up)
     "typescript": "^5"
   }
 }

@@ -120,3 +120,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-9deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
