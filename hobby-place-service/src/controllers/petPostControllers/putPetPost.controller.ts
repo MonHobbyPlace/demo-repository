@@ -16,6 +16,7 @@ export const putPetPost = async (req: Request, res: Response) => {
     size,
     breed,
     gender,
+    video,
   } = req.body;
   const id = Number(req.params.id);
   try {
@@ -34,6 +35,7 @@ export const putPetPost = async (req: Request, res: Response) => {
         price: price,
         purpose: purpose,
         petCategoryId: petCategoryId,
+        video: video,
       },
       where: {
         id: id,

@@ -144,12 +144,12 @@ exports.Prisma.PetPostScalarFieldEnum = {
   gender: 'gender',
   price: 'price',
   purpose: 'purpose',
-  petCategoryId: 'petCategoryId'
+  petCategoryId: 'petCategoryId',
+  video: 'video'
 };
 
 exports.Prisma.ServicePostScalarFieldEnum = {
   id: 'id',
-  petName: 'petName',
   address: 'address',
   about: 'about',
   image: 'image',
@@ -158,9 +158,11 @@ exports.Prisma.ServicePostScalarFieldEnum = {
   updatedAt: 'updatedAt',
   userId: 'userId',
   age: 'age',
-  price: 'price',
   purpose: 'purpose',
-  petCategoryId: 'petCategoryId'
+  petCategoryId: 'petCategoryId',
+  serviceId: 'serviceId',
+  cost: 'cost',
+  skill: 'skill'
 };
 
 exports.Prisma.HospitalScalarFieldEnum = {
@@ -172,15 +174,25 @@ exports.Prisma.HospitalScalarFieldEnum = {
   backgroundImage: 'backgroundImage',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId',
+  rating: 'rating',
   location: 'location',
   phoneNumber: 'phoneNumber',
   workTime: 'workTime',
-  category: 'category'
+  category: 'category',
+  views: 'views'
 };
 
 exports.Prisma.PetCategoryScalarFieldEnum = {
   id: 'id',
+  image: 'image',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ServiceCategoryScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -226,7 +238,8 @@ exports.Prisma.ModelName = {
   PetPost: 'PetPost',
   ServicePost: 'ServicePost',
   Hospital: 'Hospital',
-  PetCategory: 'PetCategory'
+  PetCategory: 'PetCategory',
+  ServiceCategory: 'ServiceCategory'
 };
 
 /**
