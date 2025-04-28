@@ -1,7 +1,6 @@
 "use client";
 import { usePetPost } from "@/app/provider/PetPostProvider";
 import React, { useState } from "react";
-import { AllHospitals } from "./AllHospitals";
 import axios from "axios";
 
 export const CategoryFilter = () => {
@@ -24,7 +23,10 @@ export const CategoryFilter = () => {
         "http://localhost:4000/hospital/General"
       );
       console.log(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
   return (
     <div>

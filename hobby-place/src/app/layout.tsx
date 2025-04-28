@@ -6,6 +6,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./provider/AuthProvider"; // ✅ Import the right one
+import { PetPostProvider } from "./provider/PetPostProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,15 +33,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
-<<<<<<< HEAD
-        <ToastContainer position="top-right" autoClose={3000} />
-        <PetPostProvider>{children}</PetPostProvider>
-=======
+
         <AuthProvider>
           <ToastContainer position="top-right" autoClose={3000} />
-          {children}
+         <PetPostProvider>{children}</PetPostProvider>
         </AuthProvider>
->>>>>>> 94ac174 (introduction and Auth check token style log sign up)
       </body>
     </html>
   );
