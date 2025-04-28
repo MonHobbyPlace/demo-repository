@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { usePetPost } from "@/app/provider/PetPostProvider";
 import {
@@ -8,10 +9,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import Autoplay from "embla-carousel-autoplay";
+import { useRouter } from "next/navigation";
+
 export const AdoptMeCrausel = () => {
   const { petPost } = usePetPost();
+  const router = useRouter();
   return (
-    <Carousel className="w-full flex justify-center">
+    <Carousel
+      plugins={[Autoplay({ delay: 5000 })]}
+      opts={{
+        loop: true,
+      }}
+      className="w-full flex justify-center"
+    >
       <CarouselContent className=" relative h-56 rounded-xl">
         {petPost.map((element, index) => {
           if (element.price > 0) {
@@ -20,6 +31,9 @@ export const AdoptMeCrausel = () => {
           return (
             <CarouselItem key={index}>
               <img
+                onClick={() =>
+                  router.push(`/homePage/${element.id.toString()}`)
+                }
                 alt=""
                 src={element.image}
                 className="w-full  object-cover"

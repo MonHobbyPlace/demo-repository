@@ -1,7 +1,6 @@
 "use client";
 
 import { usePetPost } from "@/app/provider/PetPostProvider";
-import { ArrowRight } from "lucide-react";
 
 /* eslint-disable @next/next/no-img-element */
 export const Categories = () => {
@@ -10,9 +9,6 @@ export const Categories = () => {
     <div>
       <div className="flex items-center justify-between w-full h-10 ">
         <div className="text-xl extrabold">Categories</div>
-        <p className="text-sm flex items-center">
-          see more <ArrowRight size={14} />
-        </p>
       </div>
       <div className="flex gap-2 overflow-x-auto">
         {category.map((element, index) => {

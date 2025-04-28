@@ -18,13 +18,14 @@ export default function RootLayout({
           : "p-5"
       }`}
     >
-      {!pathName.includes("hospital/") ||
-        (!pathName.includes("homePage/") && <Header />)}
+      {!pathName.includes("hospital/") && !pathName.includes("homePage/") && (
+        <Header />
+      )}
 
       <PetPostProvider>
         <div
           className={`${
-            pathName.includes("hospital/") || pathName.includes("homePage/")
+            pathName.includes("hospital/") && pathName.includes("homePage/")
               ? "h-screen"
               : "h-[90%]"
           } `}
@@ -33,8 +34,9 @@ export default function RootLayout({
         </div>
       </PetPostProvider>
       <div className="sticky bottom-0">
-        {!pathName.includes("hospital/") ||
-          (!pathName.includes("homePage/") && <Footer />)}
+        {!pathName.includes("hospital/") && !pathName.includes("homePage/") && (
+          <Footer />
+        )}
       </div>
     </div>
   );
