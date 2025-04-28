@@ -14,7 +14,6 @@ export default function Home() {
       `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/hospitalId/${id}`
     );
     setHospital(response.data);
-    console.log("response", response.data);
   };
   useEffect(() => {
     fetchData();

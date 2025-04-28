@@ -1,9 +1,10 @@
 "use client";
 import axios from "axios";
-import { HospitalInfoBox } from "../_components/HospitalInfoBox";
+import { Hospital, HospitalInfoBox } from "../_components/HospitalInfoBox";
 import { useEffect, useState } from "react";
 
-export const AllHospitals = () => {
+export const AllHospitals = (props: { hospitalInfos: Hospital[] }) => {
+  const { hospitalInfos } = props;
   const [hospitals, setHospitals] = useState([]);
   const fetchData = async () => {
     const response = await axios.get(
@@ -17,9 +18,13 @@ export const AllHospitals = () => {
   }, []);
   return (
     <div className=" overflow-scroll h-[46%] rounded-xl ">
-      {hospitals.map((hospital, index) => {
-        return <HospitalInfoBox key={index} hospital={hospital} />;
-      })}
+      {!hospitalInfos.length
+        ? hospitals.map((hospital, index) => {
+            return <HospitalInfoBox key={index} hospital={hospital} />;
+          })
+        : hospitalInfos.map((hospital, index) => {
+            return <HospitalInfoBox hospital={hospital} key={index} />;
+          })}
     </div>
   );
 };

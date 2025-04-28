@@ -1,30 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import axios from "axios";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { MapPinned, PawPrint } from "lucide-react";
+import { useState } from "react";
+import { Hospital } from "./HospitalInfoBox";
 
 export const TopRated = () => {
+  const [foods, setFoods] = useState([] as unknown as Hospital[]);
+  const getTopratedHospitals = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
+      );
+      setFoods(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div style={container} className="h-[300px] overflow-scroll ">
-      {food.map(([emoji, hueA, hueB], i) => (
-        <Card i={i} emoji={emoji} hueA={hueA} hueB={hueB} key={emoji} />
+      {foods.map((food, i) => (
+        <Card i={i} key={food.id} />
       ))}
     </div>
   );
 };
 
 interface CardProps {
-  emoji: string;
-  hueA: number;
-  hueB: number;
   i: number;
 }
 
-function Card({ emoji, hueA, hueB, i }: CardProps) {
-  const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
-  console.log(background);
-
+function Card({ i }: CardProps) {
   return (
     <motion.div
       className={`card-container-${i}`}
@@ -43,7 +51,7 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
           <img
             src="hospital2.jpeg"
             className="w-[93%] h-[65%] absolute rounded-xl"
-            alt={emoji}
+            alt="Each hospital image"
           />
           <div
             style={{ backgroundColor: "rgba(154, 154, 154, 0.3)" }}
@@ -84,8 +92,6 @@ const cardVariants: Variants = {
   },
 };
 
-const hue = (h: number) => `hsl(${h}, 85%, 100%)`;
-
 const container: React.CSSProperties = {
   maxWidth: 500,
   paddingBottom: 100,
@@ -124,11 +130,3 @@ const card: React.CSSProperties = {
     "0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075), 0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075), 0 0 16px hsl(0deg 0% 0% / 0.075)",
   transformOrigin: "10% 60%",
 };
-
-const food: [string, number, number][] = [
-  ["🍅", 100, 120],
-  ["🍊", 20, 40],
-  ["🍋", 60, 90],
-  ["🍐", 80, 120],
-  ["🍏", 100, 140],
-];
