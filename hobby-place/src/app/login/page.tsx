@@ -44,7 +44,7 @@ export default function LogIn() {
         localStorage.setItem("userId", data.userId);
 
         toast.success("Login successful!");
-        router.push("/");
+        router.push("/homePage");
       } else {
         toast.error(data.message || "Login failed.");
       }
