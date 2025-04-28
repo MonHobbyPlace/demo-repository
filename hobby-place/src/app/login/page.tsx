@@ -5,7 +5,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-import { ChevronLeft, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -44,7 +44,7 @@ export default function LogIn() {
         localStorage.setItem("userId", data.userId);
 
         toast.success("Login successful!");
-        router.push("/");
+        router.push("/homePage");
       } else {
         toast.error(data.message || "Login failed.");
       }
@@ -59,39 +59,12 @@ export default function LogIn() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#b2e0da] bg-cover gap-4 px-4 py-6">
-      <img
-        src="/cat3.jpg"
-        alt="Decor 1"
-        className="absolute top-10 left-5 w-28 h-28 rotate-12 animate-[wiggle_6s_ease-in-out_infinite] rounded-full"
-      />
-      <img
-        src="/cat2.jpg"
-        alt="Decor 2"
-        className="absolute top-20 right-12 w-16 h-16 -rotate-10 animate-[wiggle_4s_ease-in-out_infinite] rounded-full"
-      />
-      <img
-        src="/cat1.jpg"
-        alt="Decor 3"
-        className="absolute bottom-40 right-30 w-36 h-36 rotate-8 animate-[float_5s_ease-in-out_infinite] rounded-full"
-      />
-      <img
-        src="/cat4.jpg"
-        alt="Decor 4"
-        className="absolute bottom-20 left-10 w-24 h-24 rotate-18 animate-[wiggle_5s_ease-in-out_infinite] rounded-full"
-      />
-      <img
-        src="/cat5.jpg"
-        alt="Decor 5"
-        className="absolute bottom-10 right-5 w-28 h-28 -rotate-15 animate-[wiggle_4s_ease-in-out_infinite] rounded-full"
-      />
-
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-blue-400 bg-cover gap-4 px-4 py-6">
       <button
         onClick={() => router.push("/sign-up")}
-        className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-full px-[5px]"
+        className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-full px-[5px] flex"
       >
         Sign up
-        <ChevronLeft size={28} />
       </button>
 
       <h1 className="text-2xl font-bold text-white">Log In</h1>

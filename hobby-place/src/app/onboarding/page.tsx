@@ -27,7 +27,7 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-between bg-blue-900 text-white px-6 py-10">
+    <div className="h-screen w-screen flex flex-col items-center justify-between bg-blue-400 text-white px-6 py-10">
       <button
         onClick={() => backPage()}
         className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
