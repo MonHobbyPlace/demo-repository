@@ -15,6 +15,7 @@ export const createPetPost = async (req: Request, res: Response) => {
     size,
     gender,
     breed,
+    video,
   } = req.body;
 
   const userId = Number(req.params.id);
@@ -35,6 +36,7 @@ export const createPetPost = async (req: Request, res: Response) => {
         purpose: purpose,
         petCategoryId: petCategoryId,
         userId: userId,
+        video: video,
       },
     });
 

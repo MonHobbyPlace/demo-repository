@@ -1,13 +1,5 @@
 "use client"; // Add this line to mark the file as a client component
 
-<<<<<<< HEAD
-import SignIn from "./sign-in/page";
-
-export default function Home() {
-  return (
-    <div className="w-screen h-screen">
-      <SignIn />
-=======
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -29,7 +21,6 @@ export default function Home() {
           Start Onboarding
         </button>
       </div>
->>>>>>> 94ac174 (introduction and Auth check token style log sign up)
     </div>
   );
 }
