@@ -3,12 +3,10 @@
 
 import axios from "axios";
 import { Search } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
-  const pathName = usePathname();
   // const [searchValue, setSearchValue] = useState("");
 
   const searchClick = (value: boolean) => {
@@ -25,30 +23,28 @@ export const Header = () => {
     console.log(response.data);
   };
   return (
-    <div className="flex flex-col gap-4">
-      {!pathName.includes("profile") && (
-        <div className="flex items-center justify-between w-full h-16  ">
-          <div className="avatar avatar-online">
-            <div className="w-12 rounded-full">
-              <img
-                alt=""
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
-          </div>
-          <div className=" flex h-10 gap-[10px] items-center border px-3 rounded-md relative">
-            <Search size={16} onClick={() => searchClick(true)} />
-            {isActive === true ? (
-              <input
-                type="text"
-                className="h-9 focus-visible:ring-0 border-0 outline-none rounded-none"
-                placeholder="Search..."
-                onChange={(e) => onChange(e)}
-              />
-            ) : null}
+    <div className="flex flex-col gap-4 w-full">
+      <div className="flex items-center justify-between w-full h-16  ">
+        <div className="avatar avatar-online">
+          <div className="w-12 rounded-full">
+            <img
+              alt=""
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+            />
           </div>
         </div>
-      )}
+        <div className=" flex h-10 gap-[10px] items-center border px-3 rounded-md relative">
+          <Search size={16} onClick={() => searchClick(true)} />
+          {isActive === true ? (
+            <input
+              type="text"
+              className="h-9 focus-visible:ring-0 border-0 outline-none rounded-none"
+              placeholder="Search..."
+              onChange={(e) => onChange(e)}
+            />
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 };

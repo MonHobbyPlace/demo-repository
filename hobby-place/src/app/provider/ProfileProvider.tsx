@@ -6,28 +6,19 @@ import React, { createContext, useContext, useState } from "react";
 
 export type ProfileType = {
   id: number;
-  userId: number;
-  name: string | undefined;
-  avatarImage: string | undefined;
-  socialMediaURL: string | undefined;
-  about: string | undefined;
-  backgroundImage: string | undefined;
-  successMessage: string | undefined;
-  bankCards: BankCard[];
+  username: string;
+  email: string;
+  profileImage: string;
+  location: string;
+  backgroundImage: string;
+  petPosts: string[];
+  servicePosts: string[];
 };
-export type BankCard = {
-  id: number;
-  country: string;
-  firstName: string;
-  lastName: string;
-  cardNumber: string;
-  expiryDate: string;
-};
+
 type ProfileContextType = {
   user: ProfileType;
   handleLogout: () => void;
   updateProfile: (values: ProfileType) => Promise<void>;
-  userId: string | 0 | null;
   isLoading: boolean;
 };
 const ProfileContext = createContext<ProfileContextType>(
@@ -42,19 +33,17 @@ export const ProfileProvider = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const userId = 1;
-  // const userId =
-  //   typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
+  const userId =
+    typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
   const { data: user, refetch } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/profile/?currentUser=${userId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?currentUser=${1}`
       );
-      if (!response.data) {
-        router.push("/profile");
-      }
+      console.log(response.data);
+
       setIsLoading(false);
       return response.data;
     },
@@ -63,7 +52,7 @@ export const ProfileProvider = ({
   const handleLogout = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
-    router.push("/logIn");
+    router.push("/login");
   };
 
   const updateProfile = async (values: ProfileType) => {
@@ -80,7 +69,6 @@ export const ProfileProvider = ({
         user: user,
         handleLogout: handleLogout,
         updateProfile: updateProfile,
-        userId: userId.toString(),
         isLoading: isLoading,
       }}
     >

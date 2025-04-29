@@ -1517,6 +1517,8 @@ export namespace Prisma {
     updatedAt: Date | null
     role: $Enums.userRoleEnum | null
     location: string | null
+    profileImage: string | null
+    backgroundImage: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1528,6 +1530,8 @@ export namespace Prisma {
     updatedAt: Date | null
     role: $Enums.userRoleEnum | null
     location: string | null
+    profileImage: string | null
+    backgroundImage: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1539,6 +1543,8 @@ export namespace Prisma {
     updatedAt: number
     role: number
     location: number
+    profileImage: number
+    backgroundImage: number
     _all: number
   }
 
@@ -1560,6 +1566,8 @@ export namespace Prisma {
     updatedAt?: true
     role?: true
     location?: true
+    profileImage?: true
+    backgroundImage?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1571,6 +1579,8 @@ export namespace Prisma {
     updatedAt?: true
     role?: true
     location?: true
+    profileImage?: true
+    backgroundImage?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1582,6 +1592,8 @@ export namespace Prisma {
     updatedAt?: true
     role?: true
     location?: true
+    profileImage?: true
+    backgroundImage?: true
     _all?: true
   }
 
@@ -1680,6 +1692,8 @@ export namespace Prisma {
     updatedAt: Date
     role: $Enums.userRoleEnum
     location: string | null
+    profileImage: string | null
+    backgroundImage: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1710,6 +1724,8 @@ export namespace Prisma {
     updatedAt?: boolean
     role?: boolean
     location?: boolean
+    profileImage?: boolean
+    backgroundImage?: boolean
     PetPost?: boolean | User$PetPostArgs<ExtArgs>
     ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1724,6 +1740,8 @@ export namespace Prisma {
     updatedAt?: boolean
     role?: boolean
     location?: boolean
+    profileImage?: boolean
+    backgroundImage?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1735,6 +1753,8 @@ export namespace Prisma {
     updatedAt?: boolean
     role?: boolean
     location?: boolean
+    profileImage?: boolean
+    backgroundImage?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1746,9 +1766,11 @@ export namespace Prisma {
     updatedAt?: boolean
     role?: boolean
     location?: boolean
+    profileImage?: boolean
+    backgroundImage?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "createdAt" | "updatedAt" | "role" | "location", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "createdAt" | "updatedAt" | "role" | "location" | "profileImage" | "backgroundImage", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | User$PetPostArgs<ExtArgs>
     ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
@@ -1772,6 +1794,8 @@ export namespace Prisma {
       updatedAt: Date
       role: $Enums.userRoleEnum
       location: string | null
+      profileImage: string | null
+      backgroundImage: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2205,6 +2229,8 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly role: FieldRef<"User", 'userRoleEnum'>
     readonly location: FieldRef<"User", 'String'>
+    readonly profileImage: FieldRef<"User", 'String'>
+    readonly backgroundImage: FieldRef<"User", 'String'>
   }
     
 
@@ -8588,7 +8614,9 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     role: 'role',
-    location: 'location'
+    location: 'location',
+    profileImage: 'profileImage',
+    backgroundImage: 'backgroundImage'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8835,6 +8863,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumuserRoleEnumFilter<"User"> | $Enums.userRoleEnum
     location?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
+    backgroundImage?: StringFilter<"User"> | string
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
   }
@@ -8848,6 +8878,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     role?: SortOrder
     location?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+    backgroundImage?: SortOrder
     PetPost?: PetPostOrderByRelationAggregateInput
     ServicePost?: ServicePostOrderByRelationAggregateInput
   }
@@ -8864,9 +8896,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumuserRoleEnumFilter<"User"> | $Enums.userRoleEnum
     location?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
+    backgroundImage?: StringFilter<"User"> | string
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
-  }, "id" | "email" | "username">
+  }, "id" | "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8877,6 +8911,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     role?: SortOrder
     location?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+    backgroundImage?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -8896,6 +8932,8 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     role?: EnumuserRoleEnumWithAggregatesFilter<"User"> | $Enums.userRoleEnum
     location?: StringNullableWithAggregatesFilter<"User"> | string | null
+    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
+    backgroundImage?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type PetPostWhereInput = {
@@ -9350,6 +9388,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
     PetPost?: PetPostCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
   }
@@ -9363,6 +9403,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
   }
@@ -9375,6 +9417,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
   }
@@ -9388,6 +9432,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -9401,6 +9447,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -9411,6 +9459,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -9422,6 +9472,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
   }
 
   export type PetPostCreateInput = {
@@ -9999,6 +10051,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     role?: SortOrder
     location?: SortOrder
+    profileImage?: SortOrder
+    backgroundImage?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -10014,6 +10068,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     role?: SortOrder
     location?: SortOrder
+    profileImage?: SortOrder
+    backgroundImage?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -10025,6 +10081,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     role?: SortOrder
     location?: SortOrder
+    profileImage?: SortOrder
+    backgroundImage?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -11193,6 +11251,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
   }
 
@@ -11205,6 +11265,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -11260,6 +11322,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
   }
 
@@ -11272,6 +11336,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -11283,6 +11349,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
     PetPost?: PetPostCreateNestedManyWithoutUserInput
   }
 
@@ -11295,6 +11363,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.userRoleEnum
     location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -11364,6 +11434,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
   }
 
@@ -11376,6 +11448,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
   }
 
