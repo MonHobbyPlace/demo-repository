@@ -33,10 +33,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
-
         <AuthProvider>
           <ToastContainer position="top-right" autoClose={3000} />
-         <PetPostProvider>{children}</PetPostProvider>
+          <PetPostProvider>{children}</PetPostProvider>
         </AuthProvider>
       </body>
     </html>

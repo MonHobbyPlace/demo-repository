@@ -15,25 +15,30 @@ export const createServicePost = async (req: Request, res: Response) => {
     skill,
     serviceId,
   } = req.body;
+
   try {
     const newServicePost = await prisma.servicePost.create({
       data: {
-        address: address,
-        about: about,
-        image: image,
-        phoneNumber: phoneNumber,
-        userId: userId,
-        age: age,
-        purpose: purpose,
-        petCategoryId: petCategoryId,
-        cost: cost,
-        skill: skill,
-        serviceId: serviceId,
+        address,
+        about,
+        image,
+        phoneNumber: Number(phoneNumber),
+        userId: Number(userId),
+        age: Number(age),
+        purpose,
+        petCategoryId: Number(petCategoryId),
+        cost: Number(cost),
+        skill,
+        serviceId: Number(serviceId),
       },
     });
+
     res.status(200).json({ success: true, data: newServicePost });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: true, message: "Internal error" });
+  } catch (error: any) {
+    res.status(500).json({
+      error: true,
+      message: "Internal error",
+      details: error?.message || "Unknown",
+    });
   }
 };

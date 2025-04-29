@@ -19,8 +19,16 @@ export const LogIn = async (req: Request, res: Response) => {
       },
     });
 
+    if (!user) {
+      res.status(500).json({
+        success: false,
+        message: "user does not exist",
+      });
+    }
+
     if (user) {
       const isSigned = await bcrypt.compare(password, user.password);
+      console.log(isSigned);
 
       if (isSigned) {
         const token = jwt.sign(
