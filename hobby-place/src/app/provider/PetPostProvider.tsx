@@ -71,7 +71,7 @@ export const PetPostProvider = ({
   const getCategoryData = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/category`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`
       );
       setCategory(data.Category);
       console.log("Category fetched successfully:", data.Category);
