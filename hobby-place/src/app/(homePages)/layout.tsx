@@ -16,31 +16,26 @@ export default function RootLayout({
   return (
     <div
       className={`relative h-screen overflow-hidden  bg-[#e1f7f5] ${
-        pathName.includes("profile") ||
-        pathName.includes("hospital/") ||
-        pathName.includes("homePage/")
+        pathName.includes("hospital/") || pathName.includes("homePage/")
           ? "p-0"
           : "p-5"
-      }`}
+      } `}
     >
       <QueryClientProvider client={queryClient}>
         <ProfileProvider>
           {!pathName.includes("profile") &&
+            !pathName.includes("service") &&
             !pathName.includes("hospital/") &&
             !pathName.includes("homePage/") && <Header />}
 
           <PetPostProvider>
-            <div
-              className={`${
-                pathName.includes("hospital/") && pathName.includes("homePage/")
-                  ? "h-screen"
-                  : "h-[90%]"
-              } `}
-            >
-              {children}
-            </div>
+            <div className={`h-full`}>{children}</div>
           </PetPostProvider>
-          <div className="sticky w-full bottom-0 ">
+          <div
+            className={`sticky w-full bottom-0 ${
+              pathName.includes("hospital/") && "pb-5"
+            }`}
+          >
             {!pathName.includes("hospital/") &&
               !pathName.includes("homePage/") && <Footer />}
           </div>
