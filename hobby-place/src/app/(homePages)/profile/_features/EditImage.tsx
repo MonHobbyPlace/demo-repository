@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Camera } from "lucide-react";
 
 export const EditImage = () => {

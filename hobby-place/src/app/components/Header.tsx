@@ -28,7 +28,7 @@ export const Header = () => {
         <div className="avatar avatar-online">
           <div className="w-12 rounded-full">
             <img
-              alt=""
+              alt="profile image"
               src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
             />
           </div>

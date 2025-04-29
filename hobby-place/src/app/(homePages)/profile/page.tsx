@@ -13,8 +13,8 @@ export default function Home() {
       </div>
       <div className="p-5">
         <p className="font-bold text-2xl">{user?.username}</p>
+        <PersonalInfoContainer />
       </div>
-      <PersonalInfoContainer />
     </div>
   );
 }
