@@ -5,14 +5,14 @@ export const userExist = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.query;
+  const { currentUser } = req.query;
   try {
     const user = await prisma.user.findUnique({
       where: {
-        id: Number(id),
+        id: Number(currentUser),
       },
     });
-    if (!user) {
+    if (user) {
       next();
     } else {
       res.status(404).json({

@@ -2,13 +2,13 @@
 import { usePetPost } from "@/app/provider/PetPostProvider";
 import React, { useState } from "react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 export const CategoryFilter = () => {
   const [selectedFramework, setSelectedFramework] = useState("");
 
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedFramework(event.target.value);
-    console.log(event.target.value);
+  const handleRadioChange = (value: string) => {
+    setSelectedFramework(value);
     fetchInfo();
   };
 
@@ -28,30 +28,32 @@ export const CategoryFilter = () => {
     }
   };
   return (
-    <div>
-      <form className="filter">
-        <input
-          className="btn btn-circle"
-          type="reset"
-          value="×"
-          onClick={handleReset} // Handle reset
-        />
-        {category.map((element, index) => {
-          return (
-            <input
-              key={index}
-              className="btn rounded-full"
-              type="radio"
-              name="frameworks"
-              value={element.name}
-              checked={selectedFramework === element.name}
-              onChange={(e) => handleRadioChange(e)}
-              aria-label={element.name}
+    <div className="flex gap-2 overflow-x-auto text-white ">
+      {selectedFramework.length > 0 && (
+        <Button onClick={handleReset} className="bg-[#1E0342] rounded-full p-4">
+          x
+        </Button>
+      )}
+      {category.map((element, index) => {
+        return (
+          <button
+            key={index}
+            onClick={() => handleRadioChange(element.name)}
+            className={`btn btn-outline bg-[#1E0342] border-2 border-[#1E0342] flex items-center justify-between rounded-full p-0 ${
+              selectedFramework.length == 0 || selectedFramework == element.name
+                ? "flex"
+                : "hidden"
+            }`}
+          >
+            <img
+              alt=""
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              className="w-9 rounded-full"
             />
-          );
-        })}
-      </form>
-      {/* <AllHospitals hospitalInfos={}/> */}
+            <div className="p-2">{element.name}</div>
+          </button>
+        );
+      })}
     </div>
   );
 };

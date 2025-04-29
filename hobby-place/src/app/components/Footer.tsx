@@ -7,7 +7,11 @@ export const Footer = () => {
   const pathName = usePathname();
   const router = useRouter();
   return (
-    <div className="flex  justify-between items-center bg-[#03346E] p-4 rounded-xl shadow-md text-[#E1F7F5]">
+    <div
+      className={`flex  justify-between items-center bg-[#03346E]  p-4 rounded-xl shadow-md text-[#E1F7F5] ${
+        pathName.includes("profile") && " w-[90%] m-5"
+      }`}
+    >
       <button
         className={pathName.includes("home") ? "opacity-100" : "opacity-60"}
         onClick={() => router.push("/homePage")}

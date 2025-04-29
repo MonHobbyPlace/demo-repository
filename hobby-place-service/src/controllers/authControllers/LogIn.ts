@@ -30,6 +30,15 @@ export const LogIn = async (req: Request, res: Response) => {
           },
           JWT_SECRET_KEY
         );
+
+        // res.cookie("org", token, {
+        //   maxAge: 60 * 60 * 24 * 7,
+        //   httpOnly: true, // prevent access via client-side JS
+        //   sameSite: "lax", // CSRF protection
+        //   secure: false, // only over HTTPS in prod
+        // });
+        // console.log(60 * 60 * 24 * 7);
+
         res
           .send({
             success: true,
