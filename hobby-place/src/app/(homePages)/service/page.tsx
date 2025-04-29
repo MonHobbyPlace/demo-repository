@@ -2,14 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { jwtDecode } from "jwt-decode";
+import ServiceCategorySelect from "./_components/serviceCategorySelect";
+import PetCategorySelect from "./_components/petCategorySelect";
 
 type Category = {
   id: number;
@@ -52,11 +47,7 @@ export default function Service() {
           axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/serviceCategory`),
           axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`),
         ]);
-
-        console.log("Service categories:", servicesRes.data);
-        console.log("Pet categories:", petsRes.data);
-
-        setServiceCategories(servicesRes.data); // Make sure this is an array
+        setServiceCategories(servicesRes.data);
         setPetCategories(petsRes.data);
       } catch (err) {
         console.error("Error fetching categories", err);
@@ -166,46 +157,21 @@ export default function Service() {
         className="border p-2"
       />
 
-      {/* Pet Category Select using Shadcn */}
-      <div>
-        <label className="text-sm font-medium">Pet Category</label>
-        <Select
-          onValueChange={(value) =>
-            setService((prev) => ({ ...prev, petCategoryId: value }))
-          }
-        >
-          <SelectTrigger className="w-full mt-1">
-            <SelectValue placeholder="Select Pet Category" />
-          </SelectTrigger>
-          <SelectContent>
-            {petCategories.map((cat) => (
-              <SelectItem key={cat.id} value={String(cat.id)}>
-                {cat.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+      <PetCategorySelect
+        options={petCategories}
+        value={service.petCategoryId}
+        onChange={(value) =>
+          setService((prev) => ({ ...prev, petCategoryId: value }))
+        }
+      />
 
-      <div>
-        <label className="text-sm font-medium">Service Category</label>
-        <Select
-          onValueChange={(value) =>
-            setService((prev) => ({ ...prev, serviceId: value }))
-          }
-        >
-          <SelectTrigger className="w-full mt-1">
-            <SelectValue placeholder="Select Service Category" />
-          </SelectTrigger>
-          <SelectContent>
-            {serviceCategories.map((cat) => (
-              <SelectItem key={cat.id} value={String(cat.id)}>
-                {cat.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+      <ServiceCategorySelect
+        options={serviceCategories}
+        value={service.serviceId}
+        onChange={(value) =>
+          setService((prev) => ({ ...prev, serviceId: value }))
+        }
+      />
 
       <button
         disabled={loading}
