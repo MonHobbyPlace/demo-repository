@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 // import { Input } from "@/components/ui/input";
+
 import axios from "axios";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -19,7 +20,7 @@ export const Header = () => {
     console.log(value);
 
     const response = await axios.get(
-      `http://localhost:4000/petPost/search/${value}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/search/${value}`
     );
     console.log(response.data);
   };
