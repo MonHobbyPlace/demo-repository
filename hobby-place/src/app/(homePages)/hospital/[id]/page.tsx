@@ -99,7 +99,7 @@ export default function Home() {
             );
           })}
         </div>
-        {/* <MapContainer
+        <MapContainer
           center={[47.8864, 106.9057]}
           zoom={13}
           scrollWheelZoom={false}
@@ -114,7 +114,7 @@ export default function Home() {
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
           </Marker>
-        </MapContainer> */}
+        </MapContainer>
         <div></div>
         <div className="absolute bottom-3 w-full ">
           <ContactInfo hospital={hospital} />
