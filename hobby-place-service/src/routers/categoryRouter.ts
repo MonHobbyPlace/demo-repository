@@ -1,7 +1,7 @@
 import express from "express";
 import { petCategoryGet } from "../controllers/petCategoryControllers/petCategoryGet";
 import { petCategoryPost } from "../controllers/petCategoryControllers/petCategoryPost";
-import { categoryMiddlewarePost } from "../middlewares/categoryMiddlewares/categoryMiddlewaresPost";
+import { categoryMiddlewarePost } from "../middlewares/categoryMIddlewares/categoryMiddlewaresPost";
 
 export const categoryRouter = express.Router();
 
