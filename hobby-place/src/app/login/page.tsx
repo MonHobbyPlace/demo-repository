@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -62,7 +61,7 @@ export default function LogIn() {
     <div className="h-screen w-screen flex flex-col items-center justify-center bg-blue-400 bg-cover gap-4 px-4 py-6">
       <button
         onClick={() => router.push("/sign-up")}
-        className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-full px-[5px] flex"
+        className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px] flex "
       >
         Sign up
       </button>
@@ -92,16 +91,16 @@ export default function LogIn() {
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
           >
             {showPassword ? (
-              <EyeOff className="text-[blue]" size={20} />
+              <EyeOff className="text-white" size={20} />
             ) : (
-              <Eye size={20} className="text-[blue]" />
+              <Eye size={20} className="text-white" />
             )}
           </button>
         </div>
         <button
           onClick={handleLogin}
           disabled={loading}
-          className="backdrop-blur-[20px] text-white font-semibold rounded-lg  w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+          className="backdrop-blur-[20px] text-blue-400 font-semibold rounded-lg  w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none border bg-white"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
