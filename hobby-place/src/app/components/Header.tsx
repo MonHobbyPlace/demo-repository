@@ -5,6 +5,7 @@
 import axios from "axios";
 import { ArrowRight, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { Search } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 import { petPostType } from "../provider/PetPostProvider";
 import Link from "next/link";
@@ -74,9 +75,6 @@ export const Header = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      )}
-    </div>
+
   );
 };

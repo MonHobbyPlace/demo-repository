@@ -125,7 +125,9 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   role: 'role',
-  location: 'location'
+  location: 'location',
+  profileImage: 'profileImage',
+  backgroundImage: 'backgroundImage'
 };
 
 exports.Prisma.PetPostScalarFieldEnum = {

@@ -19,8 +19,16 @@ export const LogIn = async (req: Request, res: Response) => {
       },
     });
 
+    if (!user) {
+      res.status(500).json({
+        success: false,
+        message: "user does not exist",
+      });
+    }
+
     if (user) {
       const isSigned = await bcrypt.compare(password, user.password);
+      console.log(isSigned);
 
       if (isSigned) {
         const token = jwt.sign(
@@ -30,6 +38,15 @@ export const LogIn = async (req: Request, res: Response) => {
           },
           JWT_SECRET_KEY
         );
+
+        // res.cookie("org", token, {
+        //   maxAge: 60 * 60 * 24 * 7,
+        //   httpOnly: true, // prevent access via client-side JS
+        //   sameSite: "lax", // CSRF protection
+        //   secure: false, // only over HTTPS in prod
+        // });
+        // console.log(60 * 60 * 24 * 7);
+
         res
           .send({
             success: true,
