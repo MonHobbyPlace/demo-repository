@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-// import { Input } from "@/components/ui/input";
 
 import axios from "axios";
 import { ArrowRight, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Search } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 import { petPostType } from "../provider/PetPostProvider";
 import Link from "next/link";
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
+  const [value, setValue] = useState();
   const pathName = usePathname();
   const [searchValue, setSearchValue] = useState<petPostType[]>([]);
 
@@ -19,8 +18,7 @@ export const Header = () => {
     setIsActive(value);
   };
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    console.log(value);
+    setValue(e.target.value);
 
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/search/${value}`
@@ -53,28 +51,54 @@ export const Header = () => {
                 placeholder="Search..."
                 onChange={(e) => onChange(e)}
               />
-            ) : null}
-            <div className="absolute bg-white z-10 top-[40px] text-black w-[215px] rounded-md">
-              {searchValue?.slice(0, 3)?.map((element, index) => (
-                <div className="flex m-2 gap-1 border-b" key={index}>
-                  <img
-                    className="w-[35px] h-[35px] rounded-sm"
-                    src={`${element.image}`}
-                  />
-                  <div className="w-full  flex gap-1 justify-between">
-                    <p className="overflow-hidden text-ellipsis line-clamp-2 text-xs">
-                      {element.breed}
-                    </p>
-                    <Link href={`homePage/${element.id}`}>
-                      <h3 className="cursor-pointer flex justify-end h-4 text-xs">
-                        see more
-                        <ArrowRight size={12} />
-                      </h3>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ) : (
+              <></>
+            )}
 
+            <div className="absolute bg-white z-10 top-[40px] text-black w-[215px] rounded-md">
+              {value?.length > 0 && isActive ? (
+                <>
+                  {searchValue?.length === 0 && isActive ? (
+                    <>
+                      <div className="flex m-2 gap-1 border-b">
+                        <div className="w-full  flex gap-1 justify-between">
+                          <p className="overflow-hidden text-ellipsis line-clamp-2 text-xs">
+                            No data found
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {searchValue?.slice(0, 3)?.map((element, index) => (
+                        <div className="flex m-2 gap-1 border-b" key={index}>
+                          <img
+                            className="w-[35px] h-[35px] rounded-sm"
+                            src={`${element.image}`}
+                          />
+                          <div className="w-full  flex gap-1 justify-between">
+                            <p className="overflow-hidden text-ellipsis line-clamp-2 text-xs">
+                              {element.breed}
+                            </p>
+                            <Link href={`homePage/${element.id}`}>
+                              <h3 className="cursor-pointer flex justify-end h-4 text-xs">
+                                see more
+                                <ArrowRight size={12} />
+                              </h3>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
