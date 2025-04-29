@@ -27,8 +27,8 @@ export const Footer = () => {
         <HospitalIcon />
       </button>
       <button
-        onClick={() => router.push("/user")}
-        className={pathName.includes("user") ? "opacity-100" : "opacity-60"}
+        onClick={() => router.push("/profile")}
+        className={pathName.includes("profile") ? "opacity-100" : "opacity-60"}
       >
         <UserRound />
       </button>
