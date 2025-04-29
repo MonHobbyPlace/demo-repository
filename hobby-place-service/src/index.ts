@@ -6,6 +6,7 @@ import { categoryRouter } from "./routers/categoryRouter";
 import dotenv from "dotenv";
 import cors from "cors";
 import { userRouter } from "./routers/userRouter";
+import { serviceCategory } from "./routers/serviceCategory.router";
 
 dotenv.config();
 
@@ -22,7 +23,8 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/hospital", hospitalRouter);
 app.use("/petPost", petPostRouter);
 app.use("/servicePost", servicePostRouter);
-app.use("/category", categoryRouter);
+app.use("/petCategory", categoryRouter);
+app.use("/serviceCategory", serviceCategory);
 app.use("/users", userRouter);
 
 app.listen(PORT, () => {
