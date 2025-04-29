@@ -120,9 +120,9 @@ export default function SignUp() {
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
               >
                 {showPassword ? (
-                  <EyeOff size={20} className="text-blue-500" />
+                  <EyeOff size={20} className="text-white" />
                 ) : (
-                  <Eye size={20} className="text-blue-500" />
+                  <Eye size={20} className="text-white" />
                 )}
               </button>
             </div>
@@ -131,7 +131,7 @@ export default function SignUp() {
             <button
               onClick={handleSignUp}
               disabled={loading}
-              className="text-white font-semibold rounded-lg w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none backdrop-blur-[8px]"
+              className="text-blue-400 font-semibold rounded-lg w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none backdrop-blur-[8px] bg-white"
             >
               {loading ? "Signing Up..." : "Sign Up"}
             </button>
