@@ -27,7 +27,6 @@ type ProfileContextType = {
   user: ProfileType;
   handleLogout: () => void;
   updateProfile: (values: ProfileType) => Promise<void>;
-  updateCardInfo: (values: BankCard) => Promise<void>;
   userId: string | 0 | null;
   isLoading: boolean;
 };
@@ -43,14 +42,15 @@ export const ProfileProvider = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const userId =
-    typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
+  const userId = 1;
+  // const userId =
+  //   typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
   const { data: user, refetch } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:4000/profile/?currentUser=${userId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/profile/?currentUser=${userId}`
       );
       if (!response.data) {
         router.push("/profile");
@@ -73,13 +73,6 @@ export const ProfileProvider = ({
     });
     await refetch();
   };
-  const updateCardInfo = async (values: BankCard) => {
-    await axios.put("http://localhost:4000/bank-acc", {
-      ...values,
-      profileId: values.id,
-    });
-    await refetch();
-  };
 
   return (
     <ProfileContext.Provider
@@ -87,8 +80,7 @@ export const ProfileProvider = ({
         user: user,
         handleLogout: handleLogout,
         updateProfile: updateProfile,
-        updateCardInfo: updateCardInfo,
-        userId: userId,
+        userId: userId.toString(),
         isLoading: isLoading,
       }}
     >
