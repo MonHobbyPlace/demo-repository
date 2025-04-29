@@ -1,6 +1,6 @@
 "use client";
 import { usePetPost } from "@/app/provider/PetPostProvider";
-import { ArrowRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
