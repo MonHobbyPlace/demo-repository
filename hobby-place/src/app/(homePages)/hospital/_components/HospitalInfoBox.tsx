@@ -22,7 +22,6 @@ import { useState } from "react";
 
 export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
-  console.log(hospital.workTime);
 
   const [liked, setLiked] = useState(false);
   const router = useRouter();

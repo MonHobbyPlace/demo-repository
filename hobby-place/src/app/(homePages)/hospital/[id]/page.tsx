@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Hospital } from "../_components/HospitalInfoBox";
 import { ChevronLeft, Clock10, Dot, MapPin, Star } from "lucide-react";
@@ -39,7 +39,7 @@ export default function Home() {
   });
 
   L.Marker.prototype.options.icon = defaultIcon;
-
+  const router = useRouter();
   return (
     <div className="relative flex  items-end h-screen bg-white">
       <div className="w-full absolute top-0 h-[35%]">
@@ -48,7 +48,10 @@ export default function Home() {
           alt="Each hospital image"
           className="w-full h-full"
         />
-        <Button className="absolute top-0 m-5 bg-white rounded-full p-6">
+        <Button
+          onClick={() => router.push("/hospital")}
+          className="absolute top-0 m-5 bg-white rounded-full p-6"
+        >
           <ChevronLeft color="#03346E" size={40} />
         </Button>
       </div>
@@ -60,7 +63,7 @@ export default function Home() {
                 key={index}
                 src={image}
                 alt="Each hospital image "
-                className="w-1/4 rounded-xl h-[50px]"
+                className="w-[95px] rounded-xl h-[50px]"
               />
             );
           })}

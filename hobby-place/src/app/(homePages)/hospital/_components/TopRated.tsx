@@ -10,14 +10,18 @@ import { useRouter } from "next/navigation";
 
 export const TopRated = () => {
   const [hospitals, setHospitals] = useState([] as unknown as Hospital[]);
+  const [loading, setLoading] = useState(false);
   const getTopratedHospitals = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/topRated`
       );
-      setHospitals(response.data.data);
+      setHospitals(response.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -25,9 +29,15 @@ export const TopRated = () => {
   }, []);
   return (
     <div style={container} className="h-[300px] overflow-scroll ">
-      {hospitals.map((hospital, i) => (
-        <Card i={i} key={hospital.id} hospital={hospital} />
-      ))}
+      {loading ? (
+        <div className="h-full w-full flex items-center justify-center">
+          <span className="loading loading-spinner loading-xl"></span>
+        </div>
+      ) : (
+        hospitals?.map((hospital, i) => (
+          <Card i={i} key={hospital.id} hospital={hospital} />
+        ))
+      )}
     </div>
   );
 };

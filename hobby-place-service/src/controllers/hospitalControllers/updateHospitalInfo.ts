@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../../prismaClient";
+
 export const updateHospitalInfo = async (req: Request, res: Response) => {
   const {
     id,
