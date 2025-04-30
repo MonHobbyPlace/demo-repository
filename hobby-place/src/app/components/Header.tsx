@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
   const pathName = usePathname();
   const [searchValue, setSearchValue] = useState<petPostType[]>([]);
 
