@@ -6,13 +6,15 @@ export type Hospital = {
   id: number;
   name: string;
   location: string;
-  worktime: string;
-  avatarImage: string;
+  workTime: string;
+  avatarImage: string[];
   about: string;
+  views: number;
   phoneNumber: number;
   category: string[];
   backgroundImage: string;
   email: string;
+  rating: number;
 };
 import { Clock10, Heart, PawPrint } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -20,6 +22,7 @@ import { useState } from "react";
 
 export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
+
   const [liked, setLiked] = useState(false);
   const router = useRouter();
   return (
@@ -57,9 +60,11 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
                 <PawPrint color="#023e8a" fill="#023e8a" size={15} />
                 <p>{hospital.category[0]}</p>
               </div>
-              <div className="flex gap-1 items-center w-1/2 text-ellipses">
+              <div className="flex gap-1 items-center w-1/2 text-black">
                 <Clock10 color="#023e8a" size={20} />
-                <p className="text-ellipsis w-full">{hospital.worktime}</p>
+                <p className="whitespace-nowrap overflow-hidden text-ellipsis w-full">
+                  {hospital.workTime}
+                </p>
               </div>
             </div>
           </div>
@@ -73,7 +78,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
           </button>
         </div>
         <img
-          src={hospital.avatarImage}
+          src={hospital.backgroundImage}
           alt="hospital image"
           className="w-[40%] rounded-3xl h-full "
         />

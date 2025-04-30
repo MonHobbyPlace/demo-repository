@@ -10,14 +10,18 @@ import { useRouter } from "next/navigation";
 
 export const TopRated = () => {
   const [hospitals, setHospitals] = useState([] as unknown as Hospital[]);
+  const [loading, setLoading] = useState(false);
   const getTopratedHospitals = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/topRated`
       );
-      setHospitals(response.data.data);
+      setHospitals(response.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -25,9 +29,15 @@ export const TopRated = () => {
   }, []);
   return (
     <div style={container} className="h-[300px] overflow-scroll ">
-      {hospitals.map((hospital, i) => (
-        <Card i={i} key={hospital.id} hospital={hospital} />
-      ))}
+      {loading ? (
+        <div className="h-full w-full flex items-center justify-center">
+          <span className="loading loading-spinner loading-xl"></span>
+        </div>
+      ) : (
+        hospitals?.map((hospital, i) => (
+          <Card i={i} key={hospital.id} hospital={hospital} />
+        ))
+      )}
     </div>
   );
 };
@@ -59,22 +69,22 @@ function Card({ i, hospital }: CardProps) {
           onClick={() => router.push(`/hospital/${hospital.id}`)}
         >
           <img
-            src={hospital.avatarImage}
+            src={hospital.backgroundImage}
             className="w-[93%] h-[65%] absolute rounded-xl"
             alt="Each hospital image"
           />
           <div
-            style={{ backgroundColor: "rgba(154, 154, 154, 0.3)" }}
+            style={{ backgroundColor: "rgba(65, 61, 61, 0.3)" }}
             className="z-[100] text-[white] from-opacity-0 p-3 to-opacity-50 w-1/2 h-[70%] rounded-r-xl flex flex-col gap-2 items-center "
           >
             <p className="text-base font-bold opacity-100 text-[#023e8a] ">
               {hospital.name}
             </p>
-            <div className="flex gap-1 text-xs items-center w-1/2  ">
+            <div className="flex gap-1 text-xs items-center w-full ">
               <PawPrint color="white" fill="white" size={15} />
-              <p>{hospital.category[0]}</p>
+              <p className="w-full">{hospital.category[0]}</p>
             </div>
-            <div className="flex shrink-0 gap-1 items-center w-full ">
+            <div className="flex  gap-1 items-center w-full ">
               <MapPinned color="white" size={20} />
               <p className=" text-xs text-white  w-full whitespace-nowrap overflow-hidden text-ellipsis">
                 {hospital.location}

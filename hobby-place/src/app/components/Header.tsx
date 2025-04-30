@@ -31,13 +31,14 @@ export const Header = () => {
     console.log(response.data.data);
   };
   return (
-    <div className="flex flex-col gap-4">
+
+    <div className="flex flex-col gap-4 w-full">
       {!pathName.includes("profile") && (
         <div className="flex items-center justify-between w-full h-16  ">
           <div className="avatar avatar-online">
             <div className="w-12 rounded-full">
               <img
-                alt=""
+                alt="profile image"
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
               />
             </div>

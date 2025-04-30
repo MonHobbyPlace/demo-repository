@@ -1,16 +1,15 @@
 "use client";
 import axios from "axios";
-import { HospitalInfoBox } from "../_components/HospitalInfoBox";
+import { Hospital, HospitalInfoBox } from "../_components/HospitalInfoBox";
 import { useEffect, useState } from "react";
 
-export const AllHospitals = () => {
+export const AllHospitals = (props:{hospitals:Hospital[]}) => {
   const [hospitals, setHospitals] = useState([]);
   const fetchData = async () => {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
     );
     setHospitals(response.data.data);
-    console.log(response.data.data);
   };
   useEffect(() => {
     fetchData();

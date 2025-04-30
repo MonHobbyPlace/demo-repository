@@ -16,7 +16,9 @@ export default function RootLayout({
   return (
     <div
       className={`relative h-screen overflow-hidden  bg-[#e1f7f5] ${
-        pathName.includes("hospital/") || pathName.includes("homePage/")
+        pathName.includes("profile") ||
+        pathName.includes("hospital/") ||
+        pathName.includes("homePage/")
           ? "p-0"
           : "p-5"
       } `}
@@ -33,7 +35,7 @@ export default function RootLayout({
           </PetPostProvider>
           <div
             className={`sticky w-full bottom-0 ${
-              pathName.includes("hospital/") && "pb-5"
+              pathName.includes("profile") && "p-5"
             }`}
           >
             {!pathName.includes("hospital/") &&
