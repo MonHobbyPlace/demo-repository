@@ -29,7 +29,7 @@ type petPostContextType = {
   petPost: petPostType[];
   category: categoryType[];
   setPetPostForId: (id: number) => Promise<void>;
-  petPostId: petPostType | undefined;
+  petPostId: petPostType;
   petPostCategorys: (id: number) => Promise<void>;
   petPostCategories: petPostType[];
 };
@@ -51,7 +51,7 @@ export const PetPostProvider = ({
     setPetPostCategories(response.data.data);
     console.log("Pet post categorys set successfully:", petPostCategories);
   };
-  const [petPostId, setPetPostId] = useState();
+  const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
 
   const setPetPostForId = async (id: number) => {
     try {
