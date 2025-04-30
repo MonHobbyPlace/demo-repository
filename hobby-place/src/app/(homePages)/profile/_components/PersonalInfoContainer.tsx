@@ -1,8 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { useProfile } from "@/app/provider/ProfileProvider";
-import { LocationTab } from "./LocationTab";
-import { useEffect, useState } from "react";
 
+import { useProfile } from "@/app/provider/ProfileProvider";
+
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+type LocationTabProps = {
+  location: string;
+};
+const LocationTab = dynamic<LocationTabProps>(() => import("./LocationTab"), {
+  ssr: false,
+});
 export const PersonalInfoContainer = () => {
   const { user } = useProfile();
   const [location, setLocation] = useState<string>("");
@@ -46,13 +54,17 @@ export const PersonalInfoContainer = () => {
   };
   return (
     <div>
-      <div className="flex w-full justify-between py-2">
-        <p>Email</p>
+      <div className="flex w-full justify-between ">
+        <p className="font-bold">Email</p>
         <p className="w-1/2">{user?.email}</p>
       </div>
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-2" hidden>
         <p>Location</p>
         {loading ? <div>...loading</div> : <LocationTab location={location} />}
+      </div>
+      <div className="flex w-full justify-between py-2">
+        <p className="font-bold">Phone number</p>
+        <p className="w-1/2">{user?.phoneNumber}</p>
       </div>
     </div>
   );
