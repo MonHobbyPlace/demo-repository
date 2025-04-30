@@ -6,4 +6,4 @@ import { categoryMiddlewarePost } from "../middlewares/categoryMIddlewares/categ
 export const categoryRouter = express.Router();
 
 categoryRouter.get("/", petCategoryGet);
-categoryRouter.post("/", categoryMiddlewarePost, petCategoryPost);
+categoryRouter.post("/", petCategoryPost);

@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
 
-type petPostType = {
+export type petPostType = {
   about: string;
   address: string;
   age: number;
@@ -19,6 +19,7 @@ type petPostType = {
   size: string;
   updatedAt: string;
   userId: number;
+  video: string;
 };
 type categoryType = {
   name: string;
@@ -29,6 +30,8 @@ type petPostContextType = {
   category: categoryType[];
   setPetPostForId: (id: number) => Promise<void>;
   petPostId: petPostType | undefined;
+  petPostCategorys: (id: number) => Promise<void>;
+  petPostCategories: petPostType[];
 };
 
 const PetPostContext = createContext<petPostContextType>(
@@ -40,6 +43,14 @@ export const PetPostProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [petPostCategories, setPetPostCategories] = useState([]);
+  const petPostCategorys = async (id: number) => {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/categoryId/${id}`
+    );
+    setPetPostCategories(response.data.data);
+    console.log("Pet post categorys set successfully:", petPostCategories);
+  };
   const [petPostId, setPetPostId] = useState();
 
   const setPetPostForId = async (id: number) => {
@@ -86,7 +97,14 @@ export const PetPostProvider = ({
 
   return (
     <PetPostContext.Provider
-      value={{ petPost, category, setPetPostForId, petPostId }}
+      value={{
+        petPost,
+        category,
+        setPetPostForId,
+        petPostId,
+        petPostCategorys,
+        petPostCategories,
+      }}
     >
       {children}
     </PetPostContext.Provider>
