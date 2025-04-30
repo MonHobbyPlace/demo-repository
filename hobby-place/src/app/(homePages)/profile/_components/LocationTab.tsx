@@ -7,7 +7,7 @@ import L from "leaflet";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
-export const LocationTab = (props: { location: string }) => {
+const LocationTab = (props: { location: string }) => {
   const { location } = props;
 
   useEffect(() => {
@@ -56,3 +56,4 @@ export const LocationTab = (props: { location: string }) => {
     </div>
   );
 };
+export default LocationTab;

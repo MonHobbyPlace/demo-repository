@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
+import { petPostType } from "./PetPostProvider";
 
 export type ProfileType = {
   id: number;
@@ -11,8 +12,9 @@ export type ProfileType = {
   profileImage: string;
   location: string;
   backgroundImage: string;
-  petPosts: string[];
-  servicePosts: string[];
+  PetPost: petPostType[];
+  ServicePost: string[];
+  phoneNumber: number;
 };
 
 type ProfileContextType = {

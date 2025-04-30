@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
+import { ProfileType } from "./ProfileProvider";
 
 export type petPostType = {
   about: string;
@@ -20,6 +21,7 @@ export type petPostType = {
   updatedAt: string;
   userId: number;
   video: string;
+  User: ProfileType;
 };
 type categoryType = {
   name: string;
