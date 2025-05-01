@@ -1,4 +1,3 @@
-import { usePetPost } from "@/app/provider/PetPostProvider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PostCard } from "./PostCard";
 import { useProfile } from "@/app/provider/ProfileProvider";
@@ -6,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
 export const PostTabs = () => {
-  const { petPost } = usePetPost();
   const { user } = useProfile();
-  console.log(petPost);
 
   return (
     <Tabs defaultValue="pet" className="w-full h-full">

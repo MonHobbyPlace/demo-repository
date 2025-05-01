@@ -37,12 +37,12 @@ export const ProfileProvider = ({
   const router = useRouter();
   const userId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
-  const { data: user, refetch } = useQuery({
+  const { data: user } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?currentUser=${1}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${1}`
       );
       console.log(response.data);
 
@@ -58,11 +58,11 @@ export const ProfileProvider = ({
   };
 
   const updateProfile = async (values: ProfileType) => {
-    await axios.put("http://localhost:4000/profile", {
-      profileId: user.id,
-      ...values,
-    });
-    await refetch();
+    try {
+      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/users`, values);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -76,7 +76,7 @@ export const ProfileProvider = ({
     >
       {isLoading == true ? (
         <div className="w-screen h-screen flex items-center justify-center">
-          <img src="https://s3-alpha-sig.figma.com/img/07f9/97c5/b22f6bc9ba535eec9efcdd0bacb3bb4d?Expires=1745798400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=RVZlgTF6mUtalHooEWzMyYfM0RgAC90fdGSXBtxoXzCaWiMx1OwKNvEuhBZneVMa2Javz1blckCYcaoiQLyVwAjunKFlb5X5iHOaH9IPnaAUCpxYUaWwDkD8ATVuV9McSLVXQJqS1FPMS1PvmkzYDUZ3n5T8pxGNmBeYyLMd2v~JYlHAaEpePhO5h3xbPJafLXnq91XrGvuQCPPOcLXQZvPQdnqz1F-MugK4H3N~u7AjGkajbLu1wCfWyNaomxgQUGaHsFX8SUF3alEaKnDd73cJpsHgod0vXTQyZLudW78ekgKa01d1H7FdBPdf67K5Dvw0cUjkw6i1q4uK6av9Pw__" />
+          {/* <img src="https://s3-alpha-sig.figma.com/img/07f9/97c5/b22f6bc9ba535eec9efcdd0bacb3bb4d?Expires=1745798400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=RVZlgTF6mUtalHooEWzMyYfM0RgAC90fdGSXBtxoXzCaWiMx1OwKNvEuhBZneVMa2Javz1blckCYcaoiQLyVwAjunKFlb5X5iHOaH9IPnaAUCpxYUaWwDkD8ATVuV9McSLVXQJqS1FPMS1PvmkzYDUZ3n5T8pxGNmBeYyLMd2v~JYlHAaEpePhO5h3xbPJafLXnq91XrGvuQCPPOcLXQZvPQdnqz1F-MugK4H3N~u7AjGkajbLu1wCfWyNaomxgQUGaHsFX8SUF3alEaKnDd73cJpsHgod0vXTQyZLudW78ekgKa01d1H7FdBPdf67K5Dvw0cUjkw6i1q4uK6av9Pw__" /> */}
         </div>
       ) : (
         children
