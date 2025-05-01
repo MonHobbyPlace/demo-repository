@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import prisma from "../../prismaClient";
 export const updateUser = async (req: Request, res: Response) => {
   const { id, profileImage, backgroundImage, username, location } = req.body;
-  console.log("body", req.body);
 
   try {
     const response = await prisma.user.update({

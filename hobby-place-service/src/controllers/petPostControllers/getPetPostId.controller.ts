@@ -8,6 +8,9 @@ export const getPetPostId = async (req: Request, res: Response) => {
       where: {
         id: Id,
       },
+      include: {
+        User: true,
+      },
     });
 
     res.status(200).json({ data: petPost });
