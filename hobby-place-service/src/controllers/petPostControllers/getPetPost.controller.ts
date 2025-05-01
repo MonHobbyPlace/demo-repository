@@ -3,8 +3,11 @@ import prisma from "../../prismaClient";
 
 export const getPetPost = async (req: Request, res: Response) => {
   try {
-    const petPost = await prisma.petPost.findMany({});
-
+    const petPost = await prisma.petPost.findMany({
+      include: {
+        User: true,
+      },
+    });
 
     res.status(200).json({ data: petPost });
   } catch (error) {
