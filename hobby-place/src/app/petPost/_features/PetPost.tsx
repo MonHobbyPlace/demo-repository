@@ -1,124 +1,225 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { usePetPost } from "@/app/provider/PetPostProvider";
+import { usePetPost, validationSchema } from "@/app/provider/PetPostProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { UploadImageAndVideo } from "../_components/UploadImageAndVideo";
 
 export const PetPosts = () => {
   const { category } = usePetPost();
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="w-full h-52 rounded-xl bg-green-300 flex justify-center items-center relative cursor-pointer">
-        <label
-          htmlFor="Picture"
-          className="text-white font-semibold text-lg absolute"
-        >
-          Upload Picture
-        </label>
-        <input id="Picture" hidden type="file" />
-      </div>
-      <div className="flex gap-2 overflow-x-auto scroll-bar-hide">
-        {category.map((element, index) => {
-          return (
-            <button
-              key={index}
-              className={`btn btn-outline bg-[white flex items-center justify-between rounded-full p-0 ? "opacity-100" : "opacity-60"`}
+    <Formik
+      initialValues={{
+        name: "",
+        breed: "",
+        size: "",
+        age: "",
+        gender: "",
+        purpose: "Sale",
+        price: "",
+        video: "",
+        image: "",
+        phone: "",
+        address: "",
+        about: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        console.log("Submitted values:", values);
+      }}
+    >
+      {({ values, setFieldValue }) => (
+        <Form className="p-6 pt-2 space-y-8 max-w-xl mx-auto bg-white rounded-2xl shadow-md">
+          <Link
+            className="bg-white p-2 rounded-full shadow-lg cursor-pointer"
+            href={"/homePage"}
+          >
+            <ChevronLeft size={24} className="text-gray-800" />
+          </Link>
+
+          <UploadImageAndVideo setFieldValue={setFieldValue} />
+
+          <div className="flex gap-2 overflow-x-auto scroll-bar-hide">
+            {category.map((element, index) => {
+              return (
+                <button
+                  key={index}
+                  className={`btn btn-outline bg-[white flex items-center justify-between rounded-full p-0 ? "opacity-100" : "opacity-60"`}
+                >
+                  <img
+                    alt=""
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    className="w-9 rounded-full"
+                  />
+                  <div className="p-2">{element.name}</div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="space-y-4">
+            <FieldBlock
+              name="name"
+              label="Pet Name"
+              placeholder="Enter pet name"
+            />
+            <FieldBlock name="breed" label="Breed" placeholder="Enter breed" />
+
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label className="block text-sm font-medium mb-1">Size</label>
+                <Select onValueChange={(val) => setFieldValue("size", val)}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {["Big", "Middle", "Small"].map((size) => (
+                      <SelectItem key={size} value={size}>
+                        {size}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <ErrorMessage
+                  name="size"
+                  component="div"
+                  className="text-red-500 text-sm mt-1"
+                />
+              </div>
+              <FieldBlock name="age" label="Age" placeholder="Enter age" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Gender</label>
+              <div className="flex gap-6">
+                {["MALE", "FEMALE"].map((gender) => (
+                  <label
+                    key={gender}
+                    className="inline-flex items-center gap-2 text-sm"
+                  >
+                    <Field
+                      type="radio"
+                      name="gender"
+                      value={gender}
+                      className="accent-green-600"
+                    />
+                    {gender === "MALE" ? "Male" : "Female"}
+                  </label>
+                ))}
+              </div>
+              <ErrorMessage
+                name="gender"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
+            </div>
+
+            <Tabs
+              defaultValue={values.purpose}
+              onValueChange={(val) => setFieldValue("purpose", val)}
+              className="w-full"
             >
-              <img
-                alt=""
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                className="w-9 rounded-full"
-              />
-              <div className="p-2">{element.name}</div>
-            </button>
-          );
-        })}
-      </div>
+              <TabsList>
+                <TabsTrigger value="Sale">Sale</TabsTrigger>
+                <TabsTrigger value="Adopt">Adopt</TabsTrigger>
+              </TabsList>
+              <TabsContent value="Sale">
+                <FieldBlock
+                  name="price"
+                  label="Price"
+                  placeholder="Enter price"
+                />
+              </TabsContent>
+            </Tabs>
 
-      <div className="space-y-6">
-        {/* Pet Name */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Pet Name
-          </label>
-          <Input placeholder="Enter pet name" />
-        </div>
+            {/* <FieldBlock
+              name="phone"
+              label="Phone Number"
+              placeholder="Enter phone number"
+            /> */}
+            <FieldBlock
+              name="address"
+              label="Address"
+              placeholder="Enter address"
+            />
 
-        {/* Pet Breed */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Pet Breed
-          </label>
-          <Input placeholder="Enter pet breed" />
-        </div>
-
-        {/* Pet Size */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Pet Size
-          </label>
-          <div className="flex gap-3">
-            <Button variant="outline">Big</Button>
-            <Button variant="outline">Middle</Button>
-            <Button variant="outline">Small</Button>
+            <div>
+              <label className="block text-sm font-medium mb-1">About</label>
+              <ToggleGroup
+                type="multiple"
+                className="w-full flex flex-wrap gap-2"
+                variant="outline"
+              >
+                {[
+                  "Spray",
+                  "Toilet trained",
+                  " Good with cats",
+                  " Likes to wolk",
+                  "Likes to play",
+                  "Good with kids",
+                  "Good with dogs",
+                  "Good with other pets",
+                  "Not a bite",
+                ].map((about) => (
+                  <label
+                    key={about}
+                    className="inline-flex items-center gap-2 text-sm"
+                  >
+                    <ToggleGroupItem value={about}>{about}</ToggleGroupItem>
+                  </label>
+                ))}
+                <Input
+                  type="text"
+                  placeholder="Other"
+                  className="w-full mt-2"
+                  onChange={(e) => setFieldValue("other", e.target.value)}
+                />
+                <ErrorMessage
+                  name="other"
+                  component="div"
+                  className="text-red-500 text-sm mt-1"
+                />
+              </ToggleGroup>
+            </div>
           </div>
-        </div>
 
-        {/* Pet Age */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Pet Age
-          </label>
-          <Input placeholder="Enter pet age (e.g., 2 years)" />
-        </div>
-
-        {/* Gender */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Gender
-          </label>
-          <div className="flex gap-6 items-center">
-            <label className="inline-flex items-center gap-2 text-sm">
-              <input
-                type="radio"
-                name="gender"
-                value="MALE"
-                className="accent-green-600 bg-transparent border-gray-300 focus:ring-green-500 focus:ring-2"
-              />
-              <span>Male</span>
-            </label>
-            <label className="inline-flex items-center gap-2 text-sm">
-              <input
-                type="radio"
-                name="gender"
-                value="FEMALE"
-                className="accent-pink-500 bg-transparent border-gray-300 focus:ring-pink-500 focus:ring-2"
-              />
-              <span>Female</span>
-            </label>
-          </div>
-        </div>
-        <Tabs defaultValue="Sale" className="w-[400px]">
-          <TabsList>
-            <TabsTrigger value="Sale">Sale</TabsTrigger>
-            <TabsTrigger value="Adopt">Adopt</TabsTrigger>
-          </TabsList>
-          <TabsContent value="Sale">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Price
-            </label>
-            <Input placeholder="price" />
-          </TabsContent>
-          <TabsContent value="Adopt"></TabsContent>
-        </Tabs>
-        <div>
-          <label>Phone Number</label>
-          <Input placeholder="Enter your phone number" />
-        </div>
-      </div>
-    </div>
+          <Button type="submit" className="w-full mt-6 text-lg">
+            Submit Pet
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };
+
+type FieldBlockProps = {
+  name: string;
+  label: string;
+  placeholder?: string;
+};
+
+const FieldBlock = ({ name, label, placeholder }: FieldBlockProps) => (
+  <div>
+    <label className="block text-sm font-medium mb-1">{label}</label>
+    <Field name={name} as={Input} placeholder={placeholder} />
+    <ErrorMessage
+      name={name}
+      component="div"
+      className="text-red-500 text-sm mt-1"
+    />
+  </div>
+);

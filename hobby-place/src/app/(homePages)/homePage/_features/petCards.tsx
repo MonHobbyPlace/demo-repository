@@ -26,7 +26,7 @@ export const PetCards = () => {
         </p> */}
       </div>
       <div className="flex flex-wrap gap-4 h-[250px] overflow-y-scroll scrollbar-hide">
-        {petPostCategories.length > 0 ? (
+        {petPostCategories.length > 1 ? (
           <>
             {petPostCategories.map((element, index) => {
               if (

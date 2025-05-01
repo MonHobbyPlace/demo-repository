@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
 import { ProfileType } from "./ProfileProvider";
+import * as Yup from "yup";
 
 export type petPostType = {
   about: string;
@@ -23,6 +24,36 @@ export type petPostType = {
   video: string;
   User: ProfileType;
 };
+
+export const validationSchema = Yup.object({
+  name: Yup.string().required("Pet name is required"),
+  breed: Yup.string().required("Breed is required"),
+  size: Yup.string().required("Pet size is required"),
+  age: Yup.number().required("Age is required"),
+  gender: Yup.string().required("Gender is required"),
+  purpose: Yup.string().required(),
+  price: Yup.string().when("purpose", {
+    is: "Sale",
+    then: (schema) => schema.required("Price is required for sale"),
+  }),
+  video: Yup.mixed()
+    .required("Video is required")
+    .test("fileType", "Only video files are allowed", (value) =>
+      value ? value.type.startsWith("video/") : false
+    ),
+  image: Yup.mixed()
+    .required("Image is required")
+    .test("fileType", "Only image files are allowed", (value) =>
+      value ? value.type.startsWith("image/") : false
+    ),
+  phone: Yup.number()
+    .integer("A phone number can't include a decimal point")
+    .max(8, "A phone number must be 8 digits")
+    .required("A phone number is required"),
+  address: Yup.string().required("Address is required"),
+  about: Yup.string().required("About is required"),
+  other: Yup.string().required("Other is required"),
+});
 type categoryType = {
   name: string;
   id: string;
