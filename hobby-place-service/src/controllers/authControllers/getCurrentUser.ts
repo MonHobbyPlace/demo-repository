@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import prisma from "../../prismaClient";
 export const getCurrentUser = async (req: Request, res: Response) => {
-  const { currentUser } = req.query;
+  const { id } = req.query;
   try {
     const user = await prisma.user.findUnique({
       where: {
-        id: Number(currentUser),
+        id: Number(id),
       },
       include: {
         PetPost: true,

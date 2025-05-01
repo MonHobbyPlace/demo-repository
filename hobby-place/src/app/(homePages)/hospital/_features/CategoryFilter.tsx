@@ -21,14 +21,12 @@ export const CategoryFilter = () => {
   };
 
   const fetchInfo = async () => {
-    console.log(selectedFramework);
 
     try {
       setLoading(true);
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/${selectedFramework}`
       );
-      console.log(response.data);
       if (selectedFramework === "") {
         setHospitals(response.data.data);
       } else setHospitals(response.data);
