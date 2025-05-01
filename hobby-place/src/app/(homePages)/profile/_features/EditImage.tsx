@@ -37,11 +37,6 @@ export const EditImage = () => {
       "upload_preset",
       process.env.NEXT_PUBLIC_UPLOAD_PRESET || ""
     );
-    console.log(
-      file,
-      process.env.NEXT_PUBLIC_UPLOAD_PRESET,
-      process.env.NEXT_PUBLIC_CLOUDINARY_URL
-    );
 
     const response = await axios.post(
       process.env.NEXT_PUBLIC_CLOUDINARY_URL || "",
@@ -52,7 +47,6 @@ export const EditImage = () => {
         },
       }
     );
-    console.log(response.data.secure_url);
     if (id == "profileImage") {
       await updateProfile({ ...user, profileImage: response.data.secure_url });
     } else {
