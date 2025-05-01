@@ -7,6 +7,10 @@ export const getCurrentUser = async (req: Request, res: Response) => {
       where: {
         id: Number(currentUser),
       },
+      include: {
+        PetPost: true,
+        ServicePost: true,
+      },
     });
     res.status(200).json(user);
   } catch (error) {
