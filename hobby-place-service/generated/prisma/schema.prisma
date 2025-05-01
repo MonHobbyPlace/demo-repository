@@ -101,7 +101,7 @@ model PetCategory {
 model ServiceCategory {
   id          Int           @id @default(autoincrement())
   image       String
-  name        String
+  name        String        @unique
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   ServicePost ServicePost[]

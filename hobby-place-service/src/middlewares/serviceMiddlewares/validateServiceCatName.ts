@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+// import prisma from "../../prismaClient";
 
 export const validateServiceCatName = (
   req: Request,
@@ -6,6 +7,10 @@ export const validateServiceCatName = (
   next: NextFunction
 ) => {
   const { image, name } = req.body;
+
+  // const existingService = prisma.serviceCategory.findUnique({
+  //   where: { name: name },
+  // });
 
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     res.status(400).json({

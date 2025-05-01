@@ -15,18 +15,18 @@ datasource db {
 }
 
 model User {
-  id          Int           @id @default(autoincrement()) @unique
-  email       String        @unique
-  password    String
-  username    String        @unique
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  role        userRoleEnum  @default(USER)
-  PetPost     PetPost[]
-  ServicePost ServicePost[]
-  location    String?
-  profileImage String?
-  backgroundImage String @default("")
+  id              Int           @id @unique @default(autoincrement())
+  email           String        @unique
+  password        String
+  username        String        @unique
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  role            userRoleEnum  @default(USER)
+  PetPost         PetPost[]
+  ServicePost     ServicePost[]
+  location        String?
+  profileImage    String?
+  backgroundImage String        @default("")
 }
 
 model PetPost {
@@ -100,8 +100,8 @@ model PetCategory {
 
 model ServiceCategory {
   id          Int           @id @default(autoincrement())
-  image       String        @unique
-  name        String
+  image       String
+  name        String        @unique
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   ServicePost ServicePost[]
