@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { usePetPost } from "@/app/provider/PetPostProvider";
 
 type ServiceCategorySelectProps = {
   options: { id: number; name: string }[];
@@ -17,6 +18,7 @@ export default function ServiceCategorySelect({
   value,
   onChange,
 }: ServiceCategorySelectProps) {
+  const { category } = usePetPost();
   return (
     <div>
       <label className="text-sm font-medium">Service Category</label>
@@ -25,7 +27,7 @@ export default function ServiceCategorySelect({
           <SelectValue placeholder="Select Service Category" />
         </SelectTrigger>
         <SelectContent>
-          {options.map((cat) => (
+          {category.map((cat) => (
             <SelectItem key={cat.id} value={String(cat.id)}>
               {cat.name}
             </SelectItem>

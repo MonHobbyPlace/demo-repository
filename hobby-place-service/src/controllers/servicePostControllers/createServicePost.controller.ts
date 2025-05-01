@@ -37,7 +37,7 @@ export const createServicePost = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({
       error: true,
-      message: "Internal error",
+      message: "Failed to add servicePost",
       details: error?.message || "Unknown",
     });
   }

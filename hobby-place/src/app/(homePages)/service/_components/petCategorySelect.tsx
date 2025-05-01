@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { usePetPost } from "@/app/provider/PetPostProvider";
 
 type PetCategorySelectProps = {
   options: { id: number; name: string }[];
@@ -13,19 +14,20 @@ type PetCategorySelectProps = {
 };
 
 export default function PetCategorySelect({
-  options,
+  // options,
   value,
   onChange,
 }: PetCategorySelectProps) {
+  const { category } = usePetPost();
   return (
     <div>
-      <label className="text-sm font-medium">Pet Category</label>
+      <label className="text-sm font-medium ">Pet Category</label>
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger className="w-full mt-1">
           <SelectValue placeholder="Select Pet Category" />
         </SelectTrigger>
         <SelectContent>
-          {options.map((cat) => (
+          {category?.map((cat) => (
             <SelectItem key={cat.id} value={String(cat.id)}>
               {cat.name}
             </SelectItem>
