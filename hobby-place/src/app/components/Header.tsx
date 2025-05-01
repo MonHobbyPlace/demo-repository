@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { Hospital } from "../(homePages)/hospital/_components/HospitalInfoBox";
+import { useProfile } from "../provider/ProfileProvider";
 
 type SearchResponseType = {
   image: string;
@@ -17,6 +18,7 @@ type SearchResponseType = {
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState("");
+  const { user } = useProfile();
   const pathName = usePathname();
   const [searchValue, setSearchValue] = useState<SearchResponseType[]>([]);
 
@@ -53,10 +55,7 @@ export const Header = () => {
       <div className="flex items-center justify-between w-full h-16  ">
         <div className="avatar avatar-online">
           <div className="w-12 rounded-full">
-            <img
-              alt="profile image"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-            />
+            <img alt="profile image" src={user?.profileImage} />
           </div>
         </div>
         <div className=" flex h-10 gap-[10px] items-center border px-3 rounded-md relative ">

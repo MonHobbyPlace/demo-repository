@@ -25,22 +25,22 @@ export default function RootLayout({
     >
       <QueryClientProvider client={queryClient}>
         <ProfileProvider>
-          {!pathName.includes("profile") &&
-            !pathName.includes("service") &&
-            !pathName.includes("hospital/") &&
-            !pathName.includes("homePage/") && <Header />}
-
           <PetPostProvider>
+            {!pathName.includes("profile") &&
+              !pathName.includes("service") &&
+              !pathName.includes("hospital/") &&
+              !pathName.includes("homePage/") && <Header />}
+
             <div className={`h-full`}>{children}</div>
+            <div
+              className={`sticky w-full bottom-0 ${
+                pathName.includes("profile") && "p-5"
+              }`}
+            >
+              {!pathName.includes("hospital/") &&
+                !pathName.includes("homePage/") && <Footer />}
+            </div>
           </PetPostProvider>
-          <div
-            className={`sticky w-full bottom-0 ${
-              pathName.includes("profile") && "p-5"
-            }`}
-          >
-            {!pathName.includes("hospital/") &&
-              !pathName.includes("homePage/") && <Footer />}
-          </div>
         </ProfileProvider>
       </QueryClientProvider>
     </div>

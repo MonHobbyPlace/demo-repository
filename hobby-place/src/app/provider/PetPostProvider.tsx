@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
@@ -46,6 +47,7 @@ export const PetPostProvider = ({
   children: React.ReactNode;
 }) => {
   const [petPostCategories, setPetPostCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
   const petPostCategorys = async (id: number) => {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/categoryId/${id}`
@@ -70,6 +72,7 @@ export const PetPostProvider = ({
   const [petPost, setPetPost] = useState([]);
   const getPetPostData = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost`
       );
@@ -77,6 +80,8 @@ export const PetPostProvider = ({
       console.log("Pet posts fetched successfully:", data.data);
     } catch (error) {
       console.error("Error fetching pet posts:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -108,7 +113,13 @@ export const PetPostProvider = ({
         petPostCategories,
       }}
     >
-      {children}
+      {loading ? (
+        <div className="w-full h-full flex items-center justify-center">
+         
+        </div>
+      ) : (
+        children
+      )}
     </PetPostContext.Provider>
   );
 };

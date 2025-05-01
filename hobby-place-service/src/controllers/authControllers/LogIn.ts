@@ -46,15 +46,26 @@ export const LogIn = async (req: Request, res: Response) => {
         //   secure: false, // only over HTTPS in prod
         // });
         // console.log(60 * 60 * 24 * 7);
-
-        res
-          .send({
-            success: true,
-            message: "logged in",
-            token: token,
-            userId: user.id,
-          })
-          .status(200);
+        if (user.role === "ADMIN") {
+          res
+            .send({
+              success: true,
+              message: "logged in",
+              token: token,
+              userId: user.id,
+              role: user.role,
+            })
+            .status(200);
+        } else {
+          res
+            .send({
+              success: true,
+              message: "logged in",
+              token: token,
+              userId: user.id,
+            })
+            .status(200);
+        }
       } else {
         res.status(500).send({
           success: false,
