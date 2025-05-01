@@ -6,7 +6,6 @@ export const userExist = async (
   next: NextFunction
 ) => {
   const { id } = req.query;
-  console.log(id);
 
   try {
     const user = await prisma.user.findUnique({

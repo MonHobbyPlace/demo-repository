@@ -3,7 +3,6 @@ import prisma from "../../prismaClient";
 
 export const petCategoryPost = async (req: Request, res: Response) => {
   const { name, image } = req.body;
-  console.log("category post", req.body);
 
   if (!name || !image) {
     res.status(400).json({
