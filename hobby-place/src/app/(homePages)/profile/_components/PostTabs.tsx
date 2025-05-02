@@ -27,9 +27,8 @@ export const PostTabs = () => {
             return <PostCard key={index} post={post} />;
           })}
 
-
           <Button
-            className="rounded-full fixed z-100 bottom-23 right-8 "
+            className="rounded-full fixed z-100 bottom-23 right-8 cursor-pointer"
             onClick={() => router.push(`/petPost`)}
           >
             <Plus />
