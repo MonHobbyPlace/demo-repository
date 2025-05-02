@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "react-toastify";
+import { useProfile } from "@/app/provider/ProfileProvider";
 
 type Category = {
   id: number;
@@ -32,7 +34,6 @@ type ServiceForm = {
 };
 
 export const AddService = () => {
-  const [userId, setUserId] = useState<string | null>(null);
   const [service, setService] = useState<ServiceForm>({
     address: "",
     about: "",
@@ -51,11 +52,7 @@ export const AddService = () => {
   const [serviceCategories, setServiceCategories] = useState<Category[]>([]);
   const [petCategories, setPetCategories] = useState<Category[]>([]);
 
-  useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    setUserId(storedUserId);
-  }, []);
-
+  const { user } = useProfile();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -107,7 +104,7 @@ export const AddService = () => {
   };
 
   const servicePost = async () => {
-    if (!userId) {
+    if (!user.id) {
       toast.error("User not authenticated.");
       return;
     }
@@ -116,19 +113,21 @@ export const AddService = () => {
       setLoading(true);
       const preparedService = {
         ...service,
-        age: Number(service.age),
+        age: service.age ? Number(service.age) : null,
+
         phoneNumber: Number(service.phoneNumber),
         petCategoryId: Number(service.petCategoryId),
         cost: Number(service.cost),
         serviceId: Number(service.serviceId),
         skill: service.skill.split(",").map((s) => s.trim()),
-        userId: Number(userId),
+        userId: Number(user.id),
       };
 
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/servicePost`,
         preparedService
       );
+      console.log("Service posted successfully:", response.data);
 
       toast.success("Successfully added service");
       setService({
@@ -243,7 +242,10 @@ export const AddService = () => {
         <Select
           value={service.purpose}
           onValueChange={(value) =>
-            handleInput({ target: { name: "purpose", value } } as any)
+            setService((prev) => ({
+              ...prev,
+              purpose: value as "SALE" | "ADOPT",
+            }))
           }
         >
           <SelectTrigger className="w-full">

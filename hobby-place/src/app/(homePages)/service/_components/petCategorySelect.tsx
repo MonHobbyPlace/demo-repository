@@ -14,7 +14,6 @@ type PetCategorySelectProps = {
 };
 
 export default function PetCategorySelect({
-  // options,
   value,
   onChange,
 }: PetCategorySelectProps) {
