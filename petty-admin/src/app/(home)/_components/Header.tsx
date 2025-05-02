@@ -11,8 +11,8 @@ export const Header = () => {
     router.push("/");
   };
   return (
-    <div className="p-10 flex justify-between items-center">
-      <div className="w-[180px] h-[150px] ">
+    <div className="p-5 flex justify-between items-center">
+      <div className="w-[120px] h-[100px] ">
         <img
           src="https://res.cloudinary.com/dszot6j60/image/upload/v1746104301/www.canva.com_design_DAGmNH2lmOk_6mWPUP3CAVdrgrlMFBBWow_edit_2_xeash1.png"
           alt="logo image"
@@ -20,7 +20,7 @@ export const Header = () => {
         />
       </div>
 
-      <Button className="p-7 rounded-full" onClick={handleLogOut}>
+      <Button className="p-5 rounded-full" onClick={handleLogOut}>
         Log out
       </Button>
     </div>
