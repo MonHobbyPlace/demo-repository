@@ -17,9 +17,12 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { UploadImageAndVideo } from "../_components/UploadImageAndVideo";
+import { useState } from "react";
 
 export const PetPosts = () => {
   const { category } = usePetPost();
+  const [selectedOption, setSelectedOption] = useState<string[]>([]);
+  console.log(selectedOption);
 
   return (
     <Formik
@@ -161,7 +164,7 @@ export const PetPosts = () => {
               <label className="block text-sm font-medium mb-1">About</label>
               <ToggleGroup
                 type="multiple"
-                className="w-full flex flex-wrap gap-2"
+                className={`w-full flex flex-wrap gap-2 `}
                 variant="outline"
               >
                 {[
@@ -179,7 +182,25 @@ export const PetPosts = () => {
                     key={about}
                     className="inline-flex items-center gap-2 text-sm"
                   >
-                    <ToggleGroupItem value={about}>{about}</ToggleGroupItem>
+                    <ToggleGroupItem
+                      className={`${
+                        selectedOption.includes(about)
+                          ? "opacity-200"
+                          : "opacity-30"
+                      }`}
+                      onClick={() => {
+                        if (selectedOption.includes(about)) {
+                          setSelectedOption((prev) =>
+                            prev.filter((item) => item !== about)
+                          );
+                        } else {
+                          setSelectedOption((prev) => [...prev, about]);
+                        }
+                      }}
+                      value={about}
+                    >
+                      {about}
+                    </ToggleGroupItem>
                   </label>
                 ))}
                 <Input
@@ -197,7 +218,7 @@ export const PetPosts = () => {
             </div>
           </div>
 
-          <Button type="submit" className="w-full mt-6 text-lg">
+          <Button type="button" className="w-full mt-6 text-lg">
             Submit Pet
           </Button>
         </Form>

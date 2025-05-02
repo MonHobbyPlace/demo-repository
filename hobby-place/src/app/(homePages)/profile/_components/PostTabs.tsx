@@ -3,9 +3,11 @@ import { PostCard } from "./PostCard";
 import { useProfile } from "@/app/provider/ProfileProvider";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export const PostTabs = () => {
   const { user } = useProfile();
+  const router = useRouter();
 
   return (
     <Tabs defaultValue="pet" className="w-full h-full">
@@ -25,7 +27,11 @@ export const PostTabs = () => {
             return <PostCard key={index} post={post} />;
           })}
 
-          <Button className="rounded-full fixed z-100 bottom-23 right-8 " >
+
+          <Button
+            className="rounded-full fixed z-100 bottom-23 right-8 "
+            onClick={() => router.push(`/petPost`)}
+          >
             <Plus />
           </Button>
         </div>
