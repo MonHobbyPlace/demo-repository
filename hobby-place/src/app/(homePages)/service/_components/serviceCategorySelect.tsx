@@ -14,7 +14,6 @@ type ServiceCategorySelectProps = {
 };
 
 export default function ServiceCategorySelect({
-  options,
   value,
   onChange,
 }: ServiceCategorySelectProps) {

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useState } from "react";
 import { useServiceCategory } from "@/app/provider/ServiceCategoryProvider";
@@ -14,7 +15,7 @@ export const Three = () => {
       setSelectedId(first.id);
       fetchServicesByCategory(first.id);
     }
-  }, [serviceCategories]);
+  }, []);
 
   const handleCategoryClick = (id: number) => {
     setSelectedId(id);

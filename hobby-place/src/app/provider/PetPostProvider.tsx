@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
@@ -30,31 +29,46 @@ export const validationSchema = Yup.object({
   name: Yup.string().required("Pet name is required"),
   breed: Yup.string().required("Breed is required"),
   size: Yup.string().required("Pet size is required"),
-  age: Yup.number().required("Age is required"),
+  age: Yup.number()
+    .typeError("Age must be a number")
+    .required("Age is required"),
+
   gender: Yup.string().required("Gender is required"),
-  purpose: Yup.string().required(),
+
+  purpose: Yup.string()
+    .oneOf(["SALE", "ADOPT"], "Purpose must be SALE or ADOPT")
+    .required("Purpose is required"),
+
   price: Yup.string().when("purpose", {
-    is: "Sale",
+    is: "SALE", // make sure this matches your backend values
     then: (schema) => schema.required("Price is required for sale"),
+    otherwise: (schema) => schema.notRequired(),
   }),
-  video: Yup.mixed()
+  video: Yup.mixed<File | string>()
     .required("Video is required")
-    .test("fileType", "Only video files are allowed", (value) =>
-      value ? value.type.startsWith("video/") : false
-    ),
-  image: Yup.mixed()
+    .test("fileType", "Only video files are allowed", (value): boolean => {
+      if (!value) return false;
+      if (typeof value === "string") return true; // Allow existing video URL
+      return value instanceof File && value.type.startsWith("video/");
+    }),
+
+  image: Yup.mixed<File | string>()
     .required("Image is required")
-    .test("fileType", "Only image files are allowed", (value) =>
-      value ? value.type.startsWith("image/") : false
-    ),
-  phone: Yup.number()
-    .integer("A phone number can't include a decimal point")
-    .max(8, "A phone number must be 8 digits")
-    .required("A phone number is required"),
+    .test("fileType", "Only image files are allowed", (value): boolean => {
+      if (!value) return false;
+      if (typeof value === "string") return true; // Allow existing image URL
+      return value instanceof File && value.type.startsWith("image/");
+    }),
+
+  phone: Yup.string()
+    .matches(/^\d{8}$/, "Phone number must be exactly 8 digits")
+    .required("Phone number is required"),
+
   address: Yup.string().required("Address is required"),
   about: Yup.string().required("About is required"),
   other: Yup.string().required("Other is required"),
 });
+
 type categoryType = {
   name: string;
   id: string;
@@ -145,9 +159,7 @@ export const PetPostProvider = ({
       }}
     >
       {loading ? (
-        <div className="w-full h-full flex items-center justify-center">
-         
-        </div>
+        <div className="w-full h-full flex items-center justify-center"></div>
       ) : (
         children
       )}
