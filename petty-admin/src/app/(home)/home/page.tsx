@@ -1,9 +1,9 @@
-import { AddCategoryModal } from "./_features/AddCategoryModal";
+import { AddPetCategory } from "./_features/AddPetCategory";
 
 export default function Home() {
   return (
     <div>
-      <AddCategoryModal />
+      <AddPetCategory />
     </div>
   );
 }

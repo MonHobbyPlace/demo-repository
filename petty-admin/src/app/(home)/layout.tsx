@@ -22,7 +22,7 @@ export default function RootLayout({
               <Header />
               <div className="flex">
                 <Navigation />
-                {children}
+                <div className="px-15">{children}</div>
               </div>
             </PetCategoryProvider>
           </>

@@ -1,4 +1,7 @@
 "use client";
+
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { createContext, useContext } from "react";
@@ -14,6 +17,7 @@ type PetCategoryContextType = {
   isLoading: boolean;
   addCategory: (values: { name: string; image: string }) => Promise<void>;
 };
+
 const PetProviderContext = createContext<PetCategoryContextType>(
   {} as PetCategoryContextType
 );
@@ -23,11 +27,7 @@ export const PetCategoryProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const {
-    data: user,
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["petCategory"],
     queryFn: async () => {
       const response = await axios.get(
@@ -35,7 +35,7 @@ export const PetCategoryProvider = ({
       );
       console.log(response.data.Category);
 
-      return response.data;
+      return response.data.Category || [];
     },
   });
 
@@ -51,15 +51,16 @@ export const PetCategoryProvider = ({
       console.log(error);
     }
   };
+
   return (
     <PetProviderContext.Provider
       value={{
-        category: user,
+        category: data || [],
         isLoading: isLoading,
         addCategory: addCategory,
       }}
     >
-      {isLoading == true ? (
+      {isLoading ? (
         <div className="w-screen h-screen flex items-center justify-center">
           <img src="https://res.cloudinary.com/dszot6j60/image/upload/v1746094178/LoaderCat_vnk5pe.gif" />
         </div>
@@ -69,10 +70,11 @@ export const PetCategoryProvider = ({
     </PetProviderContext.Provider>
   );
 };
+
 export const usePetCategory = () => {
   const context = useContext(PetProviderContext);
   if (!context) {
-    console.log("context is not defined");
+    throw new Error("usePetCategory must be used within a PetCategoryProvider");
   }
   return context;
 };
