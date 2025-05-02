@@ -1,3 +1,9 @@
+import { AddCategoryModal } from "./_features/AddCategoryModal";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <AddCategoryModal />
+    </div>
+  );
 }
