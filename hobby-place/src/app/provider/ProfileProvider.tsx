@@ -1,9 +1,9 @@
 "use client";
+import { petPostType } from "@/type";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
-import { petPostType } from "./PetPostProvider";
 
 export type ProfileType = {
   id: number;
