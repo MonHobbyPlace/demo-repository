@@ -1,78 +1,10 @@
 "use client";
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
-import { ProfileType } from "./ProfileProvider";
-import * as Yup from "yup";
+import {useProfile } from "./ProfileProvider";
+import { categoryType, petPostType } from "@/type";
 
-export type petPostType = {
-  about: string;
-  address: string;
-  age: number;
-  breed: string;
-  createdAt: string;
-  gender: string;
-  id: number;
-  image: string;
-  petCategoryId: number;
-  petName: string;
-  phoneNumber: number;
-  price: number;
-  purpose: string;
-  size: string;
-  updatedAt: string;
-  userId: number;
-  video: string;
-  User: ProfileType;
-};
 
-export const validationSchema = Yup.object({
-  name: Yup.string().required("Pet name is required"),
-  breed: Yup.string().required("Breed is required"),
-  size: Yup.string().required("Pet size is required"),
-  age: Yup.number()
-    .typeError("Age must be a number")
-    .required("Age is required"),
-
-  gender: Yup.string().required("Gender is required"),
-
-  purpose: Yup.string()
-    .oneOf(["SALE", "ADOPT"], "Purpose must be SALE or ADOPT")
-    .required("Purpose is required"),
-
-  price: Yup.string().when("purpose", {
-    is: "SALE", // make sure this matches your backend values
-    then: (schema) => schema.required("Price is required for sale"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  video: Yup.mixed<File | string>()
-    .required("Video is required")
-    .test("fileType", "Only video files are allowed", (value): boolean => {
-      if (!value) return false;
-      if (typeof value === "string") return true; // Allow existing video URL
-      return value instanceof File && value.type.startsWith("video/");
-    }),
-
-  image: Yup.mixed<File | string>()
-    .required("Image is required")
-    .test("fileType", "Only image files are allowed", (value): boolean => {
-      if (!value) return false;
-      if (typeof value === "string") return true; // Allow existing image URL
-      return value instanceof File && value.type.startsWith("image/");
-    }),
-
-  phone: Yup.string()
-    .matches(/^\d{8}$/, "Phone number must be exactly 8 digits")
-    .required("Phone number is required"),
-
-  address: Yup.string().required("Address is required"),
-  about: Yup.string().required("About is required"),
-  other: Yup.string().required("Other is required"),
-});
-
-type categoryType = {
-  name: string;
-  id: string;
-};
 type petPostContextType = {
   petPost: petPostType[];
   category: categoryType[];
@@ -80,6 +12,7 @@ type petPostContextType = {
   petPostId: petPostType;
   petPostCategorys: (id: number) => Promise<void>;
   petPostCategories: petPostType[];
+  createPetPost: (values: petPostType) => Promise<void>
 };
 
 const PetPostContext = createContext<petPostContextType>(
@@ -142,6 +75,13 @@ export const PetPostProvider = ({
       console.error("Error fetching category:", error);
     }
   };
+  
+  const {user}=useProfile();
+  const createPetPost=async( values:petPostType)=>{
+const response=await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`, values)
+console.log(response);
+
+  }
   useEffect(() => {
     getPetPostData();
     getCategoryData();
@@ -156,6 +96,7 @@ export const PetPostProvider = ({
         petPostId,
         petPostCategorys,
         petPostCategories,
+        createPetPost
       }}
     >
       {loading ? (
@@ -166,6 +107,8 @@ export const PetPostProvider = ({
     </PetPostContext.Provider>
   );
 };
+
+
 export const usePetPost = () => {
   const context = useContext(PetPostContext);
   if (!context) {
@@ -173,3 +116,5 @@ export const usePetPost = () => {
   }
   return context;
 };
+
+
