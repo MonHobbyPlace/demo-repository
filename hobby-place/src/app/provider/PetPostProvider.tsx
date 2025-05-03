@@ -72,6 +72,7 @@ export const validationSchema = Yup.object({
 type categoryType = {
   name: string;
   id: string;
+  image: string;
 };
 type petPostContextType = {
   petPost: petPostType[];

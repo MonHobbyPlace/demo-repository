@@ -7,7 +7,7 @@ export const AddPetCategory = () => {
   const { category } = usePetCategory();
 
   return (
-    <div className=" flex">
+    <div className=" flex flex-wrap gap-3">
       <AddCategoryModal />
       {category.map((cat, index) => {
         return <CategoryButton key={index} category={cat} />;

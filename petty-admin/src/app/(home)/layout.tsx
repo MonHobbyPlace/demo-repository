@@ -5,6 +5,7 @@ import { Header } from "./_components/Header";
 import { Navigation } from "./_components/Navigation";
 import { PetCategoryProvider } from "../provider/PetCategoryProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HospitalProvider } from "../provider/HospitalProvider";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,11 +20,13 @@ export default function RootLayout({
         <AuthProvider>
           <>
             <PetCategoryProvider>
-              <Header />
-              <div className="flex">
-                <Navigation />
-                <div className="px-15">{children}</div>
-              </div>
+              <HospitalProvider>
+                <Header />
+                <div className="flex">
+                  <Navigation />
+                  <div className="px-15">{children}</div>
+                </div>
+              </HospitalProvider>
             </PetCategoryProvider>
           </>
         </AuthProvider>
