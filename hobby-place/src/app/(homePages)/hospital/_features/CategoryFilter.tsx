@@ -22,7 +22,6 @@ export const CategoryFilter = () => {
   };
 
   const fetchInfo = async () => {
-
     try {
       setLoading(true);
       const response = await axios.get(
@@ -66,8 +65,8 @@ export const CategoryFilter = () => {
             >
               <img
                 alt="category image"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                className="w-9 rounded-full"
+                src={element.image}
+                className="w-9 h-9 rounded-full"
               />
               <div className="p-2">{element.name}</div>
             </button>

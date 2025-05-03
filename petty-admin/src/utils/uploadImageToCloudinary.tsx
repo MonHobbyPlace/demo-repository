@@ -1,5 +1,7 @@
 import axios from "axios";
-export const uploadImageToCloudinary = async (file: File) => {
+export const uploadImageToCloudinary = async (
+  file: File | null | undefined
+) => {
   if (!file) return null;
 
   try {

@@ -5,6 +5,12 @@ import {useProfile } from "./ProfileProvider";
 import { categoryType, petPostType } from "@/type";
 
 
+type categoryType = {
+  name: string;
+  id: string;
+  image: string;
+};
+
 type petPostContextType = {
   petPost: petPostType[];
   category: categoryType[];
