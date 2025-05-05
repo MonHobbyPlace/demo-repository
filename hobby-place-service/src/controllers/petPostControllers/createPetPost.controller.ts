@@ -19,7 +19,9 @@ export const createPetPost = async (req: Request, res: Response) => {
   } = req.body;
 
   const userId = Number(req.params.id);
-
+  const updatedNumber = Number(phoneNumber);
+  const updatedAge = Number(age);
+  const updatedPrice = Number(price);
   try {
     const newPetPost = await prisma.petPost.create({
       data: {
@@ -30,9 +32,9 @@ export const createPetPost = async (req: Request, res: Response) => {
         address: address,
         about: about,
         image: image,
-        phoneNumber: phoneNumber,
-        age: age,
-        price: price,
+        phoneNumber: updatedNumber,
+        age: updatedAge,
+        price: updatedPrice,
         purpose: purpose,
         petCategoryId: petCategoryId,
         userId: userId,

@@ -1,12 +1,12 @@
 import * as Yup from "yup";
 export type petPostType = {
-  about: string[];
+  about: string;
   address: string;
   age: number;
   breed: string;
-  createdAt: string;
+  createdAt?: string;
   gender: string;
-  id: number;
+  id?: number;
   image: string;
   petCategoryId: number;
   petName: string;
@@ -14,8 +14,8 @@ export type petPostType = {
   price: number;
   purpose: string;
   size: string;
-  updatedAt: string;
-  userId: number;
+  updatedAt?: string;
+  userId?: number;
   video: string;
   User?: { username: string; profileImage: string };
 };
@@ -33,7 +33,7 @@ export const validationSchema = Yup.object({
   }),
   phoneNumber: Yup.number().required("Phone number is required"),
   address: Yup.string().required("Address is required"),
-  about: Yup.array().min(1, "Select at least one feature"),
+  about: Yup.string().min(1, "Select at least one feature"),
   petCategoryId: Yup.number().required("Category is required"),
   video: Yup.mixed<File | string>()
     .required("Video is required")

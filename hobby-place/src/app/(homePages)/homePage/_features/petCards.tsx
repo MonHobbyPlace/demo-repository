@@ -21,9 +21,6 @@ export const PetCards = () => {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between w-full h-10 ">
         <div className="text-xl extrabold">Rehoming a Pets</div>
-        {/* <p className="text-sm flex items-center">
-          see more <ArrowRight size={14} />
-        </p> */}
       </div>
       <div className="flex flex-wrap gap-4 h-[250px] overflow-y-scroll scrollbar-hide">
         {petPostCategories.length > 1 ? (
