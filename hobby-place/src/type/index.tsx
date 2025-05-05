@@ -17,6 +17,7 @@ export type petPostType = {
   updatedAt?: string;
   userId?: number;
   video: string;
+  User?: { username: string; profileImage: string };
 };
 
 export const validationSchema = Yup.object({
