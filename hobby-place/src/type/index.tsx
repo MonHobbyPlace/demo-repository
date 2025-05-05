@@ -1,4 +1,3 @@
-
 import * as Yup from "yup";
 export type petPostType = {
   about: string[];
@@ -18,10 +17,10 @@ export type petPostType = {
   updatedAt: string;
   userId: number;
   video: string;
+  User?: { username: string; profileImage: string };
 };
 
 export const validationSchema = Yup.object({
-
   petName: Yup.string().required("Pet name is required"),
   breed: Yup.string().required("Breed is required"),
   size: Yup.string().required("Pet size is required"),
@@ -51,7 +50,6 @@ export const validationSchema = Yup.object({
       if (typeof value === "string") return true; // Allow existing image URL
       return value instanceof File && value.type.startsWith("image/");
     }),
-
 });
 
 export type categoryType = {
