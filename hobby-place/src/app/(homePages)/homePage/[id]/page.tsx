@@ -118,7 +118,7 @@ const PetCardId = () => {
             </div>
 
             <div className="flex items-center justify-between mt-4 w-full bg-amber-200">
-              <video className="w-full" src={petPostId?.video} />
+              <video className="w-full" controls src={petPostId?.video} />
             </div>
 
             <button className="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 shadow-lg hover:bg-blue-700 transition duration-200">
