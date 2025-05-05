@@ -15,10 +15,11 @@ export default function RootLayout({
   const pathName = usePathname();
   return (
     <div
-      className={`relative h-screen overflow-hidden  bg-[#e1f7f5] ${
+      className={`relative h-screen  overflow-hidden bg-[#e1f7f5] ${
         pathName.includes("profile") ||
         pathName.includes("hospital/") ||
-        pathName.includes("homePage/")
+        pathName.includes("homePage/") ||
+        pathName.includes("petPost")
           ? "p-0"
           : "p-5"
       } `}
@@ -29,7 +30,8 @@ export default function RootLayout({
             {!pathName.includes("profile") &&
               !pathName.includes("service") &&
               !pathName.includes("hospital/") &&
-              !pathName.includes("homePage/") && <Header />}
+              !pathName.includes("homePage/") &&
+              !pathName.includes("petPost") && <Header />}
 
             <div className={`h-full`}>{children}</div>
             <div
@@ -38,7 +40,8 @@ export default function RootLayout({
               }`}
             >
               {!pathName.includes("hospital/") &&
-                !pathName.includes("homePage/") && <Footer />}
+                !pathName.includes("homePage/") &&
+                !pathName.includes("petPost") && <Footer />}
             </div>
           </PetPostProvider>
         </ProfileProvider>

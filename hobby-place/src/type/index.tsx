@@ -1,13 +1,12 @@
-
 import * as Yup from "yup";
 export type petPostType = {
-  about: string[];
+  about: string;
   address: string;
   age: number;
   breed: string;
-  createdAt: string;
+  createdAt?: string;
   gender: string;
-  id: number;
+  id?: number;
   image: string;
   petCategoryId: number;
   petName: string;
@@ -15,13 +14,12 @@ export type petPostType = {
   price: number;
   purpose: string;
   size: string;
-  updatedAt: string;
-  userId: number;
+  updatedAt?: string;
+  userId?: number;
   video: string;
 };
 
 export const validationSchema = Yup.object({
-
   petName: Yup.string().required("Pet name is required"),
   breed: Yup.string().required("Breed is required"),
   size: Yup.string().required("Pet size is required"),
@@ -34,7 +32,7 @@ export const validationSchema = Yup.object({
   }),
   phoneNumber: Yup.number().required("Phone number is required"),
   address: Yup.string().required("Address is required"),
-  about: Yup.array().min(1, "Select at least one feature"),
+  about: Yup.string().min(1, "Select at least one feature"),
   petCategoryId: Yup.number().required("Category is required"),
   video: Yup.mixed<File | string>()
     .required("Video is required")
@@ -51,7 +49,6 @@ export const validationSchema = Yup.object({
       if (typeof value === "string") return true; // Allow existing image URL
       return value instanceof File && value.type.startsWith("image/");
     }),
-
 });
 
 export type categoryType = {

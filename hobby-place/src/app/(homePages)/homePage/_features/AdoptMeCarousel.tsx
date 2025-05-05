@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 
 import Autoplay from "embla-carousel-autoplay";
+import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const AdoptMeCrausel = () => {
@@ -21,8 +22,14 @@ export const AdoptMeCrausel = () => {
       opts={{
         loop: true,
       }}
-      className="w-full flex justify-center"
+      className="w-full flex flex-col justify-center relative"
     >
+      <p
+        className="text-sm flex items-center absolute right-0 top-[-25px]"
+        onClick={() => router.push(`/adoptPet`)}
+      >
+        see more <ArrowRight size={14} />
+      </p>
       <CarouselContent className=" relative h-56 rounded-xl">
         {petPost.map((element, index) => {
           if (element.price > 0) {
