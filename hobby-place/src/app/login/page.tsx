@@ -3,10 +3,10 @@
 
 import { useState } from "react";
 import axios from "axios";
-
 import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function LogIn() {
   const router = useRouter();
@@ -34,16 +34,22 @@ export default function LogIn() {
       setLoading(true);
 
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/users/login`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/google-login`,
         user
       );
 
       if (data.success) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("userId", data.user.id);
+
+        // Check user role and route accordingly
+        if (data.user.role === "admin") {
+          router.push("/home"); // Admin homepage
+        } else {
+          router.push("/homePage"); // User homepage
+        }
 
         toast.success("Login successful!");
-        router.push("/homePage");
       } else {
         toast.error(data.message || "Login failed.");
       }
@@ -97,13 +103,56 @@ export default function LogIn() {
             )}
           </button>
         </div>
+
         <button
           onClick={handleLogin}
           disabled={loading}
-          className="backdrop-blur-[20px] text-blue-400 font-semibold rounded-lg  w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none border bg-white"
+          className="backdrop-blur-[20px] text-blue-400 font-semibold rounded-lg w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none border bg-white"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
+
+        {/* Divider */}
+        <div className="flex items-center w-full my-4">
+          <hr className="flex-grow border-white" />
+          <span className="px-2 text-white">OR</span>
+          <hr className="flex-grow border-white" />
+        </div>
+
+        {/* ✅ Google Login Button */}
+        <GoogleLogin
+          onSuccess={async (credentialResponse) => {
+            try {
+              const credential = credentialResponse.credential;
+              if (!credential) return toast.error("Google token missing");
+
+              console.log(credential);
+
+              const { data } = await axios.post(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/users/google-login`,
+                { token: credential }
+              );
+
+              if (data.success) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("userId", data.user.id);
+                toast.success("Logged in with Google!");
+                router.push("/homePage");
+              } else {
+                toast.error(data.message || "Google login failed");
+              }
+            } catch (error: any) {
+              console.error("Google login error:", error);
+              toast.error(
+                error.response?.data?.message ||
+                  "Google login failed. Please try again."
+              );
+            }
+          }}
+          onError={() => {
+            toast.error("Google Sign-in Failed");
+          }}
+        />
       </div>
     </div>
   );

@@ -1,9 +1,29 @@
 "use client";
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
-import {useProfile } from "./ProfileProvider";
-import { categoryType, petPostType } from "@/type";
+import { useProfile } from "./ProfileProvider";
 
+// petPostType.ts
+export type petPostType = {
+  id: number; // or string, based on your API response
+  petName: string;
+  image: string;
+  price: number;
+  age: number;
+  gender: string;
+  breed: string;
+  size: string;
+  about: string;
+  address: string;
+  video: string;
+  createdAt: string; // or Date, depending on how your API sends it
+  updatedAt: string; // or Date
+  User: {
+    id: number; // or string, depending on how user is defined
+    username: string;
+    profileImage: string;
+  };
+};
 
 type categoryType = {
   name: string;
@@ -18,7 +38,7 @@ type petPostContextType = {
   petPostId: petPostType;
   petPostCategorys: (id: number) => Promise<void>;
   petPostCategories: petPostType[];
-  createPetPost: (values: petPostType) => Promise<void>
+  createPetPost: (values: petPostType) => Promise<void>;
 };
 
 const PetPostContext = createContext<petPostContextType>(
@@ -47,7 +67,6 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/petId/${id}`
       );
       setPetPostId(response.data.data);
-      console.log("Pet post ID set successfully:", petPostId);
     } catch (error) {
       console.error("Error setting pet post ID:", error);
     }
@@ -61,7 +80,6 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost`
       );
       setPetPost(data.data);
-      console.log("Pet posts fetched successfully:", data.data);
     } catch (error) {
       console.error("Error fetching pet posts:", error);
     } finally {
@@ -76,18 +94,19 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`
       );
       setCategory(data.Category);
-      console.log("Category fetched successfully:", data.Category);
     } catch (error) {
       console.error("Error fetching category:", error);
     }
   };
-  
-  const {user}=useProfile();
-  const createPetPost=async( values:petPostType)=>{
-const response=await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`, values)
-console.log(response);
 
-  }
+  const { user } = useProfile();
+  const createPetPost = async (values: petPostType) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`,
+      values
+    );
+    console.log(response);
+  };
   useEffect(() => {
     getPetPostData();
     getCategoryData();
@@ -102,7 +121,7 @@ console.log(response);
         petPostId,
         petPostCategorys,
         petPostCategories,
-        createPetPost
+        createPetPost,
       }}
     >
       {loading ? (
@@ -114,7 +133,6 @@ console.log(response);
   );
 };
 
-
 export const usePetPost = () => {
   const context = useContext(PetPostContext);
   if (!context) {
@@ -122,5 +140,3 @@ export const usePetPost = () => {
   }
   return context;
 };
-
-

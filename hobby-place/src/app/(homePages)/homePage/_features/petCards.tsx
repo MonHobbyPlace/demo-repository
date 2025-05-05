@@ -7,13 +7,11 @@ import { useEffect } from "react";
 /* eslint-disable @next/next/no-img-element */
 export const PetCards = () => {
   const { petPost, petPostCategories } = usePetPost();
-  console.log("petPostCategoriejhvjhvu", petPostCategories);
 
   useEffect(() => {
     if (petPostCategories.length > 0) {
       console.log("Pet post categories set successfully:", petPostCategories);
     } else {
-      console.log("No pet post categories available.");
     }
   }, [petPostCategories]);
   const router = useRouter();

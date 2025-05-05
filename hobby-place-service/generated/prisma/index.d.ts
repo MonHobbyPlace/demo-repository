@@ -340,8 +340,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -9732,7 +9732,7 @@ export namespace Prisma {
     backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    rating: number
+    rating?: number
     location: string
     phoneNumber: number
     workTime: string
@@ -9749,7 +9749,7 @@ export namespace Prisma {
     backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    rating: number
+    rating?: number
     location: string
     phoneNumber: number
     workTime: string
@@ -9799,7 +9799,7 @@ export namespace Prisma {
     backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    rating: number
+    rating?: number
     location: string
     phoneNumber: number
     workTime: string
