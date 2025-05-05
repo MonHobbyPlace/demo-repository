@@ -13,10 +13,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useFormik } from "formik";
-import { Plus } from "lucide-react";
+import { Plus, XCircle, Image } from "lucide-react";
+import { useState } from "react";
 import * as yup from "yup";
 
 export const AddHospitalModal = () => {
+  const [backImage, setBackImage] = useState<File | null>();
   const validationSchema = yup.object({
     name: yup.string().required("Hospital name required."),
     backgroundImage: yup.string().required("Enter background image."),
@@ -46,6 +48,7 @@ export const AddHospitalModal = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      console.log(backImage);
     },
   });
   return (
@@ -136,6 +139,76 @@ export const AddHospitalModal = () => {
             </div>
             <div className="w-full flex justify-end text-red-500">
               <p>{formik.errors.phoneNumber}</p>
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="email" className="text-right">
+                Email
+              </Label>
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                className="col-span-3"
+                placeholder="Enter email"
+              />
+            </div>
+            <div className="w-full flex justify-end text-red-500">
+              <p>{formik.errors.email}</p>
+            </div>
+            <div>
+              <p className="text-sm font-bold">Background image</p>
+              {formik.values.backgroundImage.length === 0 && (
+                <Label className="flex items-center gap-2 cursor-pointer">
+                  <div className="w-12 h-12 rounded bg-gray-100 flex items-center justify-center">
+                    <Image className="text-gray-500" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-medium">Browse or Drop Image</h3>
+                    <p className="text-sm text-gray-500">
+                      Select an image file
+                    </p>
+                  </div>
+                  <input
+                    hidden
+                    type="file"
+                    accept="image/*"
+                    id="image"
+                    name="image"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      console.log(file);
+
+                      if (file) {
+                        setBackImage(file);
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                          formik.setFieldValue(
+                            "backgroundImage",
+                            reader.result as string
+                          );
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                  />
+                </Label>
+              )}
+              {formik.values.backgroundImage.length !== 0 && (
+                <div className="flex relative w-full h-[180px]">
+                  <img
+                    src={formik.values.backgroundImage}
+                    alt="Food preview"
+                    className="h-full w-full rounded border object-scale-down"
+                  />
+                  <XCircle
+                    color="gray"
+                    className="absolute top-5 right-5"
+                    onClick={() => formik.setFieldValue("image", "")}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </form>
