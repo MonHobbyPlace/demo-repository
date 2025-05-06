@@ -30,7 +30,6 @@ export const PetPostProvider = ({
       `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/categoryId/${id}`
     );
     setPetPostCategories(response.data.data);
-    console.log("Pet post categorys set successfully:", petPostCategories);
   };
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
 
@@ -40,7 +39,6 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/petId/${id}`
       );
       setPetPostId(response.data.data);
-      console.log("Pet post ID set successfully:", petPostId);
     } catch (error) {
       console.error("Error setting pet post ID:", error);
     }
@@ -54,7 +52,6 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost`
       );
       setPetPost(data.data);
-      console.log("Pet posts fetched successfully:", data.data);
     } catch (error) {
       console.error("Error fetching pet posts:", error);
     } finally {
@@ -69,19 +66,24 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`
       );
       setCategory(data.Category);
-      console.log("Category fetched successfully:", data.Category);
     } catch (error) {
       console.error("Error fetching category:", error);
     }
   };
 
   const { user } = useProfile();
+
+
   const createPetPost = async (values: petPostType) => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`,
-      values
-    );
-    console.log(response);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${user.id}`,
+        values
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     getPetPostData();
