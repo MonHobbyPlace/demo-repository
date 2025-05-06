@@ -1,7 +1,7 @@
 "use client";
 import { usePetCategory } from "@/app/provider/PetCategoryProvider";
-import { CategoryButton } from "../_components/CategoryButton";
-import { AddCategoryModal } from "../_components/AddCategoryModal";
+import { CategoryButton } from "../../home/_components/CategoryButton";
+import { AddCategoryModal } from "../../home/_components/AddCategoryModal";
 
 export const AddPetCategory = () => {
   const { category } = usePetCategory();

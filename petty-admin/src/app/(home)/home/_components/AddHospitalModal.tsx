@@ -24,6 +24,8 @@ import { AvatarImageLabel } from "./AvatarImageLabel";
 import { MapWithDraggableMarker } from "./LocationTab";
 import { ChooseCategory } from "./ChooseCategory";
 import { InputContainer } from "./InputContainer";
+import { useHospital } from "@/app/provider/HospitalProvider";
+import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
 
 const validationSchema = yup.object({
   name: yup.string().required("Hospital name required."),
@@ -42,8 +44,10 @@ const validationSchema = yup.object({
 
 export const AddHospitalModal = () => {
   const [backImage, setBackImage] = useState<File | null>();
-  const [avatarImages, setAvatarImages] = useState<File[] | null>([]);
-
+  const [avatarImages, setAvatarImages] = useState<File[] | null | string[]>(
+    []
+  );
+  const { addHospital } = useHospital();
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: {
@@ -52,14 +56,26 @@ export const AddHospitalModal = () => {
       about: "",
       phoneNumber: 0,
       workTime: "",
-      avatarImage: ["", "", "", ""],
+      avatarImage: [""],
       category: [""],
       email: "",
       location: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
-      console.log(backImage);
+    onSubmit: async (values) => {
+      try {
+        const uploadedBackgroundImg = await uploadImageToCloudinary(backImage);
+        avatarImages?.map(async (img, index) => {
+          const uploaded = await uploadImageToCloudinary(img as File);
+          avatarImages[index] = uploaded;
+        });
+        await addHospital({
+          ...values,
+          backgroundImage: uploadedBackgroundImg,
+          avatarImage: avatarImages as string[],
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -79,7 +95,7 @@ export const AddHospitalModal = () => {
     const updatedAvatarFiles = [...(avatarImages || [])];
     if (file) {
       updatedAvatarFiles[index] = file;
-      setAvatarImages(updatedAvatarFiles);
+      setAvatarImages(updatedAvatarFiles as File[]);
     }
   };
   return (

@@ -51,7 +51,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
                   key={index}
                   className="mask mask-star-2 bg-[#0077b6]"
                   aria-label={`${index + 1} star`}
-                  aria-current={index == 1 ? "true" : "false"}
+                  aria-current={index + 1 == hospital.rating ? "true" : "false"}
                 ></div>
               ))}
             </div>

@@ -1,15 +1,8 @@
 "use client";
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
-import {useProfile } from "./ProfileProvider";
+import { useProfile } from "./ProfileProvider";
 import { categoryType, petPostType } from "@/type";
-
-
-type categoryType = {
-  name: string;
-  id: string;
-  image: string;
-};
 
 type petPostContextType = {
   petPost: petPostType[];
@@ -18,7 +11,7 @@ type petPostContextType = {
   petPostId: petPostType;
   petPostCategorys: (id: number) => Promise<void>;
   petPostCategories: petPostType[];
-  createPetPost: (values: petPostType) => Promise<void>
+  createPetPost: (values: petPostType) => Promise<void>;
 };
 
 const PetPostContext = createContext<petPostContextType>(
@@ -81,13 +74,15 @@ export const PetPostProvider = ({
       console.error("Error fetching category:", error);
     }
   };
-  
-  const {user}=useProfile();
-  const createPetPost=async( values:petPostType)=>{
-const response=await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`, values)
-console.log(response);
 
-  }
+  const { user } = useProfile();
+  const createPetPost = async (values: petPostType) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`,
+      values
+    );
+    console.log(response);
+  };
   useEffect(() => {
     getPetPostData();
     getCategoryData();
@@ -102,7 +97,7 @@ console.log(response);
         petPostId,
         petPostCategorys,
         petPostCategories,
-        createPetPost
+        createPetPost,
       }}
     >
       {loading ? (
@@ -114,7 +109,6 @@ console.log(response);
   );
 };
 
-
 export const usePetPost = () => {
   const context = useContext(PetPostContext);
   if (!context) {
@@ -122,7 +116,3 @@ export const usePetPost = () => {
   }
   return context;
 };
-
-
-
-export { petPostType };
