@@ -14,6 +14,12 @@ export const Categories = () => {
         <div className="text-xl extrabold">Categories</div>
       </div>
       <div className="flex gap-2 overflow-x-auto scroll-bar-hide">
+        <button
+          onClick={() => onClick("")}
+          className={`btn btn-outline w-16 px-4 bg-[white flex items-center justify-center rounded-full p-0 ? "opacity-100" : "opacity-60"`}
+        >
+          All
+        </button>
         {category.map((element, index) => {
           return (
             <button

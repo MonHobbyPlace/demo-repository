@@ -27,8 +27,10 @@ export const PetPostProvider = ({
   const [petPostCategories, setPetPostCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const petPostCategorys = async (id: number) => {
+    console.log(id);
+
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/categoryId/${id}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${id}`
     );
     setPetPostCategories(response.data.data);
   };

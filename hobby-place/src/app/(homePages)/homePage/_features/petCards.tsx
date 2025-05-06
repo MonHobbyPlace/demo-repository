@@ -34,7 +34,7 @@ export const PetCards = () => {
               return (
                 <div
                   onClick={() =>
-                    router.push(`/homePage/${element.id.toString()}`)
+                    router.push(`/homePage/${element?.id.toString()}`)
                   }
                   key={index}
                   className="w-2/7 h-fit p-1 border rounded-lg bg-white"
