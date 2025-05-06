@@ -7,6 +7,7 @@ import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function SignUp() {
   const router = useRouter();
@@ -24,25 +25,11 @@ export default function SignUp() {
   };
 
   const handleSignUp = async () => {
-    if (!user.username) {
-      toast.error("Username is required.");
-      return;
-    }
-
-    if (!user.email) {
-      toast.error("Email is required.");
-      return;
-    }
-
-    if (!user.password) {
-      toast.error("Password is required.");
-      return;
-    }
-
-    if (user.password.length < 6) {
-      toast.error("Password must be at least 6 characters long.");
-      return;
-    }
+    if (!user.username) return toast.error("Username is required.");
+    if (!user.email) return toast.error("Email is required.");
+    if (!user.password) return toast.error("Password is required.");
+    if (user.password.length < 6)
+      return toast.error("Password must be at least 6 characters long.");
 
     try {
       setLoading(true);
@@ -54,21 +41,37 @@ export default function SignUp() {
       toast.success("Account created successfully!");
       router.push("/login");
     } catch (error: any) {
-      toast.error(error.response?.data?.message || "Signup failed.");
+      // Log detailed error response
+      console.error("Error during signup:", error);
+      toast.error("Signup failed.");
     } finally {
       setLoading(false);
     }
   };
 
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      const credential = credentialResponse.credential;
+      if (!credential) return toast.error("Google token missing");
+
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/google-login`,
+        { token: credential }
+      );
+
+      localStorage.setItem("token", res.data.token);
+      toast.success("Logged in with Google!");
+      router.push("/login");
+    } catch (error: any) {
+      // Log detailed error response
+      console.error("Error during Google login:", error);
+      toast.error("Google sugn up failed");
+    }
+  };
+
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-center gap-6 px-4  text-black">
-      <button
-        onClick={() => router.push("/login")}
-        className="absolute top-6 right-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
-      >
-        Log in
-      </button>
-      <div className="relative h-screen w-screen  bg-blue-400 bg-cover bg-center overflow-hidden">
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-center gap-6 px-4 text-black">
+      <div className="relative h-screen w-screen bg-blue-400 bg-cover bg-center overflow-hidden">
         <div className="flex flex-col items-center justify-center gap-6 h-full w-full px-4 py-6">
           <button
             onClick={() => router.push("/")}
@@ -83,12 +86,9 @@ export default function SignUp() {
             Log in
           </button>
 
-          {/* Heading */}
           <h1 className="text-3xl font-bold text-white text-center">Sign Up</h1>
 
-          {/* Form */}
           <div className="flex flex-col items-center gap-4 w-full max-w-sm">
-            {/* Username */}
             <input
               name="username"
               placeholder="Username"
@@ -96,7 +96,6 @@ export default function SignUp() {
               onChange={handleChange}
               className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            {/* Email */}
             <input
               name="email"
               placeholder="Email"
@@ -104,7 +103,6 @@ export default function SignUp() {
               onChange={handleChange}
               className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            {/* Password with toggle */}
             <div className="relative w-full">
               <input
                 name="password"
@@ -127,7 +125,6 @@ export default function SignUp() {
               </button>
             </div>
 
-            {/* Submit Button */}
             <button
               onClick={handleSignUp}
               disabled={loading}
@@ -135,6 +132,22 @@ export default function SignUp() {
             >
               {loading ? "Signing Up..." : "Sign Up"}
             </button>
+
+            {/* Divider */}
+            <div className="flex items-center w-full my-4">
+              <hr className="flex-grow border-white" />
+              <span className="px-2 text-white">OR</span>
+              <hr className="flex-grow border-white" />
+            </div>
+
+            {/* ✅ Google Login Button */}
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => {
+                console.error("Google sign-in error:");
+                toast.error("Google Sign-in Failed");
+              }}
+            />
           </div>
         </div>
       </div>

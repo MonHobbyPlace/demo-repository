@@ -7,34 +7,24 @@ import axios from "axios";
 import React, { createContext, useContext } from "react";
 
 export type Hospital = {
-  id: number;
+  id?: number;
   name: string;
   location: string;
   workTime: string;
   avatarImage: string[];
   about: string;
-  views: number;
+  views?: number;
   phoneNumber: number;
   category: string[];
   backgroundImage: string;
   email: string;
-  rating: number;
+  rating?: number;
 };
-type NewHospitalType = {
-  name: string;
-  location: string;
-  workTime: string;
-  avatarImage: string[];
-  about: string;
-  phoneNumber: number;
-  category: string[];
-  backgroundImage: string;
-  email: string;
-};
+
 type HospitalContextType = {
   hospitals: Hospital[];
   isLoading: boolean;
-  addHospital: (values: NewHospitalType) => Promise<void>;
+  addHospital: (values: Hospital) => Promise<void>;
   updateHospitalInfo: (values: Hospital) => Promise<void>;
 };
 
@@ -63,7 +53,7 @@ export const HospitalProvider = ({
     },
   });
 
-  const addHospital = async (values: NewHospitalType) => {
+  const addHospital = async (values: Hospital) => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`,

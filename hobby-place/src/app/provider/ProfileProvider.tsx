@@ -42,9 +42,8 @@ export const ProfileProvider = ({
     queryFn: async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${1}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${userId}`
       );
-      console.log(response.data);
 
       setIsLoading(false);
       return response.data;

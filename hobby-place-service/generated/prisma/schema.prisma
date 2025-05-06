@@ -91,6 +91,7 @@ model Hospital {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   rating          Float    @default(0)
+
   location        String
   phoneNumber     Int
   workTime        String

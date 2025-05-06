@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
 import { useProfile } from "./ProfileProvider";
+
 import { categoryType, petPostType } from "@/type";
 
 type petPostContextType = {
@@ -74,6 +75,8 @@ export const PetPostProvider = ({
   };
 
   const { user } = useProfile();
+
+
 
   const createPetPost = async (values: petPostType) => {
     try {
