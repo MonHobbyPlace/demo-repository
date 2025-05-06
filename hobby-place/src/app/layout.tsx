@@ -5,12 +5,9 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./provider/AuthProvider";
-import { PetPostProvider } from "./provider/PetPostProvider";
 import { ServiceCategoryProvider } from "./provider/ServiceCategoryProvider";
-import { ProfileProvider } from "./provider/ProfileProvider";
 import { QueryClientProvider } from "./provider/QueryCientProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google"; // ✅ Add this
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,15 +40,10 @@ export default function RootLayout({
           >
             <AuthProvider>
               <ToastContainer position="top-right" autoClose={3000} />
-              <ProfileProvider>
-                <PetPostProvider>
-                  <ServiceCategoryProvider>{children}</ServiceCategoryProvider>
-                </PetPostProvider>
-              </ProfileProvider>
+              <ServiceCategoryProvider>{children}</ServiceCategoryProvider>
             </AuthProvider>
           </GoogleOAuthProvider>
         </QueryClientProvider>
-
       </body>
     </html>
   );
