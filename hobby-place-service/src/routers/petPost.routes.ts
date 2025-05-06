@@ -14,10 +14,6 @@ petPostRouter.get("/", getPetPost);
 petPostRouter.post("/:id", createPetPost);
 petPostRouter.delete("/:id", postIdFoundMid, deletePetPost);
 petPostRouter.put("/:id", postIdFoundMid, putPetPost);
-petPostRouter.get(
-  "/categoryId/:categoryId",
-  getPetPostMid,
-  getPetPostCategoryId
-);
 petPostRouter.get("/petId/:Id", getPetPostId);
 petPostRouter.get("/search/:value", getPetPostByName);
+petPostRouter.get("/:categoryId", getPetPostCategoryId);

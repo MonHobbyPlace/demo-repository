@@ -130,6 +130,13 @@ exports.Prisma.UserScalarFieldEnum = {
   backgroundImage: 'backgroundImage'
 };
 
+exports.Prisma.MessageScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  timestamp: 'timestamp',
+  senderId: 'senderId'
+};
+
 exports.Prisma.PetPostScalarFieldEnum = {
   id: 'id',
   petName: 'petName',
@@ -237,6 +244,7 @@ exports.PetPostEnum = exports.$Enums.PetPostEnum = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Message: 'Message',
   PetPost: 'PetPost',
   ServicePost: 'ServicePost',
   Hospital: 'Hospital',

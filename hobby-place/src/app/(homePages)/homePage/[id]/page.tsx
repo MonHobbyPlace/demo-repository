@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { petPostType } from "@/app/provider/PetPostProvider";
-// import { usePetPost } from "@/app/provider/PetPostProvider";
+import { petPostType } from "@/type/index";
 import axios from "axios";
 import { ChevronLeft, MapPin } from "lucide-react";
 import Link from "next/link";
