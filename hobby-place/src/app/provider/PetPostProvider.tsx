@@ -3,33 +3,7 @@ import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
 import { useProfile } from "./ProfileProvider";
 
-// petPostType.ts
-export type petPostType = {
-  id: number; // or string, based on your API response
-  petName: string;
-  image: string;
-  price: number;
-  age: number;
-  gender: string;
-  breed: string;
-  size: string;
-  about: string;
-  address: string;
-  video: string;
-  createdAt: string; // or Date, depending on how your API sends it
-  updatedAt: string; // or Date
-  User: {
-    id: number; // or string, depending on how user is defined
-    username: string;
-    profileImage: string;
-  };
-};
-
-type categoryType = {
-  name: string;
-  id: string;
-  image: string;
-};
+import { categoryType, petPostType } from "@/type";
 
 type petPostContextType = {
   petPost: petPostType[];
@@ -57,7 +31,6 @@ export const PetPostProvider = ({
       `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/categoryId/${id}`
     );
     setPetPostCategories(response.data.data);
-    console.log("Pet post categorys set successfully:", petPostCategories);
   };
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
 
@@ -100,12 +73,19 @@ export const PetPostProvider = ({
   };
 
   const { user } = useProfile();
+
+
+
   const createPetPost = async (values: petPostType) => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${user.id}/petPost`,
-      values
-    );
-    console.log(response);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${user.id}`,
+        values
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     getPetPostData();

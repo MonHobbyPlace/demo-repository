@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export const Navigation = () => {
   const pathName = usePathname();
   return (
-    <div className="flex flex-col gap-2 p-5">
+    <div className="flex flex-col gap-2 p-5" hidden>
       <Link href={"/home"}>
         <Button
           className={cn(

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
@@ -6,7 +5,7 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Hospital } from "../_components/HospitalInfoBox";
-import { ChevronLeft, Clock10, Dot, MapPin, Star } from "lucide-react";
+import { ChevronLeft, Clock10, Dot, MapPin } from "lucide-react";
 import { ContactInfo } from "./_components/ContactInfo";
 import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import L from "leaflet";
@@ -16,6 +15,7 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
+import { RatingModal } from "./_components/RatingModal";
 export default function Home() {
   const { id } = useParams();
   const [hospital, setHospital] = useState([] as unknown as Hospital);
@@ -85,8 +85,8 @@ export default function Home() {
               })}
             </div>
             <div className="border-2 border-[#03346E] w-fit rounded-full flex py-1 gap-2 p-1 items-center">
-              <Star color="#03346E" fill="#03346E" size={18} />
-              <p>{hospital.rating} stars </p>
+              <RatingModal hospital={hospital} fetchData={fetchData} />
+
               <Dot color="#03346E" fill="#03346E" />
               <p>{hospital.views} views</p>
             </div>

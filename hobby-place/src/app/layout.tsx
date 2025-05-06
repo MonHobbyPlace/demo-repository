@@ -11,6 +11,7 @@ import { ProfileProvider } from "./provider/ProfileProvider";
 import { QueryClientProvider } from "./provider/QueryCientProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google"; // ✅ Add this
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
             </AuthProvider>
           </GoogleOAuthProvider>
         </QueryClientProvider>
+
       </body>
     </html>
   );
