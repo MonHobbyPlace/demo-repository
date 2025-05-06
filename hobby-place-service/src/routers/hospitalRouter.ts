@@ -6,6 +6,7 @@ import { getAll } from "../controllers/hospitalControllers/getAll";
 import { getHospital } from "../controllers/hospitalControllers/getHospital";
 import { getToprated } from "../controllers/hospitalControllers/getTopRated";
 import { getByName } from "../controllers/hospitalControllers/getByName";
+import { RatingHospital } from "../controllers/hospitalControllers/RatingHospital";
 
 export const hospitalRouter = express.Router();
 
@@ -16,3 +17,4 @@ hospitalRouter.post("/", addHospital);
 hospitalRouter.put("/", updateHospitalInfo);
 hospitalRouter.get("/searchValue", getByName);
 hospitalRouter.get("/:category", getByCategory);
+hospitalRouter.post("/rate", RatingHospital);
