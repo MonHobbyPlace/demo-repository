@@ -14,7 +14,7 @@ export const AdoptSeeMore = () => {
           {petPostCategories.length > 1 ? (
             <>
               {petPostCategories.map((element, index) => {
-                if (element.price > 0) return null;
+                if (element.price > 0 || element.active === false) return null;
                 return (
                   <div
                     key={index}

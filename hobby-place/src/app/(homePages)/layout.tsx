@@ -32,6 +32,7 @@ export default function RootLayout({
               !pathName.includes("hospital/") &&
               !pathName.includes("homePage/") &&
               !pathName.includes("petPost") &&
+              !pathName.includes("petPostUpdate") &&
               !pathName.includes("chat") && <Header />}
 
             <div className={`h-full`}>{children}</div>
@@ -42,7 +43,8 @@ export default function RootLayout({
             >
               {!pathName.includes("hospital/") &&
                 !pathName.includes("homePage/") &&
-                !pathName.includes("petPost") && <Footer />}
+                !pathName.includes("petPost") &&
+                !pathName.includes("petPostUpdate") && <Footer />}
             </div>
           </PetPostProvider>
         </ProfileProvider>

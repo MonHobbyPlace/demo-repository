@@ -14,6 +14,7 @@ type petPostContextType = {
   petPostCategories: petPostType[];
   createPetPost: (values: petPostType) => Promise<void>;
   loading: boolean;
+  updatePetPost: (values: petPostType, id: number) => Promise<void>;
 };
 
 const PetPostContext = createContext<petPostContextType>(
@@ -90,6 +91,18 @@ export const PetPostProvider = ({
       console.log(error);
     }
   };
+
+  const updatePetPost = async (values: petPostType, id: number) => {
+    try {
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${id}`,
+        values
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getPetPostData();
     getCategoryData();
@@ -106,6 +119,7 @@ export const PetPostProvider = ({
         petPostCategories,
         createPetPost,
         loading,
+        updatePetPost,
       }}
     >
       {loading ? (

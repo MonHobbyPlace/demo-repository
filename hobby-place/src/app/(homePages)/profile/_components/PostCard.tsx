@@ -2,9 +2,11 @@
 import { petPostType } from "@/type";
 import { Button } from "@/components/ui/button";
 import { MapPin, Pencil } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export const PostCard = (props: { post: petPostType }) => {
   const { post } = props;
+  const router = useRouter();
   return (
     <div className=" w-[48%] h-fit bg-[#e1f7f5] rounded-md p-2 relative">
       <img
@@ -21,7 +23,10 @@ export const PostCard = (props: { post: petPostType }) => {
         </div>
         <p className="text-gray-500 text-sm">{post.price}$</p>
       </div>
-      <Button className="bg-white rounded-full absolute top-16 text-xs text-black right-3 p-1">
+      <Button
+        className="bg-white rounded-full absolute top-16 text-xs text-black right-3 p-1"
+        onClick={() => router.push(`/petPost/${post.id}`)}
+      >
         <Pencil />
       </Button>
     </div>

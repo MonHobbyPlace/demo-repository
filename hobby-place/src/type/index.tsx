@@ -17,6 +17,7 @@ export type petPostType = {
   updatedAt?: string;
   userId?: number;
   video: string;
+  active?: boolean;
   User?: { username: string; profileImage: string };
 };
 
