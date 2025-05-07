@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { RatingModal } from "./_components/RatingModal";
 import dynamic from "next/dynamic";
 import { ChevronLeft, Dot, MapPin, Clock10 } from "lucide-react";
+import { useProfile } from "@/app/provider/ProfileProvider";
 
 type LocationTabProps = {
   location: string;
@@ -22,6 +23,7 @@ const LocationTab = dynamic<LocationTabProps>(
 );
 export default function Home() {
   const { id } = useParams();
+  const { user } = useProfile();
   const [hospital, setHospital] = useState([] as unknown as Hospital);
   const [locationInfo, setLocationInfo] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,7 +31,7 @@ export default function Home() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/hospitalId/${id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/hospitalId/${id}/${user?.id}`
       );
       setHospital(response.data);
     } catch (error) {
@@ -48,9 +50,9 @@ export default function Home() {
     setLocationInfo(
       `${
         response.data.results[0].name +
-        " ," +
+        ", " +
         response.data.results[0].county +
-        " ," +
+        ", " +
         response.data.results[0].city
       }`
     );
@@ -60,6 +62,7 @@ export default function Home() {
   }, []);
   useEffect(() => {
     getLocationInfo();
+    console.log(hospital);
   }, [hospital]);
   const router = useRouter();
 
@@ -101,7 +104,7 @@ export default function Home() {
               <RatingModal hospital={hospital} fetchData={fetchData} />
 
               <Dot color="#03346E" fill="#03346E" />
-              <p>{hospital.views} views</p>
+              <p>{hospital.viewQuantity} views</p>
             </div>
             <p className="font-[Serif] text-[#03346E] font-bold text-3xl w-[70%]">
               {hospital.name}

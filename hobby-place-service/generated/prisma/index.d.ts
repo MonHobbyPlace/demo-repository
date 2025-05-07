@@ -39,6 +39,16 @@ export type ServicePost = $Result.DefaultSelection<Prisma.$ServicePostPayload>
  */
 export type Hospital = $Result.DefaultSelection<Prisma.$HospitalPayload>
 /**
+ * Model LikedPost
+ * 
+ */
+export type LikedPost = $Result.DefaultSelection<Prisma.$LikedPostPayload>
+/**
+ * Model Views
+ * 
+ */
+export type Views = $Result.DefaultSelection<Prisma.$ViewsPayload>
+/**
  * Model PetCategory
  * 
  */
@@ -277,6 +287,26 @@ export class PrismaClient<
     * ```
     */
   get hospital(): Prisma.HospitalDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.likedPost`: Exposes CRUD operations for the **LikedPost** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LikedPosts
+    * const likedPosts = await prisma.likedPost.findMany()
+    * ```
+    */
+  get likedPost(): Prisma.LikedPostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.views`: Exposes CRUD operations for the **Views** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Views
+    * const views = await prisma.views.findMany()
+    * ```
+    */
+  get views(): Prisma.ViewsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.petCategory`: Exposes CRUD operations for the **PetCategory** model.
@@ -742,6 +772,8 @@ export namespace Prisma {
     PetPost: 'PetPost',
     ServicePost: 'ServicePost',
     Hospital: 'Hospital',
+    LikedPost: 'LikedPost',
+    Views: 'Views',
     PetCategory: 'PetCategory',
     ServiceCategory: 'ServiceCategory'
   };
@@ -762,7 +794,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "message" | "petPost" | "servicePost" | "hospital" | "petCategory" | "serviceCategory"
+      modelProps: "user" | "message" | "petPost" | "servicePost" | "hospital" | "likedPost" | "views" | "petCategory" | "serviceCategory"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1136,6 +1168,154 @@ export namespace Prisma {
           }
         }
       }
+      LikedPost: {
+        payload: Prisma.$LikedPostPayload<ExtArgs>
+        fields: Prisma.LikedPostFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LikedPostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LikedPostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>
+          }
+          findFirst: {
+            args: Prisma.LikedPostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LikedPostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>
+          }
+          findMany: {
+            args: Prisma.LikedPostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>[]
+          }
+          create: {
+            args: Prisma.LikedPostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>
+          }
+          createMany: {
+            args: Prisma.LikedPostCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LikedPostCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>[]
+          }
+          delete: {
+            args: Prisma.LikedPostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>
+          }
+          update: {
+            args: Prisma.LikedPostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>
+          }
+          deleteMany: {
+            args: Prisma.LikedPostDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LikedPostUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LikedPostUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>[]
+          }
+          upsert: {
+            args: Prisma.LikedPostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LikedPostPayload>
+          }
+          aggregate: {
+            args: Prisma.LikedPostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLikedPost>
+          }
+          groupBy: {
+            args: Prisma.LikedPostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LikedPostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LikedPostCountArgs<ExtArgs>
+            result: $Utils.Optional<LikedPostCountAggregateOutputType> | number
+          }
+        }
+      }
+      Views: {
+        payload: Prisma.$ViewsPayload<ExtArgs>
+        fields: Prisma.ViewsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ViewsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ViewsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>
+          }
+          findFirst: {
+            args: Prisma.ViewsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ViewsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>
+          }
+          findMany: {
+            args: Prisma.ViewsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>[]
+          }
+          create: {
+            args: Prisma.ViewsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>
+          }
+          createMany: {
+            args: Prisma.ViewsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ViewsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>[]
+          }
+          delete: {
+            args: Prisma.ViewsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>
+          }
+          update: {
+            args: Prisma.ViewsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ViewsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ViewsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ViewsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ViewsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewsPayload>
+          }
+          aggregate: {
+            args: Prisma.ViewsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateViews>
+          }
+          groupBy: {
+            args: Prisma.ViewsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ViewsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ViewsCountArgs<ExtArgs>
+            result: $Utils.Optional<ViewsCountAggregateOutputType> | number
+          }
+        }
+      }
       PetCategory: {
         payload: Prisma.$PetCategoryPayload<ExtArgs>
         fields: Prisma.PetCategoryFieldRefs
@@ -1373,6 +1553,8 @@ export namespace Prisma {
     petPost?: PetPostOmit
     servicePost?: ServicePostOmit
     hospital?: HospitalOmit
+    likedPost?: LikedPostOmit
+    views?: ViewsOmit
     petCategory?: PetCategoryOmit
     serviceCategory?: ServiceCategoryOmit
   }
@@ -1472,12 +1654,16 @@ export namespace Prisma {
     PetPost: number
     ServicePost: number
     messages: number
+    Views: number
+    LikedPost: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PetPost?: boolean | UserCountOutputTypeCountPetPostArgs
     ServicePost?: boolean | UserCountOutputTypeCountServicePostArgs
     messages?: boolean | UserCountOutputTypeCountMessagesArgs
+    Views?: boolean | UserCountOutputTypeCountViewsArgs
+    LikedPost?: boolean | UserCountOutputTypeCountLikedPostArgs
   }
 
   // Custom InputTypes
@@ -1510,6 +1696,60 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountViewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViewsWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLikedPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LikedPostWhereInput
+  }
+
+
+  /**
+   * Count Type HospitalCountOutputType
+   */
+
+  export type HospitalCountOutputType = {
+    views: number
+    LikedPost: number
+  }
+
+  export type HospitalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    views?: boolean | HospitalCountOutputTypeCountViewsArgs
+    LikedPost?: boolean | HospitalCountOutputTypeCountLikedPostArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HospitalCountOutputType without action
+   */
+  export type HospitalCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalCountOutputType
+     */
+    select?: HospitalCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HospitalCountOutputType without action
+   */
+  export type HospitalCountOutputTypeCountViewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViewsWhereInput
+  }
+
+  /**
+   * HospitalCountOutputType without action
+   */
+  export type HospitalCountOutputTypeCountLikedPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LikedPostWhereInput
   }
 
 
@@ -1829,6 +2069,8 @@ export namespace Prisma {
     PetPost?: boolean | User$PetPostArgs<ExtArgs>
     ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
+    Views?: boolean | User$ViewsArgs<ExtArgs>
+    LikedPost?: boolean | User$LikedPostArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1876,6 +2118,8 @@ export namespace Prisma {
     PetPost?: boolean | User$PetPostArgs<ExtArgs>
     ServicePost?: boolean | User$ServicePostArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
+    Views?: boolean | User$ViewsArgs<ExtArgs>
+    LikedPost?: boolean | User$LikedPostArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1887,6 +2131,8 @@ export namespace Prisma {
       PetPost: Prisma.$PetPostPayload<ExtArgs>[]
       ServicePost: Prisma.$ServicePostPayload<ExtArgs>[]
       messages: Prisma.$MessagePayload<ExtArgs>[]
+      Views: Prisma.$ViewsPayload<ExtArgs>[]
+      LikedPost: Prisma.$LikedPostPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2296,6 +2542,8 @@ export namespace Prisma {
     PetPost<T extends User$PetPostArgs<ExtArgs> = {}>(args?: Subset<T, User$PetPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ServicePost<T extends User$ServicePostArgs<ExtArgs> = {}>(args?: Subset<T, User$ServicePostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Views<T extends User$ViewsArgs<ExtArgs> = {}>(args?: Subset<T, User$ViewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LikedPost<T extends User$LikedPostArgs<ExtArgs> = {}>(args?: Subset<T, User$LikedPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2792,6 +3040,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
+   * User.Views
+   */
+  export type User$ViewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    where?: ViewsWhereInput
+    orderBy?: ViewsOrderByWithRelationInput | ViewsOrderByWithRelationInput[]
+    cursor?: ViewsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ViewsScalarFieldEnum | ViewsScalarFieldEnum[]
+  }
+
+  /**
+   * User.LikedPost
+   */
+  export type User$LikedPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    where?: LikedPostWhereInput
+    orderBy?: LikedPostOrderByWithRelationInput | LikedPostOrderByWithRelationInput[]
+    cursor?: LikedPostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LikedPostScalarFieldEnum | LikedPostScalarFieldEnum[]
   }
 
   /**
@@ -3926,6 +4222,7 @@ export namespace Prisma {
     id: number | null
     petName: string | null
     address: string | null
+    about: string | null
     image: string | null
     phoneNumber: number | null
     createdAt: Date | null
@@ -3939,12 +4236,14 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
     video: string | null
+    active: boolean | null
   }
 
   export type PetPostMaxAggregateOutputType = {
     id: number | null
     petName: string | null
     address: string | null
+    about: string | null
     image: string | null
     phoneNumber: number | null
     createdAt: Date | null
@@ -3958,6 +4257,7 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum | null
     petCategoryId: number | null
     video: string | null
+    active: boolean | null
   }
 
   export type PetPostCountAggregateOutputType = {
@@ -3978,6 +4278,7 @@ export namespace Prisma {
     purpose: number
     petCategoryId: number
     video: number
+    active: number
     _all: number
   }
 
@@ -4004,6 +4305,7 @@ export namespace Prisma {
     id?: true
     petName?: true
     address?: true
+    about?: true
     image?: true
     phoneNumber?: true
     createdAt?: true
@@ -4017,12 +4319,14 @@ export namespace Prisma {
     purpose?: true
     petCategoryId?: true
     video?: true
+    active?: true
   }
 
   export type PetPostMaxAggregateInputType = {
     id?: true
     petName?: true
     address?: true
+    about?: true
     image?: true
     phoneNumber?: true
     createdAt?: true
@@ -4036,6 +4340,7 @@ export namespace Prisma {
     purpose?: true
     petCategoryId?: true
     video?: true
+    active?: true
   }
 
   export type PetPostCountAggregateInputType = {
@@ -4056,6 +4361,7 @@ export namespace Prisma {
     purpose?: true
     petCategoryId?: true
     video?: true
+    active?: true
     _all?: true
   }
 
@@ -4149,7 +4455,7 @@ export namespace Prisma {
     id: number
     petName: string
     address: string
-    about: string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt: Date
@@ -4163,6 +4469,7 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum
     petCategoryId: number
     video: string
+    active: boolean
     _count: PetPostCountAggregateOutputType | null
     _avg: PetPostAvgAggregateOutputType | null
     _sum: PetPostSumAggregateOutputType | null
@@ -4202,6 +4509,7 @@ export namespace Prisma {
     purpose?: boolean
     petCategoryId?: boolean
     video?: boolean
+    active?: boolean
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petPost"]>
@@ -4224,6 +4532,7 @@ export namespace Prisma {
     purpose?: boolean
     petCategoryId?: boolean
     video?: boolean
+    active?: boolean
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petPost"]>
@@ -4246,6 +4555,7 @@ export namespace Prisma {
     purpose?: boolean
     petCategoryId?: boolean
     video?: boolean
+    active?: boolean
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["petPost"]>
@@ -4268,9 +4578,10 @@ export namespace Prisma {
     purpose?: boolean
     petCategoryId?: boolean
     video?: boolean
+    active?: boolean
   }
 
-  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "breed" | "size" | "gender" | "price" | "purpose" | "petCategoryId" | "video", ExtArgs["result"]["petPost"]>
+  export type PetPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "petName" | "address" | "about" | "image" | "phoneNumber" | "createdAt" | "updatedAt" | "userId" | "age" | "breed" | "size" | "gender" | "price" | "purpose" | "petCategoryId" | "video" | "active", ExtArgs["result"]["petPost"]>
   export type PetPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | PetCategoryDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
@@ -4294,7 +4605,7 @@ export namespace Prisma {
       id: number
       petName: string
       address: string
-      about: string[]
+      about: string
       image: string
       phoneNumber: number
       createdAt: Date
@@ -4308,6 +4619,7 @@ export namespace Prisma {
       purpose: $Enums.PetPostEnum
       petCategoryId: number
       video: string
+      active: boolean
     }, ExtArgs["result"]["petPost"]>
     composites: {}
   }
@@ -4736,7 +5048,7 @@ export namespace Prisma {
     readonly id: FieldRef<"PetPost", 'Int'>
     readonly petName: FieldRef<"PetPost", 'String'>
     readonly address: FieldRef<"PetPost", 'String'>
-    readonly about: FieldRef<"PetPost", 'String[]'>
+    readonly about: FieldRef<"PetPost", 'String'>
     readonly image: FieldRef<"PetPost", 'String'>
     readonly phoneNumber: FieldRef<"PetPost", 'Int'>
     readonly createdAt: FieldRef<"PetPost", 'DateTime'>
@@ -4750,6 +5062,7 @@ export namespace Prisma {
     readonly purpose: FieldRef<"PetPost", 'PetPostEnum'>
     readonly petCategoryId: FieldRef<"PetPost", 'Int'>
     readonly video: FieldRef<"PetPost", 'String'>
+    readonly active: FieldRef<"PetPost", 'Boolean'>
   }
     
 
@@ -6423,16 +6736,12 @@ export namespace Prisma {
 
   export type HospitalAvgAggregateOutputType = {
     id: number | null
-    rating: number | null
     phoneNumber: number | null
-    views: number | null
   }
 
   export type HospitalSumAggregateOutputType = {
     id: number | null
-    rating: number | null
     phoneNumber: number | null
-    views: number | null
   }
 
   export type HospitalMinAggregateOutputType = {
@@ -6443,11 +6752,10 @@ export namespace Prisma {
     backgroundImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    rating: number | null
+    rating: string | null
     location: string | null
     phoneNumber: number | null
     workTime: string | null
-    views: number | null
   }
 
   export type HospitalMaxAggregateOutputType = {
@@ -6458,11 +6766,10 @@ export namespace Prisma {
     backgroundImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    rating: number | null
+    rating: string | null
     location: string | null
     phoneNumber: number | null
     workTime: string | null
-    views: number | null
   }
 
   export type HospitalCountAggregateOutputType = {
@@ -6479,23 +6786,18 @@ export namespace Prisma {
     phoneNumber: number
     workTime: number
     category: number
-    views: number
     _all: number
   }
 
 
   export type HospitalAvgAggregateInputType = {
     id?: true
-    rating?: true
     phoneNumber?: true
-    views?: true
   }
 
   export type HospitalSumAggregateInputType = {
     id?: true
-    rating?: true
     phoneNumber?: true
-    views?: true
   }
 
   export type HospitalMinAggregateInputType = {
@@ -6510,7 +6812,6 @@ export namespace Prisma {
     location?: true
     phoneNumber?: true
     workTime?: true
-    views?: true
   }
 
   export type HospitalMaxAggregateInputType = {
@@ -6525,7 +6826,6 @@ export namespace Prisma {
     location?: true
     phoneNumber?: true
     workTime?: true
-    views?: true
   }
 
   export type HospitalCountAggregateInputType = {
@@ -6542,7 +6842,6 @@ export namespace Prisma {
     phoneNumber?: true
     workTime?: true
     category?: true
-    views?: true
     _all?: true
   }
 
@@ -6641,12 +6940,11 @@ export namespace Prisma {
     backgroundImage: string
     createdAt: Date
     updatedAt: Date
-    rating: number
+    rating: string
     location: string
     phoneNumber: number
     workTime: string
     category: string[]
-    views: number
     _count: HospitalCountAggregateOutputType | null
     _avg: HospitalAvgAggregateOutputType | null
     _sum: HospitalSumAggregateOutputType | null
@@ -6682,7 +6980,9 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    views?: boolean
+    views?: boolean | Hospital$viewsArgs<ExtArgs>
+    LikedPost?: boolean | Hospital$LikedPostArgs<ExtArgs>
+    _count?: boolean | HospitalCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6699,7 +6999,6 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    views?: boolean
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6716,7 +7015,6 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    views?: boolean
   }, ExtArgs["result"]["hospital"]>
 
   export type HospitalSelectScalar = {
@@ -6733,14 +7031,23 @@ export namespace Prisma {
     phoneNumber?: boolean
     workTime?: boolean
     category?: boolean
-    views?: boolean
   }
 
-  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "rating" | "location" | "phoneNumber" | "workTime" | "category" | "views", ExtArgs["result"]["hospital"]>
+  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "about" | "avatarImage" | "email" | "backgroundImage" | "createdAt" | "updatedAt" | "rating" | "location" | "phoneNumber" | "workTime" | "category", ExtArgs["result"]["hospital"]>
+  export type HospitalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    views?: boolean | Hospital$viewsArgs<ExtArgs>
+    LikedPost?: boolean | Hospital$LikedPostArgs<ExtArgs>
+    _count?: boolean | HospitalCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HospitalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type HospitalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $HospitalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Hospital"
-    objects: {}
+    objects: {
+      views: Prisma.$ViewsPayload<ExtArgs>[]
+      LikedPost: Prisma.$LikedPostPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -6750,12 +7057,11 @@ export namespace Prisma {
       backgroundImage: string
       createdAt: Date
       updatedAt: Date
-      rating: number
+      rating: string
       location: string
       phoneNumber: number
       workTime: string
       category: string[]
-      views: number
     }, ExtArgs["result"]["hospital"]>
     composites: {}
   }
@@ -7150,6 +7456,8 @@ export namespace Prisma {
    */
   export interface Prisma__HospitalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    views<T extends Hospital$viewsArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$viewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LikedPost<T extends Hospital$LikedPostArgs<ExtArgs> = {}>(args?: Subset<T, Hospital$LikedPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7187,12 +7495,11 @@ export namespace Prisma {
     readonly backgroundImage: FieldRef<"Hospital", 'String'>
     readonly createdAt: FieldRef<"Hospital", 'DateTime'>
     readonly updatedAt: FieldRef<"Hospital", 'DateTime'>
-    readonly rating: FieldRef<"Hospital", 'Float'>
+    readonly rating: FieldRef<"Hospital", 'String'>
     readonly location: FieldRef<"Hospital", 'String'>
     readonly phoneNumber: FieldRef<"Hospital", 'Int'>
     readonly workTime: FieldRef<"Hospital", 'String'>
     readonly category: FieldRef<"Hospital", 'String[]'>
-    readonly views: FieldRef<"Hospital", 'Int'>
   }
     
 
@@ -7209,6 +7516,10 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
     /**
      * Filter, which Hospital to fetch.
      */
@@ -7228,6 +7539,10 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+    /**
      * Filter, which Hospital to fetch.
      */
     where: HospitalWhereUniqueInput
@@ -7245,6 +7560,10 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
     /**
      * Filter, which Hospital to fetch.
      */
@@ -7294,6 +7613,10 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+    /**
      * Filter, which Hospital to fetch.
      */
     where?: HospitalWhereInput
@@ -7342,6 +7665,10 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+    /**
      * Filter, which Hospitals to fetch.
      */
     where?: HospitalWhereInput
@@ -7384,6 +7711,10 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
     /**
      * The data needed to create a Hospital.
      */
@@ -7432,6 +7763,10 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
     /**
      * The data needed to update a Hospital.
      */
@@ -7499,6 +7834,10 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+    /**
      * The filter to search for the Hospital to update in case it exists.
      */
     where: HospitalWhereUniqueInput
@@ -7525,6 +7864,10 @@ export namespace Prisma {
      */
     omit?: HospitalOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+    /**
      * Filter which Hospital to delete.
      */
     where: HospitalWhereUniqueInput
@@ -7545,6 +7888,54 @@ export namespace Prisma {
   }
 
   /**
+   * Hospital.views
+   */
+  export type Hospital$viewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    where?: ViewsWhereInput
+    orderBy?: ViewsOrderByWithRelationInput | ViewsOrderByWithRelationInput[]
+    cursor?: ViewsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ViewsScalarFieldEnum | ViewsScalarFieldEnum[]
+  }
+
+  /**
+   * Hospital.LikedPost
+   */
+  export type Hospital$LikedPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    where?: LikedPostWhereInput
+    orderBy?: LikedPostOrderByWithRelationInput | LikedPostOrderByWithRelationInput[]
+    cursor?: LikedPostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LikedPostScalarFieldEnum | LikedPostScalarFieldEnum[]
+  }
+
+  /**
    * Hospital without action
    */
   export type HospitalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7556,6 +7947,2140 @@ export namespace Prisma {
      * Omit specific fields from the Hospital
      */
     omit?: HospitalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LikedPost
+   */
+
+  export type AggregateLikedPost = {
+    _count: LikedPostCountAggregateOutputType | null
+    _avg: LikedPostAvgAggregateOutputType | null
+    _sum: LikedPostSumAggregateOutputType | null
+    _min: LikedPostMinAggregateOutputType | null
+    _max: LikedPostMaxAggregateOutputType | null
+  }
+
+  export type LikedPostAvgAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type LikedPostSumAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type LikedPostMinAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type LikedPostMaxAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type LikedPostCountAggregateOutputType = {
+    userId: number
+    hospitalId: number
+    _all: number
+  }
+
+
+  export type LikedPostAvgAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type LikedPostSumAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type LikedPostMinAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type LikedPostMaxAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type LikedPostCountAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+    _all?: true
+  }
+
+  export type LikedPostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LikedPost to aggregate.
+     */
+    where?: LikedPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LikedPosts to fetch.
+     */
+    orderBy?: LikedPostOrderByWithRelationInput | LikedPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LikedPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LikedPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LikedPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LikedPosts
+    **/
+    _count?: true | LikedPostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LikedPostAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LikedPostSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LikedPostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LikedPostMaxAggregateInputType
+  }
+
+  export type GetLikedPostAggregateType<T extends LikedPostAggregateArgs> = {
+        [P in keyof T & keyof AggregateLikedPost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLikedPost[P]>
+      : GetScalarType<T[P], AggregateLikedPost[P]>
+  }
+
+
+
+
+  export type LikedPostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LikedPostWhereInput
+    orderBy?: LikedPostOrderByWithAggregationInput | LikedPostOrderByWithAggregationInput[]
+    by: LikedPostScalarFieldEnum[] | LikedPostScalarFieldEnum
+    having?: LikedPostScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LikedPostCountAggregateInputType | true
+    _avg?: LikedPostAvgAggregateInputType
+    _sum?: LikedPostSumAggregateInputType
+    _min?: LikedPostMinAggregateInputType
+    _max?: LikedPostMaxAggregateInputType
+  }
+
+  export type LikedPostGroupByOutputType = {
+    userId: number
+    hospitalId: number
+    _count: LikedPostCountAggregateOutputType | null
+    _avg: LikedPostAvgAggregateOutputType | null
+    _sum: LikedPostSumAggregateOutputType | null
+    _min: LikedPostMinAggregateOutputType | null
+    _max: LikedPostMaxAggregateOutputType | null
+  }
+
+  type GetLikedPostGroupByPayload<T extends LikedPostGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LikedPostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LikedPostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LikedPostGroupByOutputType[P]>
+            : GetScalarType<T[P], LikedPostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LikedPostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    hospitalId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["likedPost"]>
+
+  export type LikedPostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    hospitalId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["likedPost"]>
+
+  export type LikedPostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    hospitalId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["likedPost"]>
+
+  export type LikedPostSelectScalar = {
+    userId?: boolean
+    hospitalId?: boolean
+  }
+
+  export type LikedPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "hospitalId", ExtArgs["result"]["likedPost"]>
+  export type LikedPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }
+  export type LikedPostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }
+  export type LikedPostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }
+
+  export type $LikedPostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LikedPost"
+    objects: {
+      owner: Prisma.$UserPayload<ExtArgs>
+      hospital: Prisma.$HospitalPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      userId: number
+      hospitalId: number
+    }, ExtArgs["result"]["likedPost"]>
+    composites: {}
+  }
+
+  type LikedPostGetPayload<S extends boolean | null | undefined | LikedPostDefaultArgs> = $Result.GetResult<Prisma.$LikedPostPayload, S>
+
+  type LikedPostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LikedPostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LikedPostCountAggregateInputType | true
+    }
+
+  export interface LikedPostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LikedPost'], meta: { name: 'LikedPost' } }
+    /**
+     * Find zero or one LikedPost that matches the filter.
+     * @param {LikedPostFindUniqueArgs} args - Arguments to find a LikedPost
+     * @example
+     * // Get one LikedPost
+     * const likedPost = await prisma.likedPost.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LikedPostFindUniqueArgs>(args: SelectSubset<T, LikedPostFindUniqueArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LikedPost that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LikedPostFindUniqueOrThrowArgs} args - Arguments to find a LikedPost
+     * @example
+     * // Get one LikedPost
+     * const likedPost = await prisma.likedPost.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LikedPostFindUniqueOrThrowArgs>(args: SelectSubset<T, LikedPostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LikedPost that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostFindFirstArgs} args - Arguments to find a LikedPost
+     * @example
+     * // Get one LikedPost
+     * const likedPost = await prisma.likedPost.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LikedPostFindFirstArgs>(args?: SelectSubset<T, LikedPostFindFirstArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LikedPost that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostFindFirstOrThrowArgs} args - Arguments to find a LikedPost
+     * @example
+     * // Get one LikedPost
+     * const likedPost = await prisma.likedPost.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LikedPostFindFirstOrThrowArgs>(args?: SelectSubset<T, LikedPostFindFirstOrThrowArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LikedPosts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LikedPosts
+     * const likedPosts = await prisma.likedPost.findMany()
+     * 
+     * // Get first 10 LikedPosts
+     * const likedPosts = await prisma.likedPost.findMany({ take: 10 })
+     * 
+     * // Only select the `userId`
+     * const likedPostWithUserIdOnly = await prisma.likedPost.findMany({ select: { userId: true } })
+     * 
+     */
+    findMany<T extends LikedPostFindManyArgs>(args?: SelectSubset<T, LikedPostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LikedPost.
+     * @param {LikedPostCreateArgs} args - Arguments to create a LikedPost.
+     * @example
+     * // Create one LikedPost
+     * const LikedPost = await prisma.likedPost.create({
+     *   data: {
+     *     // ... data to create a LikedPost
+     *   }
+     * })
+     * 
+     */
+    create<T extends LikedPostCreateArgs>(args: SelectSubset<T, LikedPostCreateArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LikedPosts.
+     * @param {LikedPostCreateManyArgs} args - Arguments to create many LikedPosts.
+     * @example
+     * // Create many LikedPosts
+     * const likedPost = await prisma.likedPost.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LikedPostCreateManyArgs>(args?: SelectSubset<T, LikedPostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LikedPosts and returns the data saved in the database.
+     * @param {LikedPostCreateManyAndReturnArgs} args - Arguments to create many LikedPosts.
+     * @example
+     * // Create many LikedPosts
+     * const likedPost = await prisma.likedPost.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LikedPosts and only return the `userId`
+     * const likedPostWithUserIdOnly = await prisma.likedPost.createManyAndReturn({
+     *   select: { userId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LikedPostCreateManyAndReturnArgs>(args?: SelectSubset<T, LikedPostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LikedPost.
+     * @param {LikedPostDeleteArgs} args - Arguments to delete one LikedPost.
+     * @example
+     * // Delete one LikedPost
+     * const LikedPost = await prisma.likedPost.delete({
+     *   where: {
+     *     // ... filter to delete one LikedPost
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LikedPostDeleteArgs>(args: SelectSubset<T, LikedPostDeleteArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LikedPost.
+     * @param {LikedPostUpdateArgs} args - Arguments to update one LikedPost.
+     * @example
+     * // Update one LikedPost
+     * const likedPost = await prisma.likedPost.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LikedPostUpdateArgs>(args: SelectSubset<T, LikedPostUpdateArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LikedPosts.
+     * @param {LikedPostDeleteManyArgs} args - Arguments to filter LikedPosts to delete.
+     * @example
+     * // Delete a few LikedPosts
+     * const { count } = await prisma.likedPost.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LikedPostDeleteManyArgs>(args?: SelectSubset<T, LikedPostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LikedPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LikedPosts
+     * const likedPost = await prisma.likedPost.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LikedPostUpdateManyArgs>(args: SelectSubset<T, LikedPostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LikedPosts and returns the data updated in the database.
+     * @param {LikedPostUpdateManyAndReturnArgs} args - Arguments to update many LikedPosts.
+     * @example
+     * // Update many LikedPosts
+     * const likedPost = await prisma.likedPost.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LikedPosts and only return the `userId`
+     * const likedPostWithUserIdOnly = await prisma.likedPost.updateManyAndReturn({
+     *   select: { userId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LikedPostUpdateManyAndReturnArgs>(args: SelectSubset<T, LikedPostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LikedPost.
+     * @param {LikedPostUpsertArgs} args - Arguments to update or create a LikedPost.
+     * @example
+     * // Update or create a LikedPost
+     * const likedPost = await prisma.likedPost.upsert({
+     *   create: {
+     *     // ... data to create a LikedPost
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LikedPost we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LikedPostUpsertArgs>(args: SelectSubset<T, LikedPostUpsertArgs<ExtArgs>>): Prisma__LikedPostClient<$Result.GetResult<Prisma.$LikedPostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LikedPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostCountArgs} args - Arguments to filter LikedPosts to count.
+     * @example
+     * // Count the number of LikedPosts
+     * const count = await prisma.likedPost.count({
+     *   where: {
+     *     // ... the filter for the LikedPosts we want to count
+     *   }
+     * })
+    **/
+    count<T extends LikedPostCountArgs>(
+      args?: Subset<T, LikedPostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LikedPostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LikedPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LikedPostAggregateArgs>(args: Subset<T, LikedPostAggregateArgs>): Prisma.PrismaPromise<GetLikedPostAggregateType<T>>
+
+    /**
+     * Group by LikedPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LikedPostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LikedPostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LikedPostGroupByArgs['orderBy'] }
+        : { orderBy?: LikedPostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LikedPostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLikedPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LikedPost model
+   */
+  readonly fields: LikedPostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LikedPost.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LikedPostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hospital<T extends HospitalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HospitalDefaultArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LikedPost model
+   */
+  interface LikedPostFieldRefs {
+    readonly userId: FieldRef<"LikedPost", 'Int'>
+    readonly hospitalId: FieldRef<"LikedPost", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LikedPost findUnique
+   */
+  export type LikedPostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * Filter, which LikedPost to fetch.
+     */
+    where: LikedPostWhereUniqueInput
+  }
+
+  /**
+   * LikedPost findUniqueOrThrow
+   */
+  export type LikedPostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * Filter, which LikedPost to fetch.
+     */
+    where: LikedPostWhereUniqueInput
+  }
+
+  /**
+   * LikedPost findFirst
+   */
+  export type LikedPostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * Filter, which LikedPost to fetch.
+     */
+    where?: LikedPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LikedPosts to fetch.
+     */
+    orderBy?: LikedPostOrderByWithRelationInput | LikedPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LikedPosts.
+     */
+    cursor?: LikedPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LikedPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LikedPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LikedPosts.
+     */
+    distinct?: LikedPostScalarFieldEnum | LikedPostScalarFieldEnum[]
+  }
+
+  /**
+   * LikedPost findFirstOrThrow
+   */
+  export type LikedPostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * Filter, which LikedPost to fetch.
+     */
+    where?: LikedPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LikedPosts to fetch.
+     */
+    orderBy?: LikedPostOrderByWithRelationInput | LikedPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LikedPosts.
+     */
+    cursor?: LikedPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LikedPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LikedPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LikedPosts.
+     */
+    distinct?: LikedPostScalarFieldEnum | LikedPostScalarFieldEnum[]
+  }
+
+  /**
+   * LikedPost findMany
+   */
+  export type LikedPostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * Filter, which LikedPosts to fetch.
+     */
+    where?: LikedPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LikedPosts to fetch.
+     */
+    orderBy?: LikedPostOrderByWithRelationInput | LikedPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LikedPosts.
+     */
+    cursor?: LikedPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LikedPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LikedPosts.
+     */
+    skip?: number
+    distinct?: LikedPostScalarFieldEnum | LikedPostScalarFieldEnum[]
+  }
+
+  /**
+   * LikedPost create
+   */
+  export type LikedPostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LikedPost.
+     */
+    data: XOR<LikedPostCreateInput, LikedPostUncheckedCreateInput>
+  }
+
+  /**
+   * LikedPost createMany
+   */
+  export type LikedPostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LikedPosts.
+     */
+    data: LikedPostCreateManyInput | LikedPostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LikedPost createManyAndReturn
+   */
+  export type LikedPostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * The data used to create many LikedPosts.
+     */
+    data: LikedPostCreateManyInput | LikedPostCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LikedPost update
+   */
+  export type LikedPostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LikedPost.
+     */
+    data: XOR<LikedPostUpdateInput, LikedPostUncheckedUpdateInput>
+    /**
+     * Choose, which LikedPost to update.
+     */
+    where: LikedPostWhereUniqueInput
+  }
+
+  /**
+   * LikedPost updateMany
+   */
+  export type LikedPostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LikedPosts.
+     */
+    data: XOR<LikedPostUpdateManyMutationInput, LikedPostUncheckedUpdateManyInput>
+    /**
+     * Filter which LikedPosts to update
+     */
+    where?: LikedPostWhereInput
+    /**
+     * Limit how many LikedPosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LikedPost updateManyAndReturn
+   */
+  export type LikedPostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * The data used to update LikedPosts.
+     */
+    data: XOR<LikedPostUpdateManyMutationInput, LikedPostUncheckedUpdateManyInput>
+    /**
+     * Filter which LikedPosts to update
+     */
+    where?: LikedPostWhereInput
+    /**
+     * Limit how many LikedPosts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LikedPost upsert
+   */
+  export type LikedPostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LikedPost to update in case it exists.
+     */
+    where: LikedPostWhereUniqueInput
+    /**
+     * In case the LikedPost found by the `where` argument doesn't exist, create a new LikedPost with this data.
+     */
+    create: XOR<LikedPostCreateInput, LikedPostUncheckedCreateInput>
+    /**
+     * In case the LikedPost was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LikedPostUpdateInput, LikedPostUncheckedUpdateInput>
+  }
+
+  /**
+   * LikedPost delete
+   */
+  export type LikedPostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+    /**
+     * Filter which LikedPost to delete.
+     */
+    where: LikedPostWhereUniqueInput
+  }
+
+  /**
+   * LikedPost deleteMany
+   */
+  export type LikedPostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LikedPosts to delete
+     */
+    where?: LikedPostWhereInput
+    /**
+     * Limit how many LikedPosts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LikedPost without action
+   */
+  export type LikedPostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LikedPost
+     */
+    select?: LikedPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LikedPost
+     */
+    omit?: LikedPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikedPostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Views
+   */
+
+  export type AggregateViews = {
+    _count: ViewsCountAggregateOutputType | null
+    _avg: ViewsAvgAggregateOutputType | null
+    _sum: ViewsSumAggregateOutputType | null
+    _min: ViewsMinAggregateOutputType | null
+    _max: ViewsMaxAggregateOutputType | null
+  }
+
+  export type ViewsAvgAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type ViewsSumAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type ViewsMinAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type ViewsMaxAggregateOutputType = {
+    userId: number | null
+    hospitalId: number | null
+  }
+
+  export type ViewsCountAggregateOutputType = {
+    userId: number
+    hospitalId: number
+    _all: number
+  }
+
+
+  export type ViewsAvgAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type ViewsSumAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type ViewsMinAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type ViewsMaxAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+  }
+
+  export type ViewsCountAggregateInputType = {
+    userId?: true
+    hospitalId?: true
+    _all?: true
+  }
+
+  export type ViewsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Views to aggregate.
+     */
+    where?: ViewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Views to fetch.
+     */
+    orderBy?: ViewsOrderByWithRelationInput | ViewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ViewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Views from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Views.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Views
+    **/
+    _count?: true | ViewsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ViewsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ViewsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ViewsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ViewsMaxAggregateInputType
+  }
+
+  export type GetViewsAggregateType<T extends ViewsAggregateArgs> = {
+        [P in keyof T & keyof AggregateViews]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateViews[P]>
+      : GetScalarType<T[P], AggregateViews[P]>
+  }
+
+
+
+
+  export type ViewsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViewsWhereInput
+    orderBy?: ViewsOrderByWithAggregationInput | ViewsOrderByWithAggregationInput[]
+    by: ViewsScalarFieldEnum[] | ViewsScalarFieldEnum
+    having?: ViewsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ViewsCountAggregateInputType | true
+    _avg?: ViewsAvgAggregateInputType
+    _sum?: ViewsSumAggregateInputType
+    _min?: ViewsMinAggregateInputType
+    _max?: ViewsMaxAggregateInputType
+  }
+
+  export type ViewsGroupByOutputType = {
+    userId: number
+    hospitalId: number
+    _count: ViewsCountAggregateOutputType | null
+    _avg: ViewsAvgAggregateOutputType | null
+    _sum: ViewsSumAggregateOutputType | null
+    _min: ViewsMinAggregateOutputType | null
+    _max: ViewsMaxAggregateOutputType | null
+  }
+
+  type GetViewsGroupByPayload<T extends ViewsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ViewsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ViewsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ViewsGroupByOutputType[P]>
+            : GetScalarType<T[P], ViewsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ViewsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    hospitalId?: boolean
+    viewer?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["views"]>
+
+  export type ViewsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    hospitalId?: boolean
+    viewer?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["views"]>
+
+  export type ViewsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    hospitalId?: boolean
+    viewer?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["views"]>
+
+  export type ViewsSelectScalar = {
+    userId?: boolean
+    hospitalId?: boolean
+  }
+
+  export type ViewsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "hospitalId", ExtArgs["result"]["views"]>
+  export type ViewsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    viewer?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }
+  export type ViewsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    viewer?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }
+  export type ViewsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    viewer?: boolean | UserDefaultArgs<ExtArgs>
+    hospital?: boolean | HospitalDefaultArgs<ExtArgs>
+  }
+
+  export type $ViewsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Views"
+    objects: {
+      viewer: Prisma.$UserPayload<ExtArgs>
+      hospital: Prisma.$HospitalPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      userId: number
+      hospitalId: number
+    }, ExtArgs["result"]["views"]>
+    composites: {}
+  }
+
+  type ViewsGetPayload<S extends boolean | null | undefined | ViewsDefaultArgs> = $Result.GetResult<Prisma.$ViewsPayload, S>
+
+  type ViewsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ViewsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ViewsCountAggregateInputType | true
+    }
+
+  export interface ViewsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Views'], meta: { name: 'Views' } }
+    /**
+     * Find zero or one Views that matches the filter.
+     * @param {ViewsFindUniqueArgs} args - Arguments to find a Views
+     * @example
+     * // Get one Views
+     * const views = await prisma.views.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ViewsFindUniqueArgs>(args: SelectSubset<T, ViewsFindUniqueArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Views that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ViewsFindUniqueOrThrowArgs} args - Arguments to find a Views
+     * @example
+     * // Get one Views
+     * const views = await prisma.views.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ViewsFindUniqueOrThrowArgs>(args: SelectSubset<T, ViewsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Views that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsFindFirstArgs} args - Arguments to find a Views
+     * @example
+     * // Get one Views
+     * const views = await prisma.views.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ViewsFindFirstArgs>(args?: SelectSubset<T, ViewsFindFirstArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Views that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsFindFirstOrThrowArgs} args - Arguments to find a Views
+     * @example
+     * // Get one Views
+     * const views = await prisma.views.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ViewsFindFirstOrThrowArgs>(args?: SelectSubset<T, ViewsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Views that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Views
+     * const views = await prisma.views.findMany()
+     * 
+     * // Get first 10 Views
+     * const views = await prisma.views.findMany({ take: 10 })
+     * 
+     * // Only select the `userId`
+     * const viewsWithUserIdOnly = await prisma.views.findMany({ select: { userId: true } })
+     * 
+     */
+    findMany<T extends ViewsFindManyArgs>(args?: SelectSubset<T, ViewsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Views.
+     * @param {ViewsCreateArgs} args - Arguments to create a Views.
+     * @example
+     * // Create one Views
+     * const Views = await prisma.views.create({
+     *   data: {
+     *     // ... data to create a Views
+     *   }
+     * })
+     * 
+     */
+    create<T extends ViewsCreateArgs>(args: SelectSubset<T, ViewsCreateArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Views.
+     * @param {ViewsCreateManyArgs} args - Arguments to create many Views.
+     * @example
+     * // Create many Views
+     * const views = await prisma.views.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ViewsCreateManyArgs>(args?: SelectSubset<T, ViewsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Views and returns the data saved in the database.
+     * @param {ViewsCreateManyAndReturnArgs} args - Arguments to create many Views.
+     * @example
+     * // Create many Views
+     * const views = await prisma.views.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Views and only return the `userId`
+     * const viewsWithUserIdOnly = await prisma.views.createManyAndReturn({
+     *   select: { userId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ViewsCreateManyAndReturnArgs>(args?: SelectSubset<T, ViewsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Views.
+     * @param {ViewsDeleteArgs} args - Arguments to delete one Views.
+     * @example
+     * // Delete one Views
+     * const Views = await prisma.views.delete({
+     *   where: {
+     *     // ... filter to delete one Views
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ViewsDeleteArgs>(args: SelectSubset<T, ViewsDeleteArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Views.
+     * @param {ViewsUpdateArgs} args - Arguments to update one Views.
+     * @example
+     * // Update one Views
+     * const views = await prisma.views.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ViewsUpdateArgs>(args: SelectSubset<T, ViewsUpdateArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Views.
+     * @param {ViewsDeleteManyArgs} args - Arguments to filter Views to delete.
+     * @example
+     * // Delete a few Views
+     * const { count } = await prisma.views.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ViewsDeleteManyArgs>(args?: SelectSubset<T, ViewsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Views.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Views
+     * const views = await prisma.views.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ViewsUpdateManyArgs>(args: SelectSubset<T, ViewsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Views and returns the data updated in the database.
+     * @param {ViewsUpdateManyAndReturnArgs} args - Arguments to update many Views.
+     * @example
+     * // Update many Views
+     * const views = await prisma.views.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Views and only return the `userId`
+     * const viewsWithUserIdOnly = await prisma.views.updateManyAndReturn({
+     *   select: { userId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ViewsUpdateManyAndReturnArgs>(args: SelectSubset<T, ViewsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Views.
+     * @param {ViewsUpsertArgs} args - Arguments to update or create a Views.
+     * @example
+     * // Update or create a Views
+     * const views = await prisma.views.upsert({
+     *   create: {
+     *     // ... data to create a Views
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Views we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ViewsUpsertArgs>(args: SelectSubset<T, ViewsUpsertArgs<ExtArgs>>): Prisma__ViewsClient<$Result.GetResult<Prisma.$ViewsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Views.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsCountArgs} args - Arguments to filter Views to count.
+     * @example
+     * // Count the number of Views
+     * const count = await prisma.views.count({
+     *   where: {
+     *     // ... the filter for the Views we want to count
+     *   }
+     * })
+    **/
+    count<T extends ViewsCountArgs>(
+      args?: Subset<T, ViewsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ViewsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Views.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ViewsAggregateArgs>(args: Subset<T, ViewsAggregateArgs>): Prisma.PrismaPromise<GetViewsAggregateType<T>>
+
+    /**
+     * Group by Views.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ViewsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ViewsGroupByArgs['orderBy'] }
+        : { orderBy?: ViewsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ViewsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetViewsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Views model
+   */
+  readonly fields: ViewsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Views.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ViewsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    viewer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hospital<T extends HospitalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HospitalDefaultArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Views model
+   */
+  interface ViewsFieldRefs {
+    readonly userId: FieldRef<"Views", 'Int'>
+    readonly hospitalId: FieldRef<"Views", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Views findUnique
+   */
+  export type ViewsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * Filter, which Views to fetch.
+     */
+    where: ViewsWhereUniqueInput
+  }
+
+  /**
+   * Views findUniqueOrThrow
+   */
+  export type ViewsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * Filter, which Views to fetch.
+     */
+    where: ViewsWhereUniqueInput
+  }
+
+  /**
+   * Views findFirst
+   */
+  export type ViewsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * Filter, which Views to fetch.
+     */
+    where?: ViewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Views to fetch.
+     */
+    orderBy?: ViewsOrderByWithRelationInput | ViewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Views.
+     */
+    cursor?: ViewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Views from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Views.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Views.
+     */
+    distinct?: ViewsScalarFieldEnum | ViewsScalarFieldEnum[]
+  }
+
+  /**
+   * Views findFirstOrThrow
+   */
+  export type ViewsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * Filter, which Views to fetch.
+     */
+    where?: ViewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Views to fetch.
+     */
+    orderBy?: ViewsOrderByWithRelationInput | ViewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Views.
+     */
+    cursor?: ViewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Views from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Views.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Views.
+     */
+    distinct?: ViewsScalarFieldEnum | ViewsScalarFieldEnum[]
+  }
+
+  /**
+   * Views findMany
+   */
+  export type ViewsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * Filter, which Views to fetch.
+     */
+    where?: ViewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Views to fetch.
+     */
+    orderBy?: ViewsOrderByWithRelationInput | ViewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Views.
+     */
+    cursor?: ViewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Views from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Views.
+     */
+    skip?: number
+    distinct?: ViewsScalarFieldEnum | ViewsScalarFieldEnum[]
+  }
+
+  /**
+   * Views create
+   */
+  export type ViewsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Views.
+     */
+    data: XOR<ViewsCreateInput, ViewsUncheckedCreateInput>
+  }
+
+  /**
+   * Views createMany
+   */
+  export type ViewsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Views.
+     */
+    data: ViewsCreateManyInput | ViewsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Views createManyAndReturn
+   */
+  export type ViewsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * The data used to create many Views.
+     */
+    data: ViewsCreateManyInput | ViewsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Views update
+   */
+  export type ViewsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Views.
+     */
+    data: XOR<ViewsUpdateInput, ViewsUncheckedUpdateInput>
+    /**
+     * Choose, which Views to update.
+     */
+    where: ViewsWhereUniqueInput
+  }
+
+  /**
+   * Views updateMany
+   */
+  export type ViewsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Views.
+     */
+    data: XOR<ViewsUpdateManyMutationInput, ViewsUncheckedUpdateManyInput>
+    /**
+     * Filter which Views to update
+     */
+    where?: ViewsWhereInput
+    /**
+     * Limit how many Views to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Views updateManyAndReturn
+   */
+  export type ViewsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * The data used to update Views.
+     */
+    data: XOR<ViewsUpdateManyMutationInput, ViewsUncheckedUpdateManyInput>
+    /**
+     * Filter which Views to update
+     */
+    where?: ViewsWhereInput
+    /**
+     * Limit how many Views to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Views upsert
+   */
+  export type ViewsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Views to update in case it exists.
+     */
+    where: ViewsWhereUniqueInput
+    /**
+     * In case the Views found by the `where` argument doesn't exist, create a new Views with this data.
+     */
+    create: XOR<ViewsCreateInput, ViewsUncheckedCreateInput>
+    /**
+     * In case the Views was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ViewsUpdateInput, ViewsUncheckedUpdateInput>
+  }
+
+  /**
+   * Views delete
+   */
+  export type ViewsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
+    /**
+     * Filter which Views to delete.
+     */
+    where: ViewsWhereUniqueInput
+  }
+
+  /**
+   * Views deleteMany
+   */
+  export type ViewsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Views to delete
+     */
+    where?: ViewsWhereInput
+    /**
+     * Limit how many Views to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Views without action
+   */
+  export type ViewsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Views
+     */
+    select?: ViewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Views
+     */
+    omit?: ViewsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewsInclude<ExtArgs> | null
   }
 
 
@@ -9852,7 +12377,8 @@ export namespace Prisma {
     price: 'price',
     purpose: 'purpose',
     petCategoryId: 'petCategoryId',
-    video: 'video'
+    video: 'video',
+    active: 'active'
   };
 
   export type PetPostScalarFieldEnum = (typeof PetPostScalarFieldEnum)[keyof typeof PetPostScalarFieldEnum]
@@ -9891,11 +12417,26 @@ export namespace Prisma {
     location: 'location',
     phoneNumber: 'phoneNumber',
     workTime: 'workTime',
-    category: 'category',
-    views: 'views'
+    category: 'category'
   };
 
   export type HospitalScalarFieldEnum = (typeof HospitalScalarFieldEnum)[keyof typeof HospitalScalarFieldEnum]
+
+
+  export const LikedPostScalarFieldEnum: {
+    userId: 'userId',
+    hospitalId: 'hospitalId'
+  };
+
+  export type LikedPostScalarFieldEnum = (typeof LikedPostScalarFieldEnum)[keyof typeof LikedPostScalarFieldEnum]
+
+
+  export const ViewsScalarFieldEnum: {
+    userId: 'userId',
+    hospitalId: 'hospitalId'
+  };
+
+  export type ViewsScalarFieldEnum = (typeof ViewsScalarFieldEnum)[keyof typeof ViewsScalarFieldEnum]
 
 
   export const PetCategoryScalarFieldEnum: {
@@ -10048,6 +12589,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -10081,6 +12629,8 @@ export namespace Prisma {
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
     messages?: MessageListRelationFilter
+    Views?: ViewsListRelationFilter
+    LikedPost?: LikedPostListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -10097,6 +12647,8 @@ export namespace Prisma {
     PetPost?: PetPostOrderByRelationAggregateInput
     ServicePost?: ServicePostOrderByRelationAggregateInput
     messages?: MessageOrderByRelationAggregateInput
+    Views?: ViewsOrderByRelationAggregateInput
+    LikedPost?: LikedPostOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -10116,6 +12668,8 @@ export namespace Prisma {
     PetPost?: PetPostListRelationFilter
     ServicePost?: ServicePostListRelationFilter
     messages?: MessageListRelationFilter
+    Views?: ViewsListRelationFilter
+    LikedPost?: LikedPostListRelationFilter
   }, "id" | "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -10211,7 +12765,7 @@ export namespace Prisma {
     id?: IntFilter<"PetPost"> | number
     petName?: StringFilter<"PetPost"> | string
     address?: StringFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringFilter<"PetPost"> | string
     image?: StringFilter<"PetPost"> | string
     phoneNumber?: IntFilter<"PetPost"> | number
     createdAt?: DateTimeFilter<"PetPost"> | Date | string
@@ -10225,6 +12779,7 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
     video?: StringFilter<"PetPost"> | string
+    active?: BoolFilter<"PetPost"> | boolean
     category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -10247,6 +12802,7 @@ export namespace Prisma {
     purpose?: SortOrder
     petCategoryId?: SortOrder
     video?: SortOrder
+    active?: SortOrder
     category?: PetCategoryOrderByWithRelationInput
     User?: UserOrderByWithRelationInput
   }
@@ -10258,7 +12814,7 @@ export namespace Prisma {
     NOT?: PetPostWhereInput | PetPostWhereInput[]
     petName?: StringFilter<"PetPost"> | string
     address?: StringFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringFilter<"PetPost"> | string
     image?: StringFilter<"PetPost"> | string
     phoneNumber?: IntFilter<"PetPost"> | number
     createdAt?: DateTimeFilter<"PetPost"> | Date | string
@@ -10272,6 +12828,7 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
     video?: StringFilter<"PetPost"> | string
+    active?: BoolFilter<"PetPost"> | boolean
     category?: XOR<PetCategoryScalarRelationFilter, PetCategoryWhereInput>
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -10294,6 +12851,7 @@ export namespace Prisma {
     purpose?: SortOrder
     petCategoryId?: SortOrder
     video?: SortOrder
+    active?: SortOrder
     _count?: PetPostCountOrderByAggregateInput
     _avg?: PetPostAvgOrderByAggregateInput
     _max?: PetPostMaxOrderByAggregateInput
@@ -10308,7 +12866,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"PetPost"> | number
     petName?: StringWithAggregatesFilter<"PetPost"> | string
     address?: StringWithAggregatesFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringWithAggregatesFilter<"PetPost"> | string
     image?: StringWithAggregatesFilter<"PetPost"> | string
     phoneNumber?: IntWithAggregatesFilter<"PetPost"> | number
     createdAt?: DateTimeWithAggregatesFilter<"PetPost"> | Date | string
@@ -10322,6 +12880,7 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumWithAggregatesFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntWithAggregatesFilter<"PetPost"> | number
     video?: StringWithAggregatesFilter<"PetPost"> | string
+    active?: BoolWithAggregatesFilter<"PetPost"> | boolean
   }
 
   export type ServicePostWhereInput = {
@@ -10444,12 +13003,13 @@ export namespace Prisma {
     backgroundImage?: StringFilter<"Hospital"> | string
     createdAt?: DateTimeFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeFilter<"Hospital"> | Date | string
-    rating?: FloatFilter<"Hospital"> | number
+    rating?: StringFilter<"Hospital"> | string
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
-    views?: IntFilter<"Hospital"> | number
+    views?: ViewsListRelationFilter
+    LikedPost?: LikedPostListRelationFilter
   }
 
   export type HospitalOrderByWithRelationInput = {
@@ -10466,7 +13026,8 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
-    views?: SortOrder
+    views?: ViewsOrderByRelationAggregateInput
+    LikedPost?: LikedPostOrderByRelationAggregateInput
   }
 
   export type HospitalWhereUniqueInput = Prisma.AtLeast<{
@@ -10481,12 +13042,13 @@ export namespace Prisma {
     backgroundImage?: StringFilter<"Hospital"> | string
     createdAt?: DateTimeFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeFilter<"Hospital"> | Date | string
-    rating?: FloatFilter<"Hospital"> | number
+    rating?: StringFilter<"Hospital"> | string
     location?: StringFilter<"Hospital"> | string
     phoneNumber?: IntFilter<"Hospital"> | number
     workTime?: StringFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
-    views?: IntFilter<"Hospital"> | number
+    views?: ViewsListRelationFilter
+    LikedPost?: LikedPostListRelationFilter
   }, "id">
 
   export type HospitalOrderByWithAggregationInput = {
@@ -10503,7 +13065,6 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
-    views?: SortOrder
     _count?: HospitalCountOrderByAggregateInput
     _avg?: HospitalAvgOrderByAggregateInput
     _max?: HospitalMaxOrderByAggregateInput
@@ -10523,12 +13084,103 @@ export namespace Prisma {
     backgroundImage?: StringWithAggregatesFilter<"Hospital"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
-    rating?: FloatWithAggregatesFilter<"Hospital"> | number
+    rating?: StringWithAggregatesFilter<"Hospital"> | string
     location?: StringWithAggregatesFilter<"Hospital"> | string
     phoneNumber?: IntWithAggregatesFilter<"Hospital"> | number
     workTime?: StringWithAggregatesFilter<"Hospital"> | string
     category?: StringNullableListFilter<"Hospital">
-    views?: IntWithAggregatesFilter<"Hospital"> | number
+  }
+
+  export type LikedPostWhereInput = {
+    AND?: LikedPostWhereInput | LikedPostWhereInput[]
+    OR?: LikedPostWhereInput[]
+    NOT?: LikedPostWhereInput | LikedPostWhereInput[]
+    userId?: IntFilter<"LikedPost"> | number
+    hospitalId?: IntFilter<"LikedPost"> | number
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
+    hospital?: XOR<HospitalScalarRelationFilter, HospitalWhereInput>
+  }
+
+  export type LikedPostOrderByWithRelationInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+    owner?: UserOrderByWithRelationInput
+    hospital?: HospitalOrderByWithRelationInput
+  }
+
+  export type LikedPostWhereUniqueInput = Prisma.AtLeast<{
+    userId_hospitalId?: LikedPostUserIdHospitalIdCompoundUniqueInput
+    AND?: LikedPostWhereInput | LikedPostWhereInput[]
+    OR?: LikedPostWhereInput[]
+    NOT?: LikedPostWhereInput | LikedPostWhereInput[]
+    userId?: IntFilter<"LikedPost"> | number
+    hospitalId?: IntFilter<"LikedPost"> | number
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
+    hospital?: XOR<HospitalScalarRelationFilter, HospitalWhereInput>
+  }, "userId_hospitalId">
+
+  export type LikedPostOrderByWithAggregationInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+    _count?: LikedPostCountOrderByAggregateInput
+    _avg?: LikedPostAvgOrderByAggregateInput
+    _max?: LikedPostMaxOrderByAggregateInput
+    _min?: LikedPostMinOrderByAggregateInput
+    _sum?: LikedPostSumOrderByAggregateInput
+  }
+
+  export type LikedPostScalarWhereWithAggregatesInput = {
+    AND?: LikedPostScalarWhereWithAggregatesInput | LikedPostScalarWhereWithAggregatesInput[]
+    OR?: LikedPostScalarWhereWithAggregatesInput[]
+    NOT?: LikedPostScalarWhereWithAggregatesInput | LikedPostScalarWhereWithAggregatesInput[]
+    userId?: IntWithAggregatesFilter<"LikedPost"> | number
+    hospitalId?: IntWithAggregatesFilter<"LikedPost"> | number
+  }
+
+  export type ViewsWhereInput = {
+    AND?: ViewsWhereInput | ViewsWhereInput[]
+    OR?: ViewsWhereInput[]
+    NOT?: ViewsWhereInput | ViewsWhereInput[]
+    userId?: IntFilter<"Views"> | number
+    hospitalId?: IntFilter<"Views"> | number
+    viewer?: XOR<UserScalarRelationFilter, UserWhereInput>
+    hospital?: XOR<HospitalScalarRelationFilter, HospitalWhereInput>
+  }
+
+  export type ViewsOrderByWithRelationInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+    viewer?: UserOrderByWithRelationInput
+    hospital?: HospitalOrderByWithRelationInput
+  }
+
+  export type ViewsWhereUniqueInput = Prisma.AtLeast<{
+    userId_hospitalId?: ViewsUserIdHospitalIdCompoundUniqueInput
+    AND?: ViewsWhereInput | ViewsWhereInput[]
+    OR?: ViewsWhereInput[]
+    NOT?: ViewsWhereInput | ViewsWhereInput[]
+    userId?: IntFilter<"Views"> | number
+    hospitalId?: IntFilter<"Views"> | number
+    viewer?: XOR<UserScalarRelationFilter, UserWhereInput>
+    hospital?: XOR<HospitalScalarRelationFilter, HospitalWhereInput>
+  }, "userId_hospitalId">
+
+  export type ViewsOrderByWithAggregationInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+    _count?: ViewsCountOrderByAggregateInput
+    _avg?: ViewsAvgOrderByAggregateInput
+    _max?: ViewsMaxOrderByAggregateInput
+    _min?: ViewsMinOrderByAggregateInput
+    _sum?: ViewsSumOrderByAggregateInput
+  }
+
+  export type ViewsScalarWhereWithAggregatesInput = {
+    AND?: ViewsScalarWhereWithAggregatesInput | ViewsScalarWhereWithAggregatesInput[]
+    OR?: ViewsScalarWhereWithAggregatesInput[]
+    NOT?: ViewsScalarWhereWithAggregatesInput | ViewsScalarWhereWithAggregatesInput[]
+    userId?: IntWithAggregatesFilter<"Views"> | number
+    hospitalId?: IntWithAggregatesFilter<"Views"> | number
   }
 
   export type PetCategoryWhereInput = {
@@ -10661,6 +13313,8 @@ export namespace Prisma {
     PetPost?: PetPostCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
     messages?: MessageCreateNestedManyWithoutSenderInput
+    Views?: ViewsCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -10677,6 +13331,8 @@ export namespace Prisma {
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
     messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    Views?: ViewsUncheckedCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
@@ -10692,6 +13348,8 @@ export namespace Prisma {
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
     messages?: MessageUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -10708,6 +13366,8 @@ export namespace Prisma {
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
     messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUncheckedUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -10799,7 +13459,7 @@ export namespace Prisma {
   export type PetPostCreateInput = {
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -10811,6 +13471,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     video: string
+    active?: boolean
     category: PetCategoryCreateNestedOneWithoutPetPostInput
     User: UserCreateNestedOneWithoutPetPostInput
   }
@@ -10819,7 +13480,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -10833,12 +13494,13 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum
     petCategoryId: number
     video: string
+    active?: boolean
   }
 
   export type PetPostUpdateInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10850,6 +13512,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
     User?: UserUpdateOneRequiredWithoutPetPostNestedInput
   }
@@ -10858,7 +13521,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10872,13 +13535,14 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PetPostCreateManyInput = {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -10892,12 +13556,13 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum
     petCategoryId: number
     video: string
+    active?: boolean
   }
 
   export type PetPostUpdateManyMutationInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10909,13 +13574,14 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PetPostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10929,6 +13595,7 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServicePostCreateInput = {
@@ -11052,12 +13719,13 @@ export namespace Prisma {
     backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    rating?: number
+    rating?: string
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
-    views?: number
+    views?: ViewsCreateNestedManyWithoutHospitalInput
+    LikedPost?: LikedPostCreateNestedManyWithoutHospitalInput
   }
 
   export type HospitalUncheckedCreateInput = {
@@ -11069,12 +13737,13 @@ export namespace Prisma {
     backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    rating?: number
+    rating?: string
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
-    views?: number
+    views?: ViewsUncheckedCreateNestedManyWithoutHospitalInput
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutHospitalInput
   }
 
   export type HospitalUpdateInput = {
@@ -11085,12 +13754,13 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    rating?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
-    views?: IntFieldUpdateOperationsInput | number
+    views?: ViewsUpdateManyWithoutHospitalNestedInput
+    LikedPost?: LikedPostUpdateManyWithoutHospitalNestedInput
   }
 
   export type HospitalUncheckedUpdateInput = {
@@ -11102,12 +13772,13 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    rating?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
-    views?: IntFieldUpdateOperationsInput | number
+    views?: ViewsUncheckedUpdateManyWithoutHospitalNestedInput
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutHospitalNestedInput
   }
 
   export type HospitalCreateManyInput = {
@@ -11119,12 +13790,11 @@ export namespace Prisma {
     backgroundImage: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    rating?: number
+    rating?: string
     location: string
     phoneNumber: number
     workTime: string
     category?: HospitalCreatecategoryInput | string[]
-    views?: number
   }
 
   export type HospitalUpdateManyMutationInput = {
@@ -11135,12 +13805,11 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    rating?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
-    views?: IntFieldUpdateOperationsInput | number
   }
 
   export type HospitalUncheckedUpdateManyInput = {
@@ -11152,12 +13821,79 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    rating?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     workTime?: StringFieldUpdateOperationsInput | string
     category?: HospitalUpdatecategoryInput | string[]
-    views?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LikedPostCreateInput = {
+    owner: UserCreateNestedOneWithoutLikedPostInput
+    hospital: HospitalCreateNestedOneWithoutLikedPostInput
+  }
+
+  export type LikedPostUncheckedCreateInput = {
+    userId: number
+    hospitalId: number
+  }
+
+  export type LikedPostUpdateInput = {
+    owner?: UserUpdateOneRequiredWithoutLikedPostNestedInput
+    hospital?: HospitalUpdateOneRequiredWithoutLikedPostNestedInput
+  }
+
+  export type LikedPostUncheckedUpdateInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LikedPostCreateManyInput = {
+    userId: number
+    hospitalId: number
+  }
+
+  export type LikedPostUpdateManyMutationInput = {
+
+  }
+
+  export type LikedPostUncheckedUpdateManyInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ViewsCreateInput = {
+    viewer: UserCreateNestedOneWithoutViewsInput
+    hospital: HospitalCreateNestedOneWithoutViewsInput
+  }
+
+  export type ViewsUncheckedCreateInput = {
+    userId: number
+    hospitalId: number
+  }
+
+  export type ViewsUpdateInput = {
+    viewer?: UserUpdateOneRequiredWithoutViewsNestedInput
+    hospital?: HospitalUpdateOneRequiredWithoutViewsNestedInput
+  }
+
+  export type ViewsUncheckedUpdateInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ViewsCreateManyInput = {
+    userId: number
+    hospitalId: number
+  }
+
+  export type ViewsUpdateManyMutationInput = {
+
+  }
+
+  export type ViewsUncheckedUpdateManyInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    hospitalId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PetCategoryCreateInput = {
@@ -11355,6 +14091,18 @@ export namespace Prisma {
     none?: MessageWhereInput
   }
 
+  export type ViewsListRelationFilter = {
+    every?: ViewsWhereInput
+    some?: ViewsWhereInput
+    none?: ViewsWhereInput
+  }
+
+  export type LikedPostListRelationFilter = {
+    every?: LikedPostWhereInput
+    some?: LikedPostWhereInput
+    none?: LikedPostWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -11369,6 +14117,14 @@ export namespace Prisma {
   }
 
   export type MessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ViewsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LikedPostOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11495,12 +14251,38 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type MessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    timestamp?: SortOrder
+    senderId?: SortOrder
+  }
+
+  export type MessageAvgOrderByAggregateInput = {
+    senderId?: SortOrder
+  }
+
+  export type MessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    timestamp?: SortOrder
+    senderId?: SortOrder
+  }
+
+  export type MessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    timestamp?: SortOrder
+    senderId?: SortOrder
+  }
+
+  export type MessageSumOrderByAggregateInput = {
+    senderId?: SortOrder
   }
 
   export type EnumPetSizeEnumFilter<$PrismaModel = never> = {
@@ -11522,6 +14304,11 @@ export namespace Prisma {
     in?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
     notIn?: $Enums.PetPostEnum[] | ListEnumPetPostEnumFieldRefInput<$PrismaModel>
     not?: NestedEnumPetPostEnumFilter<$PrismaModel> | $Enums.PetPostEnum
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type PetCategoryScalarRelationFilter = {
@@ -11547,6 +14334,7 @@ export namespace Prisma {
     purpose?: SortOrder
     petCategoryId?: SortOrder
     video?: SortOrder
+    active?: SortOrder
   }
 
   export type PetPostAvgOrderByAggregateInput = {
@@ -11562,6 +14350,7 @@ export namespace Prisma {
     id?: SortOrder
     petName?: SortOrder
     address?: SortOrder
+    about?: SortOrder
     image?: SortOrder
     phoneNumber?: SortOrder
     createdAt?: SortOrder
@@ -11575,12 +14364,14 @@ export namespace Prisma {
     purpose?: SortOrder
     petCategoryId?: SortOrder
     video?: SortOrder
+    active?: SortOrder
   }
 
   export type PetPostMinOrderByAggregateInput = {
     id?: SortOrder
     petName?: SortOrder
     address?: SortOrder
+    about?: SortOrder
     image?: SortOrder
     phoneNumber?: SortOrder
     createdAt?: SortOrder
@@ -11594,6 +14385,7 @@ export namespace Prisma {
     purpose?: SortOrder
     petCategoryId?: SortOrder
     video?: SortOrder
+    active?: SortOrder
   }
 
   export type PetPostSumOrderByAggregateInput = {
@@ -11633,6 +14425,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPetPostEnumFilter<$PrismaModel>
     _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
   }
 
   export type ServiceCategoryScalarRelationFilter = {
@@ -11709,17 +14517,6 @@ export namespace Prisma {
     cost?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type HospitalCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -11734,14 +14531,11 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     workTime?: SortOrder
     category?: SortOrder
-    views?: SortOrder
   }
 
   export type HospitalAvgOrderByAggregateInput = {
     id?: SortOrder
-    rating?: SortOrder
     phoneNumber?: SortOrder
-    views?: SortOrder
   }
 
   export type HospitalMaxOrderByAggregateInput = {
@@ -11756,7 +14550,6 @@ export namespace Prisma {
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
-    views?: SortOrder
   }
 
   export type HospitalMinOrderByAggregateInput = {
@@ -11771,30 +14564,76 @@ export namespace Prisma {
     location?: SortOrder
     phoneNumber?: SortOrder
     workTime?: SortOrder
-    views?: SortOrder
   }
 
   export type HospitalSumOrderByAggregateInput = {
     id?: SortOrder
-    rating?: SortOrder
     phoneNumber?: SortOrder
-    views?: SortOrder
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+  export type HospitalScalarRelationFilter = {
+    is?: HospitalWhereInput
+    isNot?: HospitalWhereInput
+  }
+
+  export type LikedPostUserIdHospitalIdCompoundUniqueInput = {
+    userId: number
+    hospitalId: number
+  }
+
+  export type LikedPostCountOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type LikedPostAvgOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type LikedPostMaxOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type LikedPostMinOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type LikedPostSumOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type ViewsUserIdHospitalIdCompoundUniqueInput = {
+    userId: number
+    hospitalId: number
+  }
+
+  export type ViewsCountOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type ViewsAvgOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type ViewsMaxOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type ViewsMinOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
+  }
+
+  export type ViewsSumOrderByAggregateInput = {
+    userId?: SortOrder
+    hospitalId?: SortOrder
   }
 
   export type PetCategoryCountOrderByAggregateInput = {
@@ -11882,6 +14721,20 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
+  export type ViewsCreateNestedManyWithoutViewerInput = {
+    create?: XOR<ViewsCreateWithoutViewerInput, ViewsUncheckedCreateWithoutViewerInput> | ViewsCreateWithoutViewerInput[] | ViewsUncheckedCreateWithoutViewerInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutViewerInput | ViewsCreateOrConnectWithoutViewerInput[]
+    createMany?: ViewsCreateManyViewerInputEnvelope
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+  }
+
+  export type LikedPostCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<LikedPostCreateWithoutOwnerInput, LikedPostUncheckedCreateWithoutOwnerInput> | LikedPostCreateWithoutOwnerInput[] | LikedPostUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutOwnerInput | LikedPostCreateOrConnectWithoutOwnerInput[]
+    createMany?: LikedPostCreateManyOwnerInputEnvelope
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+  }
+
   export type PetPostUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<PetPostCreateWithoutUserInput, PetPostUncheckedCreateWithoutUserInput> | PetPostCreateWithoutUserInput[] | PetPostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PetPostCreateOrConnectWithoutUserInput | PetPostCreateOrConnectWithoutUserInput[]
@@ -11901,6 +14754,20 @@ export namespace Prisma {
     connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
     createMany?: MessageCreateManySenderInputEnvelope
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type ViewsUncheckedCreateNestedManyWithoutViewerInput = {
+    create?: XOR<ViewsCreateWithoutViewerInput, ViewsUncheckedCreateWithoutViewerInput> | ViewsCreateWithoutViewerInput[] | ViewsUncheckedCreateWithoutViewerInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutViewerInput | ViewsCreateOrConnectWithoutViewerInput[]
+    createMany?: ViewsCreateManyViewerInputEnvelope
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+  }
+
+  export type LikedPostUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<LikedPostCreateWithoutOwnerInput, LikedPostUncheckedCreateWithoutOwnerInput> | LikedPostCreateWithoutOwnerInput[] | LikedPostUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutOwnerInput | LikedPostCreateOrConnectWithoutOwnerInput[]
+    createMany?: LikedPostCreateManyOwnerInputEnvelope
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11961,6 +14828,34 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
+  export type ViewsUpdateManyWithoutViewerNestedInput = {
+    create?: XOR<ViewsCreateWithoutViewerInput, ViewsUncheckedCreateWithoutViewerInput> | ViewsCreateWithoutViewerInput[] | ViewsUncheckedCreateWithoutViewerInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutViewerInput | ViewsCreateOrConnectWithoutViewerInput[]
+    upsert?: ViewsUpsertWithWhereUniqueWithoutViewerInput | ViewsUpsertWithWhereUniqueWithoutViewerInput[]
+    createMany?: ViewsCreateManyViewerInputEnvelope
+    set?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    disconnect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    delete?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    update?: ViewsUpdateWithWhereUniqueWithoutViewerInput | ViewsUpdateWithWhereUniqueWithoutViewerInput[]
+    updateMany?: ViewsUpdateManyWithWhereWithoutViewerInput | ViewsUpdateManyWithWhereWithoutViewerInput[]
+    deleteMany?: ViewsScalarWhereInput | ViewsScalarWhereInput[]
+  }
+
+  export type LikedPostUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<LikedPostCreateWithoutOwnerInput, LikedPostUncheckedCreateWithoutOwnerInput> | LikedPostCreateWithoutOwnerInput[] | LikedPostUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutOwnerInput | LikedPostCreateOrConnectWithoutOwnerInput[]
+    upsert?: LikedPostUpsertWithWhereUniqueWithoutOwnerInput | LikedPostUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: LikedPostCreateManyOwnerInputEnvelope
+    set?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    disconnect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    delete?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    update?: LikedPostUpdateWithWhereUniqueWithoutOwnerInput | LikedPostUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: LikedPostUpdateManyWithWhereWithoutOwnerInput | LikedPostUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -11997,8 +14892,60 @@ export namespace Prisma {
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
-  export type PetPostCreateaboutInput = {
-    set: string[]
+  export type MessageUncheckedUpdateManyWithoutSenderNestedInput = {
+    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutSenderInput | MessageUpsertWithWhereUniqueWithoutSenderInput[]
+    createMany?: MessageCreateManySenderInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutSenderInput | MessageUpdateWithWhereUniqueWithoutSenderInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutSenderInput | MessageUpdateManyWithWhereWithoutSenderInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type ViewsUncheckedUpdateManyWithoutViewerNestedInput = {
+    create?: XOR<ViewsCreateWithoutViewerInput, ViewsUncheckedCreateWithoutViewerInput> | ViewsCreateWithoutViewerInput[] | ViewsUncheckedCreateWithoutViewerInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutViewerInput | ViewsCreateOrConnectWithoutViewerInput[]
+    upsert?: ViewsUpsertWithWhereUniqueWithoutViewerInput | ViewsUpsertWithWhereUniqueWithoutViewerInput[]
+    createMany?: ViewsCreateManyViewerInputEnvelope
+    set?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    disconnect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    delete?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    update?: ViewsUpdateWithWhereUniqueWithoutViewerInput | ViewsUpdateWithWhereUniqueWithoutViewerInput[]
+    updateMany?: ViewsUpdateManyWithWhereWithoutViewerInput | ViewsUpdateManyWithWhereWithoutViewerInput[]
+    deleteMany?: ViewsScalarWhereInput | ViewsScalarWhereInput[]
+  }
+
+  export type LikedPostUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<LikedPostCreateWithoutOwnerInput, LikedPostUncheckedCreateWithoutOwnerInput> | LikedPostCreateWithoutOwnerInput[] | LikedPostUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutOwnerInput | LikedPostCreateOrConnectWithoutOwnerInput[]
+    upsert?: LikedPostUpsertWithWhereUniqueWithoutOwnerInput | LikedPostUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: LikedPostCreateManyOwnerInputEnvelope
+    set?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    disconnect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    delete?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    update?: LikedPostUpdateWithWhereUniqueWithoutOwnerInput | LikedPostUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: LikedPostUpdateManyWithWhereWithoutOwnerInput | LikedPostUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
+    upsert?: UserUpsertWithoutMessagesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
   export type PetCategoryCreateNestedOneWithoutPetPostInput = {
@@ -12013,11 +14960,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type PetPostUpdateaboutInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
   export type EnumPetSizeEnumFieldUpdateOperationsInput = {
     set?: $Enums.PetSizeEnum
   }
@@ -12028,6 +14970,10 @@ export namespace Prisma {
 
   export type EnumPetPostEnumFieldUpdateOperationsInput = {
     set?: $Enums.PetPostEnum
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type PetCategoryUpdateOneRequiredWithoutPetPostNestedInput = {
@@ -12105,22 +15051,154 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type ViewsCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<ViewsCreateWithoutHospitalInput, ViewsUncheckedCreateWithoutHospitalInput> | ViewsCreateWithoutHospitalInput[] | ViewsUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutHospitalInput | ViewsCreateOrConnectWithoutHospitalInput[]
+    createMany?: ViewsCreateManyHospitalInputEnvelope
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+  }
+
+  export type LikedPostCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<LikedPostCreateWithoutHospitalInput, LikedPostUncheckedCreateWithoutHospitalInput> | LikedPostCreateWithoutHospitalInput[] | LikedPostUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutHospitalInput | LikedPostCreateOrConnectWithoutHospitalInput[]
+    createMany?: LikedPostCreateManyHospitalInputEnvelope
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+  }
+
+  export type ViewsUncheckedCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<ViewsCreateWithoutHospitalInput, ViewsUncheckedCreateWithoutHospitalInput> | ViewsCreateWithoutHospitalInput[] | ViewsUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutHospitalInput | ViewsCreateOrConnectWithoutHospitalInput[]
+    createMany?: ViewsCreateManyHospitalInputEnvelope
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+  }
+
+  export type LikedPostUncheckedCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<LikedPostCreateWithoutHospitalInput, LikedPostUncheckedCreateWithoutHospitalInput> | LikedPostCreateWithoutHospitalInput[] | LikedPostUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutHospitalInput | LikedPostCreateOrConnectWithoutHospitalInput[]
+    createMany?: LikedPostCreateManyHospitalInputEnvelope
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+  }
+
   export type HospitalUpdateavatarImageInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type HospitalUpdatecategoryInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type ViewsUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<ViewsCreateWithoutHospitalInput, ViewsUncheckedCreateWithoutHospitalInput> | ViewsCreateWithoutHospitalInput[] | ViewsUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutHospitalInput | ViewsCreateOrConnectWithoutHospitalInput[]
+    upsert?: ViewsUpsertWithWhereUniqueWithoutHospitalInput | ViewsUpsertWithWhereUniqueWithoutHospitalInput[]
+    createMany?: ViewsCreateManyHospitalInputEnvelope
+    set?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    disconnect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    delete?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    update?: ViewsUpdateWithWhereUniqueWithoutHospitalInput | ViewsUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: ViewsUpdateManyWithWhereWithoutHospitalInput | ViewsUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: ViewsScalarWhereInput | ViewsScalarWhereInput[]
+  }
+
+  export type LikedPostUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<LikedPostCreateWithoutHospitalInput, LikedPostUncheckedCreateWithoutHospitalInput> | LikedPostCreateWithoutHospitalInput[] | LikedPostUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutHospitalInput | LikedPostCreateOrConnectWithoutHospitalInput[]
+    upsert?: LikedPostUpsertWithWhereUniqueWithoutHospitalInput | LikedPostUpsertWithWhereUniqueWithoutHospitalInput[]
+    createMany?: LikedPostCreateManyHospitalInputEnvelope
+    set?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    disconnect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    delete?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    update?: LikedPostUpdateWithWhereUniqueWithoutHospitalInput | LikedPostUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: LikedPostUpdateManyWithWhereWithoutHospitalInput | LikedPostUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
+  }
+
+  export type ViewsUncheckedUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<ViewsCreateWithoutHospitalInput, ViewsUncheckedCreateWithoutHospitalInput> | ViewsCreateWithoutHospitalInput[] | ViewsUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: ViewsCreateOrConnectWithoutHospitalInput | ViewsCreateOrConnectWithoutHospitalInput[]
+    upsert?: ViewsUpsertWithWhereUniqueWithoutHospitalInput | ViewsUpsertWithWhereUniqueWithoutHospitalInput[]
+    createMany?: ViewsCreateManyHospitalInputEnvelope
+    set?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    disconnect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    delete?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    connect?: ViewsWhereUniqueInput | ViewsWhereUniqueInput[]
+    update?: ViewsUpdateWithWhereUniqueWithoutHospitalInput | ViewsUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: ViewsUpdateManyWithWhereWithoutHospitalInput | ViewsUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: ViewsScalarWhereInput | ViewsScalarWhereInput[]
+  }
+
+  export type LikedPostUncheckedUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<LikedPostCreateWithoutHospitalInput, LikedPostUncheckedCreateWithoutHospitalInput> | LikedPostCreateWithoutHospitalInput[] | LikedPostUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: LikedPostCreateOrConnectWithoutHospitalInput | LikedPostCreateOrConnectWithoutHospitalInput[]
+    upsert?: LikedPostUpsertWithWhereUniqueWithoutHospitalInput | LikedPostUpsertWithWhereUniqueWithoutHospitalInput[]
+    createMany?: LikedPostCreateManyHospitalInputEnvelope
+    set?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    disconnect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    delete?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    connect?: LikedPostWhereUniqueInput | LikedPostWhereUniqueInput[]
+    update?: LikedPostUpdateWithWhereUniqueWithoutHospitalInput | LikedPostUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: LikedPostUpdateManyWithWhereWithoutHospitalInput | LikedPostUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutLikedPostInput = {
+    create?: XOR<UserCreateWithoutLikedPostInput, UserUncheckedCreateWithoutLikedPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLikedPostInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type HospitalCreateNestedOneWithoutLikedPostInput = {
+    create?: XOR<HospitalCreateWithoutLikedPostInput, HospitalUncheckedCreateWithoutLikedPostInput>
+    connectOrCreate?: HospitalCreateOrConnectWithoutLikedPostInput
+    connect?: HospitalWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutLikedPostNestedInput = {
+    create?: XOR<UserCreateWithoutLikedPostInput, UserUncheckedCreateWithoutLikedPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLikedPostInput
+    upsert?: UserUpsertWithoutLikedPostInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLikedPostInput, UserUpdateWithoutLikedPostInput>, UserUncheckedUpdateWithoutLikedPostInput>
+  }
+
+  export type HospitalUpdateOneRequiredWithoutLikedPostNestedInput = {
+    create?: XOR<HospitalCreateWithoutLikedPostInput, HospitalUncheckedCreateWithoutLikedPostInput>
+    connectOrCreate?: HospitalCreateOrConnectWithoutLikedPostInput
+    upsert?: HospitalUpsertWithoutLikedPostInput
+    connect?: HospitalWhereUniqueInput
+    update?: XOR<XOR<HospitalUpdateToOneWithWhereWithoutLikedPostInput, HospitalUpdateWithoutLikedPostInput>, HospitalUncheckedUpdateWithoutLikedPostInput>
+  }
+
+  export type UserCreateNestedOneWithoutViewsInput = {
+    create?: XOR<UserCreateWithoutViewsInput, UserUncheckedCreateWithoutViewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutViewsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type HospitalCreateNestedOneWithoutViewsInput = {
+    create?: XOR<HospitalCreateWithoutViewsInput, HospitalUncheckedCreateWithoutViewsInput>
+    connectOrCreate?: HospitalCreateOrConnectWithoutViewsInput
+    connect?: HospitalWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutViewsNestedInput = {
+    create?: XOR<UserCreateWithoutViewsInput, UserUncheckedCreateWithoutViewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutViewsInput
+    upsert?: UserUpsertWithoutViewsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutViewsInput, UserUpdateWithoutViewsInput>, UserUncheckedUpdateWithoutViewsInput>
+  }
+
+  export type HospitalUpdateOneRequiredWithoutViewsNestedInput = {
+    create?: XOR<HospitalCreateWithoutViewsInput, HospitalUncheckedCreateWithoutViewsInput>
+    connectOrCreate?: HospitalCreateOrConnectWithoutViewsInput
+    upsert?: HospitalUpsertWithoutViewsInput
+    connect?: HospitalWhereUniqueInput
+    update?: XOR<XOR<HospitalUpdateToOneWithWhereWithoutViewsInput, HospitalUpdateWithoutViewsInput>, HospitalUncheckedUpdateWithoutViewsInput>
   }
 
   export type PetPostCreateNestedManyWithoutCategoryInput = {
@@ -12423,6 +15501,11 @@ export namespace Prisma {
     not?: NestedEnumPetPostEnumFilter<$PrismaModel> | $Enums.PetPostEnum
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedEnumPetSizeEnumWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PetSizeEnum | EnumPetSizeEnumFieldRefInput<$PrismaModel>
     in?: $Enums.PetSizeEnum[] | ListEnumPetSizeEnumFieldRefInput<$PrismaModel>
@@ -12453,26 +15536,18 @@ export namespace Prisma {
     _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type PetPostCreateWithoutUserInput = {
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -12484,6 +15559,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     video: string
+    active?: boolean
     category: PetCategoryCreateNestedOneWithoutPetPostInput
   }
 
@@ -12491,7 +15567,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -12504,6 +15580,7 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum
     petCategoryId: number
     video: string
+    active?: boolean
   }
 
   export type PetPostCreateOrConnectWithoutUserInput = {
@@ -12579,6 +15656,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ViewsCreateWithoutViewerInput = {
+    hospital: HospitalCreateNestedOneWithoutViewsInput
+  }
+
+  export type ViewsUncheckedCreateWithoutViewerInput = {
+    hospitalId: number
+  }
+
+  export type ViewsCreateOrConnectWithoutViewerInput = {
+    where: ViewsWhereUniqueInput
+    create: XOR<ViewsCreateWithoutViewerInput, ViewsUncheckedCreateWithoutViewerInput>
+  }
+
+  export type ViewsCreateManyViewerInputEnvelope = {
+    data: ViewsCreateManyViewerInput | ViewsCreateManyViewerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LikedPostCreateWithoutOwnerInput = {
+    hospital: HospitalCreateNestedOneWithoutLikedPostInput
+  }
+
+  export type LikedPostUncheckedCreateWithoutOwnerInput = {
+    hospitalId: number
+  }
+
+  export type LikedPostCreateOrConnectWithoutOwnerInput = {
+    where: LikedPostWhereUniqueInput
+    create: XOR<LikedPostCreateWithoutOwnerInput, LikedPostUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type LikedPostCreateManyOwnerInputEnvelope = {
+    data: LikedPostCreateManyOwnerInput | LikedPostCreateManyOwnerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PetPostUpsertWithWhereUniqueWithoutUserInput = {
     where: PetPostWhereUniqueInput
     update: XOR<PetPostUpdateWithoutUserInput, PetPostUncheckedUpdateWithoutUserInput>
@@ -12602,7 +15715,7 @@ export namespace Prisma {
     id?: IntFilter<"PetPost"> | number
     petName?: StringFilter<"PetPost"> | string
     address?: StringFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringFilter<"PetPost"> | string
     image?: StringFilter<"PetPost"> | string
     phoneNumber?: IntFilter<"PetPost"> | number
     createdAt?: DateTimeFilter<"PetPost"> | Date | string
@@ -12616,6 +15729,7 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFilter<"PetPost"> | $Enums.PetPostEnum
     petCategoryId?: IntFilter<"PetPost"> | number
     video?: StringFilter<"PetPost"> | string
+    active?: BoolFilter<"PetPost"> | boolean
   }
 
   export type ServicePostUpsertWithWhereUniqueWithoutUserInput = {
@@ -12680,6 +15794,54 @@ export namespace Prisma {
     senderId?: IntFilter<"Message"> | number
   }
 
+  export type ViewsUpsertWithWhereUniqueWithoutViewerInput = {
+    where: ViewsWhereUniqueInput
+    update: XOR<ViewsUpdateWithoutViewerInput, ViewsUncheckedUpdateWithoutViewerInput>
+    create: XOR<ViewsCreateWithoutViewerInput, ViewsUncheckedCreateWithoutViewerInput>
+  }
+
+  export type ViewsUpdateWithWhereUniqueWithoutViewerInput = {
+    where: ViewsWhereUniqueInput
+    data: XOR<ViewsUpdateWithoutViewerInput, ViewsUncheckedUpdateWithoutViewerInput>
+  }
+
+  export type ViewsUpdateManyWithWhereWithoutViewerInput = {
+    where: ViewsScalarWhereInput
+    data: XOR<ViewsUpdateManyMutationInput, ViewsUncheckedUpdateManyWithoutViewerInput>
+  }
+
+  export type ViewsScalarWhereInput = {
+    AND?: ViewsScalarWhereInput | ViewsScalarWhereInput[]
+    OR?: ViewsScalarWhereInput[]
+    NOT?: ViewsScalarWhereInput | ViewsScalarWhereInput[]
+    userId?: IntFilter<"Views"> | number
+    hospitalId?: IntFilter<"Views"> | number
+  }
+
+  export type LikedPostUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: LikedPostWhereUniqueInput
+    update: XOR<LikedPostUpdateWithoutOwnerInput, LikedPostUncheckedUpdateWithoutOwnerInput>
+    create: XOR<LikedPostCreateWithoutOwnerInput, LikedPostUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type LikedPostUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: LikedPostWhereUniqueInput
+    data: XOR<LikedPostUpdateWithoutOwnerInput, LikedPostUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type LikedPostUpdateManyWithWhereWithoutOwnerInput = {
+    where: LikedPostScalarWhereInput
+    data: XOR<LikedPostUpdateManyMutationInput, LikedPostUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type LikedPostScalarWhereInput = {
+    AND?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
+    OR?: LikedPostScalarWhereInput[]
+    NOT?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
+    userId?: IntFilter<"LikedPost"> | number
+    hospitalId?: IntFilter<"LikedPost"> | number
+  }
+
   export type UserCreateWithoutMessagesInput = {
     email: string
     password: string
@@ -12692,6 +15854,8 @@ export namespace Prisma {
     backgroundImage?: string
     PetPost?: PetPostCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
+    Views?: ViewsCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -12707,6 +15871,8 @@ export namespace Prisma {
     backgroundImage?: string
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
+    Views?: ViewsUncheckedCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -12737,6 +15903,8 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
+    Views?: ViewsUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -12752,6 +15920,8 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
+    Views?: ViewsUncheckedUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type PetCategoryCreateWithoutPetPostInput = {
@@ -12788,6 +15958,8 @@ export namespace Prisma {
     backgroundImage?: string
     ServicePost?: ServicePostCreateNestedManyWithoutUserInput
     messages?: MessageCreateNestedManyWithoutSenderInput
+    Views?: ViewsCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutPetPostInput = {
@@ -12803,6 +15975,8 @@ export namespace Prisma {
     backgroundImage?: string
     ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
     messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    Views?: ViewsUncheckedCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutPetPostInput = {
@@ -12861,6 +16035,8 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
     messages?: MessageUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPetPostInput = {
@@ -12876,6 +16052,8 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
     messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUncheckedUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateWithoutServicePostInput = {
@@ -12890,6 +16068,8 @@ export namespace Prisma {
     backgroundImage?: string
     PetPost?: PetPostCreateNestedManyWithoutUserInput
     messages?: MessageCreateNestedManyWithoutSenderInput
+    Views?: ViewsCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutServicePostInput = {
@@ -12905,6 +16085,8 @@ export namespace Prisma {
     backgroundImage?: string
     PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
     messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    Views?: ViewsUncheckedCreateNestedManyWithoutViewerInput
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutServicePostInput = {
@@ -12977,6 +16159,8 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUpdateManyWithoutUserNestedInput
     messages?: MessageUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutServicePostInput = {
@@ -12992,6 +16176,8 @@ export namespace Prisma {
     backgroundImage?: StringFieldUpdateOperationsInput | string
     PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
     messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUncheckedUpdateManyWithoutViewerNestedInput
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type PetCategoryUpsertWithoutServicePostInput = {
@@ -13048,10 +16234,406 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ViewsCreateWithoutHospitalInput = {
+    viewer: UserCreateNestedOneWithoutViewsInput
+  }
+
+  export type ViewsUncheckedCreateWithoutHospitalInput = {
+    userId: number
+  }
+
+  export type ViewsCreateOrConnectWithoutHospitalInput = {
+    where: ViewsWhereUniqueInput
+    create: XOR<ViewsCreateWithoutHospitalInput, ViewsUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type ViewsCreateManyHospitalInputEnvelope = {
+    data: ViewsCreateManyHospitalInput | ViewsCreateManyHospitalInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LikedPostCreateWithoutHospitalInput = {
+    owner: UserCreateNestedOneWithoutLikedPostInput
+  }
+
+  export type LikedPostUncheckedCreateWithoutHospitalInput = {
+    userId: number
+  }
+
+  export type LikedPostCreateOrConnectWithoutHospitalInput = {
+    where: LikedPostWhereUniqueInput
+    create: XOR<LikedPostCreateWithoutHospitalInput, LikedPostUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type LikedPostCreateManyHospitalInputEnvelope = {
+    data: LikedPostCreateManyHospitalInput | LikedPostCreateManyHospitalInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ViewsUpsertWithWhereUniqueWithoutHospitalInput = {
+    where: ViewsWhereUniqueInput
+    update: XOR<ViewsUpdateWithoutHospitalInput, ViewsUncheckedUpdateWithoutHospitalInput>
+    create: XOR<ViewsCreateWithoutHospitalInput, ViewsUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type ViewsUpdateWithWhereUniqueWithoutHospitalInput = {
+    where: ViewsWhereUniqueInput
+    data: XOR<ViewsUpdateWithoutHospitalInput, ViewsUncheckedUpdateWithoutHospitalInput>
+  }
+
+  export type ViewsUpdateManyWithWhereWithoutHospitalInput = {
+    where: ViewsScalarWhereInput
+    data: XOR<ViewsUpdateManyMutationInput, ViewsUncheckedUpdateManyWithoutHospitalInput>
+  }
+
+  export type LikedPostUpsertWithWhereUniqueWithoutHospitalInput = {
+    where: LikedPostWhereUniqueInput
+    update: XOR<LikedPostUpdateWithoutHospitalInput, LikedPostUncheckedUpdateWithoutHospitalInput>
+    create: XOR<LikedPostCreateWithoutHospitalInput, LikedPostUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type LikedPostUpdateWithWhereUniqueWithoutHospitalInput = {
+    where: LikedPostWhereUniqueInput
+    data: XOR<LikedPostUpdateWithoutHospitalInput, LikedPostUncheckedUpdateWithoutHospitalInput>
+  }
+
+  export type LikedPostUpdateManyWithWhereWithoutHospitalInput = {
+    where: LikedPostScalarWhereInput
+    data: XOR<LikedPostUpdateManyMutationInput, LikedPostUncheckedUpdateManyWithoutHospitalInput>
+  }
+
+  export type UserCreateWithoutLikedPostInput = {
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
+    PetPost?: PetPostCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutSenderInput
+    Views?: ViewsCreateNestedManyWithoutViewerInput
+  }
+
+  export type UserUncheckedCreateWithoutLikedPostInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    Views?: ViewsUncheckedCreateNestedManyWithoutViewerInput
+  }
+
+  export type UserCreateOrConnectWithoutLikedPostInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLikedPostInput, UserUncheckedCreateWithoutLikedPostInput>
+  }
+
+  export type HospitalCreateWithoutLikedPostInput = {
+    name: string
+    about: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
+    email: string
+    backgroundImage: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rating?: string
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: HospitalCreatecategoryInput | string[]
+    views?: ViewsCreateNestedManyWithoutHospitalInput
+  }
+
+  export type HospitalUncheckedCreateWithoutLikedPostInput = {
+    id?: number
+    name: string
+    about: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
+    email: string
+    backgroundImage: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rating?: string
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: HospitalCreatecategoryInput | string[]
+    views?: ViewsUncheckedCreateNestedManyWithoutHospitalInput
+  }
+
+  export type HospitalCreateOrConnectWithoutLikedPostInput = {
+    where: HospitalWhereUniqueInput
+    create: XOR<HospitalCreateWithoutLikedPostInput, HospitalUncheckedCreateWithoutLikedPostInput>
+  }
+
+  export type UserUpsertWithoutLikedPostInput = {
+    update: XOR<UserUpdateWithoutLikedPostInput, UserUncheckedUpdateWithoutLikedPostInput>
+    create: XOR<UserCreateWithoutLikedPostInput, UserUncheckedCreateWithoutLikedPostInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLikedPostInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLikedPostInput, UserUncheckedUpdateWithoutLikedPostInput>
+  }
+
+  export type UserUpdateWithoutLikedPostInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    PetPost?: PetPostUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUpdateManyWithoutViewerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLikedPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    Views?: ViewsUncheckedUpdateManyWithoutViewerNestedInput
+  }
+
+  export type HospitalUpsertWithoutLikedPostInput = {
+    update: XOR<HospitalUpdateWithoutLikedPostInput, HospitalUncheckedUpdateWithoutLikedPostInput>
+    create: XOR<HospitalCreateWithoutLikedPostInput, HospitalUncheckedCreateWithoutLikedPostInput>
+    where?: HospitalWhereInput
+  }
+
+  export type HospitalUpdateToOneWithWhereWithoutLikedPostInput = {
+    where?: HospitalWhereInput
+    data: XOR<HospitalUpdateWithoutLikedPostInput, HospitalUncheckedUpdateWithoutLikedPostInput>
+  }
+
+  export type HospitalUpdateWithoutLikedPostInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
+    email?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
+    views?: ViewsUpdateManyWithoutHospitalNestedInput
+  }
+
+  export type HospitalUncheckedUpdateWithoutLikedPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
+    email?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
+    views?: ViewsUncheckedUpdateManyWithoutHospitalNestedInput
+  }
+
+  export type UserCreateWithoutViewsInput = {
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
+    PetPost?: PetPostCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutSenderInput
+    LikedPost?: LikedPostCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserUncheckedCreateWithoutViewsInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.userRoleEnum
+    location?: string | null
+    profileImage?: string | null
+    backgroundImage?: string
+    PetPost?: PetPostUncheckedCreateNestedManyWithoutUserInput
+    ServicePost?: ServicePostUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserCreateOrConnectWithoutViewsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutViewsInput, UserUncheckedCreateWithoutViewsInput>
+  }
+
+  export type HospitalCreateWithoutViewsInput = {
+    name: string
+    about: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
+    email: string
+    backgroundImage: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rating?: string
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: HospitalCreatecategoryInput | string[]
+    LikedPost?: LikedPostCreateNestedManyWithoutHospitalInput
+  }
+
+  export type HospitalUncheckedCreateWithoutViewsInput = {
+    id?: number
+    name: string
+    about: string
+    avatarImage?: HospitalCreateavatarImageInput | string[]
+    email: string
+    backgroundImage: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rating?: string
+    location: string
+    phoneNumber: number
+    workTime: string
+    category?: HospitalCreatecategoryInput | string[]
+    LikedPost?: LikedPostUncheckedCreateNestedManyWithoutHospitalInput
+  }
+
+  export type HospitalCreateOrConnectWithoutViewsInput = {
+    where: HospitalWhereUniqueInput
+    create: XOR<HospitalCreateWithoutViewsInput, HospitalUncheckedCreateWithoutViewsInput>
+  }
+
+  export type UserUpsertWithoutViewsInput = {
+    update: XOR<UserUpdateWithoutViewsInput, UserUncheckedUpdateWithoutViewsInput>
+    create: XOR<UserCreateWithoutViewsInput, UserUncheckedCreateWithoutViewsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutViewsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutViewsInput, UserUncheckedUpdateWithoutViewsInput>
+  }
+
+  export type UserUpdateWithoutViewsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    PetPost?: PetPostUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutSenderNestedInput
+    LikedPost?: LikedPostUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutViewsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumuserRoleEnumFieldUpdateOperationsInput | $Enums.userRoleEnum
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    PetPost?: PetPostUncheckedUpdateManyWithoutUserNestedInput
+    ServicePost?: ServicePostUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type HospitalUpsertWithoutViewsInput = {
+    update: XOR<HospitalUpdateWithoutViewsInput, HospitalUncheckedUpdateWithoutViewsInput>
+    create: XOR<HospitalCreateWithoutViewsInput, HospitalUncheckedCreateWithoutViewsInput>
+    where?: HospitalWhereInput
+  }
+
+  export type HospitalUpdateToOneWithWhereWithoutViewsInput = {
+    where?: HospitalWhereInput
+    data: XOR<HospitalUpdateWithoutViewsInput, HospitalUncheckedUpdateWithoutViewsInput>
+  }
+
+  export type HospitalUpdateWithoutViewsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
+    email?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
+    LikedPost?: LikedPostUpdateManyWithoutHospitalNestedInput
+  }
+
+  export type HospitalUncheckedUpdateWithoutViewsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    about?: StringFieldUpdateOperationsInput | string
+    avatarImage?: HospitalUpdateavatarImageInput | string[]
+    email?: StringFieldUpdateOperationsInput | string
+    backgroundImage?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: IntFieldUpdateOperationsInput | number
+    workTime?: StringFieldUpdateOperationsInput | string
+    category?: HospitalUpdatecategoryInput | string[]
+    LikedPost?: LikedPostUncheckedUpdateManyWithoutHospitalNestedInput
+  }
+
   export type PetPostCreateWithoutCategoryInput = {
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13063,6 +16645,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     video: string
+    active?: boolean
     User: UserCreateNestedOneWithoutPetPostInput
   }
 
@@ -13070,7 +16653,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13083,6 +16666,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     video: string
+    active?: boolean
   }
 
   export type PetPostCreateOrConnectWithoutCategoryInput = {
@@ -13229,7 +16813,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13242,6 +16826,7 @@ export namespace Prisma {
     purpose: $Enums.PetPostEnum
     petCategoryId: number
     video: string
+    active?: boolean
   }
 
   export type ServicePostCreateManyUserInput = {
@@ -13266,10 +16851,18 @@ export namespace Prisma {
     timestamp?: Date | string
   }
 
+  export type ViewsCreateManyViewerInput = {
+    hospitalId: number
+  }
+
+  export type LikedPostCreateManyOwnerInput = {
+    hospitalId: number
+  }
+
   export type PetPostUpdateWithoutUserInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13281,6 +16874,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     category?: PetCategoryUpdateOneRequiredWithoutPetPostNestedInput
   }
 
@@ -13288,7 +16882,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13301,13 +16895,14 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PetPostUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13320,6 +16915,7 @@ export namespace Prisma {
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     petCategoryId?: IntFieldUpdateOperationsInput | number
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServicePostUpdateWithoutUserInput = {
@@ -13387,11 +16983,67 @@ export namespace Prisma {
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ViewsUpdateWithoutViewerInput = {
+    hospital?: HospitalUpdateOneRequiredWithoutViewsNestedInput
+  }
+
+  export type ViewsUncheckedUpdateWithoutViewerInput = {
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ViewsUncheckedUpdateManyWithoutViewerInput = {
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LikedPostUpdateWithoutOwnerInput = {
+    hospital?: HospitalUpdateOneRequiredWithoutLikedPostNestedInput
+  }
+
+  export type LikedPostUncheckedUpdateWithoutOwnerInput = {
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LikedPostUncheckedUpdateManyWithoutOwnerInput = {
+    hospitalId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ViewsCreateManyHospitalInput = {
+    userId: number
+  }
+
+  export type LikedPostCreateManyHospitalInput = {
+    userId: number
+  }
+
+  export type ViewsUpdateWithoutHospitalInput = {
+    viewer?: UserUpdateOneRequiredWithoutViewsNestedInput
+  }
+
+  export type ViewsUncheckedUpdateWithoutHospitalInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ViewsUncheckedUpdateManyWithoutHospitalInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LikedPostUpdateWithoutHospitalInput = {
+    owner?: UserUpdateOneRequiredWithoutLikedPostNestedInput
+  }
+
+  export type LikedPostUncheckedUpdateWithoutHospitalInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LikedPostUncheckedUpdateManyWithoutHospitalInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type PetPostCreateManyCategoryInput = {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13404,6 +17056,7 @@ export namespace Prisma {
     price: number
     purpose: $Enums.PetPostEnum
     video: string
+    active?: boolean
   }
 
   export type ServicePostCreateManyCategoryInput = {
@@ -13425,7 +17078,7 @@ export namespace Prisma {
   export type PetPostUpdateWithoutCategoryInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13437,6 +17090,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutPetPostNestedInput
   }
 
@@ -13444,7 +17098,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13457,13 +17111,14 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PetPostUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13476,6 +17131,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     purpose?: EnumPetPostEnumFieldUpdateOperationsInput | $Enums.PetPostEnum
     video?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServicePostUpdateWithoutCategoryInput = {

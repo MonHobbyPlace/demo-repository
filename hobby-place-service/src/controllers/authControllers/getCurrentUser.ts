@@ -10,6 +10,7 @@ export const getCurrentUser = async (req: Request, res: Response) => {
       include: {
         PetPost: true,
         ServicePost: true,
+        LikedPost: true,
       },
     });
     res.status(200).json(user);

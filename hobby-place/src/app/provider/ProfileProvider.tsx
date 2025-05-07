@@ -15,6 +15,9 @@ export type ProfileType = {
   PetPost: petPostType[];
   ServicePost: string[];
   phoneNumber: number;
+  LikedPost?: {
+    hospitalId: number;
+  }[];
 };
 
 type ProfileContextType = {
@@ -22,6 +25,8 @@ type ProfileContextType = {
   handleLogout: () => void;
   updateProfile: (values: ProfileType) => Promise<void>;
   isLoading: boolean;
+  likePost: (hospitalId: number) => Promise<void>;
+  unLikePost: (hospitalId: number) => Promise<void>;
 };
 const ProfileContext = createContext<ProfileContextType>(
   {} as ProfileContextType
@@ -44,6 +49,7 @@ export const ProfileProvider = ({
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${userId}`
       );
+      console.log(response.data);
 
       setIsLoading(false);
       return response.data;
@@ -63,6 +69,26 @@ export const ProfileProvider = ({
       console.log(error);
     }
   };
+  const likePost = async (hospitalId: number) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/like/${userId}/${hospitalId}`
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const unLikePost = async (hospitalId: number) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/unLike/${userId}/${hospitalId}`
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ProfileContext.Provider
@@ -71,6 +97,8 @@ export const ProfileProvider = ({
         handleLogout: handleLogout,
         updateProfile: updateProfile,
         isLoading: isLoading,
+        likePost: likePost,
+        unLikePost: unLikePost,
       }}
     >
       {isLoading == true ? (
