@@ -13,7 +13,7 @@ export const InputContainer = (props: {
 }) => {
   const { error, onChange, value, name, placeHolder, type, label } = props;
   return (
-    <div className="w-full">
+    <>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor={name} className="text-right">
           {label}
@@ -31,6 +31,6 @@ export const InputContainer = (props: {
       <div className="w-full flex justify-end text-red-500">
         <p>{error}</p>
       </div>
-    </div>
+    </>
   );
 };

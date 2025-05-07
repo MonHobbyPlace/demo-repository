@@ -3,9 +3,18 @@ import prisma from "../../prismaClient";
 
 export const getAll = async (req: Request, res: Response) => {
   try {
-    const hospitals = await prisma.hospital.findMany();
+    const hospitals = await prisma.hospital.findMany({
+      include: {
+        views: true,
+      },
+    });
 
-    res.status(200).json({ data: hospitals });
+    const hospitalsWithViewCount = hospitals.map((hospital) => ({
+      ...hospital,
+      viewQuantity: hospital.views.length,
+    }));
+
+    res.status(200).json({ data: hospitalsWithViewCount });
   } catch (error) {
     console.error(error);
     res

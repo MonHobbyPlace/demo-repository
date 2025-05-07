@@ -16,20 +16,22 @@ export const getHospital = async (req: Request, res: Response) => {
         views: true,
       },
     });
-    await prisma.views.upsert({
-      where: {
-        userId_hospitalId: {
+    if (userId) {
+      await prisma.views.upsert({
+        where: {
+          userId_hospitalId: {
+            userId: Number(userId),
+            hospitalId: Number(id),
+          },
+        },
+        update: {},
+        create: {
           userId: Number(userId),
           hospitalId: Number(id),
         },
-      },
-      update: {},
-      create: {
-        userId: Number(userId),
-        hospitalId: Number(id),
-      },
-    });
-    res.status(200).json({ ...hospital, viewQuantity: hospital?.views.length });
+      });
+    }
+    res.status(200).json({ ...hospital, viewQuantity: hospital?.views.length||0 });
   } catch (error) {
     console.error(error);
     res.status(500).json({
