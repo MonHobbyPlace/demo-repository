@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
@@ -9,27 +10,38 @@ export type Hospital = {
   workTime: string;
   avatarImage: string[];
   about: string;
-  views: number;
+  viewQuantity: number;
   phoneNumber: number;
   category: string[];
   backgroundImage: string;
   email: string;
-  rating: number;
+  rating: string;
 };
+import { useProfile } from "@/app/provider/ProfileProvider";
 import { Clock10, Heart, PawPrint } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
-
-  const [liked, setLiked] = useState(false);
+  const { user, likePost, unLikePost } = useProfile();
+  const [userLiked, setUserLiked] = useState("");
+  const [liked, setLiked] = useState(
+    userLiked.includes(hospital.id.toString())
+  );
   const router = useRouter();
+  useEffect(() => {
+    const hospitalIds = user.LikedPost?.map((post) => {
+      return post.hospitalId;
+    });
+    setUserLiked(hospitalIds?.join() || "");
+    console.log(hospitalIds?.join());
+  }, [hospital]);
+  useEffect(() => {
+    setLiked(userLiked.includes(hospital.id.toString()));
+  }, [userLiked]);
   return (
-    <div
-      className="h-[120px] w-full flex  rounded-3xl justify-between text-black overflow-hidden gap-4 my-3 shadow-md border"
-      onClick={() => router.push(`/hospital/${hospital.id.toString()}`)}
-    >
+    <div className="h-[120px] w-full flex  rounded-3xl justify-between text-black overflow-hidden gap-4 my-3 shadow-md border">
       <div className="w-full h-full rounded-t-3xl justify-between flex gap-2 overflow-hidden bg-[#e1f7f5]  p-1">
         <div className="flex w-[57%] justify-between">
           <div className="flex flex-col px-3 w-[90%] justify-around">
@@ -51,7 +63,9 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
                   key={index}
                   className="mask mask-star-2 bg-[#0077b6]"
                   aria-label={`${index + 1} star`}
-                  aria-current={index + 1 == hospital.rating ? "true" : "false"}
+                  aria-current={
+                    index + 1 == Number(hospital.rating) ? "true" : "false"
+                  }
                 ></div>
               ))}
             </div>
@@ -68,7 +82,16 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
               </div>
             </div>
           </div>
-          <button className="btn btn-square bg-transparent border-gray-400 shadow-none btn-xs">
+          <button
+            className="btn btn-square bg-transparent border-gray-400 shadow-none btn-xs"
+            onClick={() => {
+              if (!liked) {
+                likePost(hospital?.id);
+              } else {
+                unLikePost(hospital?.id);
+              }
+            }}
+          >
             <Heart
               size={12}
               color="green"
@@ -78,6 +101,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
           </button>
         </div>
         <img
+          onClick={() => router.push(`/hospital/${hospital.id.toString()}`)}
           src={hospital.backgroundImage}
           alt="hospital image"
           className="w-[40%] rounded-3xl h-full "

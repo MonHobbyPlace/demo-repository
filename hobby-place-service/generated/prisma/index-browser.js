@@ -157,7 +157,8 @@ exports.Prisma.PetPostScalarFieldEnum = {
   price: 'price',
   purpose: 'purpose',
   petCategoryId: 'petCategoryId',
-  video: 'video'
+  video: 'video',
+  active: 'active'
 };
 
 exports.Prisma.ServicePostScalarFieldEnum = {
@@ -190,8 +191,17 @@ exports.Prisma.HospitalScalarFieldEnum = {
   location: 'location',
   phoneNumber: 'phoneNumber',
   workTime: 'workTime',
-  category: 'category',
-  views: 'views'
+  category: 'category'
+};
+
+exports.Prisma.LikedPostScalarFieldEnum = {
+  userId: 'userId',
+  hospitalId: 'hospitalId'
+};
+
+exports.Prisma.ViewsScalarFieldEnum = {
+  userId: 'userId',
+  hospitalId: 'hospitalId'
 };
 
 exports.Prisma.PetCategoryScalarFieldEnum = {
@@ -251,6 +261,8 @@ exports.Prisma.ModelName = {
   PetPost: 'PetPost',
   ServicePost: 'ServicePost',
   Hospital: 'Hospital',
+  LikedPost: 'LikedPost',
+  Views: 'Views',
   PetCategory: 'PetCategory',
   ServiceCategory: 'ServiceCategory'
 };
