@@ -14934,6 +14934,7 @@ export namespace Prisma {
     deleteMany?: LikedPostScalarWhereInput | LikedPostScalarWhereInput[]
   }
 
+
   export type UserCreateNestedOneWithoutMessagesInput = {
     create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
     connectOrCreate?: UserCreateOrConnectWithoutMessagesInput

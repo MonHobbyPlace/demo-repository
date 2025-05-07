@@ -46,7 +46,7 @@ const PetCardId = () => {
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <div className="relative min-h-screen bg-gray-100">
+        <div className="relative h-screen overflow-y-auto  bg-gray-100">
           <div className="h-[45vh] overflow-hidden relative">
             <img
               src={petPostId?.image}
