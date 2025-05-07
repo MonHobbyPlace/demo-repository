@@ -23,7 +23,8 @@ export const PetCards = () => {
               if (
                 element.price == 0 ||
                 element.price == undefined ||
-                element.price == null
+                element.price == null ||
+                element.active == false
               ) {
                 return null;
               }

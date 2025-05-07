@@ -3,7 +3,7 @@
 
 import axios from "axios";
 import { ArrowRight, Search } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { Hospital } from "../(homePages)/hospital/_components/HospitalInfoBox";
@@ -21,7 +21,7 @@ export const Header = () => {
   const { user } = useProfile();
   const pathName = usePathname();
   const [searchValue, setSearchValue] = useState<SearchResponseType[]>([]);
-
+  const router = useRouter();
   const searchClick = (value: boolean) => {
     setIsActive(value);
   };
@@ -55,7 +55,11 @@ export const Header = () => {
       <div className="flex items-center justify-between w-full h-16  ">
         <div className="avatar avatar-online">
           <div className="w-12 rounded-full">
-            <img alt="profile image" src={user?.profileImage} />
+            <img
+              alt="profile image"
+              src={user?.profileImage}
+              onClick={() => router.push("/profile")}
+            />
           </div>
         </div>
         <div className=" flex h-10 gap-[10px] items-center border px-3 rounded-md relative ">
