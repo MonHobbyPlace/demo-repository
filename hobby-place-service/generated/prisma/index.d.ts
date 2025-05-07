@@ -3926,6 +3926,7 @@ export namespace Prisma {
     id: number | null
     petName: string | null
     address: string | null
+    about: string | null
     image: string | null
     phoneNumber: number | null
     createdAt: Date | null
@@ -3945,6 +3946,7 @@ export namespace Prisma {
     id: number | null
     petName: string | null
     address: string | null
+    about: string | null
     image: string | null
     phoneNumber: number | null
     createdAt: Date | null
@@ -4004,6 +4006,7 @@ export namespace Prisma {
     id?: true
     petName?: true
     address?: true
+    about?: true
     image?: true
     phoneNumber?: true
     createdAt?: true
@@ -4023,6 +4026,7 @@ export namespace Prisma {
     id?: true
     petName?: true
     address?: true
+    about?: true
     image?: true
     phoneNumber?: true
     createdAt?: true
@@ -4149,7 +4153,7 @@ export namespace Prisma {
     id: number
     petName: string
     address: string
-    about: string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt: Date
@@ -4294,7 +4298,7 @@ export namespace Prisma {
       id: number
       petName: string
       address: string
-      about: string[]
+      about: string
       image: string
       phoneNumber: number
       createdAt: Date
@@ -4736,7 +4740,7 @@ export namespace Prisma {
     readonly id: FieldRef<"PetPost", 'Int'>
     readonly petName: FieldRef<"PetPost", 'String'>
     readonly address: FieldRef<"PetPost", 'String'>
-    readonly about: FieldRef<"PetPost", 'String[]'>
+    readonly about: FieldRef<"PetPost", 'String'>
     readonly image: FieldRef<"PetPost", 'String'>
     readonly phoneNumber: FieldRef<"PetPost", 'Int'>
     readonly createdAt: FieldRef<"PetPost", 'DateTime'>
@@ -10211,7 +10215,7 @@ export namespace Prisma {
     id?: IntFilter<"PetPost"> | number
     petName?: StringFilter<"PetPost"> | string
     address?: StringFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringFilter<"PetPost"> | string
     image?: StringFilter<"PetPost"> | string
     phoneNumber?: IntFilter<"PetPost"> | number
     createdAt?: DateTimeFilter<"PetPost"> | Date | string
@@ -10258,7 +10262,7 @@ export namespace Prisma {
     NOT?: PetPostWhereInput | PetPostWhereInput[]
     petName?: StringFilter<"PetPost"> | string
     address?: StringFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringFilter<"PetPost"> | string
     image?: StringFilter<"PetPost"> | string
     phoneNumber?: IntFilter<"PetPost"> | number
     createdAt?: DateTimeFilter<"PetPost"> | Date | string
@@ -10308,7 +10312,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"PetPost"> | number
     petName?: StringWithAggregatesFilter<"PetPost"> | string
     address?: StringWithAggregatesFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringWithAggregatesFilter<"PetPost"> | string
     image?: StringWithAggregatesFilter<"PetPost"> | string
     phoneNumber?: IntWithAggregatesFilter<"PetPost"> | number
     createdAt?: DateTimeWithAggregatesFilter<"PetPost"> | Date | string
@@ -10799,7 +10803,7 @@ export namespace Prisma {
   export type PetPostCreateInput = {
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -10819,7 +10823,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -10838,7 +10842,7 @@ export namespace Prisma {
   export type PetPostUpdateInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10858,7 +10862,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10878,7 +10882,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -10897,7 +10901,7 @@ export namespace Prisma {
   export type PetPostUpdateManyMutationInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10915,7 +10919,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11495,12 +11499,38 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type MessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    timestamp?: SortOrder
+    senderId?: SortOrder
+  }
+
+  export type MessageAvgOrderByAggregateInput = {
+    senderId?: SortOrder
+  }
+
+  export type MessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    timestamp?: SortOrder
+    senderId?: SortOrder
+  }
+
+  export type MessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    timestamp?: SortOrder
+    senderId?: SortOrder
+  }
+
+  export type MessageSumOrderByAggregateInput = {
+    senderId?: SortOrder
   }
 
   export type EnumPetSizeEnumFilter<$PrismaModel = never> = {
@@ -11562,6 +11592,7 @@ export namespace Prisma {
     id?: SortOrder
     petName?: SortOrder
     address?: SortOrder
+    about?: SortOrder
     image?: SortOrder
     phoneNumber?: SortOrder
     createdAt?: SortOrder
@@ -11581,6 +11612,7 @@ export namespace Prisma {
     id?: SortOrder
     petName?: SortOrder
     address?: SortOrder
+    about?: SortOrder
     image?: SortOrder
     phoneNumber?: SortOrder
     createdAt?: SortOrder
@@ -11633,6 +11665,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPetPostEnumFilter<$PrismaModel>
     _max?: NestedEnumPetPostEnumFilter<$PrismaModel>
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
   }
 
   export type ServiceCategoryScalarRelationFilter = {
@@ -11997,8 +12037,32 @@ export namespace Prisma {
     deleteMany?: ServicePostScalarWhereInput | ServicePostScalarWhereInput[]
   }
 
-  export type PetPostCreateaboutInput = {
-    set: string[]
+  export type MessageUncheckedUpdateManyWithoutSenderNestedInput = {
+    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutSenderInput | MessageUpsertWithWhereUniqueWithoutSenderInput[]
+    createMany?: MessageCreateManySenderInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutSenderInput | MessageUpdateWithWhereUniqueWithoutSenderInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutSenderInput | MessageUpdateManyWithWhereWithoutSenderInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
+    upsert?: UserUpsertWithoutMessagesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
   export type PetCategoryCreateNestedOneWithoutPetPostInput = {
@@ -12011,11 +12075,6 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutPetPostInput, UserUncheckedCreateWithoutPetPostInput>
     connectOrCreate?: UserCreateOrConnectWithoutPetPostInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type PetPostUpdateaboutInput = {
-    set?: string[]
-    push?: string | string[]
   }
 
   export type EnumPetSizeEnumFieldUpdateOperationsInput = {
@@ -12472,7 +12531,7 @@ export namespace Prisma {
   export type PetPostCreateWithoutUserInput = {
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -12491,7 +12550,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -12602,7 +12661,7 @@ export namespace Prisma {
     id?: IntFilter<"PetPost"> | number
     petName?: StringFilter<"PetPost"> | string
     address?: StringFilter<"PetPost"> | string
-    about?: StringNullableListFilter<"PetPost">
+    about?: StringFilter<"PetPost"> | string
     image?: StringFilter<"PetPost"> | string
     phoneNumber?: IntFilter<"PetPost"> | number
     createdAt?: DateTimeFilter<"PetPost"> | Date | string
@@ -13051,7 +13110,7 @@ export namespace Prisma {
   export type PetPostCreateWithoutCategoryInput = {
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13070,7 +13129,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13229,7 +13288,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13269,7 +13328,7 @@ export namespace Prisma {
   export type PetPostUpdateWithoutUserInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13288,7 +13347,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13307,7 +13366,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13391,7 +13450,7 @@ export namespace Prisma {
     id?: number
     petName: string
     address: string
-    about?: PetPostCreateaboutInput | string[]
+    about: string
     image: string
     phoneNumber: number
     createdAt?: Date | string
@@ -13425,7 +13484,7 @@ export namespace Prisma {
   export type PetPostUpdateWithoutCategoryInput = {
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13444,7 +13503,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13463,7 +13522,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     petName?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    about?: PetPostUpdateaboutInput | string[]
+    about?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     phoneNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

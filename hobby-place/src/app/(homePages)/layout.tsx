@@ -31,7 +31,8 @@ export default function RootLayout({
               !pathName.includes("service") &&
               !pathName.includes("hospital/") &&
               !pathName.includes("homePage/") &&
-              !pathName.includes("petPost") && <Header />}
+              !pathName.includes("petPost") &&
+              !pathName.includes("chat") && <Header />}
 
             <div className={`h-full`}>{children}</div>
             <div

@@ -2,18 +2,14 @@
 import { usePetPost } from "@/app/provider/PetPostProvider";
 import { MapPin } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+// import { useState } from "react";
 
 /* eslint-disable @next/next/no-img-element */
 export const PetCards = () => {
-  const { petPost, petPostCategories } = usePetPost();
+  const { petPostCategories } = usePetPost();
+  // const [loading, setLoading] = useState();
+  // console.log(loading);
 
-  useEffect(() => {
-    if (petPostCategories.length > 0) {
-      console.log("Pet post categories set successfully:", petPostCategories);
-    } else {
-    }
-  }, [petPostCategories]);
   const router = useRouter();
   return (
     <div className="flex flex-col gap-4">
@@ -33,9 +29,7 @@ export const PetCards = () => {
               }
               return (
                 <div
-                  onClick={() =>
-                    router.push(`/homePage/${element?.id.toString()}`)
-                  }
+                  onClick={() => router.push(`/homePage/${element?.id}`)}
                   key={index}
                   className="w-2/7 h-fit p-1 border rounded-lg bg-white"
                 >
@@ -49,7 +43,7 @@ export const PetCards = () => {
                       <h2 className="text-xs font-bold mt-2">
                         {element.petName}
                       </h2>
-                      <p className=" text-xs flex items-center gap-1">
+                      <p className=" text-[8px] flex items-center gap-1">
                         <MapPin size={12} /> {element.address.split(" ")[0]}
                       </p>
                     </div>
@@ -62,42 +56,12 @@ export const PetCards = () => {
           </>
         ) : (
           <>
-            {petPost.map((element, index) => {
-              if (
-                element.price == 0 ||
-                element.price == undefined ||
-                element.price == null
-              ) {
-                return null;
-              }
-              return (
-                <div
-                  onClick={() =>
-                    router.push(`/homePage/${element.id.toString()}`)
-                  }
-                  key={index}
-                  className="w-2/7  f-fit p-1 border rounded-lg bg-white"
-                >
-                  <img
-                    alt=""
-                    src={element.image}
-                    className="w-full h-16 object-cover rounded-lg"
-                  />
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h2 className="text-xs font-bold mt-2">
-                        {element.petName}
-                      </h2>
-                      <p className=" text-xs flex items-center gap-1">
-                        <MapPin size={12} /> {element.address.split(" ")[0]}
-                      </p>
-                    </div>
-
-                    <p className="text-gray-500 text-xs">{element.price}$</p>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="flex flex-col items-center justify-center py-20 text-gray-500 w-full">
+              <h2 className="text-xl font-semibold">No pets available</h2>
+              <p className="mt-2 text-sm text-gray-400">
+                Please check back later or add a new listing.
+              </p>
+            </div>
           </>
         )}
       </div>
