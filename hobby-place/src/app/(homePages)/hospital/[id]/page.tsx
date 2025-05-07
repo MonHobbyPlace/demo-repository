@@ -5,20 +5,25 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Hospital } from "../_components/HospitalInfoBox";
-import { ChevronLeft, Clock10, Dot, MapPin } from "lucide-react";
 import { ContactInfo } from "./_components/ContactInfo";
-import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
-import L from "leaflet";
-
-// Import the necessary marker images
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
 import { RatingModal } from "./_components/RatingModal";
+import dynamic from "next/dynamic";
+import { ChevronLeft, Dot, MapPin, Clock10 } from "lucide-react";
+
+type LocationTabProps = {
+  location: string;
+};
+const LocationTab = dynamic<LocationTabProps>(
+  () => import("../../profile/_components/LocationTab"),
+  {
+    ssr: false,
+  }
+);
 export default function Home() {
   const { id } = useParams();
   const [hospital, setHospital] = useState([] as unknown as Hospital);
+  const [locationInfo, setLocationInfo] = useState("");
   const [loading, setLoading] = useState(false);
   const fetchData = async () => {
     try {
@@ -33,23 +38,31 @@ export default function Home() {
       setLoading(false);
     }
   };
+  const getLocationInfo = async () => {
+    const response = await axios.get(
+      `https://api.geoapify.com/v1/geocode/reverse?lat=${47.918033186514066}&lon=${106.91131171555548}&format=json&apiKey=${
+        process.env.NEXT_PUBLIC_LOCATION_API_KEY
+      }`
+    );
+    // setLocationInfo(response.data.result)
+    setLocationInfo(
+      `${
+        response.data.results[0].name +
+        " ," +
+        response.data.results[0].county +
+        " ," +
+        response.data.results[0].city
+      }`
+    );
+  };
   useEffect(() => {
     fetchData();
-    L.Icon.Default.mergeOptions({
-      iconUrl: markerIcon.src,
-      shadowUrl: markerShadow.src,
-    });
   }, []);
-  const defaultIcon = L.icon({
-    iconUrl: markerIcon.src,
-    shadowUrl: markerShadow.src,
-    iconSize: [25, 41], // size of the icon
-    iconAnchor: [12, 41], // point of the icon which will correspond to marker's location
-    shadowSize: [41, 41], // size of the shadow
-  });
-
-  L.Marker.prototype.options.icon = defaultIcon;
+  useEffect(() => {
+    getLocationInfo();
+  }, [hospital]);
   const router = useRouter();
+
   return (
     <div>
       {loading ? (
@@ -95,7 +108,7 @@ export default function Home() {
             </p>
             <div className="flex gap-2 items-center">
               <MapPin color="#03346E" size={18} />
-              <p>{hospital.location}</p>
+              <p>{locationInfo}</p>
             </div>
             <div className="flex gap-2 items-center">
               <Clock10 color="#03346E" size={18} />
@@ -118,22 +131,7 @@ export default function Home() {
                 );
               })}
             </div>
-            <MapContainer
-              center={[47.8864, 106.9057]}
-              zoom={13}
-              scrollWheelZoom={false}
-              className="h-[300px] w-full rounded-xl z-1"
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={[47.8864, 106.9057]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-              </Marker>
-            </MapContainer>
+            <LocationTab location={hospital.location} />
             <div></div>
             <div className="absolute bottom-3 w-full ">
               <ContactInfo hospital={hospital} />
