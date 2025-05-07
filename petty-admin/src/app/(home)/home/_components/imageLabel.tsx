@@ -8,7 +8,7 @@ export const ImageLabel = (props: {
 }) => {
   const { setBackImage, name, handleValueChange } = props;
   return (
-    <Label className="flex items-center gap-2 cursor-pointer">
+    <Label className="flex items-center gap-2 cursor-pointer h-[180px] border-2 justify-center rounded-md">
       <div className="w-12 h-12 rounded bg-gray-100 flex items-center justify-center">
         <Image className="text-gray-500" size={24} />
       </div>

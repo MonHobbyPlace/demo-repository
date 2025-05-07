@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Hospital } from "@/app/provider/HospitalProvider";
@@ -45,7 +46,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
           </div>
           <div className="flex gap-1 text-sm items-center">
             <Clock10 size={17} color="blue" />
-            <p>{hospital.location}</p>
+            <p>{hospital.workTime}</p>
           </div>
           <div className="flex gap-1 text-sm items-center">
             <Phone size={17} color="blue" />
@@ -80,7 +81,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
             </div>
             <div className="flex text-sm items-center gap-1">
               <Eye size={17} color="blue" />
-              <p>{hospital.views}</p>
+              <p>{hospital.viewQuantity}</p>
             </div>
           </div>
         </div>

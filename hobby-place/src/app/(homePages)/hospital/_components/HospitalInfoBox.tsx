@@ -26,19 +26,19 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
   const { user, likePost, unLikePost } = useProfile();
   const [userLiked, setUserLiked] = useState("");
-  const [liked, setLiked] = useState(
-    userLiked.includes(hospital.id.toString())
-  );
+  const [liked, setLiked] = useState(userLiked.includes("true"));
   const router = useRouter();
   useEffect(() => {
     const hospitalIds = user.LikedPost?.map((post) => {
       return post.hospitalId;
     });
-    setUserLiked(hospitalIds?.join() || "");
-    console.log(hospitalIds?.join());
+    const result = hospitalIds?.map((i) => {
+      return i === hospital.id;
+    });
+    setUserLiked(result?.join() || "");
   }, [hospital]);
   useEffect(() => {
-    setLiked(userLiked.includes(hospital.id.toString()));
+    setLiked(userLiked.includes("true"));
   }, [userLiked]);
   return (
     <div className="h-[120px] w-full flex  rounded-3xl justify-between text-black overflow-hidden gap-4 my-3 shadow-md border">

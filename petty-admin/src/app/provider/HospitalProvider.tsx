@@ -13,7 +13,7 @@ export type Hospital = {
   workTime: string;
   avatarImage: string[];
   about: string;
-  views?: number;
+  viewQuantity?: number;
   phoneNumber: number;
   category: string[];
   backgroundImage: string;

@@ -22,9 +22,9 @@ export default function RootLayout({
             <PetCategoryProvider>
               <HospitalProvider>
                 <Header />
-                <div className="flex">
+                <div className="flex ">
                   <Navigation />
-                  <div className="px-15">{children}</div>
+                  <div className="px-15 w-full">{children}</div>
                 </div>
               </HospitalProvider>
             </PetCategoryProvider>
