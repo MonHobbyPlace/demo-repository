@@ -43,7 +43,7 @@ model PetPost {
   id            Int           @id @default(autoincrement())
   petName       String
   address       String
-  about         String[]
+  about         String
   image         String
   phoneNumber   Int
   createdAt     DateTime      @default(now())
@@ -91,7 +91,6 @@ model Hospital {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   rating          Float    @default(0)
-
   location        String
   phoneNumber     Int
   workTime        String

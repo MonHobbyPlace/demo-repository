@@ -38,9 +38,7 @@ export const AdoptMeCrausel = () => {
           return (
             <CarouselItem key={index}>
               <img
-                onClick={() =>
-                  router.push(`/homePage/${element.id.toString()}`)
-                }
+                onClick={() => router.push(`/homePage/${element.id}`)}
                 alt=""
                 src={element.image}
                 className="w-full  object-cover"

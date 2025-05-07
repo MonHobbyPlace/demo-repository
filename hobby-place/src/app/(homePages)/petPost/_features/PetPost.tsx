@@ -43,6 +43,7 @@ export const PetPosts = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedOption, setSelectedOption] = useState<string[]>([]);
   const [other, setOther] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleFileChange = async (
@@ -78,6 +79,7 @@ export const PetPosts = () => {
 
   const uploadToCloudinary = async (file: File, type: "image" | "video") => {
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
@@ -93,6 +95,8 @@ export const PetPosts = () => {
     } catch (error) {
       console.error("Cloudinary upload failed:", error);
       return null;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -134,31 +138,39 @@ export const PetPosts = () => {
                 className="cursor-pointers"
               />
               <div className="relative h-60 rounded-2xl bg-gray-100 flex justify-center items-center overflow-hidden border-2 border-dashed border-gray-300 hover:border-gray-500 transition">
-                <label
-                  htmlFor="image"
-                  className="absolute z-10 text-gray-600 font-semibold text-sm cursor-pointer"
-                >
-                  {imagePreview ? "" : "Click to Upload Image"}
-                </label>
-                <Field name="image">
-                  {({ form }: { form: FormikProps<MyFormValues> }) => (
-                    <input
-                      id="image"
-                      type="file"
-                      accept="image/*"
-                      hidden
-                      onChange={(event) =>
-                        handleFileChange(event, form.setFieldValue, "image")
-                      }
-                    />
-                  )}
-                </Field>
-                {imagePreview && (
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    className="absolute inset-0 object-cover w-full h-full rounded-2xl"
-                  />
+                {loading === true ? (
+                  <>
+                    <span className="loading loading-spinner loading-sm"></span>
+                  </>
+                ) : (
+                  <>
+                    <label
+                      htmlFor="image"
+                      className="absolute z-10 text-gray-600 font-semibold text-sm cursor-pointer"
+                    >
+                      {imagePreview ? "" : "Click to Upload Image"}
+                    </label>
+                    <Field name="image">
+                      {({ form }: { form: FormikProps<MyFormValues> }) => (
+                        <input
+                          id="image"
+                          type="file"
+                          accept="image/*"
+                          hidden
+                          onChange={(event) =>
+                            handleFileChange(event, form.setFieldValue, "image")
+                          }
+                        />
+                      )}
+                    </Field>
+                    {imagePreview && (
+                      <img
+                        src={imagePreview}
+                        alt="Preview"
+                        className="absolute inset-0 object-cover w-full h-full rounded-2xl"
+                      />
+                    )}
+                  </>
                 )}
               </div>
               <ErrorMessage
@@ -281,36 +293,48 @@ export const PetPosts = () => {
                     />
                   </TabsContent>
                 </Tabs>
-
-                <div>
-                  <label className="block mb-1 text-sm font-medium text-gray-700">
-                    Video
-                  </label>
-                  <Field name="video">
-                    {({ form }: { form: FormikProps<MyFormValues> }) => (
-                      <input
-                        type="file"
-                        accept="video/*"
-                        onChange={(event) =>
-                          handleFileChange(event, form.setFieldValue, "video")
-                        }
-                        className="block w-full text-sm text-gray-600"
+                {loading === true ? (
+                  <>
+                    {" "}
+                    <span className="loading loading-spinner loading-sm"></span>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-gray-700">
+                        Video
+                      </label>
+                      <Field name="video">
+                        {({ form }: { form: FormikProps<MyFormValues> }) => (
+                          <input
+                            type="file"
+                            accept="video/*"
+                            onChange={(event) =>
+                              handleFileChange(
+                                event,
+                                form.setFieldValue,
+                                "video"
+                              )
+                            }
+                            className="block w-full text-sm text-gray-600"
+                          />
+                        )}
+                      </Field>
+                      <ErrorMessage
+                        name="video"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
                       />
-                    )}
-                  </Field>
-                  <ErrorMessage
-                    name="video"
-                    component="div"
-                    className="text-red-500 text-sm mt-1"
-                  />
-                  {videoPreview && (
-                    <video
-                      className="mt-4 rounded-lg shadow-md w-full"
-                      controls
-                      src={videoPreview}
-                    />
-                  )}
-                </div>
+                      {videoPreview && (
+                        <video
+                          className="mt-4 rounded-lg shadow-md w-full"
+                          controls
+                          src={videoPreview}
+                        />
+                      )}
+                    </div>
+                  </>
+                )}
 
                 <FieldBlock
                   name="phoneNumber"
@@ -402,6 +426,7 @@ export const PetPosts = () => {
                 <Button
                   type="submit"
                   className="w-full mt-4 text-lg py-6 rounded-xl"
+                  onClick={() => router.push("/profile")}
                 >
                   Submit Pet
                 </Button>

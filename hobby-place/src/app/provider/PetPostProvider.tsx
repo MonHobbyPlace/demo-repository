@@ -13,6 +13,7 @@ type petPostContextType = {
   petPostCategorys: (id: number) => Promise<void>;
   petPostCategories: petPostType[];
   createPetPost: (values: petPostType) => Promise<void>;
+  loading: boolean;
 };
 
 const PetPostContext = createContext<petPostContextType>(
@@ -27,12 +28,14 @@ export const PetPostProvider = ({
   const [petPostCategories, setPetPostCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const petPostCategorys = async (id: number) => {
-    console.log(id);
-
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${id}`
-    );
-    setPetPostCategories(response.data.data);
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${id}`
+      );
+      setPetPostCategories(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
 
@@ -76,8 +79,6 @@ export const PetPostProvider = ({
 
   const { user } = useProfile();
 
-
-
   const createPetPost = async (values: petPostType) => {
     try {
       const response = await axios.post(
@@ -104,6 +105,7 @@ export const PetPostProvider = ({
         petPostCategorys,
         petPostCategories,
         createPetPost,
+        loading,
       }}
     >
       {loading ? (
