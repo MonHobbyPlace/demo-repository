@@ -37,7 +37,7 @@ const LocationTab = (props: { location: string }) => {
           ]}
           zoom={13}
           scrollWheelZoom={false}
-          className="h-[300px] w-full rounded-xl z-1"
+          className="h-[280px] w-full rounded-xl z-1"
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
