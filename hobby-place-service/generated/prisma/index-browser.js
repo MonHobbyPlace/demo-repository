@@ -133,12 +133,25 @@ exports.Prisma.UserScalarFieldEnum = {
   backgroundImage: 'backgroundImage'
 };
 
+exports.Prisma.ConversationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConversationParticipantScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  conversationId: 'conversationId'
+};
+
 exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
   content: 'content',
   timestamp: 'timestamp',
   senderId: 'senderId',
-  recieverId: 'recieverId'
+  receiverId: 'receiverId',
+  conversationId: 'conversationId'
 };
 
 exports.Prisma.PetPostScalarFieldEnum = {
@@ -172,7 +185,6 @@ exports.Prisma.ServicePostScalarFieldEnum = {
   updatedAt: 'updatedAt',
   userId: 'userId',
   age: 'age',
-  purpose: 'purpose',
   petCategoryId: 'petCategoryId',
   serviceId: 'serviceId',
   cost: 'cost',
@@ -258,6 +270,8 @@ exports.PetPostEnum = exports.$Enums.PetPostEnum = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Conversation: 'Conversation',
+  ConversationParticipant: 'ConversationParticipant',
   Message: 'Message',
   PetPost: 'PetPost',
   ServicePost: 'ServicePost',
