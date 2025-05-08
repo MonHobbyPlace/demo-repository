@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  id              Int           @id @unique @default(autoincrement())
+  id              Int           @id @default(autoincrement())
   email           String        @unique
   password        String
   username        String        @unique
@@ -25,20 +25,25 @@ model User {
   PetPost         PetPost[]
   ServicePost     ServicePost[]
   location        String?
-  profileImage    String? @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746525802/default-avatar-profile-icon-vector-social-media-user-image-182145777_qn3gkq.webp")
-  backgroundImage String       @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746526348/images_bhplq5.jpg")
-  messages        Message[]
-  Views Views[]
-  LikedPost LikedPost[]
+  profileImage    String?       @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746525802/default-avatar-profile-icon-vector-social-media-user-image-182145777_qn3gkq.webp")
+  backgroundImage String        @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746526348/images_bhplq5.jpg")
+  sentMessages    Message[]     @relation("SentMessages")
+  receivedMessages Message[]    @relation("ReceivedMessages")
+  Views           Views[]
+  LikedPost       LikedPost[]
 }
 
 model Message {
-  id        String   @id @default(uuid())
-  content   String
-  timestamp DateTime @default(now())
-  senderId  Int
-  sender    User   @relation(fields: [senderId], references: [id])
+  id         Int      @id @default(autoincrement())
+  content    String
+  timestamp  DateTime @default(now())
+  senderId   Int
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  recieverId Int
+  reciever   User     @relation("ReceivedMessages", fields: [recieverId], references: [id])
 }
+
+
 
 model PetPost {
   id            Int           @id @default(autoincrement())

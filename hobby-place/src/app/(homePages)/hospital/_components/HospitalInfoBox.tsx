@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client";
-
 /* eslint-disable @next/next/no-img-element */
+"use client";
 
 export type Hospital = {
   id: number;
@@ -18,6 +17,7 @@ export type Hospital = {
   rating: string;
 };
 import { useProfile } from "@/app/provider/ProfileProvider";
+import axios from "axios";
 import { Clock10, Heart, PawPrint } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -26,9 +26,26 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
   const { user, likePost, unLikePost } = useProfile();
   const [userLiked, setUserLiked] = useState("");
+  const [locationInfo, setLocationInfo] = useState("");
+
   const [liked, setLiked] = useState(userLiked.includes("true"));
   const router = useRouter();
+  const getLocationInfo = async () => {
+    if (hospital.location) {
+      const response = await axios.get(
+        `https://api.geoapify.com/v1/geocode/reverse?lat=${
+          hospital.location.split(",")[0]
+        }&lon=${hospital.location.split(",")[1]}&format=json&apiKey=${
+          process.env.NEXT_PUBLIC_LOCATION_API_KEY
+        }`
+      );
+      setLocationInfo(
+        `${response.data.results[0].formatted.split("Mongolia")[0]}`
+      );
+    }
+  };
   useEffect(() => {
+    getLocationInfo();
     const hospitalIds = user.LikedPost?.map((post) => {
       return post.hospitalId;
     });
@@ -47,7 +64,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
           <div className="flex flex-col px-3 w-[90%] justify-around">
             <div>
               <p className=" text-[#023e8a] font-bold text-[12px] w-full whitespace-nowrap overflow-hidden text-ellipsis">
-                {hospital.location}
+                {locationInfo}
               </p>
               <p className="text-sm text-[#213555] font-bold ">
                 {hospital.name}

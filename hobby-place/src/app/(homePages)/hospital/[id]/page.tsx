@@ -41,18 +41,19 @@ export default function Home() {
     }
   };
   const getLocationInfo = async () => {
-    if (!hospital) return;
-    const response = await axios.get(
-      `https://api.geoapify.com/v1/geocode/reverse?lat=${
-        hospital.location.split(",")[0]
-      }&lon=${hospital.location.split(",")[1]}&format=json&apiKey=${
-        process.env.NEXT_PUBLIC_LOCATION_API_KEY
-      }`
-    );
-    setLocationInfo(
-      `${response.data.results[0].formatted.split("Mongolia")[0]}`
-    );
-    console.log(response.data.results[0].formatted);
+    if (hospital.location) {
+      const response = await axios.get(
+        `https://api.geoapify.com/v1/geocode/reverse?lat=${
+          hospital.location.split(",")[0]
+        }&lon=${hospital.location.split(",")[1]}&format=json&apiKey=${
+          process.env.NEXT_PUBLIC_LOCATION_API_KEY
+        }`
+      );
+      setLocationInfo(
+        `${response.data.results[0].formatted.split("Mongolia")[0]}`
+      );
+      console.log(response.data.results[0].formatted);
+    }
   };
   useEffect(() => {
     fetchData();
@@ -107,7 +108,7 @@ export default function Home() {
               {hospital.name}
             </p>
             <div className="flex gap-2 items-center">
-              <MapPin color="#03346E" size={18} />
+              <MapPin color="#03346E" size={24} />
               <p>{locationInfo}</p>
             </div>
             <div className="flex gap-2 items-center">
