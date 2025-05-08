@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useFormik } from "formik";
-import { Plus } from "lucide-react";
+import { Pen, Plus } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
 import { ImageFrame } from "./ImageFrame";
@@ -58,7 +58,9 @@ export const AddHospitalModal = (props: {
     avatarImage: string[];
     category: string[];
   };
+  triggerName: string;
 }) => {
+  const { initialValues, triggerName } = props;
   const [backImage, setBackImage] = useState<File | null>();
   const [avatarImages, setAvatarImages] = useState<File[] | null | string[]>(
     []
@@ -66,17 +68,7 @@ export const AddHospitalModal = (props: {
   const { addHospital } = useHospital();
   const formik = useFormik({
     validationSchema: validationSchema,
-    initialValues: {
-      name: "",
-      backgroundImage: "",
-      about: "",
-      phoneNumber: 0,
-      workTime: "",
-      avatarImage: ["", "", "", ""],
-      category: [""],
-      email: "",
-      location: "",
-    },
+    initialValues: initialValues,
     onSubmit: async (values) => {
       try {
         const uploadedBackgroundImg = await uploadImageToCloudinary(backImage);
@@ -117,15 +109,21 @@ export const AddHospitalModal = (props: {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="w-[49%] h-[290px] border-3 text-lg border-dashed border-blue-500 text-blue-500 hover:opacity-80 hover:text-blue-400 "
-        >
-          <div className="p-5 rounded-full bg-blue-400 ">
-            <Plus color="white" size={20} />
-          </div>
-          <p>Add new hospital</p>
-        </Button>
+        {triggerName == "add" ? (
+          <Button
+            variant="outline"
+            className="w-[49%] h-[290px] border-3 text-lg border-dashed border-blue-500 text-blue-500 hover:opacity-80 hover:text-blue-400 "
+          >
+            <div className="p-5 rounded-full bg-blue-400 ">
+              <Plus color="white" size={20} />
+            </div>
+            <p>Add new hospital</p>
+          </Button>
+        ) : (
+          <Button className="rounded-full bg-white border-2  ">
+            <Pen color="gray" />
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[1200px] sm:max-h-[80%] bg-white  overflow-scroll">
         <DialogHeader>

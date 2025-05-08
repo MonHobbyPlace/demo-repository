@@ -43,7 +43,9 @@ export function AddCategoryModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="rounded-full bg-blue-700 p-7">Add new</Button>
+        <Button className="rounded-full bg-blue-700 p-7">
+          Add new category
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
