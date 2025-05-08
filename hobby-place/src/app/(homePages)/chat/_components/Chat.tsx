@@ -1,80 +1,56 @@
-'use client';
+"use client"
 
-import React, { useState, useCallback, useEffect } from 'react';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import { useEffect, useState } from "react";
+import io from "socket.io-client";
+const socket = io("http://localhost:4000"); // your backend server
 
-export const WebSocketDemo = () => {
-  const [socketUrl, setSocketUrl] = useState('wss://echo.websocket.org');
-  const [messageHistory, setMessageHistory] = useState([]);
+export default function Chat() {
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  const sendMessage = () => {
+    const newMsg = {
+      senderId: 1,
+      receiverId: 2,
+      content: message,
+      conversationId: 123,
+    };
+    // Send via HTTP to save in DB
+    fetch("http://localhost:4000/chat/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newMsg),
+    });
+
+    // Emit via WebSocket
+    socket.emit("chatMessage", newMsg);
+    setMessage("");
+  };
 
   useEffect(() => {
-    if (lastMessage !== null) {
-      setMessageHistory((prev) => [...prev, lastMessage]);
-    }
-  }, [lastMessage]);
+    socket.on("chatMessage", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
 
-  const handleChangeSocketUrl = useCallback(() => {
-    setSocketUrl('wss://demos.kaazing.com/echo');
+    return () => {
+      socket.off("chatMessage");
+    };
   }, []);
 
-  const handleSendMessage = useCallback(() => {
-    sendMessage('Hello');
-  }, [sendMessage]);
-
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: 'Connecting...',
-    [ReadyState.OPEN]: 'Connected ✅',
-    [ReadyState.CLOSING]: 'Closing...',
-    [ReadyState.CLOSED]: 'Disconnected ❌',
-    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-  }[readyState];
-
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-md space-y-6">
-      <h1 className="text-2xl font-semibold text-center">WebSocket Demo</h1>
-
-      <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-        <button
-          onClick={handleChangeSocketUrl}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Change Socket URL
-        </button>
-        <button
-          onClick={handleSendMessage}
-          disabled={readyState !== ReadyState.OPEN}
-          className={`px-4 py-2 rounded-lg transition ${
-            readyState === ReadyState.OPEN
-              ? 'bg-green-600 text-white hover:bg-green-700'
-              : 'bg-gray-400 text-white cursor-not-allowed'
-          }`}
-        >
-          Send "Hello"
-        </button>
-      </div>
-
-      <div className="text-center text-lg font-medium">
-        WebSocket Status: <span className="font-semibold">{connectionStatus}</span>
-      </div>
-
-      {lastMessage && (
-        <div className="text-center text-gray-700">
-          Last message: <span className="font-mono">{lastMessage.data}</span>
-        </div>
-      )}
-
+    <div>
+      <h2>Chat</h2>
       <div>
-        <h2 className="text-lg font-semibold mb-2">Message History</h2>
-        <ul className="bg-gray-100 rounded-lg p-4 space-y-2 max-h-64 overflow-y-auto">
-          {messageHistory.map((message, idx) => (
-            <li key={idx} className="font-mono text-sm text-gray-800">
-              {message?.data}
-            </li>
-          ))}
-        </ul>
+        {messages.map((msg, idx) => (
+          <p key={idx}>{msg.content}</p>
+        ))}
       </div>
+      <input
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Type message..."
+      />
+      <button onClick={sendMessage}>Send</button>
     </div>
   );
-};
+}
