@@ -27,7 +27,20 @@ export default function AllHospitals() {
         })}
       </div>
       <div className="flex flex-wrap gap-2 max-w-[1200px]">
-        <AddHospitalModal />
+        <AddHospitalModal
+          initialValues={{
+            name: "",
+            backgroundImage: "",
+            about: "",
+            phoneNumber: 0,
+            workTime: "",
+            avatarImage: ["", "", "", ""],
+            category: [""],
+            email: "",
+            location: "",
+          }}
+          triggerName="add"
+        />
         {!loading &&
           hospitals?.map((hospital, index) => {
             return <HospitalInfoBox key={index} hospital={hospital} />;

@@ -12,11 +12,12 @@ import {
   Phone,
   StarIcon,
 } from "lucide-react";
+import { AddHospitalModal } from "./AddHospitalModal";
 
 export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
   return (
-    <div className="w-[49%] p-4 border border-gray-300 rounded-md">
+    <div className="w-[49%] p-4 border border-gray-300 rounded-md relative">
       <div className="w-full flex gap-2">
         <img
           src={hospital.backgroundImage}
@@ -85,6 +86,9 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute right-4 bottom-4">
+        <AddHospitalModal initialValues={hospital} triggerName="edit" />
       </div>
     </div>
   );

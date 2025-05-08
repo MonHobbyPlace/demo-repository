@@ -41,21 +41,18 @@ export default function Home() {
     }
   };
   const getLocationInfo = async () => {
+    if (!hospital) return;
     const response = await axios.get(
-      `https://api.geoapify.com/v1/geocode/reverse?lat=${47.918033186514066}&lon=${106.91131171555548}&format=json&apiKey=${
+      `https://api.geoapify.com/v1/geocode/reverse?lat=${
+        hospital.location.split(",")[0]
+      }&lon=${hospital.location.split(",")[1]}&format=json&apiKey=${
         process.env.NEXT_PUBLIC_LOCATION_API_KEY
       }`
     );
-    // setLocationInfo(response.data.result)
     setLocationInfo(
-      `${
-        response.data.results[0].name +
-        ", " +
-        response.data.results[0].county +
-        ", " +
-        response.data.results[0].city
-      }`
+      `${response.data.results[0].formatted.split("Mongolia")[0]}`
     );
+    console.log(response.data.results[0].formatted);
   };
   useEffect(() => {
     fetchData();
