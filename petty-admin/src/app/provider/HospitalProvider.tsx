@@ -72,8 +72,11 @@ export const HospitalProvider = ({
         values
       );
       console.log(response);
+      await refetch();
     } catch (error) {
       console.log(error);
+    } finally {
+      refetch();
     }
   };
 

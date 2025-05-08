@@ -14,7 +14,7 @@ export default function AllHospitals() {
   const [loading, setLoading] = useState();
   return (
     <div className="w-full flex flex-col gap-5 items-center justify-center">
-      <div className=" flex flex-wrap gap-3 sticky top-[120px] z-50 bg-white p-5">
+      <div className=" flex flex-wrap gap-3 sticky top-[120px] z-50 bg-white p-5 w-[1200px]">
         <AddCategoryModal />
         {category.map((cat, index) => {
           return (
