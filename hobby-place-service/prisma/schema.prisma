@@ -25,11 +25,11 @@ model User {
   PetPost         PetPost[]
   ServicePost     ServicePost[]
   location        String?
-  profileImage    String? @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746525802/default-avatar-profile-icon-vector-social-media-user-image-182145777_qn3gkq.webp")
-  backgroundImage String       @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746526348/images_bhplq5.jpg")
+  profileImage    String?       @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746525802/default-avatar-profile-icon-vector-social-media-user-image-182145777_qn3gkq.webp")
+  backgroundImage String        @default("https://res.cloudinary.com/dszot6j60/image/upload/v1746526348/images_bhplq5.jpg")
   messages        Message[]
-  Views Views[]
-  LikedPost LikedPost[]
+  Views           Views[]
+  LikedPost       LikedPost[]
 }
 
 model Message {
@@ -37,7 +37,7 @@ model Message {
   content   String
   timestamp DateTime @default(now())
   senderId  Int
-  sender    User   @relation(fields: [senderId], references: [id])
+  sender    User     @relation(fields: [senderId], references: [id])
 }
 
 model PetPost {
@@ -84,30 +84,33 @@ model ServicePost {
 }
 
 model Hospital {
-  id              Int       @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   name            String
   about           String
   avatarImage     String[]
   email           String
   backgroundImage String
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  rating          String    @default("0")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  rating          String   @default("0")
   location        String
   phoneNumber     Int
   workTime        String
   category        String[]
-  views           Views[]   @relation("hospitalViews")
+  views           Views[]  @relation("hospitalViews")
 
   LikedPost LikedPost[] @relation("LikedHospital")
 }
-model LikedPost{
-  owner User  @relation(fields: [userId], references: [id])
+
+model LikedPost {
+  owner      User     @relation(fields: [userId], references: [id])
   userId     Int
-hospital Hospital @relation("LikedHospital",fields: [hospitalId], references: [id])
-hospitalId Int
-@@id([userId,hospitalId])
+  hospital   Hospital @relation("LikedHospital", fields: [hospitalId], references: [id])
+  hospitalId Int
+
+  @@id([userId, hospitalId])
 }
+
 model Views {
   viewer     User     @relation(fields: [userId], references: [id])
   userId     Int

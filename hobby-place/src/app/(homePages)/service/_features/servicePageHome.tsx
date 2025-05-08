@@ -16,7 +16,7 @@ export const ServicePageHome = () => {
       setSelectedId(first.id);
       fetchServicesByCategory(first.id);
     }
-  }, []);
+  }, [fetchServicesByCategory, selectedId, serviceCategories]);
 
   const handleCategoryClick = (id: number) => {
     setSelectedId(id);
@@ -26,13 +26,7 @@ export const ServicePageHome = () => {
   return (
     <div className="p-4 space-y-6 max-w-md mx-auto bg-white min-h-screen">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-2xl font-bold">Offers</h2>
-        <Link
-          href={`/homePages/service/${selectedId}`}
-          className="text-sm text-blue-600"
-        >
-          See all
-        </Link>
+        <h2 className="text-2xl font-bold">Activities</h2>
       </div>
 
       <div className="flex gap-2 overflow-x-auto">

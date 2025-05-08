@@ -15,7 +15,7 @@ export const Three = () => {
       setSelectedId(first.id);
       fetchServicesByCategory(first.id);
     }
-  }, []);
+  }, [fetchServicesByCategory, selectedId, serviceCategories]);
 
   const handleCategoryClick = (id: number) => {
     setSelectedId(id);

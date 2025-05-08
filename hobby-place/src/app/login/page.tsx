@@ -34,7 +34,7 @@ export default function LogIn() {
       setLoading(true);
 
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/users/google-login`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/login`,
         user
       );
 
@@ -42,11 +42,10 @@ export default function LogIn() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.user.id);
 
-        // Check user role and route accordingly
         if (data.user.role === "admin") {
-          router.push("/home"); // Admin homepage
+          router.push("/home");
         } else {
-          router.push("/homePage"); // User homepage
+          router.push("/homePage");
         }
 
         toast.success("Login successful!");
