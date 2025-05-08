@@ -5,14 +5,15 @@ export const addNewMessage = async (req: Request, res: Response) => {
   try {
     console.log(req.body);
 
-    const newMessage = await prisma.message.create({
-      data: {
-        content: message,
-        senderId,
-        recieverId,
-      },
-    });
-    res.status(200).json(newMessage);
+    // const newMessage = await prisma.message.create({
+    //   data: {
+    //     content: message,
+    //     senderId,
+    //     receiverId:recieverId
+
+    //   },
+    // });
+    // res.status(200).json(newMessage);
   } catch (error) {
     res.status(500).json({
       error: true,
