@@ -9,10 +9,12 @@ export const getAll = async (req: Request, res: Response) => {
       },
     });
 
-    const hospitalsWithViewCount = hospitals.map((hospital) => ({
-      ...hospital,
-      viewQuantity: hospital.views.length,
-    }));
+    const hospitalsWithViewCount = hospitals.map( (hospital) => {
+      return {
+        ...hospital,
+        viewQuantity: hospital.views.length,
+      };
+    });
 
     res.status(200).json({ data: hospitalsWithViewCount });
   } catch (error) {

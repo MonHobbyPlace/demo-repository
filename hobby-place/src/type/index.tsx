@@ -56,4 +56,5 @@ export const validationSchema = Yup.object({
 export type categoryType = {
   name: string;
   id: string;
+  image?: string;
 };

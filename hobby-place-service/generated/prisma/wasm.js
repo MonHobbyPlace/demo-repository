@@ -137,7 +137,8 @@ exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
   content: 'content',
   timestamp: 'timestamp',
-  senderId: 'senderId'
+  senderId: 'senderId',
+  recieverId: 'recieverId'
 };
 
 exports.Prisma.PetPostScalarFieldEnum = {
