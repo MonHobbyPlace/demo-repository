@@ -100,7 +100,6 @@ export const AddHospitalModal = (props: {
           if (typeof img !== "string") {
             const uploaded = await uploadImageToCloudinary(img as File);
             avatarImages[index] = uploaded;
-            console.log(uploaded);
           } else {
             avatarImages[index] = img;
           }
