@@ -24,7 +24,7 @@ export default function OnboardingThree() {
 
       <div className="flex gap-4 w-full max-w-md">
         <button
-          onClick={() => router.push("/sign-up")}
+          onClick={() => router.push("/login")}
           className="bg-white text-blue-400 font-semibold rounded-full w-full py-3"
         >
           Sign up

@@ -34,6 +34,7 @@ model User {
 }
 
 model Message {
+
   id         Int      @id @default(autoincrement())
   content    String
   timestamp  DateTime @default(now())
@@ -89,30 +90,33 @@ model ServicePost {
 }
 
 model Hospital {
-  id              Int       @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   name            String
   about           String
   avatarImage     String[]
   email           String
   backgroundImage String
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  rating          String    @default("0")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  rating          String   @default("0")
   location        String
   phoneNumber     Int
   workTime        String
   category        String[]
-  views           Views[]   @relation("hospitalViews")
+  views           Views[]  @relation("hospitalViews")
 
   LikedPost LikedPost[] @relation("LikedHospital")
 }
-model LikedPost{
-  owner User  @relation(fields: [userId], references: [id])
+
+model LikedPost {
+  owner      User     @relation(fields: [userId], references: [id])
   userId     Int
-hospital Hospital @relation("LikedHospital",fields: [hospitalId], references: [id])
-hospitalId Int
-@@id([userId,hospitalId])
+  hospital   Hospital @relation("LikedHospital", fields: [hospitalId], references: [id])
+  hospitalId Int
+
+  @@id([userId, hospitalId])
 }
+
 model Views {
   viewer     User     @relation(fields: [userId], references: [id])
   userId     Int

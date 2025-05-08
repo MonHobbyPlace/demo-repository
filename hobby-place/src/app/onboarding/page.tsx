@@ -35,7 +35,7 @@ export default function Onboarding() {
         Back
       </button>
       <button
-        onClick={() => router.push("/sign-up")}
+        onClick={() => router.push("/login")}
         className="absolute top-6 right-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px]"
       >
         Skip
