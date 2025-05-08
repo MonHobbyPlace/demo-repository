@@ -22,7 +22,7 @@ import { AvatarImageFrame } from "./AvatarImageFrame";
 import { AvatarImageLabel } from "./AvatarImageLabel";
 import { MapWithDraggableMarker } from "./LocationTab";
 import { ChooseCategory } from "./ChooseCategory";
-import { useHospital } from "@/app/provider/HospitalProvider";
+import { Hospital, useHospital } from "@/app/provider/HospitalProvider";
 import { uploadImageToCloudinary } from "@/utils/uploadImageToCloudinary";
 
 const validationSchema = yup.object({
@@ -59,28 +59,54 @@ export const AddHospitalModal = (props: {
     category: string[];
   };
   triggerName: string;
+  id?: number;
 }) => {
-  const { initialValues, triggerName } = props;
-  const [backImage, setBackImage] = useState<File | null>();
-  const [avatarImages, setAvatarImages] = useState<File[] | null | string[]>(
-    []
+  const { initialValues, triggerName, id } = props;
+  const [backImage, setBackImage] = useState<File | null | string>(
+    initialValues.backgroundImage
   );
-  const { addHospital } = useHospital();
+  const [avatarImages, setAvatarImages] = useState<File[] | null | string[]>(
+    initialValues.avatarImage
+  );
+  const { addHospital, updateHospitalInfo } = useHospital();
+  const uploadInfo = async (
+    values: Hospital,
+    uploadedBackgroundImg: string
+  ) => {
+    if (triggerName === "add") {
+      await addHospital({
+        ...values,
+        backgroundImage: uploadedBackgroundImg,
+        avatarImage: avatarImages as string[],
+      });
+    } else {
+      await updateHospitalInfo({
+        ...values,
+        backgroundImage: uploadedBackgroundImg,
+        avatarImage: avatarImages as string[],
+        id: id,
+      });
+    }
+  };
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: initialValues,
     onSubmit: async (values) => {
       try {
-        const uploadedBackgroundImg = await uploadImageToCloudinary(backImage);
+        const uploadedBackgroundImg = await uploadImageToCloudinary(
+          backImage as File
+        );
         avatarImages?.map(async (img, index) => {
-          const uploaded = await uploadImageToCloudinary(img as File);
-          avatarImages[index] = uploaded;
+          if (typeof img !== "string") {
+            const uploaded = await uploadImageToCloudinary(img as File);
+            avatarImages[index] = uploaded;
+            console.log(uploaded);
+          } else {
+            avatarImages[index] = img;
+          }
         });
-        await addHospital({
-          ...values,
-          backgroundImage: uploadedBackgroundImg,
-          avatarImage: avatarImages as string[],
-        });
+
+        await uploadInfo(values, uploadedBackgroundImg);
       } catch (error) {
         console.log(error);
       }
@@ -127,7 +153,12 @@ export const AddHospitalModal = (props: {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[1200px] sm:max-h-[80%] bg-white  overflow-scroll">
         <DialogHeader>
-          <DialogTitle>Add new hospital</DialogTitle>
+          {triggerName === "add" ? (
+            <DialogTitle>Add new hospital</DialogTitle>
+          ) : (
+            <DialogTitle>Update hospital</DialogTitle>
+          )}
+
           <DialogDescription>
             Enter hospital information in all field.
           </DialogDescription>
@@ -294,8 +325,8 @@ export const AddHospitalModal = (props: {
               <p>{formik.errors.location}</p>
             </div>
           </div>
-          <Button className="w-full p-7 my-6" type="submit">
-            Add
+          <Button className="w-full p-7 my-6 text-md font-bold" type="submit">
+            {triggerName === "add" ? "Add" : "Update"}
           </Button>
         </form>
       </DialogContent>

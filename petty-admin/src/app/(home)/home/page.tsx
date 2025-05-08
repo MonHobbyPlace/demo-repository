@@ -14,7 +14,7 @@ export default function AllHospitals() {
   const [loading, setLoading] = useState();
   return (
     <div className="w-full flex flex-col gap-5 items-center justify-center">
-      <div className=" flex flex-wrap gap-3 ">
+      <div className=" flex flex-wrap gap-3 sticky top-[120px] z-50 bg-white p-5">
         <AddCategoryModal />
         {category.map((cat, index) => {
           return (
@@ -26,7 +26,7 @@ export default function AllHospitals() {
           );
         })}
       </div>
-      <div className="flex flex-wrap gap-2 max-w-[1200px]">
+      <div className="flex flex-wrap gap-2 max-w-[1200px] p-5">
         <AddHospitalModal
           initialValues={{
             name: "",

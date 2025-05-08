@@ -2,7 +2,7 @@ import { Label } from "@radix-ui/react-label";
 import { Image } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 export const ImageLabel = (props: {
-  setBackImage: Dispatch<SetStateAction<File | null | undefined>>;
+  setBackImage: Dispatch<SetStateAction<string | File | null>>;
   name: string;
   handleValueChange: (name: string, value: string) => void;
 }) => {

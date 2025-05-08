@@ -16,6 +16,8 @@ import { AddHospitalModal } from "./AddHospitalModal";
 
 export const HospitalInfoBox = (props: { hospital: Hospital }) => {
   const { hospital } = props;
+  console.log(hospital);
+
   return (
     <div className="w-[49%] p-4 border border-gray-300 rounded-md relative">
       <div className="w-full flex gap-2">
@@ -88,7 +90,11 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
         </div>
       </div>
       <div className="absolute right-4 bottom-4">
-        <AddHospitalModal initialValues={hospital} triggerName="edit" />
+        <AddHospitalModal
+          initialValues={hospital}
+          triggerName="edit"
+          id={hospital.id}
+        />
       </div>
     </div>
   );
