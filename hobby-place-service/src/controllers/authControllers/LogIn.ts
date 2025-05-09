@@ -40,15 +40,15 @@ export const LogIn = async (req: Request, res: Response) => {
         );
 
         if (user.role === "ADMIN") {
-          res.status(200).send({
-            success: true,
-            message: "logged in",
-            token: token,
-            user: {
-              id: user.id,
+          res
+            .send({
+              success: true,
+              message: "logged in",
+              token: token,
+              userId: user.id,
               role: user.role,
-            },
-          });
+            })
+            .status(200);
         } else {
           res.status(200).send({
             success: true,
