@@ -62,7 +62,7 @@ io.on("connection", (socket) => {
         conversationId: Number(msg.room),
       },
     });
-    socket.broadcast.emit("chatMessage", msg);
+    socket.broadcast.emit("chatMessage", msg.content);
     socket.emit("chatMessage", msg.content);
   });
   socket.on("join_room", (id) => {
