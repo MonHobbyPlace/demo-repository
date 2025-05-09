@@ -10,7 +10,7 @@ export const PostTabs = () => {
   const router = useRouter();
 
   return (
-    <Tabs defaultValue="pet" className="w-full h-full">
+    <Tabs defaultValue="Active" className="w-full h-full">
       <TabsList className="grid w-full grid-cols-3">
         <TabsTrigger value="Active">Active posts</TabsTrigger>
         <TabsTrigger value="False">Inactive posts</TabsTrigger>
