@@ -1,19 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import { useProfile } from "@/app/provider/ProfileProvider";
 import { petPostType } from "@/type/index";
 import axios from "axios";
 import { ChevronLeft, MapPin } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 /* eslint-disable @next/next/no-img-element */
 
 const PetCardId = () => {
   const { id } = useParams();
+  const router = useRouter();
+  const { user } = useProfile();
   // const { petPostId } = usePetPost();
   const [loading, setLoading] = useState(false);
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
   const [isExpanded, setIsExpanded] = useState(false);
+  const startChat = async () => {
+    // () => router.push(`/chat${}`)
+    const infos = {
+      userId1: petPostId.userId,
+      userId2: user.id,
+    };
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}`,
+      infos
+    );
+    console.log(response.data.data);
+
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const setPetPostForId = async () => {
     try {
       setLoading(true);
@@ -120,7 +140,10 @@ const PetCardId = () => {
               <video className="w-full" controls src={petPostId?.video} />
             </div>
 
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 shadow-lg hover:bg-blue-700 transition duration-200">
+            <button
+              onClick={startChat}
+              className="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 shadow-lg hover:bg-blue-700 transition duration-200"
+            >
               Adopt Me
             </button>
           </div>

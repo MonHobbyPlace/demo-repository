@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-const socket = io("http://localhost:4000"); // your backend server
+const socket = io("http://localhost:3300"); // your backend server
 
 export default function Chat() {
   const [message, setMessage] = useState("");
@@ -16,7 +16,7 @@ export default function Chat() {
       conversationId: 123,
     };
     // Send via HTTP to save in DB
-    fetch("http://localhost:4000/chat/message", {
+    fetch("http://localhost:3300/chat/message", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newMsg),
