@@ -24,11 +24,13 @@ const PetCardId = () => {
       userId2: user.id,
     };
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/chat/conversation`,
       infos
     );
-    console.log(response.data.data);
-
+    console.log(response.data.data.id);
+    if (response.data.data.id) {
+      router.push(`/chat/${response.data.data.id}/${petPostId.userId}`);
+    }
     try {
     } catch (error) {
       console.log(error);

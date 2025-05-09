@@ -12,9 +12,10 @@ import { Server } from "socket.io";
 import { addNewMessage } from "./controllers/messageController/addNewMessage";
 import ChatRouter from "./routers/chat.routes";
 dotenv.config();
+import prisma from "./prismaClient";
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -49,11 +50,24 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   // Example: Listen to a custom event
-  socket.on("chatMessage", (msg) => {
+  socket.on("chatMessage", async (msg) => {
     console.log("Received message:", msg);
     // socket.to
     // Broadcast the message to everyone except the sender
+    const a = await prisma.message.create({
+      data: {
+        senderId: Number(msg.sender),
+        receiverId: Number(msg.reciever),
+        content: msg.content,
+        conversationId: Number(msg.room),
+      },
+    });
     socket.broadcast.emit("chatMessage", msg);
+    socket.emit("chatMessage", msg.content);
+  });
+  socket.on("join_room", (id) => {
+    console.log("room id:", id);
+    socket.join(id);
   });
   socket.on("id", (id) => {
     console.log(id);

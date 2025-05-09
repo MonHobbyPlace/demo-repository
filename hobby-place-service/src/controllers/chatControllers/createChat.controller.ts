@@ -24,10 +24,9 @@ const CreateChat = async (req: Request, res: Response) => {
         participants: true,
       },
     });
-    if (conversation){
-      res.send(conversation)
-    }else{
-
+    if (conversation) {
+      res.status(200).json({ success: true, data: conversation });
+    } else {
       const conversation = await prisma.conversation.create({
         data: {
           participants: {
