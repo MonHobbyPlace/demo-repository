@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ChattingArea } from "chat/_components/ChattingArea";
+import { ChattingArea} from "./_components/ChattingArea"
 import axios from "axios";
 
 const Chat = () => {
