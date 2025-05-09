@@ -41,7 +41,7 @@ const walkers = [
   },
 ];
 
-export const UsersService = () => {
+const UsersService = () => {
   return (
     <div className="min-h-screen  pt-10 font-sans">
       <div className="bg-white rounded-2xl p-4 shadow-lg">
@@ -116,3 +116,4 @@ export const UsersService = () => {
     </div>
   );
 };
+export default UsersService;

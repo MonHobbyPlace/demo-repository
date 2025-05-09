@@ -1,4 +1,4 @@
-import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -6,7 +6,7 @@ const GoogleAuthButton = () => {
   const router = useRouter();
 
   // Handle Google login success
-  const handleGoogleLogin = async (response: any) => {
+  const handleGoogleLogin = async (response: CredentialResponse) => {
     try {
       const token = response.credential;
       // Send the token to the backend
