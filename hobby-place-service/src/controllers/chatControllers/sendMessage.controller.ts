@@ -11,29 +11,30 @@ const SendMessage = async (req: Request, res: Response) => {
     });
 
     if (!conversation) {
-      return  res.status(404).json({ error: 'Conversation not found' });
-    }
+      res.status(404).json({ error: 'Conversation not found' });
+    } else {
+      const participantIds = conversation.participants.map(p => p.userId);
+      const senderIsParticipant = participantIds.includes(senderId);
+      const receiverIsParticipant = participantIds.includes(receiverId);
 
-    const participantIds = conversation.participants.map(p => p.userId);
-    const senderIsParticipant = participantIds.includes(senderId);
-    const receiverIsParticipant = participantIds.includes(receiverId);
-
-    if (!senderIsParticipant || !receiverIsParticipant) {
-      res.status(403).json({ error: 'Both users must be part of the conversation' });
-    }
-
-    const message = await prisma.message.create({
-      data: {
-        content,
-        senderId,
-        receiverId,
-        conversationId,
+      if (!senderIsParticipant || !receiverIsParticipant) {
+        res.status(403).json({ error: 'Both users must be part of the conversation' });
+      } else {
+        const message = await prisma.message.create({
+          data: {
+            content,
+            senderId,
+            receiverId,
+            conversationId,
+          }
+        });
+        res.status(200).json({ success: true, data: message });
       }
-    });
-
-    return res.status(201).json(message);
-  } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    }
+  } catch (error) {
+    console.error(error);
+ res.status(500).json({ success: false, message: "Internal server error" });
+    
   }
 };
 

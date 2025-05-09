@@ -19,9 +19,10 @@ const CreateChat = async (req: Request, res: Response) => {
       }
     });
 
-    res.status(201).json(conversation);
+    res.status(200).json({ success: true, data: conversation });
   } catch (error: any) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+ res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
