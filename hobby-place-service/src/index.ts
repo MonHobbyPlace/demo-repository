@@ -10,7 +10,7 @@ import { serviceCategory } from "./routers/serviceCategory.router";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { addNewMessage } from "./controllers/messageController/addNewMessage";
-import { ChatRouter } from "./routers/chat.routes";
+import ChatRouter from "./routers/chat.routes";
 dotenv.config();
 
 const app = express();
@@ -29,10 +29,10 @@ app.use("/servicePost", servicePostRouter);
 app.use("/petCategory", categoryRouter);
 app.use("/serviceCategory", serviceCategory);
 app.use("/users", userRouter);
-app.use("/chat",ChatRouter);
+app.use("/chat", ChatRouter);
 app.post("/message", (req, res) => {
   const { message } = req.body;
-  addNewMessage
+  addNewMessage;
   io.emit("chatMessage", message); // emits to all connected sockets
   res.status(200).send(message);
 });
@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
   // Example: Listen to a custom event
   socket.on("chatMessage", (msg) => {
     console.log("Received message:", msg);
-
+    // socket.to
     // Broadcast the message to everyone except the sender
     socket.broadcast.emit("chatMessage", msg);
   });
