@@ -1,19 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ServiceCategorySelect from "../_components/serviceCategorySelect";
-import PetCategorySelect from "../_components/petCategorySelect";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "react-toastify";
 import { useProfile } from "@/app/provider/ProfileProvider";
+import PetCategorySelect from "../_components/petCategorySelect";
+import ServiceCategorySelect from "../_components/serviceCategorySelect";
 
 type Category = {
   id: number;
@@ -26,21 +20,23 @@ type ServiceForm = {
   image: string;
   phoneNumber: string;
   age: string;
-  purpose: "SALE" | "ADOPT" | "";
   petCategoryId: string;
   cost: string;
   skill: string;
   serviceId: string;
 };
 
-export const AddService = () => {
+type Type = {
+  setPage: (page: number) => void;
+};
+
+export const AddService = ({ setPage }: Type) => {
   const [service, setService] = useState<ServiceForm>({
     address: "",
     about: "",
     image: "",
     phoneNumber: "",
     age: "",
-    purpose: "",
     petCategoryId: "",
     cost: "",
     skill: "",
@@ -53,6 +49,7 @@ export const AddService = () => {
   const [petCategories, setPetCategories] = useState<Category[]>([]);
 
   const { user } = useProfile();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -76,6 +73,7 @@ export const AddService = () => {
     const { name, value } = e.target;
     setService((prev) => ({ ...prev, [name]: value }));
   };
+
   const removePhoto = () => {
     setService((prev) => ({ ...prev, image: "" }));
   };
@@ -114,8 +112,7 @@ export const AddService = () => {
       const preparedService = {
         ...service,
         age: service.age ? Number(service.age) : null,
-
-        phoneNumber: Number(service.phoneNumber),
+        phoneNumber: service.phoneNumber, // Keep as string
         petCategoryId: Number(service.petCategoryId),
         cost: Number(service.cost),
         serviceId: Number(service.serviceId),
@@ -127,7 +124,6 @@ export const AddService = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/servicePost`,
         preparedService
       );
-      console.log("Service posted successfully:", response.data);
 
       toast.success("Successfully added service");
       setService({
@@ -136,7 +132,6 @@ export const AddService = () => {
         image: "",
         phoneNumber: "",
         age: "",
-        purpose: "",
         petCategoryId: "",
         cost: "",
         skill: "",
@@ -152,6 +147,12 @@ export const AddService = () => {
 
   return (
     <div className="max-h-screen overflow-y-auto scroll-smooth p-6 flex flex-col gap-5 max-w-xl mx-auto bg-white rounded-xl shadow-md pb-[150px]">
+      <button
+        onClick={() => setPage(1)}
+        className="absolute bg-black top-20 right-17 text-white cursor-pointer hover:scale-110 transition border rounded-full px-[5px] flex h-[40px] w-[40px] items-center text-center pl-3"
+      >
+        back
+      </button>
       <h1 className="text-3xl font-bold text-center text-blue-700 mb-4">
         Add a Service
       </h1>
@@ -174,7 +175,6 @@ export const AddService = () => {
 
       <div className="space-y-2">
         <label className="text-sm font-medium text-gray-700">Photo</label>
-
         {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
         {service.image ? (
           <div className="relative w-full">
@@ -234,29 +234,6 @@ export const AddService = () => {
         onChange={handleInput}
         className="border p-2 rounded-md"
       />
-
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">
-          Purpose
-        </label>
-        <Select
-          value={service.purpose}
-          onValueChange={(value) =>
-            setService((prev) => ({
-              ...prev,
-              purpose: value as "SALE" | "ADOPT",
-            }))
-          }
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select Purpose" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="SALE">Sale</SelectItem>
-            <SelectItem value="ADOPT">Adopt</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
 
       <PetCategorySelect
         options={petCategories}

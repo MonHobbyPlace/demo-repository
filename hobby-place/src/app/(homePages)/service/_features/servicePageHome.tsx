@@ -3,9 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { useServiceCategory } from "@/app/provider/ServiceCategoryProvider";
 import { FaStar, FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
-import Link from "next/link"; // Assuming you're using Next.js
+import Link from "next/link";
 
-export const ServicePageHome = () => {
+type Type = {
+  setPage: (page: number) => void;
+};
+
+export const ServicePageHome = ({ setPage }: Type) => {
   const { serviceCategories, servicePosts, fetchServicesByCategory } =
     useServiceCategory();
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -24,12 +28,22 @@ export const ServicePageHome = () => {
   };
 
   return (
-    <div className="p-4 space-y-6 max-w-md mx-auto bg-white min-h-screen">
+    <div className="p-4 space-y-6 max-w-md mx-auto bg-white min-h-screen relative">
+      {/* Floating Add Button */}
+      <button
+        onClick={() => setPage(2)}
+        className="fixed bg-black bottom-20 right-5 text-white cursor-pointer hover:scale-110 transition border rounded-full h-[48px] w-[48px] flex items-center justify-center text-xl"
+      >
+        +
+      </button>
+
+      {/* Header */}
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-2xl font-bold">Activities</h2>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto">
+      {/* Categories */}
+      <div className="flex gap-2 overflow-x-auto pb-2">
         {serviceCategories.map((cat) => (
           <button
             key={cat.id}
@@ -45,6 +59,7 @@ export const ServicePageHome = () => {
         ))}
       </div>
 
+      {/* Walkers Section */}
       <div>
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-2xl font-bold">Walkers</h2>

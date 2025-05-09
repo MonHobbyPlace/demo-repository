@@ -18,6 +18,8 @@ export default function PetCategorySelect({
   onChange,
 }: PetCategorySelectProps) {
   const { category } = usePetPost();
+  console.log(category);
+
   return (
     <div>
       <label className="text-sm font-medium ">Pet Category</label>

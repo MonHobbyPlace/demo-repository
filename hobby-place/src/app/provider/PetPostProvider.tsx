@@ -73,6 +73,7 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`
       );
       setCategory(data.Category);
+      console.log(data.Category);
     } catch (error) {
       console.error("Error fetching category:", error);
     }

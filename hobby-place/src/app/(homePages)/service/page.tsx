@@ -1,22 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AddService } from "./_features/addService";
+import { useState } from "react";
 import { Three } from "./_features/Three";
 import { ServicePageHome } from "./_features/servicePageHome";
+import { AddService } from "./_features/addService";
+import { UsersService } from "./_features/usersService";
 
 export default function Service() {
   const [page, setPage] = useState(4);
 
-  useEffect(() => {
-    setPage(4);
-  }, []);
-
   return (
     <div>
-      {page === 1 && <AddService />}
+      {page === 1 && <ServicePageHome setPage={setPage} />}
+      {page === 2 && <AddService setPage={setPage} />}
       {page === 3 && <Three />}
-      {page === 4 && <ServicePageHome />}
+      {page === 4 && <UsersService />}
     </div>
   );
 }

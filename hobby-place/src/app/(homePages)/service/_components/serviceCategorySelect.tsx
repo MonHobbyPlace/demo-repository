@@ -18,6 +18,8 @@ export default function ServiceCategorySelect({
   onChange,
 }: ServiceCategorySelectProps) {
   const { category } = usePetPost();
+  console.log(category);
+
   return (
     <div>
       <label className="text-sm font-medium">Service Category</label>
@@ -26,7 +28,7 @@ export default function ServiceCategorySelect({
           <SelectValue placeholder="Select Service Category" />
         </SelectTrigger>
         <SelectContent>
-          {category.map((cat) => (
+          {category?.map((cat) => (
             <SelectItem key={cat.id} value={String(cat.id)}>
               {cat.name}
             </SelectItem>
