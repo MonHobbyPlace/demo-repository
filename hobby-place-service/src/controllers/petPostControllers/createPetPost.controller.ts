@@ -46,7 +46,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Greenwood City",
       //     about:
       //       "Buddy is a playful Golden Retriever who loves the outdoors and family time. He is gentle, loyal, and perfect for a household with children or other pets.",
-      //     image: "https://picsum.photos/200?random=1",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1746525304/hq720_won42s.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450001,
@@ -64,7 +65,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Sunrise Town",
       //     about:
       //       "Luna is a sweet and gentle Beagle with a nose for adventure and a heart full of love. She is looking for a cozy home where she can share her endless affection.",
-      //     image: "https://picsum.photos/200?random=2",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1745408414/Cute-Birman-Cat_Borkin-Vadim_Shutterstock_upju11.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450002,
@@ -82,7 +84,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Riverbend Village",
       //     about:
       //       "Max is a highly intelligent German Shepherd who thrives in active homes. He's protective, well-trained, and enjoys outdoor activities like hiking and fetch.",
-      //     image: "https://picsum.photos/200?random=3",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1746525170/mybird_sun_conure_on_perch_wb6b9f.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450003,
@@ -100,7 +103,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Hilltop Town",
       //     about:
       //       "Bella is a majestic Great Dane with a gentle demeanor. She enjoys relaxing strolls and lots of love and attention from her family.",
-      //     image: "https://picsum.photos/200?random=4",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1746524978/rabbit-475261_0_wtja4p.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450004,
@@ -118,7 +122,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Lakeside City",
       //     about:
       //       "Rocky is a playful Boxer who loves being active and showering his owners with affection. Perfect for a home with a fenced backyard and plenty of energy!",
-      //     image: "https://picsum.photos/200?random=5",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1746525041/red-betta-fish-getty_c66upg.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450005,
@@ -136,7 +141,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Crescent Bay",
       //     about:
       //       "Daisy is a calm and loving Labrador Retriever, perfect for families with kids. She is socialized, gentle, and loves fetching balls at the park.",
-      //     image: "https://picsum.photos/200?random=6",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1745408237/Best-Food-for-Labrador-Retrievers-Health_srnbkw.webp",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450006,
@@ -154,7 +160,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Seaside Village",
       //     about:
       //       "Milo is an adorable Pomeranian with a lively spirit. He is playful, smart, and loves attention from his family. His fluffy coat makes him even more cuddly!",
-      //     image: "https://picsum.photos/200?random=7",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1745408414/Cute-Birman-Cat_Borkin-Vadim_Shutterstock_upju11.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450007,
@@ -172,7 +179,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Pinewood Park",
       //     about:
       //       "Skye is a smart Border Collie who loves mental challenges and staying active. She excels in obedience training and is very affectionate with her people.",
-      //     image: "https://picsum.photos/200?random=8",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1746524890/Petrusich-Dont-Mess-with-the-Birds_mawsvr.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450008,
@@ -190,7 +198,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Mountain Ridge",
       //     about:
       //       "Thunder is a powerful yet gentle Alaskan Malamute who loves colder climates. He's looking for a family that loves outdoor adventures as much as he does.",
-      //     image: "https://picsum.photos/200?random=9",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1746525227/hh-animals-rabbit-1_kaersh.png",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450009,
@@ -208,7 +217,8 @@ export const createPetPost = async (req: Request, res: Response) => {
       //     address: "Willow Creek",
       //     about:
       //       "Coco is a sweet Shih Tzu who enjoys spending her days being pampered. She is gentle, loving, and would thrive in a quiet home with lots of attention.",
-      //     image: "https://picsum.photos/200?random=10",
+      //     image:
+      //       "https://res.cloudinary.com/dp1u0n6zb/image/upload/v1741689091/samples/animals/cat.jpg",
       //     video:
       //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       //     phoneNumber: 123450010,
