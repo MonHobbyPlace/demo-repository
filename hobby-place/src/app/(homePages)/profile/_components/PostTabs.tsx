@@ -4,6 +4,7 @@ import { useProfile } from "@/app/provider/ProfileProvider";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { LikedHospitalCard } from "./LikedHospitalCard";
 
 export const PostTabs = () => {
   const { user } = useProfile();
@@ -47,7 +48,12 @@ export const PostTabs = () => {
           <div className="text-gray-600 text-center">No post yet</div>
         )}
       </TabsContent>
-      <TabsContent value="Liked"></TabsContent>
+      <TabsContent
+        value="Liked"
+        className="bg-white h-full rounded-md overflow-hidden p-2 space-y-1.5"
+      >
+        <LikedHospitalCard />
+      </TabsContent>
     </Tabs>
   );
 };

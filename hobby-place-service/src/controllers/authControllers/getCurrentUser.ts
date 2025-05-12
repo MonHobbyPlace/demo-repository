@@ -10,7 +10,12 @@ export const getCurrentUser = async (req: Request, res: Response) => {
       include: {
         PetPost: true,
         ServicePost: true,
-        LikedPost: true,
+        LikedPost: {
+          select: {
+            userId: true,
+            hospital: true,
+          },
+        },
       },
     });
     res.status(200).json(user);
