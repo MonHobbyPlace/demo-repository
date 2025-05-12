@@ -13,7 +13,7 @@ export default function Home() {
       <div className="h-[28%] ">
         <EditImage />
         <Button
-          className="absolute right-3 top-3 rounded-full bg-white text-black"
+          className="absolute right-3 top-3 rounded-full bg-white text-black border"
           onClick={handleLogout}
         >
           Log out
