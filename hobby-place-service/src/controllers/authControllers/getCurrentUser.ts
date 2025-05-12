@@ -11,7 +11,10 @@ export const getCurrentUser = async (req: Request, res: Response) => {
       include: {
         PetPost: true,
         ServicePost: true,
-        LikedPost: true,
+        LikedPost: {
+          select: {
+            userId: true,
+            hospital: true,
         conversations: {
           include: {
             conversation: {
@@ -30,6 +33,7 @@ export const getCurrentUser = async (req: Request, res: Response) => {
                 },
               },
             },
+
           },
         },
       },

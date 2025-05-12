@@ -65,6 +65,7 @@ const PetPosts = () => {
   };
   useEffect(() => {
     setPetPostForId();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFileChange = async (
@@ -148,6 +149,7 @@ const PetPosts = () => {
       {({ values, setFieldValue }) => {
         useEffect(() => {
           setFieldValue("about", selectedOption.join(", "));
+          // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [selectedOption, setFieldValue]);
         const onClick = (id: string) => {
           setFieldValue("petCategoryId", Number(id));
@@ -215,8 +217,8 @@ const PetPosts = () => {
                     >
                       <img
                         alt=""
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                        className="w-9 rounded-full"
+                        src={element.image}
+                        className="w-9 rounded-full h-9"
                       />
                       <div className="p-2">{element.name}</div>
                     </button>

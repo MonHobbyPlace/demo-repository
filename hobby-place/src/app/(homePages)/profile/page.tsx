@@ -9,17 +9,17 @@ export default function Home() {
   const { user, handleLogout } = useProfile();
 
   return (
-    <div className="h-[91%] flex flex-col w-full overflow-scroll">
+    <div className="h-[91%] w-full ">
       <div className="h-[28%] ">
         <EditImage />
         <Button
-          className="absolute right-3 top-3 rounded-full bg-white text-black"
+          className="absolute right-3 top-3 rounded-full bg-white text-black border"
           onClick={handleLogout}
         >
           Log out
         </Button>
       </div>
-      <div className="p-5 h-[58%] w-full">
+      <div className="p-5 h-[64%] w-full">
         <p className="font-bold text-2xl">{user?.username}</p>
         <PersonalInfoContainer />
         <div className="sticky top-0 h-full ">
