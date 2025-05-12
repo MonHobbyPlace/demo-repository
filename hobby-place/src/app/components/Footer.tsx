@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { HomeIcon, HospitalIcon, UserRound } from "lucide-react";
+import { HomeIcon, HospitalIcon, MessageCircle, UserRound } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const Footer = () => {
@@ -8,7 +8,9 @@ export const Footer = () => {
   const router = useRouter();
   return (
     <div
-      className={`flex  justify-between items-center bg-[#03346E]  p-4 rounded-xl shadow-md text-[#E1F7F5]  `}
+      className={`flex justify-between items-center bg-[#03346E] p-4 rounded-xl shadow-md text-[#E1F7F5] ${
+        pathName.includes("chat/") ? "hidden" : ""
+      }`}
     >
       <button
         className={pathName.includes("home") ? "opacity-100" : "opacity-60"}
@@ -22,6 +24,12 @@ export const Footer = () => {
       >
         <PawPrint />
       </button> */}
+      <button
+        className={pathName.includes("chat") ? "opacity-100" : "opacity-60"}
+        onClick={() => router.push("/chat")}
+      >
+        <MessageCircle />
+      </button>
       <button
         className={pathName.includes("hospital") ? "opacity-100" : "opacity-60"}
         onClick={() => router.push("/hospital")}

@@ -1,6 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { petPostType } from "@/type";
-import { useQuery } from "@tanstack/react-query";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  useQuery,
+} from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
@@ -18,6 +23,13 @@ export type ProfileType = {
   LikedPost?: {
     hospitalId: number;
   }[];
+  conversations: {
+    conversationId: number;
+    conversation: {
+      messages: { sender: ProfileType; content: string; timestamp: string }[];
+      participants: { userId: number; user: ProfileType }[];
+    };
+  }[];
 };
 
 type ProfileContextType = {
@@ -27,6 +39,10 @@ type ProfileContextType = {
   isLoading: boolean;
   likePost: (hospitalId: number) => Promise<void>;
   unLikePost: (hospitalId: number) => Promise<void>;
+  refetch: (
+    options?: RefetchOptions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ) => Promise<QueryObserverResult<any, Error>>;
 };
 const ProfileContext = createContext<ProfileContextType>(
   {} as ProfileContextType
@@ -42,7 +58,7 @@ export const ProfileProvider = ({
   const router = useRouter();
   const userId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
-  const { data: user } = useQuery({
+  const { data: user, refetch } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
       setIsLoading(true);
@@ -99,6 +115,7 @@ export const ProfileProvider = ({
         isLoading: isLoading,
         likePost: likePost,
         unLikePost: unLikePost,
+        refetch: refetch,
       }}
     >
       {isLoading == true ? (

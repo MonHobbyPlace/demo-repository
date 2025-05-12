@@ -1,29 +1,33 @@
 "use client";
-import { useEffect, useState } from "react";
-import { ChattingArea} from "./_components/ChattingArea"
-import axios from "axios";
+import { useProfile } from "@/app/provider/ProfileProvider";
+import { ChattingArea } from "./_components/ChattingArea";
+import { Chat } from "./_components/Chat";
+import { useState } from "react";
 
-const Chat = () => {
-  const [room, setRoom] = useState("");
-  const createRoom = async (values: { userId1: string; userId2: string }) => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/chat/conversation`,
-      values
-    );
-    console.log(response.data.data.id
-      
-    );
-    setRoom(response.data.data.id);
-  };
-  useEffect(() => {
-    createRoom({ userId1: "1", userId2: "2" });
-  }, []);
+const Home = () => {
+  const { user } = useProfile();
+  const [searchValue, setSearchValue] = useState("");
   return (
-    <>
-      <ChattingArea />
-      {/* <Chat/> */}
-      <div></div>
-    </>
+    <div className="flex flex-col gap-3 h-full ">
+      <ChattingArea searchValue={searchValue} setSearchValue={setSearchValue} />
+      <div className="flex flex-col gap-2 py-5 bg-white p-2 rounded-md bg-white h-[85%] overflow-scroll">
+        {user?.conversations
+          ?.filter((conv) => {
+            return conv.conversation.participants[0].user.username.includes(
+              searchValue
+            );
+          })
+          .map((conv, index) => {
+            return (
+              <Chat
+                key={index}
+                sender={conv.conversation.participants[0].user}
+                roomId={conv.conversationId}
+              />
+            );
+          })}
+      </div>
+    </div>
   );
 };
-export default Chat;
+export default Home;
