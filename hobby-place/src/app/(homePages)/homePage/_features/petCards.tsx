@@ -11,15 +11,19 @@ export const PetCards = () => {
   // console.log(loading);
 
   const router = useRouter();
+  console.log(petPostCategories);
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between w-full h-10 ">
         <div className="text-xl extrabold">Rehoming a Pets</div>
       </div>
       <div className="flex flex-wrap gap-4 h-[250px] overflow-y-scroll scrollbar-hide">
-        {petPostCategories.length > 1 ? (
+        {petPostCategories?.length > 0 ? (
           <>
-            {petPostCategories.map((element, index) => {
+            {petPostCategories?.map((element, index) => {
+              console.log({ petPostCategories });
+
               if (
                 element.price == 0 ||
                 element.price == undefined ||

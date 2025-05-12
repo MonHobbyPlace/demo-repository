@@ -11,7 +11,7 @@ export const AdoptSeeMore = () => {
     <div className="h-[700px] overflow-y-scroll p-4">
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4 overflow-y-scroll scrollbar-hide">
-          {petPostCategories.length > 1 ? (
+          {petPostCategories.length > 0 ? (
             <>
               {petPostCategories.map((element, index) => {
                 if (element.price > 0 || element.active === false) return null;

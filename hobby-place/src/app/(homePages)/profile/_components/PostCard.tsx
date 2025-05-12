@@ -3,12 +3,20 @@ import { petPostType } from "@/type";
 import { Button } from "@/components/ui/button";
 import { MapPin, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { usePetPost } from "@/app/provider/PetPostProvider";
 
 export const PostCard = (props: { post: petPostType }) => {
   const { post } = props;
+  const { updatePetPost } = usePetPost();
+  const onClick = () => {
+    updatePetPost({ ...post, active: false }, Number(post.id));
+  };
   const router = useRouter();
   return (
-    <div className=" w-[48%] h-fit bg-[#e1f7f5] rounded-md p-2 relative">
+    <div
+      className=" w-[48%] h-fit bg-[#e1f7f5] rounded-md p-2 relative"
+      // onClick={() => router.push(`/homePage/${post?.id}`)}
+    >
       <img
         src={post.image}
         alt="post image"
@@ -23,12 +31,23 @@ export const PostCard = (props: { post: petPostType }) => {
         </div>
         <p className="text-gray-500 text-sm">{post.price}$</p>
       </div>
-      <Button
-        className="bg-white rounded-full absolute top-16 text-xs text-black right-3 p-1"
-        onClick={() => router.push(`/petPost/${post.id}`)}
-      >
-        <Pencil />
-      </Button>
+      {post.active == false ? (
+        <></>
+      ) : (
+        <>
+          <div className="flex justify-end">
+            <Button className="bg-white text-black z-20" onClick={onClick}>
+              Sold
+            </Button>
+          </div>
+          <Button
+            className="bg-white rounded-full absolute top-16 text-xs text-black right-3 p-1"
+            onClick={() => router.push(`/petPost/${post.id}`)}
+          >
+            <Pencil />
+          </Button>
+        </>
+      )}
     </div>
   );
 };
