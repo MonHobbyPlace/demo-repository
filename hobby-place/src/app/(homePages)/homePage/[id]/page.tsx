@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useProfile } from "@/app/provider/ProfileProvider";
 import { petPostType } from "@/type/index";
@@ -7,18 +8,16 @@ import { ChevronLeft, MapPin } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-/* eslint-disable @next/next/no-img-element */
 
 const PetCardId = () => {
   const { id } = useParams();
   const router = useRouter();
-  const { user } = useProfile();
-  // const { petPostId } = usePetPost();
+  const { user, refetch } = useProfile();
   const [loading, setLoading] = useState(false);
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
   const [isExpanded, setIsExpanded] = useState(false);
+
   const startChat = async () => {
-    // () => router.push(`/chat${}`)
     const infos = {
       userId1: petPostId.userId,
       userId2: user.id,
@@ -27,13 +26,9 @@ const PetCardId = () => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/chat/conversation`,
       infos
     );
-    console.log(response.data.data.id);
     if (response.data.data.id) {
+      refetch();
       router.push(`/chat/${response.data.data.id}/${petPostId.userId}`);
-    }
-    try {
-    } catch (error) {
-      console.log(error);
     }
   };
   const setPetPostForId = async () => {
