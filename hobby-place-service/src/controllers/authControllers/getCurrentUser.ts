@@ -15,6 +15,8 @@ export const getCurrentUser = async (req: Request, res: Response) => {
           select: {
             userId: true,
             hospital: true,
+          },
+        },
         conversations: {
           include: {
             conversation: {
@@ -33,7 +35,6 @@ export const getCurrentUser = async (req: Request, res: Response) => {
                 },
               },
             },
-
           },
         },
       },
