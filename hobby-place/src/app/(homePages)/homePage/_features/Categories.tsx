@@ -29,8 +29,8 @@ export const Categories = () => {
             >
               <img
                 alt=""
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                className="w-9 rounded-full"
+                src={element.image}
+                className="w-9 rounded-full h-9"
               />
               <div className="p-2">{element.name}</div>
             </button>
