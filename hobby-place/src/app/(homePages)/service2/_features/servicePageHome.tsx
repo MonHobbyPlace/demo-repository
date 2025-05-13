@@ -4,8 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useServiceCategory } from "@/app/provider/ServiceCategoryProvider";
 import { FaStar, FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
 import Link from "next/link"; // Assuming you're using Next.js
+import { usePetPost } from "@/app/provider/PetPostProvider";
 
 export const ServicePageHome = () => {
+  const { category } = usePetPost();
+  console.log(category);
+
   const { serviceCategories, servicePosts, fetchServicesByCategory } =
     useServiceCategory();
   const [selectedId, setSelectedId] = useState<number | null>(null);

@@ -9,6 +9,11 @@ type ServiceCategory = {
 };
 
 type ServicePost = {
+  socialLink: string;
+  phoneNumber: number;
+  description: string;
+  skill: string[];
+  about: string;
   id: number;
   serviceName: string;
   address: string;
