@@ -3,15 +3,8 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ServiceCategorySelect from "../_components/serviceCategorySelect";
-import PetCategorySelect from "../_components/petCategorySelect";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import ServiceCategorySelect from "./serviceCategorySelect";
+import PetCategorySelect from "./petCategorySelect";
 import { toast } from "react-toastify";
 import { useProfile } from "@/app/provider/ProfileProvider";
 
@@ -26,7 +19,7 @@ type ServiceForm = {
   image: string;
   phoneNumber: string;
   age: string;
-  purpose: "SALE" | "ADOPT" | "";
+  // purpose: "SALE" | "ADOPT" | "";
   petCategoryId: string;
   cost: string;
   skill: string;
@@ -40,7 +33,7 @@ export const AddService = () => {
     image: "",
     phoneNumber: "",
     age: "",
-    purpose: "",
+    // purpose: "",
     petCategoryId: "",
     cost: "",
     skill: "",
@@ -135,7 +128,7 @@ export const AddService = () => {
         image: "",
         phoneNumber: "",
         age: "",
-        purpose: "",
+        // purpose: "",
         petCategoryId: "",
         cost: "",
         skill: "",
@@ -234,7 +227,7 @@ export const AddService = () => {
         className="border p-2 rounded-md"
       />
 
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">
           Purpose
         </label>
@@ -255,7 +248,7 @@ export const AddService = () => {
             <SelectItem value="ADOPT">Adopt</SelectItem>
           </SelectContent>
         </Select>
-      </div>
+      </div> */}
 
       <PetCategorySelect
         options={petCategories}

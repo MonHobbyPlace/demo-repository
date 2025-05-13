@@ -1,22 +1,43 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AddService } from "./_features/addService";
-import { Three } from "./_features/Three";
-import { ServicePageHome } from "./_features/servicePageHome";
+import axios from "axios";
 
-export default function Service() {
-  const [page, setPage] = useState(4);
+type PetCategory = {
+  id: number;
+  name: string;
+  image: string;
+};
+
+export default function HomePage() {
+  const [categories, setCategories] = useState<PetCategory[]>([]);
 
   useEffect(() => {
-    setPage(4);
+    const fetchCategories = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`
+      );
+      setCategories(res.data.Category);
+    };
+    fetchCategories();
   }, []);
 
   return (
-    <div>
-      {page === 1 && <AddService />}
-      {page === 3 && <Three />}
-      {page === 4 && <ServicePageHome />}
+    <div className="p-6 grid grid-cols-2 md:grid-cols-3 gap-4 scroll-auto">
+      {categories.map((cat) => (
+        <Link key={cat.id} href={`/service/petCategory/${cat.id}`}>
+          <div className="p-4 bg-white shadow rounded cursor-pointer hover:scale-105 transition">
+            <img
+              src={cat.image}
+              alt={cat.name}
+              className="w-full h-32 object-cover rounded"
+            />
+            <h2 className="text-lg font-semibold mt-2">{cat.name}</h2>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 }
