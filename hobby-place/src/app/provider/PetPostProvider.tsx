@@ -28,6 +28,7 @@ export const PetPostProvider = ({
 }) => {
   const [petPostCategories, setPetPostCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { user, refetch } = useProfile();
   const petPostCategorys = async (id: number) => {
     try {
       const response = await axios.get(
@@ -39,7 +40,17 @@ export const PetPostProvider = ({
     }
   };
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
+  // const { refetch } = useQuery({
+  //   queryKey: ["profile", user.id],
+  //   queryFn: async () => {
+  //     const response = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user.id}`
+  //     );
+  //     console.log(response.data);
 
+  //     return response.data;
+  //   },
+  // });
   const setPetPostForId = async (id: number) => {
     try {
       const response = await axios.get(
@@ -78,14 +89,13 @@ export const PetPostProvider = ({
     }
   };
 
-  const { user } = useProfile();
-
   const createPetPost = async (values: petPostType) => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${user.id}`,
         values
       );
+      refetch();
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -98,6 +108,7 @@ export const PetPostProvider = ({
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/${id}`,
         values
       );
+      refetch();
       console.log(response.data);
     } catch (error) {
       console.log(error);

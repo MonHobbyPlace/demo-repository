@@ -1,11 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 import { useProfile } from "@/app/provider/ProfileProvider";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Camera } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 
 export const EditImage = () => {
   const { user, updateProfile } = useProfile();
+  const { refetch } = useQuery({
+    queryKey: ["profile", user.id],
+    queryFn: async () => {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user.id}`
+      );
+      console.log(response.data);
+
+      return response.data;
+    },
+  });
   const [images, setImages] = useState({
     profileImage: user?.profileImage,
     backgroundImage: user?.backgroundImage,
@@ -21,11 +33,13 @@ export const EditImage = () => {
             ...images,
             profileImage: reader.result as string,
           });
+          refetch();
         } else {
           setImages({
             ...images,
             backgroundImage: reader.result as string,
           });
+          refetch();
         }
       };
       reader.readAsDataURL(file);

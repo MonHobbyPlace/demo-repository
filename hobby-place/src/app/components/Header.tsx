@@ -83,7 +83,7 @@ export const Header = () => {
           {isActive && (
             <input
               type="text"
-              className="h-9 focus-visible:ring-0 border-0 outline-none rounded-none"
+              className="h-9 focus-visible:ring-0 border-0 outline-none rounded-none text-[16px]"
               placeholder="Search..."
               onChange={onChange}
               value={value}

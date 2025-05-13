@@ -24,7 +24,7 @@ export const LikedHospitalCard = () => {
   const [hospital, setHospital] = useState<HospitalType[]>([]);
   const [likedStates, setLikedStates] = useState<Record<string, boolean>>({});
   const [likeInProgress, setLikeInProgress] = useState<string | null>(null);
-  const { user, likePost, unLikePost } = useProfile();
+  const { user, likePost, unLikePost, refetch } = useProfile();
   const router = useRouter();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const LikedHospitalCard = () => {
   }, [user]);
 
   return (
-    <>
+    <div className="overflow-scroll h-full">
       {hospital?.map((h, index) => (
         <div
           key={index}
@@ -97,9 +97,11 @@ export const LikedHospitalCard = () => {
                   try {
                     if (likedStates[h.hospital.id]) {
                       await unLikePost(Number(h.hospital.id));
+                      refetch();
                       updated[h.hospital.id] = false;
                     } else {
                       await likePost(Number(h.hospital.id));
+                      refetch();
                       updated[h.hospital.id] = true;
                     }
                     setLikedStates(updated);
@@ -125,6 +127,6 @@ export const LikedHospitalCard = () => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
