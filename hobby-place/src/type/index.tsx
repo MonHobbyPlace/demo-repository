@@ -1,5 +1,10 @@
 import * as Yup from "yup";
 export type petPostType = {
+  categoryId: number;
+  title: string;
+  name: string | undefined;
+  description: string;
+  location: string;
   about: string;
   address: string;
   age: number;
@@ -58,3 +63,25 @@ export type categoryType = {
   id: string;
   image?: string;
 };
+export interface PetCategory {
+  id: string;
+  name: string;
+  image: string;
+}
+
+export interface ServiceCategory {
+  id: string;
+  name: string;
+  image: string;
+  petCategoryId: string;
+}
+
+export interface ServicePost {
+  id: string;
+  serviceName: string;
+  image: string;
+  description: string;
+  phoneNumber: string;
+  cost: number;
+  serviceCategoryId: string;
+}

@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import { HomeIcon, HospitalIcon, UserRound } from "lucide-react";
+import { HomeIcon, HospitalIcon, PawPrint, UserRound } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const Footer = () => {
@@ -16,12 +15,12 @@ export const Footer = () => {
       >
         <HomeIcon />
       </button>
-      {/* <button
+      <button
         className={pathName.includes("service") ? "opacity-100" : "opacity-60"}
         onClick={() => router.push("/service")}
       >
         <PawPrint />
-      </button> */}
+      </button>
       <button
         className={pathName.includes("hospital") ? "opacity-100" : "opacity-60"}
         onClick={() => router.push("/hospital")}
