@@ -9,10 +9,10 @@ import { ChangeEvent, useState } from "react";
 export const EditImage = () => {
   const { user, updateProfile } = useProfile();
   const { refetch } = useQuery({
-    queryKey: ["profile", user.id],
+    queryKey: ["profile", user?.id],
     queryFn: async () => {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user.id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user?.id}`
       );
 
       return response.data;
