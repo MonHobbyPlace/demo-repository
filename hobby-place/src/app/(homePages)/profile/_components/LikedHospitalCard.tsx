@@ -73,7 +73,6 @@ export const LikedHospitalCard = () => {
                     />
                   ))}
                 </div>
-
                 <div className="flex justify-between text-[12px]">
                   <div className="flex gap-1 items-center w-1/2">
                     <PawPrint color="#023e8a" fill="#023e8a" size={15} />

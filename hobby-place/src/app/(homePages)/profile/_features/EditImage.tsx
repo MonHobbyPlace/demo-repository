@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { useProfile } from "@/app/provider/ProfileProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";

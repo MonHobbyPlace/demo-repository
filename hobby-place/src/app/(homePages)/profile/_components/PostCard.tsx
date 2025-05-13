@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { petPostType } from "@/type";
 import { Button } from "@/components/ui/button";
 import { MapPin, Pencil } from "lucide-react";
