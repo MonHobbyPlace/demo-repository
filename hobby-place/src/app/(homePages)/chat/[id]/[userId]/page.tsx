@@ -48,9 +48,8 @@ export default function PetCardId() {
 
     // Listen for incoming chat messages
     socket.on("chatMessage", (msg: { content: string; sender: number }) => {
+      console.log(msg);
       if (msg.sender !== user.id) {
-        console.log(msg);
-
         console.log({
           sender: conv[0].conversation.participants[0].user,
           content: msg.content,

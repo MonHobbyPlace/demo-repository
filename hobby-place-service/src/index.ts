@@ -31,12 +31,7 @@ app.use("/petCategory", categoryRouter);
 app.use("/serviceCategory", serviceCategory);
 app.use("/users", userRouter);
 app.use("/chat", ChatRouter);
-app.post("/message", (req, res) => {
-  const { message } = req.body;
-  addNewMessage;
-  io.emit("chatMessage", message); // emits to all connected sockets
-  res.status(200).send(message);
-});
+
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
@@ -63,7 +58,12 @@ io.on("connection", (socket) => {
       },
     });
     socket.broadcast.emit("chatMessage", msg.content);
-    socket.emit("chatMessage",{ content: msg.content, sender: msg.sender });
+    console.log("asudfajsf", { content: msg.content, sender: msg.sender });
+
+    socket.to(msg.room).emit("chatMessage", {
+      content: msg.content,
+      sender: msg.sender,
+    });
   });
   socket.on("join_room", (id) => {
     console.log("room id:", id);
