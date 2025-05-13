@@ -10,6 +10,7 @@ export const getByName = async (req: Request, res: Response) => {
       where: {
         name: {
           contains: name,
+          mode: "insensitive",
         },
       },
     });

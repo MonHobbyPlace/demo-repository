@@ -3,6 +3,7 @@
 "use client";
 import { useProfile } from "@/app/provider/ProfileProvider";
 import { petPostType } from "@/type/index";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { ChevronLeft, MapPin } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +13,20 @@ import { useEffect, useState } from "react";
 const PetCardId = () => {
   const { id } = useParams();
   const router = useRouter();
-  const { user, refetch } = useProfile();
+
+  const { user } = useProfile();
+
+  const { refetch } = useQuery({
+    queryKey: ["profile", user.id],
+    queryFn: async () => {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user.id}`
+      );
+      console.log(response.data);
+
+      return response.data;
+    },
+  });
   const [loading, setLoading] = useState(false);
   const [petPostId, setPetPostId] = useState({} as unknown as petPostType);
   const [isExpanded, setIsExpanded] = useState(false);

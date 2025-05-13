@@ -16,6 +16,7 @@ export const likePost = async (req: Request, res: Response) => {
         hospitalId: Number(hospitalId),
       },
     });
+    res.status(200).json("liked and save hospital");
   } catch (error) {
     res.status(500).json({
       error: true,

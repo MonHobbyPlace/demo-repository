@@ -8,6 +8,7 @@ import { usePetPost } from "@/app/provider/PetPostProvider";
 export const PostCard = (props: { post: petPostType }) => {
   const { post } = props;
   const { updatePetPost } = usePetPost();
+
   const onClick = () => {
     updatePetPost({ ...post, active: false }, Number(post.id));
   };
