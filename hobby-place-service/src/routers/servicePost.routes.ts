@@ -13,7 +13,7 @@ import { getServiceCategoryById } from "../controllers/serviceCategory/getServic
 
 export const servicePostRouter = express.Router();
 
-servicePostRouter.get("/", getServicePost);
+servicePostRouter.get("/getAll", getServicePost);
 servicePostRouter.post("/", createServicePost);
 servicePostRouter.delete("/:id", postIdFoundMid, deleteServicePost);
 servicePostRouter.put("/:id", postIdFoundMid, putServicePost);

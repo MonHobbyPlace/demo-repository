@@ -8,7 +8,7 @@ type ServiceCategory = {
   image: string;
 };
 
-type ServicePost = {
+export type ServicePost = {
   socialLink: string;
   phoneNumber: number;
   description: string;
@@ -53,14 +53,16 @@ export const ServiceCategoryProvider = ({
       }
     };
     fetchCategories();
+    fetchServicesByCategory();
   }, []);
 
-  const fetchServicesByCategory = async (id: number) => {
+  const fetchServicesByCategory = async () => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/servicePost/categoryId/${id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/servicePost/getAll`
       );
       setServicePosts(res.data.data);
+      console.log(res.data.data);
     } catch (error) {
       console.error("Error fetching services by category:", error);
     }
