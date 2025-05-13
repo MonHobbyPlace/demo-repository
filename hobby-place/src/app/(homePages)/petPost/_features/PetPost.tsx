@@ -44,6 +44,7 @@ export const PetPosts = () => {
   const [selectedOption, setSelectedOption] = useState<string[]>([]);
   const [other, setOther] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const router = useRouter();
 
   const handleFileChange = async (
@@ -55,7 +56,6 @@ export const PetPosts = () => {
     if (!file) return;
 
     setFieldValue(type, file);
-
     const reader = new FileReader();
     reader.onload = async () => {
       const previewUrl = reader.result as string;
@@ -99,7 +99,6 @@ export const PetPosts = () => {
       setLoading(false);
     }
   };
-
   return (
     <Formik
       initialValues={{
@@ -119,8 +118,11 @@ export const PetPosts = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values: petPostType) => {
+        setLoadingSubmit(true);
         console.log("Submitted values:", values);
         createPetPost(values);
+        setLoadingSubmit(false);
+        router.push("/profile");
       }}
     >
       {({ values, setFieldValue }) => {
@@ -424,12 +426,20 @@ export const PetPosts = () => {
                   />
                 </div>
 
-                <Button
+                {/* <Button
                   type="submit"
                   className="w-full mt-4 text-lg py-6 rounded-xl"
-                  onClick={() => router.push("/profile")}
+                  // onClick={() => router.push("/profile")}
+                  onClick={Submitting}
                 >
                   Submit Pet
+                </Button> */}
+                <Button
+                  disabled={loadingSubmit}
+                  type="submit"
+                  className="w-full mt-4 text-lg py-6 rounded-xl"
+                >
+                  {loadingSubmit ? "Posting..." : "Submit Pet"}
                 </Button>
               </div>
             </Form>

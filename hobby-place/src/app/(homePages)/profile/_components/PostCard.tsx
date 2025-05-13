@@ -14,7 +14,7 @@ export const PostCard = (props: { post: petPostType }) => {
   const router = useRouter();
   return (
     <div
-      className=" w-[48%] h-fit bg-[#e1f7f5] rounded-md p-2 relative"
+      className=" w-[45%] h-fit bg-[#e1f7f5] rounded-md p-2 relative"
       // onClick={() => router.push(`/homePage/${post?.id}`)}
     >
       <img
