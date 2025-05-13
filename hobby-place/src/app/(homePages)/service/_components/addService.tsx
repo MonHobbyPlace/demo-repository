@@ -3,8 +3,8 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ServiceCategorySelect from "../_components/serviceCategorySelect";
-import PetCategorySelect from "../_components/petCategorySelect";
+import ServiceCategorySelect from "./serviceCategorySelect";
+import PetCategorySelect from "./petCategorySelect";
 import { toast } from "react-toastify";
 import { useProfile } from "@/app/provider/ProfileProvider";
 
