@@ -3,7 +3,7 @@ import prisma from "../../prismaClient";
 
 export const getServicePost = async (req: Request, res: Response) => {
   try {
-    const servicePost = await prisma.petPost.findMany({});
+    const servicePost = await prisma.servicePost.findMany({});
 
     res.status(200).json({ data: servicePost });
   } catch (error) {
