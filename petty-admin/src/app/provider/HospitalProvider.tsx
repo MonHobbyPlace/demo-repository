@@ -44,7 +44,6 @@ export const HospitalProvider = ({
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`
         );
-        console.log("Hospital data:", response.data.data);
         return response.data.data || [];
       } catch (error) {
         console.error("Error fetching hospital data:", error);
@@ -55,11 +54,7 @@ export const HospitalProvider = ({
 
   const addHospital = async (values: Hospital) => {
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`,
-        values
-      );
-      console.log("Added hospital:", response);
+      await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/hospital`, values);
       await refetch();
     } catch (error) {
       console.error("Error adding hospital:", error);
@@ -67,11 +62,7 @@ export const HospitalProvider = ({
   };
   const updateHospitalInfo = async (values: Hospital) => {
     try {
-      const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital`,
-        values
-      );
-      console.log(response);
+      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/hospital`, values);
       await refetch();
     } catch (error) {
       console.log(error);

@@ -22,18 +22,13 @@ export const RatingModal = (props: {
   const [rate, setRate] = useState(0);
   const handleRating = (rate: number) => {
     setRate(rate);
-    console.log(rate);
   };
   const submitRating = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/hospital/rate`,
-        {
-          rate: rate,
-          id: hospital.id,
-        }
-      );
-      console.log(response.data);
+      await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/hospital/rate`, {
+        rate: rate,
+        id: hospital.id,
+      });
       await fetchData();
       toast("Thanks for rate us");
     } catch (error) {

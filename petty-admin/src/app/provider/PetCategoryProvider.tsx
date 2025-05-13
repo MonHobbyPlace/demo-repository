@@ -33,7 +33,6 @@ export const PetCategoryProvider = ({
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`
       );
-      console.log(response.data.Category);
 
       return response.data.Category || [];
     },
@@ -41,11 +40,10 @@ export const PetCategoryProvider = ({
 
   const addCategory = async (values: { name: string; image: string }) => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/petCategory`,
         values
       );
-      console.log(response);
       await refetch();
     } catch (error) {
       console.log(error);

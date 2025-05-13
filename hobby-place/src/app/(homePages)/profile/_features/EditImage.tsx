@@ -14,7 +14,6 @@ export const EditImage = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user.id}`
       );
-      console.log(response.data);
 
       return response.data;
     },

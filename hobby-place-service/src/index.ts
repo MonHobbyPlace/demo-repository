@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
       },
     });
     socket.broadcast.emit("chatMessage", msg.content);
-    socket.emit("chatMessage", { content: msg.content, sender: msg.sender });
+    socket.emit("chatMessage",{ content: msg.content, sender: msg.sender });
   });
   socket.on("join_room", (id) => {
     console.log("room id:", id);

@@ -65,7 +65,6 @@ export const ProfileProvider = ({
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${userId}`
       );
-      console.log(response.data);
 
       setIsLoading(false);
       return response.data;
@@ -87,20 +86,18 @@ export const ProfileProvider = ({
   };
   const likePost = async (hospitalId: number) => {
     try {
-      const response = await axios.get(
+      await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/like/${userId}/${hospitalId}`
       );
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
   const unLikePost = async (hospitalId: number) => {
     try {
-      const response = await axios.get(
+      await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/unLike/${userId}/${hospitalId}`
       );
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }

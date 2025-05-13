@@ -123,11 +123,10 @@ export const AddService = () => {
         userId: Number(user.id),
       };
 
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/servicePost`,
         preparedService
       );
-      console.log("Service posted successfully:", response.data);
 
       toast.success("Successfully added service");
       setService({

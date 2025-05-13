@@ -41,7 +41,6 @@ export default function PetCardId() {
     const conv = user.conversations.filter((conv) => {
       return conv.conversation.participants[0].userId == Number(userId);
     });
-    console.log(conv);
 
     setMessages(conv[0].conversation.messages);
 
@@ -50,6 +49,13 @@ export default function PetCardId() {
     // Listen for incoming chat messages
     socket.on("chatMessage", (msg: { content: string; sender: number }) => {
       if (msg.sender !== user.id) {
+        console.log(msg);
+
+        console.log({
+          sender: conv[0].conversation.participants[0].user,
+          content: msg.content,
+        });
+
         setMessages((prevMessages) => [
           ...prevMessages,
           {
@@ -67,7 +73,7 @@ export default function PetCardId() {
     };
   }, []);
   return (
-    <div className="h-full">
+    <div className="h-full ">
       <Button
         className="fixed top-7 left-7 rounded-full p-5 bg-[#03346E]"
         onClick={() => router.push("/chat")}

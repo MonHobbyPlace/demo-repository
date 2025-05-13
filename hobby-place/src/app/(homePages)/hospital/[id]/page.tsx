@@ -52,7 +52,6 @@ export default function Home() {
       setLocationInfo(
         `${response.data.results[0].formatted.split("Mongolia")[0]}`
       );
-      console.log(response.data.results[0].formatted);
     }
   };
   useEffect(() => {
@@ -60,7 +59,6 @@ export default function Home() {
   }, []);
   useEffect(() => {
     getLocationInfo();
-    console.log(hospital);
   }, [hospital]);
   const router = useRouter();
 

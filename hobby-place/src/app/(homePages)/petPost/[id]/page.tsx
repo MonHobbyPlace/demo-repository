@@ -50,18 +50,14 @@ const PetPosts = () => {
   const { id } = useParams();
   const setPetPostForId = async () => {
     try {
-      console.log(id);
 
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/petPost/petId/${id}`
       );
       setPetPostId(response.data.data);
-      console.log("Pet post ID set successfully:", petPostId);
     } catch (error) {
       console.error("Error setting pet post ID:", error);
-    } finally {
-      console.log(petPostId);
-    }
+    } 
   };
   useEffect(() => {
     setPetPostForId();
@@ -83,9 +79,7 @@ const PetPosts = () => {
       const previewUrl = reader.result as string;
 
       if (type === "image") {
-        console.log("Image Preview:", previewUrl);
         const uploadedUrl = await uploadToCloudinary(file, "image");
-        console.log("Uploaded Image URL:", uploadedUrl);
         setImagePreview(uploadedUrl);
         setFieldValue("image", uploadedUrl);
       } else if (type === "video") {
@@ -142,7 +136,6 @@ const PetPosts = () => {
       enableReinitialize
       validationSchema={validationSchema}
       onSubmit={(values: petPostType) => {
-        console.log("Submitted values:", values);
         updatePetPost(values, Number(id));
       }}
     >

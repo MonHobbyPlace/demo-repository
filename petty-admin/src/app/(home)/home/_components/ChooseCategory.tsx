@@ -10,7 +10,6 @@ export const ChooseCategory = (props: {
   const { category } = usePetCategory();
   const handleChange = (newValues: string[]) => {
     setValues(newValues);
-    console.log("Selected values:", newValues);
     handleValueChange("category", newValues);
   };
 

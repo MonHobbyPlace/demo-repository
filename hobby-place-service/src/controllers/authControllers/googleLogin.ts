@@ -40,9 +40,6 @@ export const googleLogin = async (req: Request, res: Response) => {
           profileImage: picture || "",
         },
       });
-      console.log("✅ New user created with Google:", user);
-    } else {
-      console.log("✅ Existing user logged in with Google:", user);
     }
 
     const jwtToken = jwt.sign(

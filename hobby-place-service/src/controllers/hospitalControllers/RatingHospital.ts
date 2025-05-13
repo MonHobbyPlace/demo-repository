@@ -6,7 +6,6 @@ export const RatingHospital = async (req: Request, res: Response) => {
     const hospital = await prisma.hospital.findUnique({
       where: { id },
     });
-    console.log((rate + Number(hospital?.rating)) / 2);
     const newRating = (rate + Number(hospital?.rating)) / 2;
     const response = await prisma.hospital.update({
       where: {

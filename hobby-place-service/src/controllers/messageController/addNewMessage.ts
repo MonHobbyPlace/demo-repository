@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 export const addNewMessage = async (req: Request, res: Response) => {
   const { message, senderId, recieverId } = req.body;
   try {
-    console.log(req.body);
 
     // const newMessage = await prisma.message.create({
     //   data: {

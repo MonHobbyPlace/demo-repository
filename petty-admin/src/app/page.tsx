@@ -37,7 +37,6 @@ export default function Home() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/login`,
         user
       );
-      console.log(data);
 
       if (data.success && data.role === "ADMIN") {
         localStorage.setItem("token", data.token);

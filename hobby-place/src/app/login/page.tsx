@@ -125,8 +125,6 @@ export default function LogIn() {
               const credential = credentialResponse.credential;
               if (!credential) return toast.error("Google token missing");
 
-              console.log(credential);
-
               const { data } = await axios.post(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/users/google-login`,
                 { token: credential }

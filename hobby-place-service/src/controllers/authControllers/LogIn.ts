@@ -28,7 +28,6 @@ export const LogIn = async (req: Request, res: Response) => {
 
     if (user) {
       const isSigned = await bcrypt.compare(password, user.password);
-      console.log(isSigned);
 
       if (isSigned) {
         const token = jwt.sign(

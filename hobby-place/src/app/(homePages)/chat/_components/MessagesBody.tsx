@@ -21,7 +21,6 @@ export const MessagesBody = (props: {
     const conv = user.conversations.filter((conv) => {
       return conv.conversation.participants[0].userId == Number(userId);
     });
-    console.log(conv[0].conversation.participants[0].user);
     setPartner(conv[0].conversation.participants[0].user);
   }, []);
 
