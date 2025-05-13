@@ -7,11 +7,8 @@ import { useRouter } from "next/navigation";
 /* eslint-disable @next/next/no-img-element */
 export const PetCards = () => {
   const { petPostCategories } = usePetPost();
-  // const [loading, setLoading] = useState();
-  // console.log(loading);
 
   const router = useRouter();
-  console.log(petPostCategories);
 
   return (
     <div className="flex flex-col gap-4">
@@ -22,8 +19,6 @@ export const PetCards = () => {
         {petPostCategories?.length > 0 ? (
           <>
             {petPostCategories?.map((element, index) => {
-              console.log({ petPostCategories });
-
               if (
                 element.price == 0 ||
                 element.price == undefined ||
