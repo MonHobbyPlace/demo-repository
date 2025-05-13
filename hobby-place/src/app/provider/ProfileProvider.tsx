@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { petPostType } from "@/type";
@@ -9,8 +8,7 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { createContext, useContext } from "react";
-import { useImage } from "react-image";
+import React, { createContext, useContext, useState } from "react";
 
 export type ProfileType = {
   id: number;
@@ -55,21 +53,21 @@ export const ProfileProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
   const userId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : 0;
-  const {
-    data: user,
-    refetch,
-    isLoading,
-  } = useQuery({
+  const { data: user, refetch } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
+      setIsLoading(true);
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${userId}`
       );
       console.log(response.data);
 
+      setIsLoading(false);
       return response.data;
     },
   });
@@ -122,7 +120,10 @@ export const ProfileProvider = ({
     >
       {isLoading == true ? (
         <div className="w-screen h-screen flex items-center justify-center">
-          <MyImageComponent />
+          <img
+            src="https://res.cloudinary.com/dszot6j60/image/upload/v1746094178/LoaderCat_vnk5pe.gif"
+            className="w-12"
+          />
         </div>
       ) : (
         children
@@ -137,11 +138,3 @@ export const useProfile = () => {
   }
   return context;
 };
-function MyImageComponent() {
-  const { src } = useImage({
-    srcList:
-      "https://res.cloudinary.com/dszot6j60/image/upload/v1746094178/LoaderCat_vnk5pe.gif",
-  });
-
-  return <img src={src} />;
-}
