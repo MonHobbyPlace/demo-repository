@@ -22,7 +22,9 @@ export default function HomePage() {
   const [selectedServiceCategory, setSelectedServiceCategory] =
     useState<string>("");
 
+
   console.log(category, selectedServiceCategory);
+
 
   return (
     <div className=" h-[94%] w-full">
@@ -37,6 +39,7 @@ export default function HomePage() {
               {category.map((cat) => (
                 <SelectItem key={cat.id} value={cat?.name || "none"}>
                   {cat?.name}
+
                 </SelectItem>
               ))}
             </SelectGroup>

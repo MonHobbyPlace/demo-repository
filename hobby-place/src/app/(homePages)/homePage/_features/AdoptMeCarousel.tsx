@@ -42,7 +42,7 @@ export const AdoptMeCrausel = () => {
                 onClick={() => router.push(`/homePage/${element.id}`)}
                 alt=""
                 src={element.image}
-                className="w-full  object-fill h-56"
+                className="w-full  object-fill h-52"
               />
             </CarouselItem>
           );
