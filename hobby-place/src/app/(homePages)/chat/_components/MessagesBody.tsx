@@ -27,7 +27,7 @@ export const MessagesBody = (props: {
   return (
     <div
       className={cn(
-        "flex flex-col gap-2 bg-white p-5 rounded-md h-[95%] overflow-scroll scroll-hide justify-end"
+        " gap-2 bg-white p-5 rounded-md h-[95%] overflow-scroll scroll-hide justify-end"
         // clicked && "h-[73%]"
       )}
       ref={containerRef}

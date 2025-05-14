@@ -5,7 +5,7 @@ import { ProfileType } from "@/app/provider/ProfileProvider";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { PostTabs } from "../_components/PostTabs";
+import { PostTabs } from "./_components/PostTabs";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,12 @@ export default function Home() {
   return (
     <div className="h-[91%] w-full ">
       {isLoading ? (
-        <div></div>
+        <div className="w-full h-full flex items-center justify-center">
+          <img
+            src="https://res.cloudinary.com/dszot6j60/image/upload/v1746094178/LoaderCat_vnk5pe.gif"
+            className="w-12"
+          />
+        </div>
       ) : (
         <>
           <div className="h-[28%] ">
@@ -58,7 +63,7 @@ export default function Home() {
               <p className="w-1/2 text-sm">{userInfo?.email}</p>
             </div>
             <div className="sticky top-0 h-full ">
-              <PostTabs />
+              <PostTabs userInfo={userInfo} />
             </div>
           </div>
         </>
