@@ -32,6 +32,7 @@ export const AdoptMeCrausel = () => {
       </p>
       <CarouselContent className=" relative h-56 rounded-xl">
         {petPost.map((element, index) => {
+
           if (element.price > 0 || element.active === false) {
             return null;
           }

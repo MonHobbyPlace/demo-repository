@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 // /pages/service/[serviceId].tsx
-"use client";
+
+"use client"
 import { ServicePost } from "@/type";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

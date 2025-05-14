@@ -22,7 +22,6 @@ const PetCardId = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user?.id}`
       );
-      console.log(response.data);
 
       return response.data;
     },
@@ -42,7 +41,7 @@ const PetCardId = () => {
     );
     if (response.data.data.id) {
       refetch();
-      router.push(`/chat/${response.data.data.id}/${petPostId.userId}`);
+      router.push(`/chat/${response.data.data.id}/${petPostId?.userId}`);
     }
   };
   const setPetPostForId = async () => {
@@ -108,25 +107,26 @@ const PetCardId = () => {
               <AttributeCard label="Breed" value={petPostId?.breed} />
               <AttributeCard label="Size" value={petPostId?.size} />
             </div>
-
-            <div className="flex items-center justify-end mt-6 relative">
-              <div className="absolute left-4 w-14 h-14 rounded-full bg-gray-300 shadow-inner">
-                <img
-                  src={petPostId.User?.profileImage}
-                  alt="Posted user profile image"
-                  className="w-full h-full rounded-full"
-                />
-              </div>
-              <div className="w-[85%] bg-blue-500 text-white py-4 px-5 rounded-2xl shadow-lg">
-                <div className="text-sm font-semibold">
-                  {petPostId.User?.username}
+            <Link href={`/profile/${petPostId?.userId}`}>
+              <div className="flex items-center justify-end mt-6 relative">
+                <div className="absolute left-4 w-14 h-14 rounded-full bg-gray-300 shadow-inner">
+                  <img
+                    src={petPostId.User?.profileImage}
+                    alt="Posted user profile image"
+                    className="w-full h-full rounded-full"
+                  />
                 </div>
-                <div className="flex items-center mt-1">
-                  <MapPin size={12} />
-                  <div className="text-xs">{petPostId?.address}</div>
+                <div className="w-[85%] bg-blue-500 text-white py-4 px-5 rounded-2xl shadow-lg">
+                  <div className="text-sm font-semibold">
+                    {petPostId.User?.username}
+                  </div>
+                  <div className="flex items-center mt-1">
+                    <MapPin size={12} />
+                    <div className="text-xs">{petPostId?.address}</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             <div className="flex flex-col mt-4">
               <p className="text-sm text-gray-600 mb-2">

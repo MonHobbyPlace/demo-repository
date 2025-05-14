@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { ProfileType } from "./ProfileProvider";
 
 type ServiceCategory = {
   id: number;
@@ -9,16 +10,19 @@ type ServiceCategory = {
 };
 
 export type ServicePost = {
-  socialLink: string;
   phoneNumber: number;
-  description: string;
   skill: string[];
   about: string;
   id: number;
-  serviceName: string;
   address: string;
   image: string;
   cost: number;
+  category: ServiceCategory;
+  serviceCategory: ServiceCategory;
+  user: ProfileType;
+  age: number;
+  createdAt: string;
+  userId: number;
 };
 
 type ServiceContextType = {
