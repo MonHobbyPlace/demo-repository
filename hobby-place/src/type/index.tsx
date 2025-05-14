@@ -1,10 +1,5 @@
 import * as Yup from "yup";
 export type petPostType = {
-  categoryId: number;
-  title: string;
-  name: string | undefined;
-  description: string;
-  location: string;
   about: string;
   address: string;
   age: number;

@@ -17,10 +17,10 @@ const PetCardId = () => {
   const { user } = useProfile();
 
   const { refetch } = useQuery({
-    queryKey: ["profile", user.id],
+    queryKey: ["profile", user?.id],
     queryFn: async () => {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user.id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/users/get?id=${user?.id}`
       );
       console.log(response.data);
 
@@ -33,8 +33,8 @@ const PetCardId = () => {
 
   const startChat = async () => {
     const infos = {
-      userId1: petPostId.userId,
-      userId2: user.id,
+      userId1: petPostId?.userId,
+      userId2: user?.id,
     };
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/chat/conversation`,
@@ -147,8 +147,12 @@ const PetCardId = () => {
               )}
             </div>
 
-            <div className="flex items-center justify-between mt-4 w-full bg-amber-200">
-              <video className="w-full" controls src={petPostId?.video} />
+            <div className="flex items-center justify-between mt-4 w-full  bg-amber-200">
+              <video
+                className="w-full h-fit object-cover"
+                controls
+                src={petPostId?.video}
+              />
             </div>
 
             <button

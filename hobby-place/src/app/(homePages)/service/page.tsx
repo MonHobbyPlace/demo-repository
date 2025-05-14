@@ -22,7 +22,7 @@ export default function HomePage() {
   const [selectedServiceCategory, setSelectedServiceCategory] =
     useState<string>("");
 
-  console.log(servicePosts);
+  console.log(servicePosts, selectedPetCategory, selectedServiceCategory);
 
   return (
     <div className=" h-[94%] ">
@@ -35,8 +35,8 @@ export default function HomePage() {
           <SelectContent>
             <SelectGroup>
               {petPostCategories.map((cat) => (
-                <SelectItem key={cat.id} value={cat.name}>
-                  {cat.name}
+                <SelectItem key={cat.id} value="">
+                  {/* {cat.name} */}
                 </SelectItem>
               ))}
             </SelectGroup>
