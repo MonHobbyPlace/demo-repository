@@ -1,5 +1,5 @@
 "use client";
-import { HomeIcon, HospitalIcon, MessageCircle, PawPrint, UserRound } from "lucide-react";
+import { HomeIcon, HospitalIcon, MessageCircle, UserRound } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const Footer = () => {
@@ -17,12 +17,12 @@ export const Footer = () => {
       >
         <HomeIcon />
       </button>
-      <button
+      {/* <button
         className={pathName.includes("service") ? "opacity-100" : "opacity-60"}
         onClick={() => router.push("/service")}
       >
         <PawPrint />
-      </button>
+      </button> */}
       <button
         className={pathName.includes("chat") ? "opacity-100" : "opacity-60"}
         onClick={() => router.push("/chat")}
