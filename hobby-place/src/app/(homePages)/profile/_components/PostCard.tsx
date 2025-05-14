@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { usePetPost } from "@/app/provider/PetPostProvider";
+import { useProfile } from "@/app/provider/ProfileProvider";
 
 export const PostCard = (props: { post: petPostType }) => {
   const { post } = props;
   const { updatePetPost } = usePetPost();
+  const { user } = useProfile();
 
   const onClick = () => {
     updatePetPost({ ...post, active: false }, Number(post.id));
@@ -16,7 +18,7 @@ export const PostCard = (props: { post: petPostType }) => {
   const router = useRouter();
   return (
     <div
-      className=" w-[45%] h-fit bg-[#e1f7f5] rounded-md p-2 relative"
+      className=" w-[48%] h-fit bg-[#e1f7f5] rounded-md p-2 relative"
       // onClick={() => router.push(`/homePage/${post?.id}`)}
     >
       <img
@@ -33,7 +35,7 @@ export const PostCard = (props: { post: petPostType }) => {
         </div>
         <p className="text-gray-500 text-sm">{post.price}$</p>
       </div>
-      {post.active == false ? (
+      {post.active && user.id !== post.userId ? (
         <></>
       ) : (
         <>
