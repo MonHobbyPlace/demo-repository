@@ -9,6 +9,7 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState("");
   return (
     <div className="flex flex-col gap-3 h-full ">
+      <p className="font-bold text-2xl text-[#03346E]">Chats</p>
       <ChattingArea searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="flex flex-col gap-2 py-5 bg-white p-2 rounded-md bg-white h-[85%] overflow-scroll">
         {user?.conversations

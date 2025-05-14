@@ -33,7 +33,7 @@ export default function Home() {
         <div className="w-full h-full flex items-center justify-center">
           <img
             src="https://res.cloudinary.com/dszot6j60/image/upload/v1746094178/LoaderCat_vnk5pe.gif"
-            className="w-12"
+            className="w-12 object-cover"
           />
         </div>
       ) : (

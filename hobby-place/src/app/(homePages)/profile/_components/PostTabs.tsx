@@ -27,8 +27,8 @@ export const PostTabs = () => {
         <TabsTrigger value="False">Inactive posts</TabsTrigger>
         <TabsTrigger value="Liked">Liked</TabsTrigger>
       </TabsList>
-      <TabsContent value="Active" className="w-full h-full">
-        <div className="bg-white h-full flex flex-wrap gap-3 rounded-md overflow-scroll relative p-2 space-y-1.5">
+      <TabsContent value="Active" className="w-full h-full ">
+        <div className="bg-white h-full grid grid-cols-2 gap-3 rounded-md overflow-scroll relative p-2 ">
           {user?.PetPost && activePost?.length !== 0 ? (
             user.PetPost.map((post, index) =>
               post.active ? <PostCard key={index} post={post} /> : null
@@ -49,9 +49,8 @@ export const PostTabs = () => {
       </TabsContent>
       <TabsContent
         value="False"
-        className="bg-white h-full rounded-md flex flex-wrap gap-3 overflow-hidden p-2 "
+        className="bg-white h-full rounded-md grid w-full grid-cols-2 gap-3 p-2 "
       >
-        {" "}
         {user?.PetPost && user.PetPost.length > 0 ? (
           user.PetPost.map((post, index) =>
             post.active ? null : <PostCard key={index} post={post} />

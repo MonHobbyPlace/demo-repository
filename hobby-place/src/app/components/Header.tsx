@@ -1,12 +1,20 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import { ArrowRight, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { Hospital } from "../(homePages)/hospital/_components/HospitalInfoBox";
 import { useProfile } from "../provider/ProfileProvider";
 import debounce from "lodash.debounce";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Input } from "@/components/ui/input";
 
 type SearchResponseType = {
   image: string;
@@ -15,16 +23,11 @@ type SearchResponseType = {
 };
 
 export const Header = () => {
-  const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState("");
   const [searchValue, setSearchValue] = useState<SearchResponseType[]>([]);
   const { user } = useProfile();
   const pathName = usePathname();
   const router = useRouter();
-
-  const searchClick = (value: boolean) => {
-    setIsActive(value);
-  };
 
   const handleSearch = async (input: string) => {
     if (!input) {
@@ -57,6 +60,10 @@ export const Header = () => {
     }
   };
 
+  useEffect(() => {
+    handleSearch(value);
+  }, [pathName]);
+
   const debouncedSearch = useCallback(debounce(handleSearch, 300), [pathName]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,49 +85,49 @@ export const Header = () => {
           </div>
         </div>
 
-        <div className="relative flex h-10 gap-2 items-center border px-3 rounded-md">
-          <Search size={16} onClick={() => searchClick(true)} />
-          {isActive && (
-            <input
+        <Popover>
+          <PopoverTrigger asChild>
+            <div className="relative flex h-10 gap-2 items-center border px-3 rounded-full cursor-pointer">
+              <Search size={16} />
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="w-[300px]">
+            <Input
               type="text"
-              className="h-9 focus-visible:ring-0 border-0 outline-none rounded-none text-[16px]"
               placeholder="Search..."
-              onChange={onChange}
+              className="mb-2"
               value={value}
+              onChange={onChange}
             />
-          )}
-
-          {value?.length > 0 && isActive && (
-            <div className="absolute bg-white z-10 top-[40px] text-black w-[215px] rounded-md shadow">
-              {searchValue.length === 0 ? (
-                <div className="flex m-2 gap-1 border-b">
-                  <p className="text-xs text-gray-600">No data found</p>
-                </div>
+            <div className="max-h-60 overflow-y-auto">
+              {value && searchValue.length === 0 ? (
+                <p className="text-xs text-gray-600">No data found</p>
               ) : (
-                searchValue.slice(0, 3).map((element) => (
-                  <div className="flex m-2 gap-1 border-b" key={element.id}>
+                searchValue.slice(0, 5).map((element) => (
+                  <div
+                    key={element.id}
+                    className="flex items-center gap-2 border-b py-1"
+                  >
                     <img
-                      className="w-[35px] h-[35px] rounded-sm"
+                      className="w-10 h-10 rounded-sm object-cover"
                       src={element.image}
                       alt={element.breed}
                     />
-                    <div className="w-full flex gap-1 justify-between">
-                      <p className="text-xs overflow-hidden text-ellipsis line-clamp-2">
-                        {element.breed}
-                      </p>
-                      <Link href={`${pathName}/${element.id}`}>
-                        <h3 className="cursor-pointer flex items-center gap-1 text-xs text-blue-500">
-                          see more
-                          <ArrowRight size={12} />
-                        </h3>
-                      </Link>
+                    <div className="flex-1">
+                      <p className="text-xs truncate">{element.breed}</p>
                     </div>
+                    <Link
+                      href={`${pathName}/${element.id}`}
+                      className="text-xs text-blue-500 flex items-center gap-1"
+                    >
+                      See more <ArrowRight size={12} />
+                    </Link>
                   </div>
                 ))
               )}
             </div>
-          )}
-        </div>
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );

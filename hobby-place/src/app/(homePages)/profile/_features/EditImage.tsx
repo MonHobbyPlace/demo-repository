@@ -73,11 +73,14 @@ export const EditImage = () => {
   return (
     <div className="relative ">
       <div className="absolute top-0 w-full">
-        <img
-          src={images.backgroundImage}
-          alt="background image"
-          className="w-full h-[200px]  "
-        />
+        <div className="w-full h-[200px] object-cover ">
+          <img
+            src={images.backgroundImage}
+            alt="background image"
+            className="w-full h-full object-cover "
+          />
+        </div>
+
         <div className="absolute bottom-4  right-4">
           <label htmlFor="background">
             <div className="bg-gray-300 p-[8px] rounded-full border">
@@ -99,7 +102,7 @@ export const EditImage = () => {
         <img
           src={images.profileImage}
           alt="profile image"
-          className="w-[150px] h-[150px] rounded-full border-5"
+          className="w-[150px] h-[150px] rounded-full border-5 object-cover"
         />
         <div className="absolute bottom-2 right-2">
           <label htmlFor="profileImage">

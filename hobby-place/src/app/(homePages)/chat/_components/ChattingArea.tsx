@@ -10,7 +10,7 @@ export const ChattingArea = (props: {
   return (
     <>
       <div className="relative ">
-        <Search className="absolute top-1.5 left-2" />
+        <Search className="absolute top-1.5 left-2" color="#03346E" />
         <div className="">
           <Input
             className="px-9 bg-white"

@@ -11,6 +11,7 @@ export const PostCard = (props: { post: petPostType }) => {
   const { post } = props;
   const { updatePetPost } = usePetPost();
   const { user } = useProfile();
+  console.log(user.id, post.userId);
 
   const onClick = () => {
     updatePetPost({ ...post, active: false }, Number(post.id));
@@ -18,13 +19,13 @@ export const PostCard = (props: { post: petPostType }) => {
   const router = useRouter();
   return (
     <div
-      className=" w-[48%] h-fit bg-[#e1f7f5] rounded-md p-2 relative"
+      className="  h-fit bg-[#e1f7f5] rounded-md p-2 relative m-0"
       // onClick={() => router.push(`/homePage/${post?.id}`)}
     >
       <img
         src={post.image}
         alt="post image"
-        className="rounded-md h-[100px] w-full"
+        className="rounded-md h-[100px] w-full object-cover"
       />
       <div className="flex items-center justify-between">
         <div>
@@ -35,9 +36,7 @@ export const PostCard = (props: { post: petPostType }) => {
         </div>
         <p className="text-gray-500 text-sm">{post.price}$</p>
       </div>
-      {post.active && user.id !== post.userId ? (
-        <></>
-      ) : (
+      {post.active && user.id === post.userId ? (
         <>
           <div className="flex justify-end">
             <Button className="bg-white text-black z-20" onClick={onClick}>
@@ -51,6 +50,14 @@ export const PostCard = (props: { post: petPostType }) => {
             <Pencil />
           </Button>
         </>
+      ) : (
+        <div>
+          {post.userId === user.id && (
+            <div className="w-full flex items-center justify-center text-[#03346E] font-bold p-2">
+              {post.purpose === "SALE" ? <p>Sold</p> : <p>Adopted</p>}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

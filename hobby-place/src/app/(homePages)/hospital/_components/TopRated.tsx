@@ -70,7 +70,7 @@ function Card({ i, hospital }: CardProps) {
         >
           <img
             src={hospital.backgroundImage}
-            className="w-[93%] h-[65%] absolute rounded-xl"
+            className="w-[93%] h-[65%] absolute rounded-xl object-cover"
             alt="Each hospital image"
           />
           <div
