@@ -264,7 +264,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/24LP9506/Desktop/demo-repository/hobby-place-service/generated/prisma",
+      "value": "C:\\Users\\lenovo\\Downloads\\New folder\\demo-repository\\hobby-place-service\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -273,7 +273,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       },
       {
@@ -282,11 +282,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/24LP9506/Desktop/demo-repository/hobby-place-service/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\lenovo\\Downloads\\New folder\\demo-repository\\hobby-place-service\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
