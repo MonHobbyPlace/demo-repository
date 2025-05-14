@@ -75,7 +75,7 @@ export default function PetCardId() {
   return (
     <div className="h-full ">
       <Button
-        className="fixed top-7 left-7 rounded-full p-5 bg-[#03346E]"
+        className="sticky top-0 left-0 rounded-full mb-2 p-5 bg-[#03346E]"
         onClick={() => router.push("/chat")}
       >
         <ChevronLeft />

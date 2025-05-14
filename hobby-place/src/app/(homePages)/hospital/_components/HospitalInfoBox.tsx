@@ -121,7 +121,7 @@ export const HospitalInfoBox = (props: { hospital: Hospital }) => {
           onClick={() => router.push(`/hospital/${hospital.id.toString()}`)}
           src={hospital.backgroundImage}
           alt="hospital image"
-          className="w-[40%] rounded-3xl h-full "
+          className="w-[40%] rounded-3xl h-full object-cover"
         />
       </div>
     </div>

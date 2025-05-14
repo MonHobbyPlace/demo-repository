@@ -45,7 +45,7 @@ export const Categories = () => {
               <img
                 alt=""
                 src={element.image}
-                className="w-9 rounded-full h-9"
+                className="w-9 rounded-full h-9 object-cover"
               />
               <div className="p-2">{element.name}</div>
             </button>

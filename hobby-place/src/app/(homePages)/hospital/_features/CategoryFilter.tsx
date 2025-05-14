@@ -66,7 +66,7 @@ export const CategoryFilter = () => {
               <img
                 alt="category image"
                 src={element.image}
-                className="w-9 h-9 rounded-full"
+                className="w-9 h-9 rounded-full object-cover"
               />
               <div className="p-2">{element.name}</div>
             </button>
@@ -79,9 +79,11 @@ export const CategoryFilter = () => {
         ) : (
           <div className="overflow-scroll h-full rounded-xl w-full">
             {hospitals.length === 0 ? (
-              <div className="h-full w-full flex items- justify-center">
-                <div className="w-2/3 h-fit bg-white p-7 rounded-3xl mt-10">
-                  <p>We do not have {selectedFramework} category hospital</p>
+              <div className="h-[80%] w-full flex items-center justify-center ">
+                <div className="w-2/3 h-fit bg-white p-7 rounded-3xl mt-10 border border-[#03346E] text-[#03346E]">
+                  <p className="w-fit">
+                    We do not have <b>{selectedFramework} </b>category hospital
+                  </p>
                 </div>
               </div>
             ) : (

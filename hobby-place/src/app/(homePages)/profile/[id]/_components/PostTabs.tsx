@@ -13,7 +13,7 @@ export const PostTabs = (props: { userInfo: ProfileType }) => {
         <TabsTrigger value="Active">Posts</TabsTrigger>
       </TabsList>
       <TabsContent value="Active" className="w-full h-full">
-        <div className="bg-white h-full flex flex-wrap gap-3 rounded-md overflow-scroll relative p-2 space-y-1.5">
+        <div className="bg-white h-full grid grid-cols-2 gap-3 rounded-md overflow-scroll relative p-2 space-y-1.5">
           {userInfo?.PetPost && userInfo.PetPost.length > 0 ? (
             userInfo.PetPost.map((post, index) =>
               post.active ? <PostCard key={index} post={post} /> : null

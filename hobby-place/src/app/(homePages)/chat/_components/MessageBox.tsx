@@ -11,7 +11,7 @@ export const MessageBox = (props: {
   return (
     <div
       className={cn(
-        "gap-2 items-end  flex",
+        "gap-2 items-end  flex my-2",
         user.id !== sender.id ? "" : "flex-row-reverse "
       )}
     >
@@ -26,7 +26,7 @@ export const MessageBox = (props: {
         className={cn(
           "p-2 border rounded-md max-w-[90%] flex gap-2 items-end ",
           user.id !== sender.id
-            ? "bg-[#90e0ef] justify-start"
+            ? "bg-[#e1f7f5] justify-start"
             : "flex-row-reverse justify-end"
         )}
       >
