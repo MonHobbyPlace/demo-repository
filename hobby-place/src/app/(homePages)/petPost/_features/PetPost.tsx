@@ -217,6 +217,48 @@ export const PetPosts = () => {
                   placeholder="Enter breed"
                 />
 
+                {loading === true ? (
+                  <>
+                    {" "}
+                    <span className="loading loading-spinner loading-sm"></span>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-gray-700">
+                        Video
+                      </label>
+                      <Field name="video">
+                        {({ form }: { form: FormikProps<MyFormValues> }) => (
+                          <input
+                            type="file"
+                            accept="video/*"
+                            onChange={(event) =>
+                              handleFileChange(
+                                event,
+                                form.setFieldValue,
+                                "video"
+                              )
+                            }
+                            className="block w-full text-sm text-gray-600"
+                          />
+                        )}
+                      </Field>
+                      <ErrorMessage
+                        name="video"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                      {videoPreview && (
+                        <video
+                          className="mt-4 rounded-lg shadow-md w-full"
+                          controls
+                          src={videoPreview}
+                        />
+                      )}
+                    </div>
+                  </>
+                )}
                 <div className="flex md:flex-row gap-4">
                   <div className="flex-1">
                     <label className="block mb-1 text-sm font-medium text-gray-700">
@@ -296,48 +338,6 @@ export const PetPosts = () => {
                     />
                   </TabsContent>
                 </Tabs>
-                {loading === true ? (
-                  <>
-                    {" "}
-                    <span className="loading loading-spinner loading-sm"></span>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <label className="block mb-1 text-sm font-medium text-gray-700">
-                        Video
-                      </label>
-                      <Field name="video">
-                        {({ form }: { form: FormikProps<MyFormValues> }) => (
-                          <input
-                            type="file"
-                            accept="video/*"
-                            onChange={(event) =>
-                              handleFileChange(
-                                event,
-                                form.setFieldValue,
-                                "video"
-                              )
-                            }
-                            className="block w-full text-sm text-gray-600"
-                          />
-                        )}
-                      </Field>
-                      <ErrorMessage
-                        name="video"
-                        component="div"
-                        className="text-red-500 text-sm mt-1"
-                      />
-                      {videoPreview && (
-                        <video
-                          className="mt-4 rounded-lg shadow-md w-full"
-                          controls
-                          src={videoPreview}
-                        />
-                      )}
-                    </div>
-                  </>
-                )}
 
                 <FieldBlock
                   name="phoneNumber"

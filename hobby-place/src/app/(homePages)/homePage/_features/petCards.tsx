@@ -12,10 +12,10 @@ export const PetCards = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between w-full h-10 ">
-        <div className="text-xl extrabold">Rehoming a Pets</div>
-      </div>
-      <div className="flex flex-wrap gap-4 max-h-[250px] overflow-y-scroll scrollbar-hide">
+      <div className="flex flex-wrap gap-4 max-h-[32vh] overflow-y-scroll scrollbar-hide">
+        <div className="flex items-center justify-between w-full h-10 ">
+          <div className="text-xl extrabold">Rehoming a Pets</div>
+        </div>
         {petPostCategories?.length > 0 ? (
           <>
             {petPostCategories?.map((element, index) => {
