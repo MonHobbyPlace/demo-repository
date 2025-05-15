@@ -22,17 +22,19 @@ export const AdoptMeCrausel = () => {
       opts={{
         loop: true,
       }}
-      className="w-full flex flex-col justify-center relative"
+      className="w-full flex flex-col justify-center "
     >
-      <p
-        className="text-sm flex items-center absolute right-0 top-[-25px]"
-        onClick={() => router.push(`/adoptPet`)}
-      >
-        see more <ArrowRight size={14} />
-      </p>
-      <CarouselContent className=" relative h-56 rounded-xl">
+      <div className="flex justify-between">
+        <p className="text-extrabold text-2xl">Adopt a Pet</p>
+        <p
+          className="text-sm flex items-center "
+          onClick={() => router.push(`/adoptPet`)}
+        >
+          see more <ArrowRight size={14} />
+        </p>
+      </div>
+      <CarouselContent className=" relative h-[27vh] rounded-xl">
         {petPost.map((element, index) => {
-
           if (element.price > 0 || element.active === false) {
             return null;
           }
@@ -42,7 +44,7 @@ export const AdoptMeCrausel = () => {
                 onClick={() => router.push(`/homePage/${element.id}`)}
                 alt=""
                 src={element.image}
-                className="w-full  object-fill h-52"
+                className="w-full  object-cover h-[24vh]"
               />
             </CarouselItem>
           );
