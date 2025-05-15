@@ -20,7 +20,9 @@ export default function Home() {
         </Button>
       </div>
       <div className="p-5 h-[64%] w-full">
-        <p className="font-bold text-2xl">{user?.username}</p>
+        <div className="flex w-full justify-end">
+          <p className="font-bold text-2xl">{user?.username}</p>
+        </div>
         <PersonalInfoContainer />
         <div className="sticky top-0 h-full ">
           <PostTabs />

@@ -63,15 +63,15 @@ export default function LogIn() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-blue-400 bg-cover gap-4 px-4 py-6">
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#e1f7f5] bg-cover gap-4 px-4 py-6">
       <button
         onClick={() => router.push("/sign-up")}
-        className="absolute top-6 left-6 text-white cursor-pointer hover:scale-110 transition border rounded-[8px] px-[5px] flex "
+        className="absolute top-6 left-6 text-[#03346E] cursor-pointer hover:scale-110 transition border border-[#03346E] rounded-[8px] p-3 flex "
       >
         Sign up
       </button>
 
-      <h1 className="text-2xl font-bold text-white">Log In</h1>
+      <h1 className="text-2xl font-bold text-[#03346E]">Log In</h1>
 
       <div className="flex flex-col items-center gap-4 w-full max-w-sm">
         <input
@@ -79,7 +79,7 @@ export default function LogIn() {
           placeholder="Email"
           value={user.email}
           onChange={handleInput}
-          className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="p-3 w-full border border-[#03346E] text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <div className="relative w-full">
           <input
@@ -88,7 +88,7 @@ export default function LogIn() {
             placeholder="Password"
             value={user.password}
             onChange={handleInput}
-            className="p-3 w-full border border-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 w-full border border-[#03346E] text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="button"
@@ -96,9 +96,9 @@ export default function LogIn() {
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
           >
             {showPassword ? (
-              <EyeOff className="text-white" size={20} />
+              <EyeOff className="text-[#03346E]" size={20} />
             ) : (
-              <Eye size={20} className="text-white" />
+              <Eye size={20} className="text-[#03346E]" />
             )}
           </button>
         </div>
@@ -106,16 +106,16 @@ export default function LogIn() {
         <button
           onClick={handleLogin}
           disabled={loading}
-          className="backdrop-blur-[20px] text-blue-400 font-semibold rounded-lg w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none border bg-white"
+          className="backdrop-blur-[20px] text-white font-semibold rounded-lg w-full py-3 mt-4 disabled:opacity-50 transform transition hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none border bg-[#03346E]"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
 
         {/* Divider */}
         <div className="flex items-center w-full my-4">
-          <hr className="flex-grow border-white" />
-          <span className="px-2 text-white">OR</span>
-          <hr className="flex-grow border-white" />
+          <hr className="flex-grow border-[#03346E]" />
+          <span className="px-2 text-[#03346E]">OR</span>
+          <hr className="flex-grow border-[#03346E]" />
         </div>
 
         {/* ✅ Google Login Button */}

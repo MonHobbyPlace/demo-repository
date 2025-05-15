@@ -155,7 +155,7 @@ export const AddHospitalModal = (props: {
                 variant="outline"
                 className="w-[49%] h-[290px] border-3 text-lg border-dashed border-blue-500 text-blue-500 hover:opacity-80 hover:text-blue-400 "
               >
-                <div className="p-5 rounded-full bg-blue-400 ">
+                <div className="p-5 rounded-full bg-[#e1f7f5] ">
                   <Plus color="white" size={20} />
                 </div>
                 <p>Add new hospital</p>
@@ -362,7 +362,7 @@ export const AddHospitalModal = (props: {
               variant="outline"
               className="w-full h-[290px] border-3 text-lg border-dashed border-blue-500 text-blue-500 hover:opacity-80 hover:text-blue-400 "
             >
-              <div className="p-5 rounded-full bg-blue-400 ">
+              <div className="p-5 rounded-full bg-[#e1f7f5] ">
                 <Plus color="white" size={20} />
               </div>
               <p>Adding</p>

@@ -271,7 +271,7 @@ export const AddService = () => {
         onClick={servicePost}
         className={`py-2 px-4 rounded-md text-white font-semibold transition duration-200 ${
           loading
-            ? "bg-blue-400 cursor-not-allowed"
+            ? "bg-[#e1f7f5] cursor-not-allowed"
             : "bg-blue-600 hover:bg-blue-700"
         }`}
       >

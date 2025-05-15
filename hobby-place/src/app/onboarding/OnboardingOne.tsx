@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 export default function OnboardingOne() {
   const router = useRouter();
   return (
-    <div className="h-screen flex flex-col items-center justify-center text-center px-6">
+    <div className="h-screen flex flex-col items-center justify-center text-center px-6 text-[#03346E]">
       <button
         onClick={() => router.push("/login")}
-        className="absolute top-6 right-6 text-white cursor-pointer hover:scale-110 transition"
+        className="absolute top-6 right-6 text-[#03346E] cursor-pointer hover:scale-110 transition"
       >
         <h1 className="Skip"></h1>
       </button>

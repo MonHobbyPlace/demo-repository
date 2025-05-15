@@ -10,13 +10,13 @@ export default function Home() {
   };
 
   return (
-    <div className="w-screen h-screen  flex items-center justify-center bg-blue-400 text-white">
+    <div className="w-screen h-screen  flex items-center justify-center bg-[#e1f7f5] text-[#03346E]">
       <div className="text-center">
         <h1 className="text-3xl font-bold">Welcome to Pet Adoption</h1>
         <p className="mt-4 text-lg">Ready to find your furry friend?</p>
         <button
           onClick={handleStartOnboarding}
-          className="bg-white text-blue-600 font-semibold rounded-full w-full py-3 mt-6"
+          className="bg-[#03346E] text-white font-semibold rounded-full w-full py-3 mt-6"
         >
           Start Onboarding
         </button>

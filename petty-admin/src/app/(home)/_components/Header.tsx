@@ -14,9 +14,9 @@ export const Header = () => {
     <div className="p-5 flex justify-between items-center sticky top-0 bg-white z-50">
       <div className="w-[120px] h-[100px] ">
         <img
-          src="https://res.cloudinary.com/dszot6j60/image/upload/v1746104301/www.canva.com_design_DAGmNH2lmOk_6mWPUP3CAVdrgrlMFBBWow_edit_2_xeash1.png"
+          src="https://res.cloudinary.com/dszot6j60/image/upload/v1747291558/www.canva.com_design_DAGmNH2lmOk_6mWPUP3CAVdrgrlMFBBWow_edit_3_dpzbgs.png"
           alt="logo image"
-          className="w-full h-full"
+          className="w-full h-full object-cover"
         />
       </div>
 
