@@ -5,7 +5,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./provider/AuthProvider";
-import { ServiceCategoryProvider } from "./provider/ServiceCategoryProvider";
+// import { ServiceCategoryProvider } from "./provider/ServiceCategoryProvider";
 import { QueryClientProvider } from "./provider/QueryCientProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google"; // ✅ Add this
 
@@ -40,7 +40,7 @@ export default function RootLayout({
           >
             <AuthProvider>
               <ToastContainer position="top-right" autoClose={3000} />
-              <ServiceCategoryProvider>{children}</ServiceCategoryProvider>
+              {children}
             </AuthProvider>
           </GoogleOAuthProvider>
         </QueryClientProvider>
