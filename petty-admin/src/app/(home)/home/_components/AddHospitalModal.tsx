@@ -92,6 +92,26 @@ export const AddHospitalModal = (props: {
       toast("Successfully updated hospital information");
     }
   };
+  const demo = () => {
+    formik.setFieldValue("name", "Moon pet hospital");
+    formik.setFieldValue(
+      "backgroundImage",
+      "https://res.cloudinary.com/dszot6j60/image/upload/v1747296527/oesq8kbaxm4fk45atsco.jpg"
+    );
+    formik.setFieldValue(
+      "about",
+      "Focusing on feline friends and wellness, we offer specialized cat care, surgeries, and rehabilitation. We understand cats and care for them with gentle hands."
+    );
+    formik.setFieldValue("phoneNumber", "99999999");
+    formik.setFieldValue("email", "uuls17840@gmail.com");
+    formik.setFieldValue("workTime", "Everyday");
+    formik.setFieldValue("avatarImage", [
+      "https://res.cloudinary.com/dszot6j60/image/upload/v1747296527/oesq8kbaxm4fk45atsco.jpg",
+      "https://res.cloudinary.com/dszot6j60/image/upload/v1747296527/oesq8kbaxm4fk45atsco.jpg",
+      "https://res.cloudinary.com/dszot6j60/image/upload/v1747296527/oesq8kbaxm4fk45atsco.jpg",
+      "https://res.cloudinary.com/dszot6j60/image/upload/v1747296527/oesq8kbaxm4fk45atsco.jpg",
+    ]);
+  };
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: initialValues,
@@ -155,7 +175,7 @@ export const AddHospitalModal = (props: {
                 variant="outline"
                 className="w-[49%] h-[290px] border-3 text-lg border-dashed border-blue-500 text-blue-500 hover:opacity-80 hover:text-blue-400 "
               >
-                <div className="p-5 rounded-full bg-[#e1f7f5] ">
+                <div className="p-5 rounded-full bg-blue-500 ">
                   <Plus color="white" size={20} />
                 </div>
                 <p>Add new hospital</p>
@@ -175,7 +195,8 @@ export const AddHospitalModal = (props: {
               )}
 
               <DialogDescription>
-                Enter hospital information in all field.
+                Enter hospital information in all field.{" "}
+                <Button onClick={demo}>demo</Button>
               </DialogDescription>
             </DialogHeader>
             <form action="" onSubmit={formik.handleSubmit}>
