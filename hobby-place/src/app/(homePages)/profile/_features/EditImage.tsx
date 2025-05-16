@@ -84,7 +84,7 @@ export const EditImage = () => {
         <div className="absolute bottom-4  right-4">
           <label htmlFor="background">
             <div className="bg-gray-300 p-[8px] rounded-full border">
-              <Camera color="white" size={15} />
+              <Camera color="#03346e" size={15} />
             </div>
           </label>
           <input
@@ -107,7 +107,7 @@ export const EditImage = () => {
         <div className="absolute bottom-2 right-2">
           <label htmlFor="profileImage">
             <div className="bg-gray-300 p-[8px] rounded-full border">
-              <Camera color="white" size={15} />
+              <Camera color="#03346e" size={15} />
             </div>
           </label>
           <input

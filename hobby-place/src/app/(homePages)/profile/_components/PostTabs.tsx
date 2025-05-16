@@ -40,7 +40,7 @@ export const PostTabs = () => {
           )}
 
           <Button
-            className="rounded-full fixed z-100 bottom-23 right-8 cursor-pointer"
+            className="rounded-full fixed z-100 bottom-23 right-8 cursor-pointer bg-[#03346e]"
             onClick={() => router.push(`/petPost`)}
           >
             <Plus />
